@@ -1,0 +1,3156 @@
+﻿/*
+=============================================
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๒๔/๑๒/๒๕๕๖>
+Modify date : <๑๐/๐๓/๒๕๖๔>
+Description : <Style Sheet จัดรูปการแสดงผล>
+=============================================
+*/
+
+a:link {
+    text-decoration: none;
+    outline: none;
+}
+a:visited {
+    text-decoration: none;
+    outline: none;
+}
+a:active {
+    text-decoration: none;
+    outline: none;
+}
+a:hover {
+    text-decoration: none;
+    outline: none;
+}
+body {
+    background-color: #FFFFFF;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    cursor: default;
+}
+html, body {
+    height: 100%;
+}
+body > #bodymain {
+    height: auto;
+    min-height: 100%;
+}
+#bodymain,
+#headbody,
+#bodyfooter {
+    width: 100%;
+    text-align: center;
+}
+#mainbody,
+#headbody,
+#footerbody {
+    min-width: 1008px;
+}
+#headbody-layout,
+#menubar-layout,
+#footerbody-layout {
+    width: auto;
+}
+#menubar #menubar-layout {
+    height: 30px;
+}
+#menubar #menubar-content {
+    width: inherit;
+}
+#contentbody #contentbody-layout {
+    width: auto;
+    padding-bottom: 59px;
+}
+#contentbody #contentbody-content {
+    width: inherit;
+    text-align: center;
+}
+.contentbody-left {
+    float: left;
+}
+.contentbody-right {
+    float: right;
+}
+#headbody {
+    background: #3498DB;
+}
+#headbody .box {
+    border-top: 6px solid #27AE60;
+}
+#headbody #headbody-layout {
+    height: 59px;
+    background: #3498DB;
+}
+#headbody #headbody-content {
+    height: inherit;
+}
+#headbody #headbody-content #headbody-content-left {
+    width: 509px;
+    height: inherit;
+    background: url(../../Image/eProfileStaff/Label.png) no-repeat 0 0;
+}
+#headbody #headbody-content #headbody-content-right {
+    width: 481px;
+    height: inherit;
+    background: url(../../Image/eProfileStaff/Label.png) no-repeat -509px 0;
+}
+#bodysearch {
+    position: fixed;
+    left: 0;
+    z-index: 999;
+}
+#bodyfooter {
+    margin-top: -59px;
+    height: 59px;
+    background: #B0C4B8;
+    position: relative;
+    z-index: 997;
+}
+#footerbody .box {
+    border-top: 6px solid #27AE60;
+}
+#footerbody #footerbody-content {
+    padding-top: 5px;
+}
+#footerbody #footerbody-content .th-label,
+#footerbody #footerbody-content .en-label {
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    color: #000000;
+}
+#footerbody #footerbody-content .th-label {
+    font-size: 14px;
+}
+.sticky {
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+}
+.clear {
+    clear: both;
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix {
+    display: inline-block;
+}
+* html .clearfix {
+    height: 1%;
+}
+.clearfix {
+    display: block;
+}
+form,
+input,
+select,
+span {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+select {
+    width: 0;
+}
+.frame-util {
+    width: 0;
+    height: 0;
+    border: none;
+}
+input.inputcalendar {
+    width: 80px;
+    cursor: default;
+}
+img.ui-datepicker-trigger {
+    cursor: pointer;
+}
+a {
+    outline: none;
+}
+.box {
+    width: auto;
+}
+.hidden {
+    display: none;
+}
+.font-weight-bold {
+    font-weight: bold !important;
+}
+.th-label {
+    font: bold 14px Tahoma, Verdana, Arial, sans-serif;
+    color: #000000;
+}
+.en-label {
+    font: bold 16px Corbel, Verdana, Arial, sans-serif;
+    color: #666666;
+}
+.inputbox,
+.inputcombobox,
+.inputcalendar {
+    border: 2px solid #BDC3C7;
+    text-decoration: none;
+    font: normal 14px Tahoma, Verdana, Arial, sans-serif;
+    padding: 0 2px 1px 2px;
+    height: 24px;
+    /*line-height: 21px;*/
+    color: #000000;
+    background-color: #FFFFFF;
+    outline: none;    
+    cursor: default;
+}
+.ui-datepicker .ui-datepicker-title select {    
+    font: normal 11px Tahoma, Verdana, Arial, sans-serif;    
+    border: 0;
+    appearance: none;    
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    background: url(../../Image/eProfileStaff/Arrow.png) no-repeat;
+    background-position: 40px; 
+    width: 56px;
+    text-indent: 0.01px;
+    text-overflow: "";
+    height: 19px;
+    padding: 0;
+    padding-left: 1px;
+    color: #000000;
+    background-color: #FFFFFF; 
+}
+.ui-datepicker {
+    font-family: Corbel, Verdana, Arial, sans-serif;
+}
+.ui-datepicker .ui-datepicker-title select::-ms-expand {
+    display: none;
+}
+.ui-datepicker th {
+    font-weight: bold;
+    font-size: 13px;
+}
+.ui-datepicker td span,
+.ui-datepicker td a {
+    font-weight: normal;
+    font-size: 13px;
+}
+.textbox-numeric {
+    text-align: right;
+}
+.textbox-disable {
+    color: #000000;
+    background-color: #CCCCCC;
+    cursor: default;
+}
+.textareabox {
+    font: normal 14px Tahoma, Verdana, Arial, sans-serif;
+    border: 2px solid #BDC3C7;
+    text-decoration: none;
+    padding: 0 2px 1px 2px;
+    line-height: 22px;
+    color: #000000;
+    resize: none;
+    background-color: #FFFFFF;
+    outline: none;
+    overflow-y: auto;
+}
+.checkbox,
+.radio {
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    outline: none;
+    cursor: default;
+}
+.pr-0 {
+    padding-right: 0 !important;
+}
+
+.class-dialog-preloading,
+.class-dialog-box,
+.class-dialog-error,
+.class-dialog-confirm {
+    z-index: 3001;
+}
+.class-dialog-preloading .ui-dialog-titlebar,
+.class-dialog-box .ui-dialog-titlebar,
+.class-dialog-error .ui-dialog-titlebar,
+.class-dialog-confirm .ui-dialog-titlebar,
+.class-dialog-preloading .ui-dialog-buttonpane {
+    display: none;
+}
+.class-dialog-preloading .ui-dialog-content {
+    width: 128px;
+    height: 128px;
+    background: url(../../Image/eProfileStaff/Preloading.gif) no-repeat center center;
+    border: 0;
+    padding: 55px 0 0 0;
+    text-align: center;
+    font: bold 14px Corbel, Verdana, Arial, sans-serif;
+}
+.class-dialog-box .ui-dialog-content,
+.class-dialog-box .ui-dialog-buttonpane {
+    border: 3px solid #428001;
+    background: #428001;
+}
+.class-dialog-error .ui-dialog-content,
+.class-dialog-error .ui-dialog-buttonpane {
+    border: 3px solid #B82A28;
+    background: #B82A28;
+}
+.class-dialog-confirm .ui-dialog-content,
+.class-dialog-confirm .ui-dialog-buttonpane {
+    border: 3px solid #2A80B9;
+    background: #2A80B9;
+}
+.class-dialog-box .ui-dialog-content,
+.class-dialog-error .ui-dialog-content,
+.class-dialog-confirm .ui-dialog-content {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+.class-dialog-box .ui-dialog-content .th-label,
+.class-dialog-error .ui-dialog-content .th-label,
+.class-dialog-confirm .ui-dialog-content .th-label {
+    font-size: 14px;
+    line-height: 21px;
+}
+.class-dialog-box .ui-dialog-content .en-label,
+.class-dialog-error .ui-dialog-content .en-label,
+.class-dialog-confirm .ui-dialog-content .en-label {
+    font-size: 14px;
+    line-height: 21px;
+    color: #FFFFFF;
+}
+.class-dialog-error .ui-dialog-content a:hover {
+    text-decoration: underline;
+}
+.class-dialog-box .ui-dialog-buttonpane,
+.class-dialog-error .ui-dialog-buttonpane,
+.class-dialog-confirm .ui-dialog-buttonpane {
+    border: 0;
+}
+.class-dialog-box .ui-dialog-buttonpane button,
+.class-dialog-error .ui-dialog-buttonpane button,
+.class-dialog-confirm .ui-dialog-buttonpane button {
+    border: 0;
+    font: bold 16px Corbel, Verdana, Arial, sans-serif;
+    color: #FFFFFF;
+    width: 85px;
+    height: 32px;
+    line-height: 32px;
+    outline: none;
+}
+.class-dialog-error .ui-dialog-buttonpane button {
+    background: #E84C3D;
+}
+.class-dialog-confirm .ui-dialog-buttonpane button {
+    background: #4AA3DF;
+}
+.class-dialog-box .ui-dialog-buttonpane button {
+    background: #59B200;
+}
+.class-dialog-box button:hover,
+.class-dialog-error button:hover,
+.class-dialog-confirm button:hover {
+    color: #FFFFFF;
+}
+.class-dialog-box button:hover {
+    background: #6BDD01;
+}
+.class-dialog-error button:hover {
+    background: #E65D50;
+}
+.class-dialog-confirm button:hover {
+    background: #4DADEE;
+}
+.class-dialog-form .ui-dialog-titlebar {
+    background: #B82A28;
+    border: 10px solid #9AC3BD;
+    border-bottom: 0;
+}
+.class-dialog-form .ui-dialog-title {
+    font: bold 14px Corbel, Tahoma, Verdana, Arial, sans-serif;
+    color: #FFFFFF;
+    padding: 8px 45px 8px 10px;
+    line-height: 22px;
+}
+.class-dialog-form .ui-dialog-titlebar-close {
+    visibility: visible;
+    outline: none;
+    border: 0;
+    background: transparent;
+}
+.class-dialog-form .ui-dialog-titlebar-close {
+    width: 25px;
+    height: 25px;
+    background: url(../../Image/eProfileStaff/Label.png) 0 -130px;
+}
+.class-dialog-form .ui-dialog-titlebar-close:hover {
+    width: 25px;
+    height: 25px;
+    background: url(../../Image/eProfileStaff/Label.png) -25px -130px;
+}
+.class-dialog-form .ui-dialog-content {
+    padding: 0;
+    margin: 0;
+    background: #FFFFFF;
+    border: 10px solid #9AC3BD;
+    border-top: 0;
+}
+.class-dialog-form .msgbox {
+    width: auto;
+    line-height: 25px;
+    padding: 10px;
+    background: #ECF0F1;
+    text-align: justify;
+}
+.class-dialog-form .msgbox.en-label {
+    font-size: 18px;
+    font-weight: normal;
+    color: #000000;
+}
+.class-dialog-form .msgbox a {
+    color: #000099;
+}
+.class-dialog-form .msgbox a:hover {
+    color: #FF0000;
+}
+.preloading-inline {
+    width: 38px;
+    height: 26px;
+    border: 0;
+    position: relative;
+}
+
+.menubar .menubar-layout {
+    width: auto;
+    height: 30px;
+    line-height: 30px;
+    background: #2ECC71;
+}
+.menubar .menubar-content {
+    width: inherit;
+}
+.menubar .menubar-content ul,
+.menubar .menubar-content ul ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.menubar .menubar-content ul li {
+    float: left;
+    display: inline;
+}
+.menubar .menubar-content ul .link-msg {
+    padding: 0 9px 0 9px;
+}
+.menubar .menubar-content .contentbody-left,
+.menubar .menubar-content .contentbody-right {
+    height: inherit;
+}
+.menubar .menubar-content ul .link-click {
+    cursor: pointer;
+}
+.menubar .menubar-content ul li,
+.menubar .menubar-content ul li a,
+.menubar .menubar-content ul li div {
+    display: block;
+    height: inherit;
+    line-height: inherit;
+    text-decoration: none;
+    color: #000000;
+}
+.menubar .menubar-content ul li .th-label {
+    font-size: 12px;
+    font-weight: normal;
+}
+.menubar .menubar-content ul li .en-label {
+    font-size: 14px;
+}
+.menubar .menubar-content ul .have-link:hover {
+    position: relative;
+    background: #27AE60;
+}
+.menubar .menubar-content ul .have-link:hover .th-label,
+.menubar .menubar-content ul .have-link:hover .en-label {
+    color: #FFFFFF;
+}
+.menubar .menubar-content ul .nohave-link:hover {
+    position: relative;
+}
+.menubar .menubar-content ul .split-vertical {
+    display: block;
+    height: 35px;
+    border-left: 1px solid #27AE60;
+    border-right: 1px solid #27AE60;
+}
+.menubar .menubar-content ul .link-submenu:hover .submenu {
+    display: block;
+}
+.menubar .menubar-content ul .link-submenu .submenu {
+    background: #27AE60;
+    border-top: 6px solid #27AE60;
+    display: none;
+    position: absolute;
+    z-index: 2000;
+}
+.menubar .menubar-content ul .link-submenu .submenu ul li {
+    float: left;
+    display: inline;
+    text-align: left;
+}
+.menubar .menubar-content ul .link-submenu .submenu ul li a .th-label {
+    line-height: 21px;
+    font-size: 14px;
+    color: #000000;
+}
+.menubar .menubar-content ul .link-submenu .submenu ul li a .en-label {
+    line-height: 22px;
+    font-size: 13px;
+    color: #333333;
+}
+.menubar .menubar-content ul .link-submenu .submenu ul li a {
+    padding: 3px 0 5px 9px;
+    width: 405px;
+    min-height: 22px;
+}
+.menubar .menubar-content ul .link-submenu .submenu .split-horizontal {
+    display: block;
+    width: inherit;
+    height: 6px;
+    background: #27AE60;
+}
+.menubar .menubar-content ul .link-submenu .submenu ul .have-link:hover {
+    background: #25A159;
+}
+.menubar .menubar-content ul .link-submenu .submenu ul .have-link:hover .en-label {
+    color: #000000;
+}
+.menubar .menubar-content ul #link-setting {
+    width: 67px;
+}
+.menubar .menubar-content ul #link-setting div.link-msg {
+    padding: 0 5px 0 5px;
+}
+.menubar .menubar-content ul #link-masterdata .submenu {
+    width: 916px;
+}
+.menubar .menubar-content ul #link-masterdata .submenu ul li a {
+    width: 220px;
+}
+.menubar .menubar-content ul #link-help .submenu {
+    left: -240px;
+}
+.menubar .menubar-content ul #link-help .submenu ul li a {
+    width: 274px;
+}
+.menubar .menubar-content #link-privacypolicy,
+.menubar .menubar-content #link-privacypolicy .th-label,
+.menubar .menubar-content #link-privacypolicy .en-label {
+    color: #0056B3;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.menubar .menubar-content #link-privacypolicy .en-label {
+    font-size: 12px;
+}
+
+.menulist .menulist-layout {
+    width: auto;
+    background: #B9B5AD;
+    text-align: left;
+}
+.menulist .menulist-content {
+    width: inherit;
+}
+.menulist .menulist-content ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.menulist .menulist-content ul li,
+.menulist .menulist-content ul li .link-msg {
+    display: block;
+    text-align: left;
+    background: #F5BE01;
+    height: 52px;
+}
+.menulist .menulist-content ul .have-link:hover,
+.menulist .menulist-content ul .have-link a:hover,
+.menulist .menulist-content ul .have-link a:hover .menu-itemtext .th-label,
+.menulist .menulist-content ul .have-link a:hover .menu-itemtext .en-label {
+    background: #C8A000;
+    color: #000000;
+}
+.menulist .menulist-content ul li .link-msg .menu-itemtext {
+    padding-left: 10px;
+    padding-top: 5px;
+}
+.menulist .menulist-content ul li .link-msg .menu-itemtext .th-label {
+    height: 22px;
+}
+.menulist .menulist-content ul li .link-msg .menu-itemtext .en-label {
+    font-size: 13px;
+}
+.menulist {
+    position: fixed;
+    z-index: 998;
+}
+.menulist .button-toggle {
+    height: 26px;
+}
+.menulist .button-toggle a {
+    line-height: 26px;
+    font-size: 13px;
+}
+.menulist .button-toggle a:hover {
+    background: transparent;
+}
+
+.infobar {
+    z-index: 999;
+}
+.infobar .infobar-layout {
+    width: auto;
+    height: 47px;
+    background: #EFF0F2;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+}
+.infobar .infobar-content {
+    width: inherit;
+}
+.infobar .infobar-content ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.infobar .infobar-content ul li {
+    float: left;
+    display: inline;
+}
+.infobar .infobar-content ul li .icon {
+    width: 67px;
+    height: 47px;
+    background: url(../../Image/eProfileStaff/Label.png);
+}
+.infobar .infobar-content ul li .icon-config {
+    background-position: 0 -59px;
+}
+.infobar .infobar-content ul li .icon-storage {
+    background-position: -67px -59px;
+}
+.infobar .infobar-content ul li .icon-profile {
+    background-position: -134px -59px;
+}
+.infobar .infobar-content ul li .icon-service {
+    background-position: -201px -59px;
+}
+.infobar .infobar-content ul li .title {
+    width: 100%;
+    text-align: left;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.infobar .infobar-content ul li .title .th-label {
+    height: 20px;
+}
+.infobar .infobar-content ul li .title .en-label {
+    line-height: 19px;
+    font-size: 14px;
+}
+.infobar .infobar-content .operator ul li,
+.infobar .infobar-content .operator ul li a {
+    display: block;
+    width: 46px;
+}
+.infobar .infobar-content .operator ul li .operator-img {
+    width: 24px;
+    height: 24px;
+    background: url(../../Image/eProfileStaff/Label.png);
+    margin-top: 5px;
+    position: relative;
+    left: 11px;
+}
+.infobar .infobar-content .operator ul li .operator-msg {
+    height: 18px;
+    line-height: 18px;
+}
+.infobar .infobar-content .operator ul li .en-label {
+    font-size: 12px;
+    font-weight: normal;
+    color: #000000;
+}
+.infobar .infobar-content .operator ul li:hover {
+    background: #D2D7D3;
+}
+.infobar .infobar-content .operator ul .operator-new .operator-img {
+    background-position: 0 -106px;
+}
+.infobar .infobar-content .operator ul .operator-edit .operator-img {
+    background-position: -48px -106px;
+}
+.infobar .infobar-content .operator ul .operator-delete .operator-img {
+    background-position: -96px -106px;
+}
+.infobar .infobar-content .operator ul .operator-search .operator-img {
+    background-position: -144px -106px;
+}
+.infobar .infobar-content .operator ul .operator-reset .operator-img {
+    background-position: -192px -106px;
+}
+.infobar .infobar-content .operator ul .operator-save .operator-img {
+    background-position: -240px -106px;
+}
+.infobar .infobar-content .operator ul .operator-apply .operator-img {
+    background-position: -288px -106px;
+}
+.infobar .infobar-content .operator ul .operator-undo .operator-img {
+    background-position: -336px -106px;
+}
+.infobar .infobar-content .operator ul .operator-print .operator-img {
+    background-position: -384px -106px;
+}
+.infobar .infobar-content .operator ul .operator-transfer .operator-img {
+    background-position: -432px -106px;
+}
+.infobar .infobar-content .operator ul .operator-home .operator-img {
+    background-position: -480px -106px;
+}
+.infobar .infobar-content .operator ul .operator-close .operator-img {
+    background-position: -528px -106px;
+}
+.infobar .infobar-content .operator ul .operator-profile .operator-img {
+    background-position: -576px -106px;
+}
+.infobar .infobar-content .operator ul .operator-new:hover .operator-img,
+.infobar .infobar-content .operator ul .operator-new a:hover .operator-img {
+    background-position: -24px -106px;
+}
+.infobar .infobar-content .operator ul .operator-edit:hover .operator-img,
+.infobar .infobar-content .operator ul .operator-edit a:hover .operator-img {
+    background-position: -72px -106px;
+}
+.infobar .infobar-content .operator ul .operator-delete:hover .operator-img,
+.infobar .infobar-content .operator ul .operator-delete a:hover .operator-img {
+    background-position: -120px -106px;
+}
+.infobar .infobar-content .operator ul .operator-search:hover .operator-img,
+.infobar .infobar-content .operator ul .operator-search a:hover .operator-img {
+    background-position: -168px -106px;
+}
+.infobar .infobar-content .operator ul .operator-reset:hover .operator-img,
+.infobar .infobar-content .operator ul .operator-reset a:hover .operator-img {
+    background-position: -216px -106px;
+}
+.infobar .infobar-content .operator ul .operator-save:hover .operator-img,
+.infobar .infobar-content .operator ul .operator-save a:hover .operator-img {
+    background-position: -264px -106px; 
+}
+.infobar .infobar-content .operator ul .operator-apply:hover .operator-img,
+.infobar .infobar-content .operator ul .operator-apply a:hover .operator-img {
+    background-position: -312px -106px;
+}
+.infobar .infobar-content .operator ul .operator-undo:hover .operator-img,
+.infobar .infobar-content .operator ul .operator-undo a:hover .operator-img {
+    background-position: -360px -106px;
+}
+.infobar .infobar-content .operator ul .operator-print:hover .operator-img,
+.infobar .infobar-content .operator ul .operator-print a:hover .operator-img {
+    background-position: -408px -106px;
+}
+.infobar .infobar-content .operator ul .operator-transfer:hover .operator-img,
+.infobar .infobar-content .operator ul .operator-transfer a:hover .operator-img {
+    background-position: -456px -106px;
+}
+.infobar .infobar-content .operator ul .operator-home:hover .operator-img,
+.infobar .infobar-content .operator ul .operator-home a:hover .operator-img {
+    background-position: -504px -106px;
+}
+.infobar .infobar-content .operator ul .operator-close:hover .operator-img,
+.infobar .infobar-content .operator ul .operator-close a:hover .operator-img {
+    background-position: -552px -106px;
+}
+.infobar .infobar-content .operator ul .operator-profile:hover .operator-img,
+.infobar .infobar-content .operator ul .operator-profile a:hover .operator-img {
+    background-position: -600px -106px;
+}
+
+#infobar-privacypolicy .infobar-layout {
+    border-bottom-color: #0D70E5;
+}
+#infobar-setting .infobar-layout {
+    border-bottom-color: #E84C3D;
+}
+#infobar-masterdata .infobar-layout {
+    border-bottom-color: #1F7FC8;
+}
+#infobar-administrationstudentrecords .infobar-layout {
+    border-bottom-color: #F3781B;
+}
+#infobar-ourservices .infobar-layout {
+    border-bottom-color: #E08283;
+}
+
+.important .important-layout {
+    width: auto;
+    height: 43px;
+    text-align: left;
+    padding: 7px 10px 0 10px;
+}
+.important .important-content {
+    width: inherit;
+    height: inherit;
+}
+.important .important-recommend {
+    width: inherit;
+    background: #F1C40F;
+}
+.important .important-success {
+    width: inherit;
+    background: #2ECC71;
+    display: none;
+}
+.important .important-icon {
+    display: inline;
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    background: url(../../Image/eProfileStaff/Label.png) -111px -305px;
+}
+.important .important-msg {
+    display: inline;
+    width: inherit;
+    background: #FF0000;
+}
+.important .important-msg .th-label {
+    height: 20px;
+}
+.important .important-msg .en-label {
+    font-size: 14px;
+    font-weight: normal;
+}
+.important .important-msg .title {
+    font-size: 18px;
+    font-weight: bold;
+    height: 22px;
+    line-height: 18px;
+}
+
+.tabbar {
+    z-index: 999;
+}
+.tabbar .tabbar-layout {
+    width: auto;
+    min-width: 750px;
+    height: 48px;
+    background: #B9B5AD;
+}
+.tabbar .tabbar-content {
+    width: inherit;
+}
+.tabbar .tabbar-content ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.tabbar .tabbar-content ul li {
+    float: left;
+    display: inline;
+}
+.tabbar .tabbar-content ul li,
+.tabbar .tabbar-content ul li a {
+    display: block;
+    text-decoration: none;
+    height: 48px;
+}
+.tabbar .tabbar-content ul li .tab-itemtext {
+    padding: 7px 10px 0 10px;
+    text-align: left;
+}
+.tabbar .tabbar-content ul li .tab-itemtext .th-label {
+    height: 20px;
+}
+.tabbar .tabbar-content ul li .tab-itemtext .en-label {
+    font-size: 14px;
+}
+.tabbar .tabbar-content ul li .tab-active {
+    background: #FFFFFF;
+}
+.tabbar .tabbar-content ul li .tab-active .th-label,
+.tabbar .tabbar-content ul li .tab-active .en-label {
+    color: #000000;
+}
+.tabbar .tabbar-content ul li .noactive {
+    background: transparent;
+}
+.tabbar .tabbar-content ul li a:hover,
+.tabbar .tabbar-content ul li a:hover .th-label,
+.tabbar .tabbar-content ul li a:hover .en-label {
+    background: #BDC3C7;
+    color: #000000;
+}
+#main-ourservicessummarynumberofstudent-viewsdisplay .tabbar-layout,
+#main-ourservicessummarynumberofstudent-viewsdisplay .tabbar-content ul li {
+    height: 44px
+}
+#main-ourservicessummarynumberofstudent-viewsdisplay .tabbar-content ul li a {
+    width: 67px;
+    height: 44px;
+}
+#main-ourservicessummarynumberofstudent-viewsdisplay .tabbar-content ul li .tab-itemtext {
+    padding: 2px 10px 0 9px;
+}
+#view-ourservicestransactionlogstudentrecords-form .tabbar-layout,
+#view-ourservicestransactionlogstudentrecords-form .tabbar-content ul li,
+#view-ourservicestransactionlogstudentrecords-form .tabbar-content ul li a {
+    height: 45px;
+}
+#view-ourservicestransactionlogstudentrecords-form .tabbar-content ul li:nth-child(1) {
+    width: 100px;
+}
+#view-ourservicestransactionlogstudentrecords-form .tabbar-content ul li:nth-child(2) {
+    width: 93px;
+}
+#view-ourservicestransactionlogstudentrecords-form .tabbar-content ul li:nth-child(3) {
+    width: 90px;
+}
+#view-ourservicestransactionlogstudentrecords-form .tabbar-content ul li:nth-child(4) {
+    width: 110px;
+}
+#view-ourservicestransactionlogstudentrecords-form .tabbar-content ul li:nth-child(5) {
+    width: 155px;
+}
+#view-ourservicestransactionlogstudentrecords-form .tabbar-content ul li:nth-child(6) {
+    width: 93px;
+}
+#view-ourservicestransactionlogstudentrecords-form .tabbar-content ul li:nth-child(7) {
+    width: 109px;
+}
+#view-ourservicestransactionlogstudentrecords-form .tabbar-content ul li:nth-child(8) {
+    width: 92px;
+}
+#view-ourservicestransactionlogstudentrecords-form .tabbar-content ul li:nth-child(9) {
+    width: 103px;
+}
+#view-ourservicestransactionlogstudentrecords-form .tabbar-content ul li .tab-itemtext {
+    padding-top: 6px;
+}
+#view-ourservicestransactionlogstudentrecords-form .tabbar-content ul li .tab-itemtext .th-label {
+    font-size: 12px;
+    height: 18px;
+}
+#view-ourservicestransactionlogstudentrecords-form .tabbar-content ul li .tab-itemtext .en-label {
+    font-size: 12px;
+}
+
+.subtabbar .tabbar-layout {
+    background: #FFFFFF;
+}
+.subtabbar .tabbar-content ul li .tab-itemtext .th-label,
+.subtabbar .tabbar-content ul li .tab-itemtext .en-label {
+    color: #BDC3C7;
+}
+.subtabbar .tabbar-content ul li .subtab-active {
+    background: transparent;
+}
+.subtabbar .tabbar-content ul li .subtab-active .th-label, 
+.subtabbar .tabbar-content ul li .subtab-active .en-label {
+    color: #000000;
+}
+.subtabbar .tabbar-content ul li a:hover,
+.subtabbar .tabbar-content ul li a:hover .th-label,
+.subtabbar .tabbar-content ul li a:hover .en-label {
+    background: transparent;
+    color: #000000;
+}
+
+.form .form-content {
+    text-align: left;
+}
+.form .form-content .form-row {
+    width: inherit;
+    height: 48px;
+}
+.form .form-content .form-lastrow {
+    height: auto;
+    padding-bottom: 10px;
+}
+.form .form-content .form-labelcol,
+.form .form-content .form-inputcol {
+    float: left;
+}
+.form .form-content .form-labelcol {
+    width: 45%;
+    min-width: 316px;
+    padding: 7px 0 0 10px;
+    text-align: right;
+}
+.form .form-content .form-labelcol .form-label .th-label {
+    height: 20px;
+}
+.form .form-content .form-labelcol .form-label .en-label {
+    font-size: 13px;
+}
+.form .form-content .form-inputcol {
+    width: 45%;
+    min-width: 437px;
+    padding: 13px 0 0 0;
+}
+.form .form-content .form-inputcol.form-inputcol-paddingbottom {
+    padding-top: 5px;
+}
+.form .form-content .form-inputcol .form-input span {
+    display: inline-block;
+}
+.form .form-content .form-inputcol .form-input .th-label {
+    font-size: 14px;
+    font-weight: normal;
+}
+.form .form-content .form-inputcol .form-input .en-label {
+    font-size: 13px;
+    font-weight: normal;
+}
+.form .form-content .form-inputcol .form-input .form-input-discription {
+    display: block;
+    margin-top: 0.25rem;
+}
+.form .form-content .form-inputcol .form-input .form-input-discription .th-label,
+.form .form-content .form-inputcol .form-input .form-input-discription .en-label {
+    font-size: 75%;
+    font-style: normal;
+    font-weight: normal;
+    color: #6C757D;
+    line-height: 18px;
+}
+.form .form-content .form-inputcol .form-input .radio-content .th-label,
+.form .form-content .form-inputcol .form-input .checkbox-content .th-label {
+    line-height: 22px;
+}
+.form .form-content .form-inputcol .form-input .radio-content .en-label,
+.form .form-content .form-inputcol .form-input .checkbox-content .en-label {
+    line-height: 18px;
+}
+.form .form-content .form-inputcol .form-input .radio-content,
+.form .form-content .form-inputcol .form-input .checkbox-content {
+    width: 533px;
+}
+.form .form-content .form-inputcol .form-input .radio-content ul .radio-labelcol,
+.form .form-content .form-inputcol .form-input .checkbox-content ul .checkbox-labelcol {
+    width: 401px;
+}
+.form .form-content .form-inputcol .form-input .form-subcontent {
+    margin-left: 23px;
+    margin-top: 10px;
+}
+.form .form-content .form-inputcol .form-input .form-subcontent.first-child {
+    margin-top: 3px;
+}
+.form .form-content .form-inputcol .form-input .form-subcontent .form-labelcol {
+    padding: 0;
+    text-align: left;
+}
+.form .form-content .form-inputcol .form-input .form-subcontent .form-labelcol div {
+    line-height: 21px;
+}
+.form .form-content .form-inputcol .form-input .form-subcontent .form-labelcol .en-label {
+    line-height: 18px;
+    font-size: 13px;
+}
+.form .form-content .form-inputcol .form-input .form-subcontent .form-labelcol div:first-child span.en-label {
+    color: #000000;
+}
+.form .form-content .form-inputcol .form-input .form-subcontent .form-inputcol {
+    padding: 0;
+    margin-top: 5px;
+}
+.form .form-content .form-inputcol .form-input .form-subcontent .radio-content,
+.form .form-content .form-inputcol .form-input .form-subcontent .checkbox-content {
+    padding: 0;
+    margin-left: 0;
+}
+.form .form-content .form-inputcol .form-input .form-subcontent .radio-content .radio-labelcol,
+.form .form-content .form-inputcol .form-input .form-subcontent .checkbox-content .checkbox-labelcol {
+    width: 378px;
+}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-input .contentbody-left {
+    margin-left: 4px;
+}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-input .contentbody-left:first-child {
+    margin-left: 0;
+}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-input .contentbody-left:last-child,
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row .contentbody-left:last-child {
+    margin-left: 1px;
+    padding-top: 54px;
+    width: 50px;
+}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-input .contentbody-left .button {
+    margin-top: 5px;
+}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-input .contentbody-left .button ul li a {
+    height: 28px;
+    line-height: 28px;
+    font-size: 14px;
+    color: #000000;
+}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-input .contentbody-left:last-child .link ul li,
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row .contentbody-left:last-child .link ul li {
+    text-align: right;
+    width: 44px;
+}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-input .contentbody-left:last-child .link ul li .en-label,
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row .contentbody-left:last-child .link ul li .en-label {
+    font-size: 13px;
+    font-weight: bold;
+}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row:first-child {
+    border: none;
+    border-top: 1px dashed #CCCCCC;
+    margin-top: 10px;
+    padding-top: 5px;
+}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row .contentbody-left {
+    margin-left: 4px;
+    padding-left: 5px;
+    padding-right: 3px;
+}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row .contentbody-left:first-child {
+    margin-left: 0;
+}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row .contentbody-left div {
+    line-height: 21px;
+}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row .contentbody-left:last-child {
+    padding: 0;
+    padding-top: 1px;
+}
+
+.dialog-form .form-layout {
+    background: #F5F5F5;
+    width: auto
+}
+.dialog-form .form-content {
+    width: inherit;
+    padding: 0;
+}
+.dialog-form .form-content .form-labelcol {
+    min-width: 0;
+    width: 50%;
+    text-align: left;
+}
+.dialog-form .form-content .form-inputcol {
+    min-width: 0;
+    width: 50%;
+    padding: 9px 0 0 0;
+    text-align: left;
+}
+.dialog-form .form-content .form-inputcol .form-input {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.dialog-form .form-content .form-inputcol .form-input .alertmessage {
+    height: 26px;
+    line-height: 26px;
+    position: relative;
+    left: 64px;
+}
+.dialog-form .form-content .form-inputcol .form-input .list {
+    border: 2px solid #BDC3C7;
+    background: #FFFFCC;
+}
+.dialog-form .form-content .form-inputcol .form-input .list .list-layout {
+    border: 0;
+    background: none;
+}
+.dialog-form .form-content .button ul li a,
+.dialog-form .form-content .button ul li div {
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+}
+.dialog-form .table .table-layout {
+    text-align: center;
+}
+.dialog-form .table.table-previewprogress .table-title {
+    background: transparent;
+}
+.dialog-form .table.table-previewprogress .table-list {
+    border-bottom: 1px solid #E4E4E4;
+    overflow: hidden;
+}
+.dialog-form .table.table-previewprogress .table-list:hover {
+    overflow-y: scroll;
+}
+.dialog-form .table.table-previewprogress .table-grid .table-row:hover {
+    cursor: default;
+}
+.dialog-form .table.table-previewprogress .button {
+    padding: 9px;
+    position: relative;
+}
+
+.dialogmessage-form .form-layout {
+    background: #FFFFFF;
+    width: auto;
+}
+.dialogmessage-form .form-content {
+    width: inherit;
+    padding: 10px;
+}
+.dialogmessage-form .form-content hr {
+    width: auto;
+    height: 1px;
+    border: none;
+    border-top: 1px dashed #CCCCCC;
+}
+.dialogmessage-form .form-content ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative
+}
+.dialogmessage-form .form-content ul li {
+    padding-left: 15px;
+    line-height: 25px;
+    font-weight: normal;
+    text-wrap: normal;
+    text-align: justify;
+}
+.dialogmessage-form .form-content ul li:before {
+    position: absolute;
+    content: "•";
+    left: 0;
+}
+.dialogmessage-form .form-content div {
+    line-height: 25px;
+    font-weight: normal;
+    text-wrap: normal;
+    text-align: justify;
+}
+
+.form.addupdate .form-content .age {
+    width: 42px;
+    text-align: center;
+}
+.form.addupdate .form-content .button ul li a,
+.form.addupdate .form-content .button ul li div {
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+}
+.form.addupdate .form-content .button ul li .en-label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.form.detail .form-content .form-inputcol {
+    padding-top: 7px;
+}
+.form.detail .form-content .form-inputcol .th-label,
+.form.detail .form-content .form-inputcol .en-label {
+    font-weight: normal;
+} 
+.form.detail .form-content .form-inputcol .th-label {
+    line-height: 18px;
+}
+.form.detail .form-content .form-inputcol .en-label {
+    line-height: 18px;
+    height: 19px;
+    font-size: 13px;
+    margin-top: 1px;
+}
+.form.detail .form-content .form-inputcol .button ul li a,
+.form.detail .form-content .form-inputcol .button ul li div {
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+}
+.form.detail .form-content .form-inputcol .button ul li .en-label {
+    font-size: 16px;
+    font-weight: bold;
+}
+#main-topicsstudentrecordsstatusnotcomplete-form .form-content .form-labelcol {
+    width: 220px;
+}
+#view-ourservicestransactionlogstudentrecords-form .form-content .form-labelcol {
+    width: 99px;
+}
+#main-topicsstudentrecordsstatusnotcomplete-form .form-content .form-inputcol {
+    width: 695px;
+}
+#view-ourservicestransactionlogstudentrecords-form .form-content .form-inputcol {
+    width: 824px;
+}
+#main-topicsstudentrecordsstatusnotcomplete-form .form-content .form-inputcol .th-label,
+#view-ourservicestransactionlogstudentrecords-form .form-content .form-inputcol .th-label {
+    height: 19px;
+}
+#main-topicsstudentrecordsstatusnotcomplete-form #main-topicsstudentrecordsstatusnotcomplete-topicsnotcomplete-content .form-labelcol .form-label .th-label {
+    height: 22px;
+}
+
+.search .search-layout {
+    width: auto;
+    text-align: center;
+    padding: 10px 10px 1px 10px;
+}
+.search .search-content {
+    width: inherit;
+}
+.search .search-content .search-section1 {
+    margin-left: 0;
+}
+.search .search-content .search-section2 {
+    margin-left: 10px;
+}
+.search .search-content .search-section3 {
+    margin-left: 10px;
+}
+.search .search-content .search-floatcol .contentbody-left {
+    overflow: hidden;
+}
+.search .search-content .search-floatcol .contentbody-left:first-child {
+    margin-right: 6px;
+}
+.search .search-content .search-date-content .contentbody-left:nth-child(2) {
+    width: 22px;
+    text-align: center;
+    font-size: 18px;
+}
+.form.search .form-content .form-labelcol {
+    height: 21px;
+    padding: 0 0 0 2px;
+    text-align: left;
+}
+.form.search .form-content .form-labelcol .form-label div.th-label {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.form.search .form-content .form-inputcol {
+    height: 26px;
+    padding: 0;
+}
+.form.search .form-content .form-inputcol .en-label {
+    font-weight: bold;
+    font-size: 18px;
+    color: #FFFFFF;
+}
+.form.search .form-content .form-inputcol .inputbox,
+.form.search .form-content .form-inputcol .inputcombobox {
+    height: 22px;
+}
+.form.search .form-content .form-inputcol .inputcalendar {
+    width: 75px;
+}
+.form.search .form-content .form-inputcol .form-input .select2-container--default .select2-selection--single .select2-selection__rendered {
+    padding-top: 2px;
+}
+.form.search .form-content .form-labelcol .form-label .th-label {
+    font-size: 13px;
+    color: #FFFFFF;
+}
+.form.search .form-content .form-labelcol .form-label .en-label {
+    font-size: 13px;
+    color: #1ABC9C;
+}
+.form.search .form-content .button .button-content ul li:nth-child(2) {
+    margin-top: 11px;
+}
+#search-masterdatatitleprefix-form,
+#search-masterdatagender-form,
+#search-masterdatanationalityrace-form,
+#search-masterdatareligion-form,
+#search-masterdatabloodgroup-form,
+#search-masterdatamaritalstatus-form,
+#search-masterdatafamilyrelationships-form,
+#search-masterdataagency-form,
+#search-masterdataeducationallevel-form,
+#search-masterdataeducationalbackground-form,
+#search-masterdataeducationalmajor-form,
+#search-masterdataadmissiontype-form,
+#search-masterdatastudentstatus-form,
+#search-masterdatacountry-form,
+#search-masterdataprovince-form,
+#search-masterdatadistrict-form,
+#search-masterdatasubdistrict-form,
+#search-masterdatainstitute-form,
+#search-masterdatadiseases-form,
+#search-masterdatahealthimpairments-form {
+    background: #1F7FC8;
+}
+#search-administrationstudentrecords-form {
+    background: #F3781B;
+}
+#search-ourservicesexportstudentrecordsinformation-form,
+#search-ourservicesupdatestudentdistinctionprogram-form,
+#search-ourservicessummarynumberofstudent-form,
+#search-ourservicestransactionlogstudentrecords-form {
+    background: #E08283;
+}
+
+.form.progress .form-layout {
+    width:auto;
+}
+.form.progress .form-content {
+    width: inherit;
+    text-align: center;
+}
+.form.progress .form-content .form-lastrow {
+    padding-bottom: 7px;
+}
+.form.progress .form-content .form-labelcol .icon-fieldmarkblank {
+    width: 10px;
+}
+.form.progress .form-content .form-inputcol.form-inputcol-paddingbottom {
+    padding-top: 7px;
+}
+.form.progress .form-content .form-inputcol .form-input .progresstext .th-label {
+    line-height: 18px;
+}
+.form.progress .form-content .form-inputcol .form-input .progresstext .en-label {
+    line-height: 20px;
+}
+.form.progress .form-content .form-inputcol .form-input .progresstotal {
+    padding-left: 1px;
+    line-height: 35px;
+}
+.form.progress .form-content .form-inputcol .form-input .checkbox-content {
+    width: auto;
+}
+.form.progress .form-content .form-inputcol .form-input .checkbox-content ul .checkbox-labelcol {
+    width: auto;
+    background: #FFFF00;
+}
+.form.progress .form-content .button ul li div {
+    width: 100px;
+}
+.form.progress .form-content .button ul li div.button-start {
+    width: 185px;
+}
+.form.progress .form-content .button ul li .en-label {
+    font-size: 16px;
+    font-weight: bold;
+}
+#progress-administrationstudentrecordsupdatefacultyprogram-form .form-content .form-labelcol,
+#progress-administrationstudentrecordsupdateclassyear-form .form-content .form-labelcol,
+#progress-administrationstudentrecordsupdatestudentstatus-form .form-content .form-labelcol,
+#progress-administrationstudentrecordsupdateentrancetype-form .form-content .form-labelcol,
+#progress-administrationstudentrecordsupdateadmissiondate-form .form-content .form-labelcol,
+#progress-administrationstudentrecordsupdatedatatoolddb-form .form-content .form-labelcol,
+#progress-ourservicesexportstudentrecordsinformation-form .form-content .form-labelcol,
+#progress-ourservicesupdatestudentdistinctionprogram-form .form-content .form-labelcol,
+#progress-ourservicessummarynumberofstudentlevel1viewtable-form .form-content .form-labelcol,
+#progress-ourservicessummarynumberofstudentlevel2viewtable-form .form-content .form-labelcol {
+    width: 315px;
+}
+#progress-administrationstudentrecordsupdatefacultyprogram-form .form-content .form-inputcol,
+#progress-administrationstudentrecordsupdateclassyear-form .form-content .form-inputcol,
+#progress-administrationstudentrecordsupdatestudentstatus-form .form-content .form-inputcol,
+#progress-administrationstudentrecordsupdateentrancetype-form .form-content .form-inputcol,
+#progress-administrationstudentrecordsupdateadmissiondate-form .form-content .form-inputcol,
+#progress-administrationstudentrecordsupdatedatatoolddb-form .form-content .form-inputcol,
+#progress-ourservicesexportstudentrecordsinformation-form .form-content .form-inputcol,
+#progress-ourservicesupdatestudentdistinctionprogram-form .form-content .form-inputcol,
+#progress-ourservicessummarynumberofstudentlevel1viewtable-form .form-content .form-inputcol {
+    width: auto;
+}
+#progress-ourservicessummarynumberofstudentlevel2viewtable-form .form-content .form-inputcol {
+    width: 500px;
+}
+
+.table .table-layout {
+    width: auto;
+}
+.table .table-content {
+    width: inherit;
+}
+.table .table-content .table-head, .table .table-content .table-grid {
+    display: table;
+    table-layout: fixed;
+    width: 100%
+}
+.table .table-content .table-row,
+.table .table-content .table-subrow {
+    display: table-row;
+}
+.table .table-content .table-head .table-row {
+    height: 52px;
+}
+.table .table-content .table-col {
+    display: table-cell;
+    border-left: 1px solid #E4E4E4;
+}
+.table .table-content .table-col1 {
+    border-left: 0;
+}
+.table .table-content .table-col-width-dynamic {
+    width: auto;
+}
+.table .table-content .table-freeze {
+    z-index: 996;
+}
+.table .table-content .table-title {
+    overflow: hidden;
+    background: #FFFFFF;
+    height: 37px
+}
+.table .table-content .table-title .contentbody-left {
+    height: inherit;
+}
+.table .table-content .table-title .contentbody-left:first-child {
+    margin-left: 7px;
+    text-align: left;
+}
+.table .table-content .table-title .contentbody-right {
+    margin-right: 8px;
+    height: 35px;
+}
+.table .table-content .table-title .button,
+.table .table-content .table-title .table-option {
+    text-align: left;
+    position: relative;
+    top: 6px;
+}
+.table .table-content .table-title .table-option.table-rowperpage {
+    width: 103px;
+}
+.table .table-content .table-title .table-option.table-rowperpage .select2-container--default .select2-selection--single .select2-selection__rendered,
+.table .table-content .table-title .table-option.table-actionoption .select2-container--default .select2-selection--single .select2-selection__rendered {
+    font: normal 12px Tahoma, Verdana, Arial, sans-serif;
+}
+.table .table-content .table-title .table-subject {
+    line-height: 35px;
+}
+.table .table-content .table-title .table-recordcount {
+    line-height: 33px;
+    font-size: 18px;
+}
+.table .table-content .table-title .link-click {
+    cursor: pointer;
+}
+.table .table-content .table-title .button ul li a,
+.table .table-content .table-title .button ul li div {
+    height: 25px;
+    line-height: 26px;
+    font-size: 12px;
+}
+.table .table-content .table-head {
+    background: #2C3E50;
+}
+.table .table-content .table-head .table-col .table-col-msg .th-label {
+    font-size: 13px;
+    color: #FFFFFF;
+}
+.table .table-content .table-head .table-col .table-col-msg .en-label {
+    font-size: 12px;
+    color: #FFFFFF;
+}
+.table .table-content .table-grid .table-col .table-col-msg .th-label {
+    font-size: 12px;
+    font-weight: normal;
+}
+.table .table-content .table-head .table-col {
+    overflow: hidden;
+}
+.table .table-content .table-head .table-col .table-col-msg {
+    padding: 5px 7px 5px 7px;
+    white-space: nowrap;
+}
+.table .table-content .table-head .table-col .table-col-msg div {
+    line-height: 20px;
+}
+.table .table-content .table-head .table-col .table-col-msg .input-root {
+    line-height: 15px;
+}
+.table .table-content .table-col .table-col-msg {
+    padding: 7px;
+    text-decoration: none;
+    vertical-align: top;
+    word-wrap: break-word;
+    word-break: break-all;
+    position: relative;
+}
+.table .table-content .table-grid .table-row.zero-level {
+    background: #000000;
+}
+.table .table-content .table-grid .table-row.first-level {
+    background: #CCCCCC;
+}
+.table .table-content .table-grid .table-row.second-level {
+    background: #DDDDDD;
+}
+.table .table-content .table-grid .table-row.third-level {
+    background: #EEEEEE;
+}
+.table .table-content .table-grid .table-row:hover, 
+.table .table-content .table-grid .table-row.active:hover {
+    background: #1ABC9C;
+    cursor: pointer;
+}
+.table .table-content .table-grid .table-row:hover .table-col .table-col-msg .th-label,
+.table .table-content .table-grid .table-row:hover .table-col .table-col-msg .en-label,
+.table .table-content .table-grid .table-row.active:hover .table-col .table-col-msg .th-label,
+.table .table-content .table-grid .table-row.active:hover .table-col .table-col-msg .en-label {
+    color: #FFFFFF;
+}
+.table .table-content .table-grid .table-row.active {
+    background: #B82A28;
+}
+.table .table-content .table-grid .table-row.active .table-col .table-col-msg .th-label,
+.table .table-content .table-grid .table-row.active .table-col .table-col-msg .en-label,
+.table .table-content .table-grid .table-row.zero-level .table-col .table-col-msg .th-label {
+    color: #FFFFFF;
+}
+.table .table-content .table-grid .table-col .table-col-msg {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.table .table-content .table-grid .table-col .table-col-msg.title-level .en-label {
+    font-weight: normal;
+    font-size: 14px;
+}
+.table .table-content .table-grid .table-col .table-col-msg.title-level .collapse {
+    display: inline-block;
+    width: 15px;
+}
+.table .table-content .table-grid .table-col .table-col-msg.title-level1 {
+    padding-left: 7px;
+}
+.table .table-content .table-grid .table-col .table-col-msg.title-level2 {
+    padding-left: 22px;
+}
+.table .table-content .table-grid .table-col .table-col-msg.title-level3 {
+    padding-left: 32px;
+}
+.table .table-content .table-grid .table-col .table-col-msg.title-level4 {
+    padding-left: 42px;
+}
+.table .table-content .table-grid .table-col .table-col-msg div {
+    line-height: 20px;
+}
+.table .table-content .table-grid .table-col .table-col-msg .link-click {
+    text-decoration: underline;
+}
+.table-width-dynamic .table-content .table-col .table-col-msg {
+    white-space: nowrap;
+}
+.table-width-dynamic .table-content .table-freeze {
+    overflow: hidden;
+}
+.table-width-dynamic .table-content .table-head {
+    width: auto;
+    position: relative;
+}
+.table-width-dynamic .table-content .table-list {
+    overflow: auto;
+}
+.table-width-dynamic .table-content .table-list .table-grid {
+    width: auto;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-content .table-title {
+    height: 51px;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-content .table-title .table-subject .th-label {
+    height: 20px;
+    margin-top: 8px;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-content .table-title .table-subject .en-label {
+    line-height: 17px;
+    font-size: 14px;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-content .table-title .contentbody-left:first-child {
+    margin-left: 9px;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-content .table-title .button ul li a,
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-content .table-title .button ul li div {
+    height: 39px;
+    line-height: 40px;
+    font-size: 12px;
+}
+
+.chart .chart-layout {
+    width: auto;
+}
+.chart .chart-content {
+    width: inherit;
+}
+.chart .chart-content .chart-grid {
+    display: table;
+    table-layout: fixed;
+    width: 100%
+}
+.chart .chart-content .chart-row {
+    display: table-row;
+    width: inherit;
+}
+.chart .chart-content .chart-col {
+    display: table-cell;
+    width: inherit;
+}
+.chart .chart-content .chart-col-width-dynamic {
+    width: auto;
+}
+.chart .chart-content .chart-freeze {
+    z-index: 996;
+}
+.chart .chart-content .chart-title {
+    overflow: hidden;
+    background: #FFFFFF;
+}
+.chart .chart-content .chart-title .contentbody-left:first-child {
+    margin-left: 10px;
+    text-align: left;
+}
+.chart .chart-content .chart-title .contentbody-left .th-label {
+    height: 20px;
+    margin-top: 8px;
+}
+.chart .chart-content .chart-title .contentbody-left .en-label {
+    line-height: 17px;
+    font-size: 14px;
+}
+.chart .chart-content .chart-title .contentbody-right {
+    margin-right: 8px;
+    height: 35px;
+}
+.chart .chart-content .chart-title .chart-recordcount {
+    line-height: 33px;
+    font-size: 18px;
+}
+.chart .chart-content .chart-grid .chart-col {
+    padding: 10px;
+}
+
+.highlight-style1 {
+    background: #FFFFFF;
+}
+.highlight-style2 {
+    background: #F1F1F1;
+}
+.highlight-style3 {
+    background: #ECECEC;
+}
+
+.button .button-layout {
+    width: auto;
+}
+.button .button-content {
+    width: inherit;
+}
+.button .button-content ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+}
+.button .button-content ul li {
+    display: block;
+    float: left;
+    text-align: center;
+    margin-left: 6px;
+}
+.button .button-content ul .nomargin {
+    margin-left: 0;
+}
+.button .button-content ul li a,
+.button .button-content ul li div {
+    display: block;
+    text-decoration: none;
+    outline: none;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.button .button-content ul li a:hover, .button .button-content ul li div:hover {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+.button .button-content .button-style1 li a,
+.button .button-content .button-style1 li div {
+    background: #1ABC9C;
+}
+.button .button-content .button-style1 li a:hover,
+.button .button-content .button-style1 li div:hover {
+    background: #48C9B0;
+}
+.button .button-content .button-style2 li a,
+.button .button-content .button-style2 li div {
+    background: #D2D7D3;
+    color: #000000;
+}
+.button .button-content .button-style2 li a:hover,
+.button .button-content .button-style2 li div:hover {
+    background: #DADFE1;
+    color: #000000;
+}
+.button .button-content .button-style3 li a,
+.button .button-content .button-style3 li div {
+    background: #E1D193;
+    color: #000000;
+}
+.button .button-content .button-style3 li a:hover,
+.button .button-content .button-style3 li div:hover {
+    background: #E4C568;
+    color: #000000;
+}
+.button .button-content .button-style4 li a,
+.button .button-content .button-style4 li div {
+    background: #E84C3D;
+    color: #000000;
+}
+.button .button-content .button-style4 li a:hover,
+.button .button-content .button-style4 li div:hover {
+    background: #E65D50;
+    color: #000000;
+}
+.button .button-content ul li .disable {
+    background: #C8C8C8;
+    color: #A6A5A5;
+    cursor: default;
+}
+.button .button-content ul li .disable:hover {
+    background: #C8C8C8;
+    color: #A6A5A5;
+    cursor: default;
+}
+
+.link ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+}
+.link ul li {
+    float: left;
+    line-height: 14px;
+    margin-left: 6px;
+}
+.link ul .link-first {
+    margin-left: 0;
+}
+.link ul li a {
+    color: #000000;
+    text-decoration: underline;
+}
+.link ul li a:hover {
+    color: #FF0000;
+}
+
+.error-list ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+}
+.error-list ul li {
+    text-decoration: none;
+    padding-left: 15px;
+}
+.error-list ul li:before {
+    position: absolute;
+    content: "•";
+    color: #000000;
+    left: 0;
+}
+.error-list ul li {
+    line-height: 20px;
+}
+
+.icon-fieldmark {
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+    background: url(../../Image/eProfileStaff/Label.png) -50px -130px;
+}
+.icon-fieldmarkblank {
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+}
+
+.radio-content ul, .checkbox-content ul {
+    margin: 0;
+    margin-top: 7px;
+    padding: 0;
+    list-style-type: none;
+    clear: both;
+}
+.radio-content:first-child ul,
+.checkbox-content:first-child ul {
+    margin-top: 0;
+}
+.radio-content ul li,
+.checkbox-content ul li {
+    float: left;
+    display: inline-block;
+}
+.radio-content ul .radio-inputcol,
+.checkbox-content ul .checkbox-inputcol {
+    position: relative;
+    width: 25px;
+    margin-top: -1px;
+}
+.radio-content ul .radio-labelcol,
+.checkbox-content ul .checkbox-labelcol {
+    width: 60px;
+}
+.radio-content ul .radio-labelcol span,
+.radio-content ul .radio-labelcol div, 
+.checkbox-content ul .checkbox-labelcol span,
+.checkbox-content ul .checkbox-labelcol div {
+    line-height: 22px;
+}
+.radio-content ul .radio-labelcol .link-click {
+    display: block;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.list .list-layout {
+    width: auto;
+    height: inherit;
+    border: 2px solid #BDC3C7;
+    background: #FFFFCC;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.list .list-content {
+    width: inherit;
+}
+.list .list-content .list-row:hover {
+    background: #000099;
+    outline: none;
+}
+.list .list-content .list-row:hover .th-label,
+.list .list-content .list-row:hover .en-label {
+    color: #FFFFFF;
+}
+.list .list-content .list-col {
+    padding: 6px;
+    padding-top: 3px;
+    line-height: 18px;
+    word-wrap: break-word;
+}
+.list .list-content .list-col .checkbox-content ul {
+    margin-top: 0;
+}
+.list .list-content .list-col .checkbox-content .checkbox-inputcol {
+    margin-top: 0;
+}
+
+.navpage .navpage-layout {
+    width: auto;
+    min-width: 665px;
+    background: #2C3E50;
+    padding: 10px;
+}
+.navpage .navpage-content {
+    width: inherit;
+    overflow: hidden;
+}
+.navpage .navpage-content ul {
+    float: left;
+    position: relative;
+    left: 50%;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    height: 40px;
+}
+.navpage .navpage-content ul li {
+    float: left;
+    display: block;
+    margin-right: 3px;
+    position: relative;
+    right: 50%;
+    width: 50px;
+    height: 40px;
+    line-height: 40px;
+}
+.navpage .navpage-content ul li a,
+.navpage .navpage-content ul li div {
+    display: block;
+    width: inherit;
+    height: inherit;
+    line-height: inherit;
+    text-align: center;
+    text-decoration: none;
+    background: #222222;
+    color: #FFFFFF;
+}
+.navpage .navpage-content ul li a:hover {
+    background: #1ABC9C;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.navpage .navpage-content ul li div {
+    background: transparent;
+}
+.navpage .navpage-content ul .active {
+    background: #1ABC9C;
+    color: #FFFFFF;
+}
+
+.picture-content {
+    background: url(../../Image/eProfileStaff/Label.png);
+    border: 6px solid #CCCCCC;
+    position: relative;
+}
+.picture-content .picture-watermark {
+    width: inherit;
+    height: inherit;
+    background: url(../../Image/eProfileStaff/BGWaterMark.png) repeat;
+    opacity: 0.6;
+    filter: Alpha(Opacity=60);
+    position: absolute;
+    z-index: 1;
+    display: none;
+}
+.picture-content img {
+    display: none;
+    border: none;
+}
+
+.profilepicture-content {
+    width: 230px;
+    height: 312px;
+    background-position: 0 -155px;
+}
+
+#main-meaningofadmissiontype-form .form-content ul li,
+#main-meaningofstudentstatus-form .form-content ul li {
+    float: left;
+    display: inline;
+    padding-left: 0px;
+}
+#main-meaningofadmissiontype-form .form-content ul li:first-child,
+#main-meaningofstudentstatus-form .form-content ul li:first-child {
+    padding-left: 15px;
+}
+#main-meaningofadmissiontype-form .form-content ul li:first-child {
+    width: 90px;
+}
+#main-meaningofstudentstatus-form .form-content ul li:first-child {
+    width: 35px;
+}
+
+#edit-settingaccesstothesystem-form .startenddatetime .contentbody-left:first-child {
+    width: 116px;
+}
+#edit-settingaccesstothesystem-form .startenddatetime .contentbody-left:nth-child(2) span:nth-child(1),
+#edit-settingaccesstothesystem-form .startenddatetime .contentbody-left:nth-child(2) span:nth-child(3),
+#edit-settingaccesstothesystem-form .startenddatetime .contentbody-left:nth-child(2) span:nth-child(3)
+#edit-settingaccesstothesystem-form .startenddatetime .contentbody-left:nth-child(2) span:nth-child(5) {
+    width: 52px;
+}
+#edit-settingaccesstothesystem-form .startenddatetime .contentbody-left:nth-child(2) .th-label {
+    width: 10px;
+    text-align: center;
+}
+#edit-settingaccesstothesystem-form .form-subcontent {
+    margin: 0;
+}
+#edit-settingaccesstothesystem-form .form-subcontent .list {
+    width: 533px;
+    height: 150px;
+}
+#edit-settingaccesstothesystem-form .form-subcontent .list .list-content .list-col {
+    padding-top: 0;
+}
+#edit-settingaccesstothesystem-form .form-subcontent .list .list-content .checkbox-content .checkbox-labelcol {
+    width: 476px;
+    margin-top: 3px;
+}
+#edit-settingaccesstothesystem-form .form-content #edit-settingaccesstothesystem-entrancetype-content .list {
+    height: auto;
+}
+#edit-settingaccesstothesystem-form .form-content #edit-settingaccesstothesystem-facultyprogram-content .list {
+    height: 384px;
+}
+#edit-settingaccesstothesystem-form .form-content #edit-settingaccesstothesystem-facultyprogram-content .program-list-row {
+    margin-left: 25px;
+}
+#edit-settingaccesstothesystem-form .form-content #edit-settingaccesstothesystem-facultyprogram-content .program-list-row .checkbox-content .checkbox-labelcol {
+    width: 451px;
+}
+
+#main-masterdatatitleprefix-table .table-col1 {
+    width: 67px;
+}
+#main-masterdatatitleprefix-table .table-col2 {
+    width: 65px;
+}
+#main-masterdatatitleprefix-table .table-col7 {
+    width: 53px;
+}
+#main-masterdatatitleprefix-table .table-col8 {
+    width: 64px;
+}
+#main-masterdatatitleprefix-table .table-col9 {
+    width: 135px;
+}
+#main-masterdatatitleprefix-table .table-col10 {
+    width: 135px;
+}
+#main-masterdatatitleprefix-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdatatitleprefix-table .table-grid .table-col4 .table-col-msg div,
+#main-masterdatatitleprefix-table .table-grid .table-col5 .table-col-msg div,
+#main-masterdatatitleprefix-table .table-grid .table-col6 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdatagender-table .table-col1 {
+    width: 67px;
+}
+#main-masterdatagender-table .table-col2 {
+    width: 65px;
+}
+#main-masterdatagender-table .table-col7 {
+    width: 64px;
+}
+#main-masterdatagender-table .table-col8 {
+    width: 135px;
+}
+#main-masterdatagender-table .table-col9 {
+    width: 135px;
+}
+#main-masterdatagender-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdatagender-table .table-grid .table-col4 .table-col-msg div,
+#main-masterdatagender-table .table-grid .table-col5 .table-col-msg div,
+#main-masterdatagender-table .table-grid .table-col6 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdatanationalityrace-table .table-col1 {
+    width: 67px;
+}
+#main-masterdatanationalityrace-table .table-col2 {
+    width: 65px;
+}
+#main-masterdatanationalityrace-table .table-col5 {
+    width: 84px;
+}
+#main-masterdatanationalityrace-table .table-col6 {
+    width: 84px;
+}
+#main-masterdatanationalityrace-table .table-col7 {
+    width: 64px;
+}
+#main-masterdatanationalityrace-table .table-col8 {
+    width: 135px;
+}
+#main-masterdatanationalityrace-table .table-col9 {
+    width: 135px;
+}
+#main-masterdatanationalityrace-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdatanationalityrace-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdatareligion-table .table-col1 {
+    width: 67px;
+}
+#main-masterdatareligion-table .table-col2 {
+    width: 65px;
+}
+#main-masterdatareligion-table .table-col5 {
+    width: 64px;
+}
+#main-masterdatareligion-table .table-col6 {
+    width: 135px;
+}
+#main-masterdatareligion-table .table-col7 {
+    width: 135px;
+}
+#main-masterdatareligion-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdatareligion-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdatabloodgroup-table .table-col1 {
+    width: 67px;
+}
+#main-masterdatabloodgroup-table .table-col2 {
+    width: 65px;
+}
+#main-masterdatabloodgroup-table .table-col5 {
+    width: 64px;
+}
+#main-masterdatabloodgroup-table .table-col6 {
+    width: 135px;
+}
+#main-masterdatabloodgroup-table .table-col7 {
+    width: 135px;
+}
+#main-masterdatabloodgroup-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdatabloodgroup-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdatamaritalstatus-table .table-col1 {
+    width: 67px;
+}
+#main-masterdatamaritalstatus-table .table-col2 {
+    width: 65px;
+}
+#main-masterdatamaritalstatus-table .table-col5 {
+    width: 64px;
+}
+#main-masterdatamaritalstatus-table .table-col6 {
+    width: 135px;
+}
+#main-masterdatamaritalstatus-table .table-col7 {
+    width: 135px;
+}
+#main-masterdatamaritalstatus-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdatamaritalstatus-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdatafamilyrelationships-table .table-col1 {
+    width: 67px;
+}
+#main-masterdatafamilyrelationships-table .table-col2 {
+    width: 65px;
+}
+#main-masterdatafamilyrelationships-table .table-col5 {
+    width: 53px;
+}
+#main-masterdatafamilyrelationships-table .table-col6 {
+    width: 64px;
+}
+#main-masterdatafamilyrelationships-table .table-col7 {
+    width: 135px;
+}
+#main-masterdatafamilyrelationships-table .table-col8 {
+    width: 135px;
+}
+#main-masterdatafamilyrelationships-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdatafamilyrelationships-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdataagency-table .table-col1 {
+    width: 67px;
+}
+#main-masterdataagency-table .table-col2 {
+    width: 65px;
+}
+#main-masterdataagency-table .table-col5 {
+    width: 64px;
+}
+#main-masterdataagency-table .table-col6 {
+    width: 135px;
+}
+#main-masterdataagency-table .table-col7 {
+    width: 135px;
+}
+#main-masterdataagency-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdataagency-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdataeducationallevel-table .table-col1 {
+    width: 67px;
+}
+#main-masterdataeducationallevel-table .table-col2 {
+    width: 65px;
+}
+#main-masterdataeducationallevel-table .table-col5 {
+    width: 64px;
+}
+#main-masterdataeducationallevel-table .table-col6 {
+    width: 135px;
+}
+#main-masterdataeducationallevel-table .table-col7 {
+    width: 135px;
+}
+#main-masterdataeducationallevel-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdataeducationallevel-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdataeducationalbackground-table .table-col1 {
+    width: 67px;
+}
+#main-masterdataeducationalbackground-table .table-col2 {
+    width: 65px;
+}
+#main-masterdataeducationalbackground-table .table-col7 {
+    width: 64px;
+}
+#main-masterdataeducationalbackground-table .table-col8 {
+    width: 135px;
+}
+#main-masterdataeducationalbackground-table .table-col9 {
+    width: 135px;
+}
+#main-masterdataeducationalbackground-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdataeducationalbackground-table .table-grid .table-col4 .table-col-msg div,
+#main-masterdataeducationalbackground-table .table-grid .table-col5 .table-col-msg div,
+#main-masterdataeducationalbackground-table .table-grid .table-col6 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdataeducationalmajor-table .table-col1 {
+    width: 67px;
+}
+#main-masterdataeducationalmajor-table .table-col2 {
+    width: 65px;
+}
+#main-masterdataeducationalmajor-table .table-col5 {
+    width: 64px;
+}
+#main-masterdataeducationalmajor-table .table-col6 {
+    width: 135px;
+}
+#main-masterdataeducationalmajor-table .table-col7 {
+    width: 135px;
+}
+#main-masterdataeducationalmajor-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdataeducationalmajor-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdataadmissiontype-table .table-col1 {
+    width: 67px;
+}
+#main-masterdataadmissiontype-table .table-col2 {
+    width: 90px;
+}
+#main-masterdataadmissiontype-table .table-col5 {
+    width: 64px;
+}
+#main-masterdataadmissiontype-table .table-col6 {
+    width: 135px;
+}
+#main-masterdataadmissiontype-table .table-col7 {
+    width: 135px;
+}
+#main-masterdataadmissiontype-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdataadmissiontype-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdatastudentstatus-table .table-col1 {
+    width: 67px;
+}
+#main-masterdatastudentstatus-table .table-col2 {
+    width: 65px;
+}
+#main-masterdatastudentstatus-table .table-col5 {
+    width: 64px;
+}
+#main-masterdatastudentstatus-table .table-col6 {
+    width: 135px;
+}
+#main-masterdatastudentstatus-table .table-col7 {
+    width: 135px;
+}
+#main-masterdatastudentstatus-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdatastudentstatus-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdatacountry-table .table-col1 {
+    width: 67px;
+}
+#main-masterdatacountry-table .table-col2 {
+    width: 65px;
+}
+#main-masterdatacountry-table .table-col5 {
+    width: 84px;
+}
+#main-masterdatacountry-table .table-col6 {
+    width: 84px;
+}
+#main-masterdatacountry-table .table-col7 {
+    width: 64px;
+}
+#main-masterdatacountry-table .table-col8 {
+    width: 135px;
+}
+#main-masterdatacountry-table .table-col9 {
+    width: 135px;
+}
+#main-masterdatacountry-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdatacountry-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdataprovince-table .table-col1 {
+    width: 67px;
+}
+#main-masterdataprovince-table .table-col2 {
+    width: 65px;
+}
+#main-masterdataprovince-table .table-col3 {
+    width: 58px;
+}
+#main-masterdataprovince-table .table-col6 {
+    width: 64px;
+}
+#main-masterdataprovince-table .table-col7 {
+    width: 135px;
+}
+#main-masterdataprovince-table .table-col8 {
+    width: 135px;
+}
+#main-masterdataprovince-table .table-grid .table-col4 .table-col-msg div,
+#main-masterdataprovince-table .table-grid .table-col5 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdatadistrict-table .table-col1 {
+    width: 67px;
+}
+#main-masterdatadistrict-table .table-col2 {
+    width: 65px;
+}
+#main-masterdatadistrict-table .table-col3 {
+    width: 58px;
+}
+#main-masterdatadistrict-table .table-col8 {
+    width: 77px;
+}
+#main-masterdatadistrict-table .table-col9 {
+    width: 64px;
+}
+#main-masterdatadistrict-table .table-col10 {
+    width: 135px;
+}
+#main-masterdatadistrict-table .table-col11 {
+    width: 135px;
+}
+#main-masterdatadistrict-table .table-grid .table-col4 .table-col-msg div,
+#main-masterdatadistrict-table .table-grid .table-col5 .table-col-msg div,
+#main-masterdatadistrict-table .table-grid .table-col6 .table-col-msg div,
+#main-masterdatadistrict-table .table-grid .table-col7 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdatasubdistrict-table .table-col1 {
+    width: 67px;
+}
+#main-masterdatasubdistrict-table .table-col2 {
+    width: 65px;
+}
+#main-masterdatasubdistrict-table .table-col3 {
+    width: 58px;
+}
+#main-masterdatasubdistrict-table .table-col10 {
+    width: 77px;
+}
+#main-masterdatasubdistrict-table .table-col11 {
+    width: 64px;
+}
+#main-masterdatasubdistrict-table .table-col12 {
+    width: 135px;
+}
+#main-masterdatasubdistrict-table .table-col13 {
+    width: 135px;
+}
+#main-masterdatasubdistrict-table .table-grid .table-col4 .table-col-msg div,
+#main-masterdatasubdistrict-table .table-grid .table-col5 .table-col-msg div,
+#main-masterdatasubdistrict-table .table-grid .table-col6 .table-col-msg div,
+#main-masterdatasubdistrict-table .table-grid .table-col7 .table-col-msg div,
+#main-masterdatasubdistrict-table .table-grid .table-col8 .table-col-msg div,
+#main-masterdatasubdistrict-table .table-grid .table-col9 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdatainstitute-table .table-col1 {
+    width: 67px;
+}
+#main-masterdatainstitute-table .table-col2 {
+    width: 85px;
+}
+#main-masterdatainstitute-table .table-col3 {
+    width: 58px;
+}
+#main-masterdatainstitute-table .table-col8 {
+    width: 64px;
+}
+#main-masterdatainstitute-table .table-col9 {
+    width: 135px;
+}
+#main-masterdatainstitute-table .table-col10 {
+    width: 135px;
+}
+#main-masterdatainstitute-table .table-grid .table-col4 .table-col-msg div,
+#main-masterdatainstitute-table .table-grid .table-col5 .table-col-msg div,
+#main-masterdatainstitute-table .table-grid .table-col6 .table-col-msg div,
+#main-masterdatainstitute-table .table-grid .table-col7 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdatadiseases-table .table-col1 {
+    width: 67px;
+}
+#main-masterdatadiseases-table .table-col2 {
+    width: 65px;
+}
+#main-masterdatadiseases-table .table-col5 {
+    width: 64px;
+}
+#main-masterdatadiseases-table .table-col6 {
+    width: 135px;
+}
+#main-masterdatadiseases-table .table-col7 {
+    width: 135px;
+}
+#main-masterdatadiseases-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdatadiseases-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#main-masterdatahealthimpairments-table .table-col1 {
+    width: 67px;
+}
+#main-masterdatahealthimpairments-table .table-col2 {
+    width: 65px;
+}
+#main-masterdatahealthimpairments-table .table-col5 {
+    width: 64px;
+}
+#main-masterdatahealthimpairments-table .table-col6 {
+    width: 135px;
+}
+#main-masterdatahealthimpairments-table .table-col7 {
+    width: 135px;
+}
+#main-masterdatahealthimpairments-table .table-grid .table-col3 .table-col-msg div,
+#main-masterdatahealthimpairments-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#main-administrationstudentrecords-table .table-title .table-option.table-actionoption {
+    width: 300px;
+    margin-left: 6px;
+}
+#main-administrationstudentrecords-table .table-title .button ul li div {
+    width: 101px;
+}
+#main-administrationstudentrecords-table .table-col1 {
+    width: 67px;
+}
+#main-administrationstudentrecords-table .table-col2 {
+    width: 65px;
+}
+#main-administrationstudentrecords-table .table-col3 {
+    width: 65px;
+}
+#main-administrationstudentrecords-table .table-col6 {
+    width: 120px;
+}
+#main-administrationstudentrecords-table .table-col7 {
+    width: 63px;
+}
+#main-administrationstudentrecords-table .table-col8 {
+    width: 40px;
+}
+#main-administrationstudentrecords-table .table-col9 {
+    width: 85px;
+}
+#main-administrationstudentrecords-table .table-col10 {
+    width: 60px;
+}
+#main-administrationstudentrecords-table .table-col11 {
+    width: 82px;
+}
+#main-administrationstudentrecords-table .table-col12 {
+    width: 82px;
+}
+#main-administrationstudentrecords-table .table-col13 {
+    width: 72px;
+}
+#main-administrationstudentrecords-table .table-col14 {
+    width: 103px;
+}
+#main-administrationstudentrecords-table .table-grid .table-col4 .table-col-msg div,
+#main-administrationstudentrecords-table .table-grid .table-col5 .table-col-msg div {
+    text-align: left;
+}
+
+#addupdate-administrationstudentrecords-menu {
+    left: 0px;
+    background: #2C3E50;
+    border-right: solid 10px #3F566D;
+    overflow: hidden;
+} 
+#addupdate-administrationstudentrecords-menu .menulist-layout {
+    width: 235px;
+    background: #2C3E50;
+}
+#addupdate-administrationstudentrecords-menu .menulist-content ul li,
+#addupdate-administrationstudentrecords-menu .menulist-content ul li .link-msg {
+    background: transparent;
+    height: 48px;
+}
+#addupdate-administrationstudentrecords-menu .menulist-content ul .have-link:hover,
+#addupdate-administrationstudentrecords-menu .menulist-content ul .have-link a:hover,
+#addupdate-administrationstudentrecords-menu .menulist-content ul .have-link a:hover .menu-itemtext .th-label,
+#addupdate-administrationstudentrecords-menu .menulist-content ul .have-link a:hover .menu-itemtext .en-label {
+    background: #3F566D;
+    color: #FFFFFF;
+}
+#addupdate-administrationstudentrecords-menu .menulist-content ul .have-link a:hover.menu-incomplete .menu-itemtext .th-label {
+    color: #FF0000;
+}
+#addupdate-administrationstudentrecords-menu .menulist-content ul .have-link a:hover.menu-incomplete .menu-itemtext .en-label {
+    color: #990000;
+}
+#addupdate-administrationstudentrecords-menu .menulist-content ul li a.menu-active {
+    background: #3F566D;
+}
+#addupdate-administrationstudentrecords-menu .menulist-content ul li a.menu-active .menu-itemtext .th-label,
+#addupdate-administrationstudentrecords-menu .menulist-content ul li a.menu-active .menu-itemtext .en-label {
+    color: #FFFFFF;
+}
+#addupdate-administrationstudentrecords-menu .menulist-content ul li a.menu-incomplete .menu-itemtext .th-label {
+    color: #FF0000;
+}
+#addupdate-administrationstudentrecords-menu .menulist-content ul li a.menu-incomplete .menu-itemtext .en-label {
+    color: #990000;
+}
+#addupdate-administrationstudentrecords-menu .menulist-content ul li .link-msg .menu-itemtext {
+    padding-top: 7px;
+}
+#addupdate-administrationstudentrecords-menu .menulist-content ul li .link-msg .menu-itemtext .th-label {
+    height: 20px;
+    color: #9EA4A4;
+}
+
+#addupdate-administrationstudentrecords {
+    margin-left: 245px;
+}
+#addupdate-administrationstudentrecords .form-content .form-labelcol {
+    width: 40%;
+}
+#addupdate-administrationstudentrecords .form-content .form-inputcol {
+    width: 50%;
+}
+#addupdate-administrationstudentrecords #addupdate-administrationstudentrecords-layout {
+    width: auto;
+}
+#addupdate-administrationstudentrecords #addupdate-administrationstudentrecords-content {
+    width: inherit;
+}
+#addupdate-administrationstudentrecordsstudentrecords-form #addupdate-administrationstudentrecordsstudentrecords-studentpicture-content .form-inputcol {
+    padding-top: 10px;
+}
+#addupdate-administrationstudentrecordsstudentrecords-form #addupdate-administrationstudentrecordsstudentrecords-studentpicture-content .form-inputcol .profilepicture-content {
+    width: 128px;
+    height: 176px;
+}
+#addupdate-administrationstudentrecordsstudentrecords-form #addupdate-administrationstudentrecordsstudentrecords-studentpicture-content .form-inputcol .profilepicture-content img {
+    width: inherit;
+    height: inherit;
+}
+#addupdate-administrationstudentrecordsstudentrecords-form #addupdate-administrationstudentrecordsstudentrecords-studentid-content .form-inputcol {
+    padding-top: 0;
+}
+#addupdate-administrationstudentrecordsstudentrecords-form #addupdate-administrationstudentrecordsstudentrecords-studentid-content .form-inputcol .en-label {
+    font-size: 22px;
+    font-weight: bolder;
+    line-height: 45px;
+}
+#addupdate-administrationstudentrecordseducationadmissionscores-form .admissionscores {
+    margin: 0;
+    margin-left: 3px;
+}
+#addupdate-administrationstudentrecordseducationadmissionscores-form .admissionscores.form-subcontent .form-labelcol {
+    margin: 0;
+    width: 255px;
+    min-width: 255px;
+}
+#addupdate-administrationstudentrecordseducationadmissionscores-form .admissionscores.form-subcontent .form-labelcol div:first-child {
+    height: 18px;
+}
+#addupdate-administrationstudentrecordseducationadmissionscores-form .admissionscores.form-subcontent .form-inputcol {
+    margin-top: 7px;
+    width: 58px;
+    min-width: 58px;
+}
+#addupdate-administrationstudentrecordspersonal-form #addupdate-administrationstudentrecordspersonal-idcard-content .form-subcontent.first-child,
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-subcontent,
+#addupdate-administrationstudentrecordsfamilyparentaddresspermanent-form #addupdate-administrationstudentrecordsfamilyparentaddresspermanent-relationship-content .form-subcontent,
+#addupdate-administrationstudentrecordsfamilyparentaddresscurrent-form #addupdate-administrationstudentrecordsfamilyparentaddresscurrent-relationship-content .form-subcontent,
+#addupdate-administrationstudentrecordsfamilyparentwork-form #addupdate-administrationstudentrecordsfamilyparentwork-relationship-content .form-subcontent {
+    margin: 0;
+}
+#addupdate-administrationstudentrecords .agencyother {
+    margin-top: 7px;
+}
+#addupdate-administrationstudentrecords .tabbar-content ul li #link-addupdate-administrationstudentrecordsfamilyfatherpersonal,
+#addupdate-administrationstudentrecords .tabbar-content ul li #link-addupdate-administrationstudentrecordsfamilymotherpersonal,
+#addupdate-administrationstudentrecords .tabbar-content ul li #link-addupdate-administrationstudentrecordsfamilyparentpersonal {
+    width: 135px;
+}
+
+#addupdate-administrationstudentrecordspersonal-form #addupdate-administrationstudentrecordspersonal-idcard-content .form-inputlist {
+    margin-left: 0;
+}
+#addupdate-administrationstudentrecordspersonal-form #addupdate-administrationstudentrecordspersonal-idcard-content .form-inputlist .form-inputlist-input .contentbody-left {
+    width: 120px;
+    padding-top: 0;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-inputlist .form-inputlist-input .contentbody-left:nth-child(1) {
+    width: 83px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-inputlist .form-inputlist-input .contentbody-left:nth-child(2) {
+    width: 83px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-inputlist .form-inputlist-input .contentbody-left:nth-child(3) {
+    width: 90px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-inputlist .form-inputlist-input .contentbody-left:nth-child(3) #addupdate-studentrecordsmaintenancehealthy-bodymassdetailcalcultebmi {
+    margin-top: 5px;
+    height: 28px;
+    display: none;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-inputlist .form-inputlist-input .contentbody-left:nth-child(3) .button ul li a {
+    width: 90px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-inputlist .form-inputlist-input .contentbody-left:nth-child(4) {
+    width: 106px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-inputlist .form-inputlist-input .contentbody-left:nth-child(5) {
+    padding-top: 52px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-inputlist .form-inputlist-list {
+    width: 426px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-inputlist .form-inputlist-list .contentbody-left:nth-child(1) {
+    width: 75px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-inputlist .form-inputlist-list .contentbody-left:nth-child(2) {
+    width: 75px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-inputlist .form-inputlist-list .contentbody-left:nth-child(3) {
+    width: 82px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-inputlist .form-inputlist-list .contentbody-left:nth-child(4) {
+    width: 98px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-inputlist .form-inputlist-list .contentbody-left div {
+    text-align: right;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-inputlist .form-inputlist-list .contentbody-left:nth-child(4) div {
+    text-align: left;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-bodymassindex-content .form-inputlist .form-inputlist-list .contentbody-left:nth-child(5) {
+    padding-top: 3px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-familyhistoryofillness-content .list {
+    margin-bottom: 7px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-familyhistoryofillness-content .list .list-content .list-col.th-label {
+    font-size: 12px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-travelabroad-content .form-inputlist .form-inputlist-input .contentbody-left:nth-child(1) {
+    width: 241px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-travelabroad-content .form-inputlist .form-inputlist-input .contentbody-left:nth-child(2) {
+    width: 106px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-travelabroad-content .form-inputlist .form-inputlist-input .contentbody-left:nth-child(3) {
+    padding-top: 52px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-travelabroad-content .form-inputlist .form-inputlist-list {
+    width: 403px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-travelabroad-content .form-inputlist .form-inputlist-list .contentbody-left:nth-child(1) {
+    width: 233px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-travelabroad-content .form-inputlist .form-inputlist-list .contentbody-left:nth-child(2) {
+    width: 98px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-travelabroad-content .form-inputlist .form-inputlist-list .contentbody-left:nth-child(3) {
+    padding-top: 3px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-impairments-content #addupdate-administrationstudentrecordshealthy-disability-content .form-subcontent:first-child {
+    border-top: 1px dashed #CCCCCC;
+    margin-top: 10px;
+    padding-top: 5px;
+    width: 403px;
+}
+#addupdate-administrationstudentrecordshealthy-form #addupdate-administrationstudentrecordshealthy-disability-content .form-inputlist .form-inputlist-input .contentbody-left {
+    width: 120px;
+    padding-top: 0;
+}
+
+#preview-administrationstudentrecordsupdatefacultyprogram-table .table-col1 {
+    width: 67px;
+}
+#preview-administrationstudentrecordsupdatefacultyprogram-table .table-col2 {
+    width: 65px;
+}
+#preview-administrationstudentrecordsupdatefacultyprogram-table .table-col4 {
+    width: 130px;
+}
+#preview-administrationstudentrecordsupdatefacultyprogram-table .table-col5 {
+    width: 130px;
+}
+#preview-administrationstudentrecordsupdatefacultyprogram-table .table-grid .table-col3 .table-col-msg div {
+    text-align: left;
+}
+#preview-administrationstudentrecordsupdatefacultyprogram-table .button {
+    left: 419px;
+}
+
+#preview-administrationstudentrecordsupdateclassyear-table .table-col1 {
+    width: 67px;
+}
+#preview-administrationstudentrecordsupdateclassyear-table .table-col2 {
+    width: 65px;
+}
+#preview-administrationstudentrecordsupdateclassyear-table .table-col4 {
+    width: 50px;
+}
+#preview-administrationstudentrecordsupdateclassyear-table .table-col5 {
+    width: 50px;
+}
+#preview-administrationstudentrecordsupdateclassyear-table .table-grid .table-col3 .table-col-msg div {
+    text-align: left;
+}
+#preview-administrationstudentrecordsupdateclassyear-table .button {
+    left: 419px;
+}
+
+#preview-administrationstudentrecordsupdateentrancetype-table .table-col1 {
+    width: 67px;
+}
+#preview-administrationstudentrecordsupdateentrancetype-table .table-col2 {
+    width: 65px;
+}
+#preview-administrationstudentrecordsupdateentrancetype-table .table-col4 {
+    width: 98px;
+}
+#preview-administrationstudentrecordsupdateentrancetype-table .table-col5 {
+    width: 98px;
+}
+#preview-administrationstudentrecordsupdateentrancetype-table .table-grid .table-col3 .table-col-msg div {
+    text-align: left;
+}
+#preview-administrationstudentrecordsupdateentrancetype-table .button {
+    left: 419px;
+}
+
+#preview-administrationstudentrecordsupdatestudentstatus-table .table-col1 {
+    width:67px;
+}
+#preview-administrationstudentrecordsupdatestudentstatus-table .table-col2 {
+    width: 65px;
+}
+#preview-administrationstudentrecordsupdatestudentstatus-table .table-col4 {
+    width: 93px;
+}
+#preview-administrationstudentrecordsupdatestudentstatus-table .table-col5 {
+    width: 103px;
+}
+#preview-administrationstudentrecordsupdatestudentstatus-table .table-col6 {
+    width: 93px;
+}
+#preview-administrationstudentrecordsupdatestudentstatus-table .table-col7 {
+    width: 103px;
+}
+#preview-administrationstudentrecordsupdatestudentstatus-table .table-grid .table-col3 .table-col-msg div {
+    text-align: left;
+}
+#preview-administrationstudentrecordsupdatestudentstatus-table .button {
+    left: 419px;
+}
+
+#preview-administrationstudentrecordsupdateadmissiondate-table .table-col1 {
+    width: 67px;
+}
+#preview-administrationstudentrecordsupdateadmissiondate-table .table-col2 {
+    width: 65px;
+}
+#preview-administrationstudentrecordsupdateadmissiondate-table .table-col4 {
+    width: 93px;
+}
+#preview-administrationstudentrecordsupdateadmissiondate-table .table-col5 {
+    width: 103px;
+}
+#preview-administrationstudentrecordsupdateadmissiondate-table .table-col6 {
+    width: 93px;
+}
+#preview-administrationstudentrecordsupdateadmissiondate-table .table-col7 {
+    width: 103px;
+}
+#preview-administrationstudentrecordsupdateadmissiondate-table .table-grid .table-col3 .table-col-msg div {
+    text-align: left;
+}
+#preview-administrationstudentrecordsupdateadmissiondate-table .button {
+    left: 419px;
+}
+
+#main-ourservicesexportstudentrecordsinformation-table .table-title .button ul li div {
+    width: 101px;
+}
+#main-ourservicesexportstudentrecordsinformation-table .table-col1 {
+    width: 67px;
+}
+#main-ourservicesexportstudentrecordsinformation-table .table-col2 {
+    width: 65px;
+}
+#main-ourservicesexportstudentrecordsinformation-table .table-col3 {
+    width: 65px;
+}
+#main-ourservicesexportstudentrecordsinformation-table .table-col6 {
+    width: 120px;
+}
+#main-ourservicesexportstudentrecordsinformation-table .table-col7 {
+    width: 63px;
+}
+#main-ourservicesexportstudentrecordsinformation-table .table-col8 {
+    width: 40px;
+}
+#main-ourservicesexportstudentrecordsinformation-table .table-col9 {
+    width: 85px;
+}
+#main-ourservicesexportstudentrecordsinformation-table .table-col10 {
+    width: 60px;
+}
+#main-ourservicesexportstudentrecordsinformation-table .table-col11 {
+    width: 82px;
+}
+#main-ourservicesexportstudentrecordsinformation-table .table-col12 {
+    width: 82px;
+}
+#main-ourservicesexportstudentrecordsinformation-table .table-col13 {
+    width: 72px;
+}
+#main-ourservicesexportstudentrecordsinformation-table .table-col14 {
+    width: 103px;
+}
+#main-ourservicesexportstudentrecordsinformation-table .table-grid .table-col4 .table-col-msg div,
+#main-ourservicesexportstudentrecordsinformation-table .table-grid .table-col5 .table-col-msg div {
+    text-align: left;
+}
+
+#main-topicsstudentrecordsstatusnotcomplete-form #main-topicsstudentrecordsstatusnotcomplete-studentid-content .form-inputcol,
+#view-ourservicestransactionlogstudentrecords-form #view-ourservicestransactionlogstudentrecords-studentid-content .form-inputcol {
+    padding-top: 0;
+}
+#main-topicsstudentrecordsstatusnotcomplete-form #main-topicsstudentrecordsstatusnotcomplete-studentid-content .form-inputcol .en-label,
+#view-ourservicestransactionlogstudentrecords-form #view-ourservicestransactionlogstudentrecords-studentid-content .form-inputcol .en-label {
+    font-size: 22px;
+    font-weight: bolder;
+    line-height: 45px;
+}
+
+#main-ourservicesupdatestudentdistinctionprogram-table .table-title .button ul li div {
+    width: 101px;
+}
+#main-ourservicesupdatestudentdistinctionprogram-table .table-col1 {
+    width: 67px;
+}
+#main-ourservicesupdatestudentdistinctionprogram-table .table-col2 {
+    width: 65px;
+}
+#main-ourservicesupdatestudentdistinctionprogram-table .table-col3 {
+    width: 65px;
+}
+#main-ourservicesupdatestudentdistinctionprogram-table .table-col5 {
+    width: 120px;
+}
+#main-ourservicesupdatestudentdistinctionprogram-table .table-col6 {
+    width: 63px;
+}
+#main-ourservicesupdatestudentdistinctionprogram-table .table-col7 {
+    width: 40px;
+}
+#main-ourservicesupdatestudentdistinctionprogram-table .table-col8 {
+    width: 85px;
+}
+#main-ourservicesupdatestudentdistinctionprogram-table .table-col9 {
+    width: 60px;
+}
+#main-ourservicesupdatestudentdistinctionprogram-table .table-col10 {
+    width: 117px;
+}
+#main-ourservicesupdatestudentdistinctionprogram-table .table-col11 {
+    width: 96px;
+}
+#main-ourservicesupdatestudentdistinctionprogram-table .table-col12 {
+    width: 96px;
+}
+#main-ourservicesupdatestudentdistinctionprogram-table .table-col13 {
+    width: 82px;
+}
+#main-ourservicesupdatestudentdistinctionprogram-table .table-col14 {
+    width: 103px;
+}
+#main-ourservicesupdatestudentdistinctionprogram-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#progress-ourservicesupdatestudentdistinctionprogram-form .list {
+    width: 496px;
+    height: 67px;
+}
+#progress-ourservicesupdatestudentdistinctionprogram-form .list .list-content .list-row {
+    padding: 1px 6px 3px 6px;
+}
+#progress-ourservicesupdatestudentdistinctionprogram-form .list .list-content .list-col {
+    padding: 0;
+}
+#progress-ourservicesupdatestudentdistinctionprogram-form .list .list-content .list-col div {
+    line-height: 21px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#progress-ourservicesupdatestudentdistinctionprogram-form #progress-ourservicesupdatestudentdistinctionprogram-distinctionstatus-content .form-inputcol {
+    padding-top: 13px;
+}
+#progress-ourservicesupdatestudentdistinctionprogram-form .semesteryear .contentbody-left:nth-child(2).th-label {
+    font-size: 23px;
+    width: 20px;
+    text-align: center;
+}
+
+#preview-ourservicesupdatestudentdistinctionprogram-table .table-col1 {
+    width: 67px;
+}
+#preview-ourservicesupdatestudentdistinctionprogram-table .table-col2 {
+    width: 65px;
+}
+#preview-ourservicesupdatestudentdistinctionprogram-table .table-col4 {
+    width: 117px;
+}
+#preview-ourservicesupdatestudentdistinctionprogram-table .table-col5 {
+    width: 135px;
+}
+#preview-ourservicesupdatestudentdistinctionprogram-table .table-col6 {
+    width: 135px;
+}
+#preview-ourservicesupdatestudentdistinctionprogram-table .table-col7 {
+    width: 173px;
+}
+#preview-ourservicesupdatestudentdistinctionprogram-table .table-grid .table-col3 .table-col-msg div {
+    text-align: left;
+}
+#preview-ourservicesupdatestudentdistinctionprogram-table .button {
+    left: 419px;
+}
+
+#main-ourservicessummarynumberofstudentviewtable .table .table-title .button ul li div {
+    width: 50px;
+}
+#main-ourservicessummarynumberofstudentlevel1viewtable-table .table-col2 {
+    width: 206px;
+}
+#main-ourservicessummarynumberofstudentlevel1viewtable-table .table-col3 {
+    width: 206px;
+}
+#main-ourservicessummarynumberofstudentlevel1viewtable-table .table-col4 {
+    width: 217px;
+}
+#main-ourservicessummarynumberofstudentlevel1viewtable-table .table-grid .table-col1 .table-col-msg div {
+    text-align: left;
+}
+#main-ourservicessummarynumberofstudentlevel1viewtable-table .table-navpage .navpage .navpage-layout {
+    height: 1px;
+    background: #E4E4E4;
+    padding: 0px;
+}
+
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-col1 {
+    width: 67px;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-col2 {
+    width: 65px;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-col5 {
+    width: 120px;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-col6 {
+    width: 63px;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-col7 {
+    width: 40px;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-col8 {
+    width: 85px;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-col9 {
+    width: 60px;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-col10 {
+    width: 82px;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-col11 {
+    width: 82px;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-col12 {
+    width: 72px;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-col13 {
+    width: 103px;
+}
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-grid .table-col3 .table-col-msg div,
+#main-ourservicessummarynumberofstudentlevel2viewtable-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#main-ourservicestransactionlogstudentrecords-table .table-title .button ul li div {
+    width: 101px;
+}
+#main-ourservicestransactionlogstudentrecords-table .table-col1 {
+    width: 67px;
+}
+#main-ourservicestransactionlogstudentrecords-table .table-col2 {
+    width: 65px;
+}
+#main-ourservicestransactionlogstudentrecords-table .table-col5 {
+    width: 120px;
+}
+#main-ourservicestransactionlogstudentrecords-table .table-col6 {
+    width: 63px;
+}
+#main-ourservicestransactionlogstudentrecords-table .table-col7 {
+    width: 40px;
+}
+#main-ourservicestransactionlogstudentrecords-table .table-col8 {
+    width: 85px;
+}
+#main-ourservicestransactionlogstudentrecords-table .table-col9 {
+    width: 60px;
+}
+#main-ourservicestransactionlogstudentrecords-table .table-col10 {
+    width: 82px;
+}
+#main-ourservicestransactionlogstudentrecords-table .table-col11 {
+    width: 82px;
+}
+#main-ourservicestransactionlogstudentrecords-table .table-col12 {
+    width: 72px;
+}
+#main-ourservicestransactionlogstudentrecords-table .table-col13 {
+    width: 103px;
+}
+#main-ourservicestransactionlogstudentrecords-table .table-grid .table-col3 .table-col-msg div,
+#main-ourservicestransactionlogstudentrecords-table .table-grid .table-col4 .table-col-msg div {
+    text-align: left;
+}
+
+#view-ourservicestransactionlogstudentrecords-form .table .table-content .table-grid {
+    border-bottom: 1px solid #E4E4E4;
+}

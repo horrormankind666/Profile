@@ -1,0 +1,1035 @@
+﻿/* =============================================
+   Author       : <ยุทธภูมิ ตวันนา>
+   Create date  : <๒๒/๐๖/๒๕๕๘>
+   Modify date  : <๑๓/๐๙/๒๕๕๙>
+   Description  : <Style Sheet จัดรูปการแสดงผล>
+   ============================================= */
+
+a:link {text-decoration:none;outline:none;}
+a:visited {text-decoration:none;outline:none;}
+a:active {text-decoration:none;outline:none;}
+a:hover {text-decoration:none;outline:none;}
+
+body
+{
+    background-color:#FFFFFF;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-position:center center;
+    margin:0px;
+    padding:0px;
+    overflow-x:hidden;
+    overflow-y:scroll;
+    cursor:default;       
+}
+
+html, body {height:100%;}
+body > #bodymain {height:auto;min-height:100%;}
+#bodymain, #headbody, #bodyfooter {width:100%;text-align:center;}
+#mainbody, #headbody, #footerbody {min-width:1008px;}
+#headbody-layout, #menubar-layout, #footerbody-layout {width:auto;}
+#menubar #menubar-layout {height:30px;}
+#menubar #menubar-content {width:inherit;}
+#contentbody #contentbody-layout {width:auto;padding-bottom:59px;}
+#contentbody #contentbody-content {width:inherit;text-align:center;}
+.contentbody-left {float:left;}
+.contentbody-right {float:right;}
+#headbody {background:#334C63;}
+#headbody .box {border-top:6px solid #339A87;}
+#headbody #headbody-layout {height:59px;background:#334C63;}
+#headbody #headbody-content {height:inherit;}
+#headbody #headbody-content #headbody-content-left {width:509px;height:inherit;background:url(../../Image/UploadDocumentStaff/Label.png) no-repeat 0px 0px;}
+#headbody #headbody-content #headbody-content-right {width:481px;height:inherit;background:url(../../Image/UploadDocumentStaff/Label.png) no-repeat -509px 0px;}
+#bodysearch {position:fixed;left:0px;z-index:999;}
+#bodyfooter {margin-top:-59px;height:59px;background:#000000;position:relative;z-index:997;}
+#footerbody .box {border-top:6px solid #339A87;}
+#footerbody #footerbody-content {padding-top:5px;}
+#footerbody #footerbody-content .th-label,
+#footerbody #footerbody-content .en-label {font-size:12px;font-weight:normal;line-height:20px;color:#FFFFFF;}
+#footerbody #footerbody-content .th-label {font-size:14px;}
+
+.sticky {width:100%;position:fixed;z-index:1000;}
+
+.clear { clear:both; }
+.clearfix:after
+{
+    content:".";
+    display:block;
+    height:0px;
+    clear:both;
+    visibility:hidden;
+}
+.clearfix {display:inline-block;}
+* html .clearfix {height:1%;}
+.clearfix {display:block;}
+
+form, input, select, span {margin:0px;padding:0px;outline:none;}
+.frame-util {width:0px;height:0px;border:none;}
+input.inputcalendar {width:80px;cursor:default;}
+img.ui-datepicker-trigger {cursor:pointer;}
+a {outline:none;}
+.box {width:auto;}
+.hidden {display:none;}
+.th-label {font:bold 14px Tahoma, Verdana, Arial, sans-serif;color:#000000;}
+.en-label {font:bold 16px Corbel, Verdana, Arial, sans-serif;color:#666666;}
+
+.inputbox, .inputcalendar
+{
+    border:2px solid #BDC3C7;
+    text-decoration:none;
+    font:normal 14px Tahoma, Verdana, Arial, sans-serif;
+    padding:0px 2px 1px 2px;
+    height:24px;
+    /*line-height:21px;*/
+	color:#000000;
+    background-color:#FFFFFF;
+    outline:none;    
+    cursor:default;
+}
+
+.ui-datepicker .ui-datepicker-title select
+{    
+    font:normal 11px Tahoma, Verdana, Arial, sans-serif;    
+    border:0px;
+    appearance:none;    
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    -o-appearance:none;
+    background:url(../../Image/UploadDocumentStaff/Arrow.png) no-repeat;
+    background-position:40px; 
+    width:56px;
+    text-indent:0.01px;
+    text-overflow:"";
+    height:19px;
+    padding:0px;
+    padding-left:1px;
+	color:#000000;
+    background-color:#FFFFFF; 
+}
+.ui-datepicker {font-family:Corbel, Verdana, Arial, sans-serif;}
+.ui-datepicker .ui-datepicker-title select::-ms-expand {display:none;}
+.ui-datepicker th {font-weight:bold;font-size:13px;}
+.ui-datepicker td span, .ui-datepicker td a {font-weight:normal;font-size:13px;}
+
+.textbox-numeric {text-align:right;}
+.textbox-disable {color:#000000;background-color:#CCCCCC;cursor:default;}
+.textareabox
+{
+    font:normal 14px Tahoma, Verdana, Arial, sans-serif;
+    border:2px solid #BDC3C7;
+    text-decoration:none;
+    margin:0px;
+    padding:0px 2px 1px 2px;
+    line-height:22px;
+    color:#000000;
+    resize:none;
+    background-color:#FFFFFF;
+    outline:none;
+    overflow-y:auto;    
+}
+
+.checkbox, .radio {margin:0px;padding:0px;color:#000000;outline:none;cursor:default;}
+
+.class-dialog-preloading, .class-dialog-box, .class-dialog-error, .class-dialog-confirm {z-index:3001;}
+.class-dialog-preloading .ui-dialog-titlebar,
+.class-dialog-box .ui-dialog-titlebar,
+.class-dialog-error .ui-dialog-titlebar,
+.class-dialog-confirm .ui-dialog-titlebar,
+.class-dialog-preloading .ui-dialog-buttonpane {display:none;}
+.class-dialog-preloading .ui-dialog-content {width:128px;height:128px;background:url(../../Image/UploadDocumentStaff/Preloading.gif) no-repeat center center;border:0px;padding:55px 0px 0px 0px;text-align:center;font:bold 14px Corbel, Verdana, Arial, sans-serif;}
+.class-dialog-box .ui-dialog-content,
+.class-dialog-box .ui-dialog-buttonpane {border:3px solid #428001;background:#428001;}
+.class-dialog-error .ui-dialog-content,
+.class-dialog-error .ui-dialog-buttonpane {border:3px solid #B82A28;background:#B82A28;}
+.class-dialog-confirm .ui-dialog-content,
+.class-dialog-confirm .ui-dialog-buttonpane {border:3px solid #2A80B9;background:#2A80B9;}
+.class-dialog-box .ui-dialog-content,
+.class-dialog-error .ui-dialog-content,
+.class-dialog-confirm .ui-dialog-content {border-left:0px;border-right:0px;border-bottom:0px;}
+.class-dialog-box .ui-dialog-content .th-label,
+.class-dialog-error .ui-dialog-content .th-label,
+.class-dialog-confirm .ui-dialog-content .th-label {font-size:14px;line-height:21px;}
+.class-dialog-box .ui-dialog-content .en-label,
+.class-dialog-error .ui-dialog-content .en-label,
+.class-dialog-confirm .ui-dialog-content .en-label {font-size:14px;line-height:21px;color:#FFFFFF;}
+.class-dialog-error .ui-dialog-content a:hover {text-decoration:underline;}
+.class-dialog-box .ui-dialog-buttonpane,
+.class-dialog-error .ui-dialog-buttonpane,
+.class-dialog-confirm .ui-dialog-buttonpane {border:0px;}
+.class-dialog-box .ui-dialog-buttonpane button,
+.class-dialog-error .ui-dialog-buttonpane button,
+.class-dialog-confirm .ui-dialog-buttonpane button {border:0px;font:bold 16px Corbel, Verdana, Arial, sans-serif;color:#FFFFFF;width:85px;height:32px;line-height:32px;outline:none;}
+.class-dialog-error .ui-dialog-buttonpane button {background:#E84C3D;}
+.class-dialog-confirm .ui-dialog-buttonpane button {background:#4AA3DF;}
+.class-dialog-box .ui-dialog-buttonpane button {background:#59B200;}
+.class-dialog-box button:hover,
+.class-dialog-error button:hover,
+.class-dialog-confirm button:hover {color:#FFFFFF;}
+.class-dialog-box button:hover {background:#6BDD01;}
+.class-dialog-error button:hover {background:#E65D50;}
+.class-dialog-confirm button:hover {background:#4DADEE;}
+
+.class-dialog-form .ui-dialog-titlebar {background:#B82A28;border:10px solid #9AC3BD;border-bottom:0px;}
+.class-dialog-form .ui-dialog-title {font:bold 14px Corbel, Tahoma, Verdana, Arial, sans-serif;color:#FFFFFF;padding:8px 45px 8px 10px;line-height:22px;}
+.class-dialog-form .ui-dialog-titlebar-close {visibility:visible;outline:none;border:0px;background:transparent;}
+.class-dialog-form .ui-dialog-titlebar-close {width:25px;height:25px;background:url(../../Image/UploadDocumentStaff/Label.png) 0px -59px;}
+.class-dialog-form .ui-dialog-titlebar-close:hover {width:25px;height:25px;background:url(../../Image/UploadDocumentStaff/Label.png) -25px -59px;}
+.class-dialog-form .ui-dialog-content {padding:0px;margin:0px;background:#FFFFFF;border:10px solid #9AC3BD;border-top:0px;}
+.class-dialog-form .msgbox {width:auto;line-height:25px;padding:10px;background:#ECF0F1;text-align:justify;}
+.class-dialog-form .msgbox.en-label {font-size:18px;font-weight:normal;color:#000000;}
+.class-dialog-form .msgbox a {color:#000099;}
+.class-dialog-form .msgbox a:hover {color:#FF0000;}
+
+.preloading-inline {width:38px;height:26px;border:0px;position:relative;}
+#preview-uploadsubmitdocument-form .preloading-inline, 
+#edit-approvedocument-form .preloading-inline {top:6px;}
+
+.menubar .menubar-layout {width:auto;height:30px;line-height:30px;background:#44C6AE;}
+.menubar .menubar-content {width:inherit;}
+.menubar .menubar-content ul, .menubar .menubar-content ul ul {margin:0px;padding:0px;list-style-type:none;}
+.menubar .menubar-content ul li {float:left;display:inline;}
+.menubar .menubar-content ul .link-msg {padding:0px 9px 0px 9px;}
+.menubar .menubar-content .contentbody-left,
+.menubar .menubar-content .contentbody-right {height:inherit;}
+.menubar .menubar-content ul .link-click {cursor:pointer;}
+.menubar .menubar-content ul li, .menubar .menubar-content ul li a, .menubar .menubar-content ul li div {display:block;height:inherit;line-height:inherit;text-decoration:none;color:#000000;}
+.menubar .menubar-content ul li .th-label {font-size:12px;font-weight:normal;}
+.menubar .menubar-content ul li .en-label {font-size:12px;font-weight:normal;}
+.menubar .menubar-content ul .have-link:hover {position:relative;background:#339A87;}
+.menubar .menubar-content ul .have-link:hover .th-label,
+.menubar .menubar-content ul .have-link:hover .en-label {color:#FFFFFF;}
+.menubar .menubar-content ul .nohave-link:hover {position:relative;}
+.menubar .menubar-content ul .split-vertical {display:block;height:35px;border-left:1px solid #339A87;border-right:1px solid #339A87;}
+.menubar .menubar-content ul .link-submenu:hover .submenu {display:block;}
+.menubar .menubar-content ul .link-submenu .submenu {background:#339A87;border-top:6px solid #339A87;display:none;position:absolute;z-index:2000;}
+.menubar .menubar-content ul .link-submenu .submenu ul li {float:left;display:inline;text-align:left;}
+.menubar .menubar-content ul .link-submenu .submenu ul li a .th-label {line-height:21px;font-size:14px;color:#FFFFFF;}
+.menubar .menubar-content ul .link-submenu .submenu ul li a .en-label {line-height:22px;font-size:13px;color:#333333;}
+.menubar .menubar-content ul .link-submenu .submenu ul li a {padding:3px 0px 5px 9px;width:415px;min-height:22px;}
+.menubar .menubar-content ul .link-submenu .submenu .split-horizontal {display:block;width:inherit;height:6px;background:#7D1D03;}
+.menubar .menubar-content ul .link-submenu .submenu ul .have-link:hover {background:#308D7C;}
+.menubar .menubar-content ul .link-submenu .submenu ul .have-link:hover .en-label {color:#000000;}
+.menubar .menubar-content ul #link-setting {width:67px;}
+.menubar .menubar-content ul #link-setting div.link-msg {padding:0px 5px 0px 5px;}
+
+.menulist .menulist-layout {width:auto;background:#B9B5AD;text-align:left;}
+.menulist .menulist-content {width:inherit;}
+.menulist .menulist-content ul {margin:0px;padding:0px;list-style-type:none;}
+.menulist .menulist-content ul li,
+.menulist .menulist-content ul li .link-msg {display:block;text-align:left;background:#F5BE01;height:52px;}
+.menulist .menulist-content ul .have-link:hover,
+.menulist .menulist-content ul .have-link a:hover,
+.menulist .menulist-content ul .have-link a:hover .menu-itemtext .th-label,
+.menulist .menulist-content ul .have-link a:hover .menu-itemtext .en-label {background:#C8A000;color:#000000;}
+.menulist .menulist-content ul li .link-msg .menu-itemtext {padding-left:10px;padding-top:5px;}
+.menulist .menulist-content ul li .link-msg .menu-itemtext .th-label {height:22px;}
+.menulist .menulist-content ul li .link-msg .menu-itemtext .en-label {font-size:13px;}
+
+.infobar {z-index:999;}
+.infobar .infobar-layout {width:auto;height:47px;background:#EFF0F2;border-bottom-width:3px;border-bottom-style:solid;}
+.infobar .infobar-content {width:inherit;}
+.infobar .infobar-content ul {margin:0px;padding:0px;list-style-type:none;}
+.infobar .infobar-content ul li {float:left;display:inline;}
+.infobar .infobar-content ul li .icon {width:67px;height:47px;background:url(../../Image/UploadDocumentStaff/Label.png);}
+.infobar .infobar-content ul li .icon-config {background-position:0px -1230px;}
+.infobar .infobar-content ul li .icon-upload {background-position:-67px -1230px;}
+.infobar .infobar-content ul li .icon-approval {background-position:-134px -1230px;}
+.infobar .infobar-content ul li .icon-service {background-position:-201px -1230px;}
+.infobar .infobar-content ul li .title {width:100%;text-align:left;margin-left:10px;margin-top:5px;}
+.infobar .infobar-content ul li .title .th-label {height:20px;}
+.infobar .infobar-content ul li .title .en-label {line-height:19px;font-size:14px;}
+.infobar .infobar-content .operator ul li, .infobar .infobar-content .operator ul li a {display:block;width:46px;}
+.infobar .infobar-content .operator ul li .operator-img {width:24px;height:24px;background:url(../../Image/UploadDocumentStaff/Label.png);margin-top:5px;position:relative;left:11px;}
+.infobar .infobar-content .operator ul li .operator-msg {height:18px;line-height:18px;}
+.infobar .infobar-content .operator ul li .en-label {font-size:12px;font-weight:normal;color:#000000;}
+.infobar .infobar-content .operator ul li:hover {background:#D2D7D3;}
+.infobar .infobar-content .operator ul .operator-new .operator-img {background-position:0px -1277px;}
+.infobar .infobar-content .operator ul .operator-edit .operator-img {background-position:-48px -1277px;}
+.infobar .infobar-content .operator ul .operator-delete .operator-img {background-position:-96px -1277px;}
+.infobar .infobar-content .operator ul .operator-search .operator-img {background-position:-144px -1277px;}
+.infobar .infobar-content .operator ul .operator-reset .operator-img {background-position:-192px -1277px;}
+.infobar .infobar-content .operator ul .operator-save .operator-img {background-position:-240px -1277px;}
+.infobar .infobar-content .operator ul .operator-apply .operator-img {background-position:-288px -1277px;}
+.infobar .infobar-content .operator ul .operator-undo .operator-img {background-position:-336px -1277px;}
+.infobar .infobar-content .operator ul .operator-print .operator-img {background-position:-384px -1277px;}
+.infobar .infobar-content .operator ul .operator-upload .operator-img {background-position:-528px -1277px;}
+.infobar .infobar-content .operator ul .operator-transfer .operator-img {background-position:-432px -1277px;}
+.infobar .infobar-content .operator ul .operator-home .operator-img {background-position:-480px -1277px;}
+.infobar .infobar-content .operator ul .operator-exportall .operator-img {background-position:-528px -1277px;left:18px;}
+.infobar .infobar-content .operator ul .operator-exportall, .infobar .infobar-content .operator ul .operator-exportall a {width:60px;}
+.infobar .infobar-content .operator ul .operator-exportselected .operator-img {background-position:-576px -1277px;left:33px;}
+.infobar .infobar-content .operator ul .operator-exportselected, .infobar .infobar-content .operator ul .operator-exportselected a {width:90px;}
+.infobar .infobar-content .operator ul .operator-close .operator-img {background-position:-624px -1277px;}
+.infobar .infobar-content .operator ul .operator-profile .operator-img {background-position:-672px -1277px;}
+.infobar .infobar-content .operator ul .operator-new:hover .operator-img, .infobar .infobar-content .operator ul .operator-new a:hover .operator-img {background-position:-24px -1277px;}
+.infobar .infobar-content .operator ul .operator-edit:hover .operator-img, .infobar .infobar-content .operator ul .operator-edit a:hover .operator-img {background-position:-72px -1277px;}
+.infobar .infobar-content .operator ul .operator-delete:hover .operator-img, .infobar .infobar-content .operator ul .operator-delete a:hover .operator-img {background-position:-120px -1277px;}
+.infobar .infobar-content .operator ul .operator-search:hover .operator-img, .infobar .infobar-content .operator ul .operator-search a:hover .operator-img {background-position:-168px -1277px;}
+.infobar .infobar-content .operator ul .operator-reset:hover .operator-img, .infobar .infobar-content .operator ul .operator-reset a:hover .operator-img {background-position:-216px -1277px;}
+.infobar .infobar-content .operator ul .operator-save:hover .operator-img, .infobar .infobar-content .operator ul .operator-save a:hover .operator-img {background-position:-264px -1277px;}
+.infobar .infobar-content .operator ul .operator-apply:hover .operator-img, .infobar .infobar-content .operator ul .operator-apply a:hover .operator-img {background-position:-312px -1277px;}
+.infobar .infobar-content .operator ul .operator-undo:hover .operator-img, .infobar .infobar-content .operator ul .operator-undo a:hover .operator-img {background-position:-360px -1277px;}
+.infobar .infobar-content .operator ul .operator-print:hover .operator-img, .infobar .infobar-content .operator ul .operator-print a:hover .operator-img {background-position:-408px -1277px;}
+.infobar .infobar-content .operator ul .operator-upload:hover .operator-img, .infobar .infobar-content .operator ul .operator-upload a:hover .operator-img {background-position:-552px -1277px;}
+.infobar .infobar-content .operator ul .operator-transfer:hover .operator-img, .infobar .infobar-content .operator ul .operator-transfer a:hover .operator-img {background-position:-456px -1277px;}
+.infobar .infobar-content .operator ul .operator-home:hover .operator-img, .infobar .infobar-content .operator ul .operator-home a:hover .operator-img {background-position:-504px -1277px;}
+.infobar .infobar-content .operator ul .operator-exportall:hover .operator-img, .infobar .infobar-content .operator ul .operator-exportall a:hover .operator-img {background-position:-552px -1277px;}
+.infobar .infobar-content .operator ul .operator-exportselected:hover .operator-img, .infobar .infobar-content .operator ul .operator-exportselected a:hover .operator-img {background-position:-600px -1277px;}
+.infobar .infobar-content .operator ul .operator-close:hover .operator-img, .infobar .infobar-content .operator ul .operator-close a:hover .operator-img {background-position:-648px -1277px;}
+.infobar .infobar-content .operator ul .operator-profile:hover .operator-img, .infobar .infobar-content .operator ul .operator-profile a:hover .operator-img {background-position:-696px -1277px;}
+
+#infobar-setting .infobar-layout {border-bottom-color:#E84C3D;}
+#infobar-uploadsubmitdocument .infobar-layout {border-bottom-color:#892A73;}
+#infobar-approvedocument .infobar-layout {border-bottom-color:#F3781B;}
+#infobar-ourservices .infobar-layout {border-bottom-color:#E08283;}
+
+.important .important-layout {width:auto;height:43px;text-align:left;padding:7px 10px 0px 10px;}
+.important .important-content {width:inherit;height:inherit;}
+.important .important-recommend {width:inherit;background:#F1C40F;}
+.important .important-success {width:inherit;background:#2ECC71;display:none;}
+.important .important-icon {display:inline;width:16px;height:16px;margin-top:2px;background:url(../../Image/UploadDocumentStaff/Label.png) -111px -305px;}
+.important .important-msg {display:inline;width:inherit;background:#FF0000;}
+.important .important-msg .th-label {height:20px;}
+.important .important-msg .en-label {font-size:14px;font-weight:normal;}
+.important .important-msg .title {font-size:18px;font-weight:bold;height:22px;line-height:18px;}
+
+.tabbar {z-index:999;}
+.tabbar .tabbar-layout {width:auto;min-width:750px;height:44px;background:#B9B5AD;}
+.tabbar .tabbar-content {width:inherit;}
+.tabbar .tabbar-content ul {margin:0px;padding:0px;list-style-type:none;}
+.tabbar .tabbar-content ul li {float:left;display:inline;}
+.tabbar .tabbar-content ul li, .tabbar .tabbar-content ul li a {display:block;text-decoration:none;height:44px;}
+.tabbar .tabbar-content ul li .tab-itemtext {padding:2px 10px 0px 9px;text-align:left;}
+.tabbar .tabbar-content ul li .tab-itemtext .th-label {height:20px;}
+.tabbar .tabbar-content ul li .tab-itemtext .en-label {font-size:14px;}
+.tabbar .tabbar-content ul li .tab-active {background:#FFFFFF;}
+.tabbar .tabbar-content ul li .tab-active .th-label,
+.tabbar .tabbar-content ul li .tab-active .en-label {color:#000000;}
+.tabbar .tabbar-content ul li .noactive {background:transparent;}
+.tabbar .tabbar-content ul li a:hover,
+.tabbar .tabbar-content ul li a:hover .th-label,
+.tabbar .tabbar-content ul li a:hover .en-label {background:#BDC3C7;color:#000000;}
+#main-ourservicesdocumentstatusstudent-viewsdisplay .tabbar-content ul li a {width:67px;}
+
+.form .form-content {text-align:left;}
+.form .form-content .form-row {width:inherit;height:48px;}
+.form .form-content .form-lastrow {height:auto;padding-bottom:10px;}
+.form .form-content .form-labelcol, .form .form-content .form-inputcol {float:left;}
+.form .form-content .form-labelcol {width:45%;min-width:316px;padding:7px 0px 0px 10px;text-align:right;}
+.form .form-content .form-labelcol .form-label .th-label {height:20px;}
+.form .form-content .form-labelcol .form-label .en-label {font-size:13px;}
+.form .form-content .form-inputcol {width:45%;min-width:413px;padding:13px 0px 0px 0px;}
+.form .form-content .form-inputcol.form-inputcol-paddingbottom {padding-top:5px;}
+.form .form-content .form-inputcol .form-input span {display:inline-block;}
+.form .form-content .form-inputcol .form-input .th-label {font-size:14px;font-weight:normal;}
+.form .form-content .form-inputcol .form-input .en-label {font-size:13px;font-weight:normal;}
+.form .form-content .form-inputcol .form-input .form-input-discription {margin-top:5px;line-height:18px;}
+.form .form-content .form-inputcol .form-input .form-input-discription .th-label,
+.form .form-content .form-inputcol .form-input .form-input-discription .en-label {font-size:13px;font-style:normal;font-weight:normal;color:#AFAFAF;}
+.form .form-content .form-inputcol .form-input .radio-content .th-label,
+.form .form-content .form-inputcol .form-input .checkbox-content .th-label {line-height:22px;}
+.form .form-content .form-inputcol .form-input .radio-content .en-label,
+.form .form-content .form-inputcol .form-input .checkbox-content .en-label {line-height:18px;}
+.form .form-content .form-inputcol .form-input .radio-content,
+.form .form-content .form-inputcol .form-input .checkbox-content {width:533px;}
+.form .form-content .form-inputcol .form-input .radio-content ul .radio-labelcol,
+.form .form-content .form-inputcol .form-input .checkbox-content ul .checkbox-labelcol {width:508px;}
+.form .form-content .form-inputcol .form-input .form-subcontent {margin-left:23px;margin-top:10px;}
+.form .form-content .form-inputcol .form-input .form-subcontent.first-child {margin-top:3px;}
+.form .form-content .form-inputcol .form-input .form-subcontent .form-labelcol {padding:0px;text-align:left;}
+.form .form-content .form-inputcol .form-input .form-subcontent .form-labelcol div {line-height:21px;}
+.form .form-content .form-inputcol .form-input .form-subcontent .form-labelcol .en-label {line-height:18px;font-size:13px;}
+.form .form-content .form-inputcol .form-input .form-subcontent .form-labelcol div:first-child span.en-label {color:#000000;}
+.form .form-content .form-inputcol .form-input .form-subcontent .form-inputcol {padding:0px;margin-top:5px;}
+.form .form-content .form-inputcol .form-input .form-subcontent .radio-content,
+.form .form-content .form-inputcol .form-input .form-subcontent .checkbox-content {padding:0px;margin-left:0px;}
+.form .form-content .form-inputcol .form-input .form-subcontent .radio-content .radio-labelcol,
+.form .form-content .form-inputcol .form-input .form-subcontent .checkbox-content .checkbox-labelcol {width:295px;}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-input .contentbody-left {margin-left:4px;}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-input .contentbody-left:first-child {margin-left:0px;}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-input .contentbody-left:last-child,
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row .contentbody-left:last-child {margin-left:1px;padding-top:54px;width:50px;}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-input .contentbody-left .button {margin-top:5px;}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-input .contentbody-left .button ul li a {height:28px;line-height:28px;font-size:14px;color:#000000;}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-input .contentbody-left:last-child .link ul li,
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row .contentbody-left:last-child .link ul li {text-align:right;width:44px;}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-input .contentbody-left:last-child .link ul li .en-label,
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row .contentbody-left:last-child .link ul li .en-label {font-size:13px;font-weight:bold;}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row:first-child {border:none;border-top:1px dashed #CCCCCC;margin-top:10px;padding-top:5px;}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row .contentbody-left {margin-left:4px;padding-left:5px;padding-right:3px;}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row .contentbody-left:first-child {margin-left:0px;}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row .contentbody-left div {line-height:21px;}
+.form .form-content .form-inputcol .form-input .form-inputlist .form-inputlist-list .list-row .contentbody-left:last-child {padding:0px;padding-top:1px;}
+
+.dialog-form .form-layout {background:#F5F5F5;width:auto}
+.dialog-form .form-content {width:inherit;padding:0px;}
+.dialog-form .form-content .form-labelcol {min-width:0px;width:50%;text-align:left;}
+.dialog-form .form-content .form-inputcol {min-width:0px;width:50%;padding:9px 0px 0px 0px;text-align:left;}
+.dialog-form .form-content .form-inputcol .form-input {word-wrap:break-word;word-break:break-all;}
+.dialog-form .form-content .form-inputcol .form-input .alertmessage {height:26px;line-height:26px;position:relative;left:64px;}
+.dialog-form .form-content .button ul li a,
+.dialog-form .form-content .button ul li div {width:80px;height:30px;line-height:30px;}
+
+.dialogmessage-form .form-layout {background:#FFFFFF;width:auto;}
+.dialogmessage-form .form-content {width:inherit;padding:10px;}
+.dialogmessage-form .form-content hr {width:auto;height:1px;border:none;border-top:1px dashed #CCCCCC;}
+.dialogmessage-form .form-content ul {margin:0px;padding:0px;list-style:none;position:relative}
+.dialogmessage-form .form-content ul li {padding-left:15px;line-height:25px;font-weight:normal;text-wrap:normal;text-align:justify;}
+.dialogmessage-form .form-content ul li:before {position:absolute;content:"•";left:0px;}
+.dialogmessage-form .form-content div {line-height:25px;font-weight:normal;text-wrap:normal;text-align:justify;}
+
+.dialogpicture-form .form-layout {background:#FFFFFF;width:auto;}
+.dialogpicture-form .form-content {width:inherit;padding:10px;}
+.dialogpicture-form .picture-content {background:none;border:none;}
+.dialogpicture-form .picture-content .picture-watermark {background:url(../../Image/UploadDocumentStaff/BGWaterMark.png) repeat;opacity:0.6;filter:Alpha(Opacity=60);position:absolute;z-index:1;display:block;}
+.dialogpicture-form .picture-content img {display:block;}
+
+.dialogaddupdate-form .form-layout {background:#FFFFFF;width:auto}
+.dialogaddupdate-form .form-content {width:inherit;padding:10px;}
+
+.form.addupdate .form-content .button ul li a,
+.form.addupdate .form-content .button ul li div {width:80px;height:30px;line-height:30px;}
+.form.addupdate .form-content .button ul li .en-label {font-size:16px;font-weight:bold;}
+
+.form.studentdetail .form-labelcol {width:40%;}
+.form.studentdetail .form-inputcol {width:50%;}
+.form.studentdetail #addupdate-uploaddocument-studentpicture-content .form-inputcol {padding-top:10px;}
+.form.studentdetail #addupdate-uploaddocument-studentpicture-content .form-inputcol .profilepicture-content {width:152px;height:208px;}
+.form.studentdetail #addupdate-uploaddocument-studentpicture-content .form-inputcol .profilepicture-content img {width:inherit;height:inherit;}
+.form.studentdetail #addupdate-uploaddocument-studentid-content .form-inputcol {padding-top:0px;}
+.form.studentdetail #addupdate-uploaddocument-studentid-content .form-inputcol .en-label {font-size:22px;font-weight:bolder;line-height:45px;}
+
+.form.detail .form-content .form-inputcol {padding-top:7px;}
+.form.detail .form-content .form-inputcol .th-label,
+.form.detail .form-content .form-inputcol .en-label {font-weight:normal;} 
+.form.detail .form-content .form-inputcol .th-label {line-height:18px;}
+.form.detail .form-content .form-inputcol .en-label {line-height:18px;font-size:13px;margin-top:1px;}
+
+.form .detaildocument-content .form-row {height:27px;}
+.form .detaildocument-content .form-lastrow {padding-bottom:4px;}
+.form .detaildocument-content .form-labelcol {width:130px;min-width:0px;padding:0px;text-align:left;}
+.form .detaildocument-content .form-labelcol .en-label {font-size:14px;line-height:21px;color:#000000;}
+.form .detaildocument-content .form-inputcol {min-width:0px;padding:0px;}
+.form .detaildocument-content .form-inputcol .form-input .th-label {font-weight:normal;font-size:12px;color:#666666;line-height:20px;}
+.form .detaildocument-content .form-inputcol .form-input a.th-label {color:#000099;}
+.form .detaildocument-content .form-inputcol .form-input a.th-label:hover {color:#FF0000;}
+.form .detaildocument-content .form-inputcol .uploaddocument-approvalstatus {position:relative;top:-2px;cursor:pointer;}
+
+.search .search-layout {width:auto;text-align:center;padding:10px 10px 1px 10px;}
+.search .search-content {width:inherit;}
+.search .search-content .search-section1 {margin-left:0px;}
+.search .search-content .search-section2 {margin-left:10px;}
+.search .search-content .search-section3 {margin-left:10px;}
+.search .search-content .search-floatcol .contentbody-left {overflow:hidden;}
+.search .search-content .search-floatcol .contentbody-left:first-child {margin-right:6px;}
+.search .search-content .search-date-content .contentbody-left:nth-child(2) {width:22px;text-align:center;font-size:18px;}
+.form.search .form-content .form-labelcol {height:21px;padding:0px 0px 0px 2px;text-align:left;}
+.form.search .form-content .form-inputcol {height:26px;padding:0px;}
+.form.search .form-content .form-inputcol .en-label {font-weight:bold;font-size:18px;color:#FFFFFF;}
+.form.search .form-content .form-inputcol .inputbox,
+.form.search .form-content .form-inputcol .inputcalendar {height:22px;}
+.form.search .form-content .form-inputcol .inputcalendar {width:75px;}
+.form.search .form-content .form-inputcol .form-input .select2-container--default .select2-selection--single .select2-selection__rendered {padding-top:2px;}
+.form.search .form-content .form-labelcol .form-label .th-label {font-size:13px;color:#FFFFFF;}
+.form.search .form-content .form-labelcol .form-label .en-label {font-size:13px;color:#1ABC9C;}
+.form.search .form-content .button .button-content ul li:nth-child(2) {margin-top:11px;}
+#search-uploadsubmitdocument-form {background:#892A73;}
+#search-approvedocument-form {background:#F3781B;}
+#search-ourservicesexportprofilepictureapproved-form,
+#search-ourservicesexportstudentrecordsinformationforsmartcard-form,
+#search-ourservicescopyprofilepictureapprovedtothestore-form,
+#search-ourservicesexporttranscriptapprovedsaveaudit-form,
+#search-ourservicesdocumentstatusstudent-form,
+#search-ourservicesaudittranscriptapproved-form,
+#search-ourservicesexportsaveaudittranscriptapproved-form {background:#E08283;}
+
+.form.progress .form-layout {width:auto;}
+.form.progress .form-content {width:inherit;text-align:center;}
+.form.progress .form-content .form-lastrow {padding-bottom:3px;}
+.form.progress .form-content .form-labelcol .icon-fieldmarkblank {width:10px;}
+.form.progress .form-content .form-inputcol.form-inputcol-paddingbottom {padding-top:7px;}
+.form.progress .form-content .form-inputcol .form-input .progresstext .th-label {line-height:18px;}
+.form.progress .form-content .form-inputcol .form-input .progresstext .en-label {line-height:20px;}
+.form.progress .form-content .form-inputcol .form-input .progresstotal {padding-left:1px;line-height:35px;}
+.form.progress .form-content .button ul li div {width:205px;}
+.form.progress .form-content .button ul li .en-label {font-size:16px;font-weight:bold;}
+#progress-ourservicesdocumentstatusstudentlevel1viewtable-form .form-content .form-labelcol,
+#progress-ourservicesexportprofilepictureapproved-form .form-content .form-labelcol,
+#progress-ourservicesexportstudentrecordsinformationforsmartcard-form .form-content .form-labelcol,
+#progress-ourservicescopyprofilepictureapprovedtothestore-form .form-content .form-labelcol,
+#progress-ourservicesaudittranscriptapprovedlevel1viewtable-form .form-content .form-labelcol,
+#progress-ourservicesaudittranscriptapprovedlevel21viewtable-form .form-content .form-labelcol,
+#progress-ourservicesaudittranscriptapprovedlevel22viewtable-form .form-content .form-labelcol,
+#progress-ourservicesexporttranscriptapproved-form .form-content .form-labelcol,
+#progress-ourservicessaveaudittranscriptapproved-form .form-content .form-labelcol {width:305px;}
+#progress-ourservicesdocumentstatusstudentlevel1viewtable-form .form-content .form-inputcol,
+#progress-ourservicesexportprofilepictureapproved-form .form-content .form-inputcol,
+#progress-ourservicesexportstudentrecordsinformationforsmartcard-form .form-content .form-inputcol,
+#progress-ourservicescopyprofilepictureapprovedtothestore-form .form-content .form-inputcol,
+#progress-ourservicesaudittranscriptapprovedlevel1viewtable-form .form-content .form-inputcol,
+#progress-ourservicesaudittranscriptapprovedlevel21viewtable-form .form-content .form-inputcol,
+#progress-ourservicesaudittranscriptapprovedlevel22viewtable-form .form-content .form-inputcol,
+#progress-ourservicesexporttranscriptapproved-form .form-content .form-inputcol,
+#progress-ourservicessaveaudittranscriptapproved-form .form-content .form-inputcol {width:auto;}
+
+.table .table-layout {width:auto;}
+.table .table-content {width:inherit;}
+.table .table-content .table-head, .table .table-content .table-grid {display:table;table-layout:fixed;width:100%}
+.table .table-content .table-row {display:table-row;}
+.table .table-content .table-head .table-row {height:52px;}
+.table .table-content .table-col {display:table-cell;border-left:1px solid #E4E4E4;}
+.table .table-content .table-col1 {border-left:0px;}
+.table .table-content .table-col-width-dynamic {width:auto;}
+.table .table-content .table-freeze {z-index:996;}
+.table .table-content .table-title {overflow:hidden;background:#FFFFFF;height:37px}
+.table .table-content .table-title .contentbody-left {height:inherit;}
+.table .table-content .table-title .contentbody-left:first-child {margin-left:7px;}
+.table .table-content .table-title .contentbody-right {margin-right:8px;height:35px;}
+.table .table-content .table-title .button,
+.table .table-content .table-title .table-option {text-align:left;position:relative;top:6px;}
+.table .table-content .table-title .table-option.table-rowperpage {width:100px;}
+.table .table-content .table-title .table-option.table-rowperpage .select2-container--default .select2-selection--single .select2-selection__rendered {font:normal 12px Tahoma, Verdana, Arial, sans-serif;}
+.table .table-content .table-title .table-subject {line-height:35px;}
+.table .table-content .table-title .table-recordcount {line-height:33px;font-size:18px;}
+.table .table-content .table-title .link-click {cursor:pointer;}
+.table .table-content .table-title .button ul li a,
+.table .table-content .table-title .button ul li div {height:25px;line-height:26px;font-size:12px;}
+.table .table-content .table-head {background:#2C3E50;}
+.table .table-content .table-head .table-col .table-col-msg .th-label {font-size:13px;color:#FFFFFF;}
+.table .table-content .table-head .table-col .table-col-msg .en-label {font-size:12px;color:#FFFFFF;}
+.table .table-content .table-grid .table-col .table-col-msg .th-label {font-size:12px;font-weight:normal;}
+.table .table-content .table-head .table-col {overflow:hidden;}
+.table .table-content .table-head .table-col .table-col-msg {margin:5px 7px 5px 7px;padding:0px;white-space:nowrap;}
+.table .table-content .table-head .table-col .table-col-msg div {line-height:20px;}
+.table .table-content .table-head .table-col .table-col-msg .input-root {line-height:15px;}
+.table .table-content .table-col .table-col-msg {padding:7px;text-decoration:none;vertical-align:top;word-wrap:break-word;word-break:break-all;position:relative;}
+.table .table-content .table-grid .table-row:hover, 
+.table .table-content .table-grid .table-row.active:hover {background:#1ABC9C;cursor:pointer;}
+.table .table-content .table-grid .table-row:hover .table-col .table-col-msg .th-label,
+.table .table-content .table-grid .table-row.active:hover .table-col .table-col-msg .th-label {color:#FFFFFF;}
+.table .table-content .table-grid .table-row.active {background:#B82A28;}
+.table .table-content .table-grid .table-row.active .table-col .table-col-msg .th-label {color:#FFFFFF;}
+.table .table-content .table-grid .table-col .table-col-msg {padding-top:5px;padding-bottom:5px;}
+.table .table-content .table-grid .table-col .table-col-msg div {line-height:20px;}
+.table .table-content .table-grid .table-col .table-col-msg .link-click {text-decoration:underline;}
+
+.chart .chart-layout {width:auto;}
+.chart .chart-content {width:inherit;}
+.chart .chart-content .chart-grid {display:table;table-layout:fixed;width:100%}
+.chart .chart-content .chart-row {display:table-row;width:inherit;}
+.chart .chart-content .chart-col {display:table-cell;width:inherit;}
+.chart .chart-content .chart-col-width-dynamic {width:auto;}
+.chart .chart-content .chart-freeze {z-index:996;}
+.chart .chart-content .chart-title {overflow:hidden;background:#FFFFFF;}
+.chart .chart-content .chart-title .contentbody-left:first-child {margin-left:10px;text-align:left;}
+.chart .chart-content .chart-title .contentbody-left .th-label {height:20px;margin-top:8px;}
+.chart .chart-content .chart-title .contentbody-left .en-label {line-height:17px;font-size:14px;}
+.chart .chart-content .chart-title .contentbody-right {margin-right:8px;height:35px;}
+.chart .chart-content .chart-title .chart-recordcount {line-height:33px;font-size:18px;}
+.chart .chart-content .chart-grid .chart-col {padding:10px;}
+
+.highlight-style1 {background:#FFFFFF;}
+.highlight-style2 {background:#F1F1F1;}
+.highlight-style3 {background:#ECECEC;}
+
+.button .button-layout {width:auto;}
+.button .button-content {width:inherit;}
+.button .button-content ul {margin:0px;padding:0px;list-style:none;overflow:hidden;}
+.button .button-content ul li {display:block;float:left;text-align:center;margin-left:6px;}
+.button .button-content ul .nomargin {margin-left:0px;}
+.button .button-content ul li a, .button .button-content ul li div {display:block;text-decoration:none;outline:none;color:#FFFFFF;cursor:pointer;}
+.button .button-content ul li a:hover, .button .button-content ul li div:hover {text-decoration:none;color:#FFFFFF;}
+.button .button-content .button-style1 li a,
+.button .button-content .button-style1 li div {background:#1ABC9C;}
+.button .button-content .button-style1 li a:hover,
+.button .button-content .button-style1 li div:hover {background:#48C9B0;}
+.button .button-content .button-style2 li a,
+.button .button-content .button-style2 li div {background:#D2D7D3;color:#000000;}
+.button .button-content .button-style2 li a:hover,
+.button .button-content .button-style2 li div:hover {background:#DADFE1;color:#000000;}
+.button .button-content .button-style3 li a,
+.button .button-content .button-style3 li div {background:#E1D193;color:#000000;}
+.button .button-content .button-style3 li a:hover,
+.button .button-content .button-style3 li div:hover {background:#E4C568;color:#000000;}
+.button .button-content ul li .disable {background:#C8C8C8;color:#A6A5A5;cursor:default;}
+.button .button-content ul li .disable:hover {background:#C8C8C8;color:#A6A5A5;cursor:default;}
+
+.button-toggle {text-align:center;background:#F5BE01;}
+.button-toggle a {display:block;width:inherit;height:inherit;font-size:12px;font-weight:normal;outline:none;text-decoration:none;}
+.button-toggle a:hover {background:#C8A000;color:#000000;text-decoration:none;}
+
+.uploadfile-content .uploadfile-label {text-align:center;text-decoration:none;font-size:13px;font-weight:normal;color:#000000;height:25px;line-height:25px;margin-top:5px;outline:none;overflow:hidden;cursor:default;}
+.uploadfile-content .button {margin-top:5px;}
+.uploadfile-content .button ul li {margin-left:3px;}
+.uploadfile-content .button ul li div {width:75px;height:30px;line-height:30px;position:relative;overflow:hidden;}
+.uploadfile-content .button ul li .en-label {font-size:14px;}
+.uploadfile-content .button ul li .browse-uploadfile input[type="file"] {position:absolute;left:0px;top:0px;opacity:0;cursor:pointer;}
+
+.error-list ul {margin:0px;padding:0px;list-style:none;position:relative;}
+.error-list ul li {text-decoration:none;padding-left:15px;}
+.error-list ul li:before {position:absolute;content:"•";color:#000000;left:0px;}
+.error-list ul li {line-height:20px;}
+
+.icon-fieldmark {display:inline-block;width:20px;height:10px;background:url(../../Image/UploadDocumentStaff/Label.png) -50px -59px;}
+.icon-fieldmarkblank {display:inline-block;width:20px;height:10px;}
+
+.radio-content ul, .checkbox-content ul {margin:0px;margin-top:7px;padding:0px;list-style-type:none;clear:both;}
+.radio-content:first-child ul, .checkbox-content:first-child ul {margin-top:0px;}
+.radio-content ul li, .checkbox-content ul li {float:left;display:inline-block;}
+.radio-content ul .radio-inputcol,
+.checkbox-content ul .checkbox-inputcol {position:relative;width:25px;margin-top:-1px;}
+.radio-content ul .radio-labelcol,
+.checkbox-content ul .checkbox-labelcol {width:60px;}
+.radio-content ul .radio-labelcol span, .radio-content ul .radio-labelcol div, 
+.checkbox-content ul .checkbox-labelcol span, .checkbox-content ul .checkbox-labelcol div {line-height:22px;}
+.radio-content ul .radio-labelcol .link-click {display:block;text-decoration:underline;cursor:pointer;}
+
+.list .list-layout {width:auto;height:inherit;border:2px solid #BDC3C7;background:#FFFFCC;overflow:hidden;overflow-y:auto;}
+.list .list-content {width:inherit;}
+.list .list-content .list-row:hover {background:#000099;outline:none;}
+.list .list-content .list-row:hover .th-label,
+.list .list-content .list-row:hover .en-label {color:#FFFFFF;}
+.list .list-content .list-col {padding:6px;padding-top:3px;line-height:18px;word-wrap:break-word;}
+.list .list-content .list-col .checkbox-content ul  {margin-top:0px;}
+.list .list-content .list-col .checkbox-content .checkbox-inputcol {margin-top:0px;}
+
+.navpage .navpage-layout {width:auto;min-width:665px;background:#2C3E50;padding:10px;}
+.navpage .navpage-content {width:inherit;overflow:hidden;}
+.navpage .navpage-content ul {float:left;position:relative;left:50%;margin:0px;padding:0px;list-style-type:none;height:40px;}
+.navpage .navpage-content ul li {float:left;display:block;margin-right:3px;position:relative;right:50%;width:50px;height:40px;line-height:40px;}
+.navpage .navpage-content ul li a, .navpage .navpage-content ul li div {display:block;width:inherit;height:inherit;line-height:inherit;text-align:center;text-decoration:none;background:#222222;color:#FFFFFF;}
+.navpage .navpage-content ul li a:hover {background:#1ABC9C;color:#FFFFFF;text-decoration:none;}
+.navpage .navpage-content ul li div {background:transparent;}
+.navpage .navpage-content ul .active {background:#1ABC9C;color:#FFFFFF;}
+
+.picture-content {background:url(../../Image/UploadDocumentStaff/Label.png);border:6px solid #CCCCCC;position:relative;}
+.picture-content .picture-watermark {background:url(../../Image/UploadDocumentStaff/BGWaterMark.png) repeat;opacity:0.6;filter:Alpha(Opacity=60);position:absolute;z-index:1;display:none;}
+.picture-content img {display:none;border:none;}
+.picture-content .uploaddocument-recommend,
+.picture-content .picture-watermark,
+.picture-content .picture-recommend,
+.picture-content .picture-zoom {width:inherit;height:inherit;}
+.picture-content .uploaddocument-recommend,
+.picture-content .picture-recommend {background:#CCCCCC;opacity:.7;text-align:center;position:absolute;}
+.picture-content .uploaddocument-recommend {height:28px;top:91%;cursor:pointer;}
+.picture-content.transcriptfrontside-content .uploaddocument-recommend, .picture-content.transcriptbackside-content .uploaddocument-recommend {top:93.4%;}
+.picture-content .picture-recommend {height:88px;top:36%;}
+.picture-content.transcriptfrontside-content .picture-recommend, .picture-content.transcriptbackside-content .picture-recommend {top:39.5%}
+.picture-content .uploaddocument-recommend .th-label,
+.picture-content .uploaddocument-recommend .en-label {font-weight:normal;font-size:13px;color:#000000;line-height:28px;}
+.picture-content .uploaddocument-recommend .en-label {font-size:14px;}
+.picture-content .picture-recommend .th-label,
+.picture-content .picture-recommend .en-label {font-weight:normal;font-size:13px;color:#000000;line-height:20px;}
+.picture-content .picture-recommend .en-label {font-size:14px;color:#000099;}
+.picture-content .picture-zoom {height:28px;line-height:28px;font-size:13px;font-weight:normal;text-align:center;background:#B82A28;color:#FFFFFF;position:absolute;top:42.5%;z-index:2;display:none;cursor:pointer;} 
+.picture-content.transcriptfrontside-content .picture-zoom, .picture-content.transcriptbackside-content .picture-zoom {top:45.5%;}
+
+.profilepicture-content {width:230px;height:312px;background-position:0px -84px;}
+.identitycard-content {width:360px;height:312px;background-position:-230px -84px;position:relative;}
+.transcriptfrontside-content, .transcriptbackside-content {width:295px;height:417px;background-position:-590px -84px;position:relative;}
+
+.profilepicture-example {width:inherit;height:inherit;background-image:inherit;background-position:0px -501px;position:relative;}
+.identitycard-example {width:inherit;height:inherit;background-image:inherit;background-position:-460px -501px;position:relative;}
+.transcriptfrontside-example {width:inherit;height:inherit;background-image:inherit;background-position:0px -813px;position:relative;}
+.transcriptbackside-example {width:inherit;height:inherit;background-image:inherit;background-position:-295px -813px;position:relative;}
+
+.uploaddocument-subject {width:inherit;height:52px;background:#ECECE4;} 
+.uploaddocument-subject ul {margin:0px;padding:0px;list-style-type:none;}
+.uploaddocument-subject ul li {padding-left:13px;padding-top:7px;}
+.uploaddocument-subject ul li .th-label {height:22px;color:#666666;}
+.uploaddocument-subject ul li .en-label {font-size:13px;color:#B1B2B4;}
+.uploaddocument-layout {width:inherit;padding:10px 0px 10px 10px;border:solid 3px #ECECE4;border-top:none;border-right:none;}
+.uploaddocument-submittedstatus, .uploaddocument-approvalstatus, .uploaddocument-auditedstatus {width:24px;height:24px;line-height:24px;text-align:center;background:url(../../Image/UploadDocumentStaff/Label.png) no-repeat;}
+.uploaddocument-approvalstatus-s {background-position:-203px -59px;}
+.uploaddocument-approvalstatus-w {background-position:-227px -59px;}
+.uploaddocument-submittedstatus-y, .uploaddocument-approvalstatus-y, .uploaddocument-auditedstatus-y {background-position:-251px -59px;}
+.uploaddocument-submittedstatus-n, .uploaddocument-approvalstatus-n, .uploaddocument-auditedstatus-n {background-position:-275px -59px;}
+.uploaddocument-submittedstatus-blank, .uploaddocument-approvalstatus-blank, .uploaddocument-auditedstatus-blank {background-position:-299px -59px;}
+
+.table-row .uploaddocument-submittedstatus, .table-row .uploaddocument-approvalstatus, .table-row .uploaddocument-auditedstatus {width:21px;height:21px;}
+.table-row .uploaddocument-submittedstatus .en-label, .table-row .uploaddocument-approvalstatus .en-label {width:inherit;font-size:11px;color:#000000;text-align:center;position:absolute;top:1px;}
+.table-row .uploaddocument-approvalstatus-s {background-position:-70px -59px;}
+.table-row .uploaddocument-approvalstatus-w {background-position:-94px -59px;}
+.table-row .uploaddocument-submittedstatus-y, .table-row .uploaddocument-approvalstatus-y, .table-row .uploaddocument-auditedstatus-y {background-position:-118px -59px;}
+.table-row .uploaddocument-submittedstatus-n, .table-row .uploaddocument-approvalstatus-n, .table-row .uploaddocument-auditedstatus-n {background-position:-142px -59px;}
+.table-row .uploaddocument-submittedstatus-blank, .table-row .uploaddocument-approvalstatus-blank, .table-row .uploaddocument-auditedstatus-blank {background-position:-166px -59px;}
+
+.check-mark {width:16px;height:16px;background:url(../../Image/UploadDocumentStaff/Label.png) no-repeat -187px -59px;}
+
+.main .mainform {position:fixed;z-index:997;overflow:hidden;} 
+.main .mainform .form-layout {background:#ECF0F1;border-left:6px solid #B82A28;text-align:left;}
+.main .mainform .form-content {width:inherit;height:inherit;}
+.main .mainform .titlebar {width:inherit;height:45px;padding-top:4px;text-align:center;overflow:hidden;background:#B82A28;}
+.main .mainform .titlebar .th-label {height:22px;color:#000000;}
+.main .mainform .titlebar .en-label {font-size:13px;color:#FFFFFF;}
+
+.menulist {position:fixed;z-index:998;}
+.menulist .button-toggle {height:26px;}
+.menulist .button-toggle a {line-height:26px;font-size:13px;}
+.menulist .button-toggle a:hover {background:transparent;}
+
+.preview-transcriptinstitute .button-toggle {height:26px;background:#B0B3A8;}
+.preview-transcriptinstitute .button-toggle a {line-height:26px;font-size:13px;}
+.preview-transcriptinstitute .button-toggle a:hover {background:transparent;}
+.preview-transcriptinstitute {position:absolute;z-index:996;}
+.preview-transcriptinstitute .form {position:relative;}
+.preview-transcriptinstitute .form .form-layout {border-left:none;background:#B0B3A8;}
+.preview-transcriptinstitute .form .form-content {padding:6px 10px 6px 10px;}
+.preview-transcriptinstitute .form .form-row {height:27px;}
+.preview-transcriptinstitute .form .form-lastrow {padding-bottom:4px;}
+.preview-transcriptinstitute .form .form-labelcol {width:112px;min-width:0px;padding:0px;text-align:left;}
+.preview-transcriptinstitute .form .form-labelcol .en-label {font-size:11px;line-height:19px;color:#000000;}
+.preview-transcriptinstitute .form .form-labelcol .icon-fieldmarkblank {display:none;}
+.preview-transcriptinstitute .form .form-inputcol {width:281px;min-width:0px;padding:0px;padding-left:5px;}
+.preview-transcriptinstitute .form .form-inputcol .form-input .th-label {font-weight:normal;font-size:12px;color:#666666;line-height:18px;}
+
+.progress-form .form-layout {width:auto;}
+.progress-form .form-content {width:inherit;text-align:center;}
+.progress-form .form-content .form-labelcol .icon-fieldmarkblank {display:none;}
+.progress-form .form-content .form-inputcol {padding-left:10px;}
+.progress-form .form-content .button {position:relative;}
+.progress-form .form-content .button ul li div {width:85px;}
+
+#main-meaningofadmissiontype-form .form-content ul li,
+#main-meaningofstudentstatus-form .form-content ul li {float:left;display:inline;padding-left:0px;}
+#main-meaningofadmissiontype-form .form-content ul li:first-child,
+#main-meaningofstudentstatus-form .form-content ul li:first-child {padding-left:15px;}
+#main-meaningofadmissiontype-form .form-content ul li:first-child {width:90px;}
+#main-meaningofstudentstatus-form .form-content ul li:first-child {width:35px;}
+
+#main-meaningofsubmittedstatus-form .form-content hr,
+#main-meaningofapprovalstatus-form .form-content hr,
+#main-meaningofauditedstatus-form .form-content hr {height:7px;margin:0px;padding:0px;border:none;}
+#main-meaningofsubmittedstatus-form .form-content hr:last-child,
+#main-meaningofapprovalstatus-form .form-content hr:last-child,
+#main-meaningofauditedstatus-form .form-content hr:last-child {display:none;}
+#main-meaningofsubmittedstatus-form .form-content ul li,
+#main-meaningofapprovalstatus-form .form-content ul li,
+#main-meaningofauditedstatus-form .form-content ul li {float:left;display:inline;padding-left:0px;}
+#main-meaningofsubmittedstatus-form .form-content ul li:first-child,
+#main-meaningofapprovalstatus-form .form-content ul li:first-child,
+#main-meaningofauditedstatus-form .form-content ul li:first-child {width:34px;}
+#main-meaningofsubmittedstatus-form .form-content ul li div,
+#main-meaningofapprovalstatus-form .form-content ul li div,
+#main-meaningofauditedstatus-form .form-content ul li div {height:24px;line-height:24px;font-weight:normal;text-wrap:normal;text-align:justify;}
+#main-meaningofsubmittedstatus-form .form-content ul li .uploaddocument-submittedstatus,
+#main-meaningofapprovalstatus-form .form-content ul li .uploaddocument-approvalstatus,
+#main-meaningofauditedstatus-form .form-content ul li .uploaddocument-auditedstatus {margin-top:2px;}
+#main-meaningofsubmittedstatus-form .form-content ul li .uploaddocument-submittedstatus .en-label,
+#main-meaningofapprovalstatus-form .form-content ul li .uploaddocument-approvalstatus .en-label,
+#main-meaningofauditedstatus-form .form-content ul li .uploaddocument-auditedstatus .en-label {font-weight:bold;font-size:14px;top:1px;text-align:center;}
+#main-meaningofsubmittedstatus-form .form-content ul li .uploaddocument-submittedstatus-blank,
+#main-meaningofapprovalstatus-form .form-content ul li .uploaddocument-approvalstatus-blank,
+#main-meaningofauditedstatus-form .form-content ul li .uploaddocument-auditedstatus-blank {margin-top:0px;}
+#main-meaningofsubmittedstatus-form .form-content ul li:before,
+#main-meaningofapprovalstatus-form .form-content ul li:before,
+#main-meaningofauditedstatus-form .form-content ul li:before {content:none;}
+
+#edit-settingaccesstothesystem-form .startenddatetime .contentbody-left:first-child {width:116px;}
+#edit-settingaccesstothesystem-form .startenddatetime .contentbody-left:nth-child(2) span:nth-child(1),
+#edit-settingaccesstothesystem-form .startenddatetime .contentbody-left:nth-child(2) span:nth-child(3),
+#edit-settingaccesstothesystem-form .startenddatetime .contentbody-left:nth-child(2) span:nth-child(3)
+#edit-settingaccesstothesystem-form .startenddatetime .contentbody-left:nth-child(2) span:nth-child(5) {width:52px;}
+#edit-settingaccesstothesystem-form .startenddatetime .contentbody-left:nth-child(2) .th-label {width:10px;text-align:center;}
+#edit-settingaccesstothesystem-form .form-subcontent {margin:0px;}
+#edit-settingaccesstothesystem-form .form-subcontent .list {width:533px;height:150px;}
+#edit-settingaccesstothesystem-form .form-subcontent .list .list-content .list-col {padding-top:0px;}
+#edit-settingaccesstothesystem-form .form-subcontent .list .list-content .checkbox-content .checkbox-labelcol {width:476px;margin-top:3px;}
+#edit-settingaccesstothesystem-form .form-content #edit-settingaccesstothesystem-entrancetype-content .list {height:auto;}
+#edit-settingaccesstothesystem-form .form-content #edit-settingaccesstothesystem-facultyprogram-content .list {height:384px;}
+#edit-settingaccesstothesystem-form .form-content #edit-settingaccesstothesystem-facultyprogram-content .program-list-row {margin-left:25px;}
+#edit-settingaccesstothesystem-form .form-content #edit-settingaccesstothesystem-facultyprogram-content .program-list-row .checkbox-content .checkbox-labelcol {width:451px;}
+
+#main-uploadsubmitdocument-table .table-col1 {width:67px;}
+#main-uploadsubmitdocument-table .table-col2 {width:65px;}
+#main-uploadsubmitdocument-table .table-col4 {width:120px;}
+#main-uploadsubmitdocument-table .table-col5 {width:63px;}
+#main-uploadsubmitdocument-table .table-col6 {width:85px;}
+#main-uploadsubmitdocument-table .table-col7 {width:60px;}
+#main-uploadsubmitdocument-table .table-col8 {width:135px;}
+#main-uploadsubmitdocument-table .table-col9 {width:72px;}
+#main-uploadsubmitdocument-table .table-col10 {width:135px;}
+#main-uploadsubmitdocument-table .table-grid .table-row.active {background:#892A73;}
+#main-uploadsubmitdocument-table .table-grid .table-col3 .table-col-msg div {text-align:left;}
+#main-uploadsubmitdocument-table .table-grid .table-col8 .table-col-msg .th-label:nth-child(2),
+#main-uploadsubmitdocument-table .table-grid .table-col10 .table-col-msg .th-label:nth-child(2) {margin-top:3px;}
+#main-uploadsubmitdocument-table .table-grid .table-col9 .table-col-msg .uploaddocument-submittedstatus {position:absolute;top:-6px;left:25px;}
+#main-uploadsubmitdocument-table .table-grid .table-col9 .table-col-msg .uploaddocument-submittedstatus:nth-child(2).identitycard-submittedstatus,
+#main-uploadsubmitdocument-table .table-grid .table-col9 .table-col-msg .uploaddocument-submittedstatus:nth-child(2).transcriptbackside-submittedstatus {top:18px;}
+
+#main-uploadsubmitdocument-form .form-layout {width:424px;border-left-color:#892A73;}
+#main-uploadsubmitdocument-form .form-content {width:inherit;}
+#main-uploadsubmitdocument-form .form-content .titlebar {background:#892A73;}
+#main-uploadsubmitdocument-form .menulist {width:418px;}
+
+#main-viewmessage-form .form-layout,
+#addupdate-approvedocumentmessage-form .form-layout {height:110px;}
+
+#preview-uploadsubmitdocument-form {margin-top:26px;position:relative;}
+#preview-uploadsubmitdocumentidentitycard-form,
+#preview-uploadsubmitdocumenttranscriptbackside-form {margin-left:10px;}
+#preview-uploadsubmitdocumentprofilepictureidentitycard-form,
+#preview-uploadsubmitdocumenttranscript-form {padding:10px;}
+#preview-uploadsubmitdocumenttranscript-form {margin-top:26px;position:absolute;left:40px;}
+#preview-uploadsubmitdocument-form .picture-content img {width:inherit;height:inherit;}
+#preview-uploadsubmitdocument-form .profilepicture-content {width:142px;height:192px;}
+#preview-uploadsubmitdocument-form .identitycard-content {width:222px;height:192px;}
+#preview-uploadsubmitdocument-form .transcriptfrontside-content, #preview-uploadsubmitdocument-form .transcriptbackside-content {width:142px;height:192px;}
+#preview-uploadsubmitdocument-form .uploadsubmitdocument-preview-content {margin-top:5px;}
+#preview-uploadsubmitdocument-form .uploadsubmitdocument-preview-content .uploaddocument-submittedstatus {display:block;position:relative;}
+
+#addupdate-uploadsubmitdocument-menu {left:0px;background:#303636;overflow:hidden;} 
+#addupdate-uploadsubmitdocument-menu .menulist-layout {width:235px;background:#303636;}
+#addupdate-uploadsubmitdocument-menu .menulist-content ul li,
+#addupdate-uploadsubmitdocument-menu .menulist-content ul li .link-msg {background:transparent;}
+#addupdate-uploadsubmitdocument-menu .menulist-content ul .have-link:hover,
+#addupdate-uploadsubmitdocument-menu .menulist-content ul .have-link a:hover,
+#addupdate-uploadsubmitdocument-menu .menulist-content ul .have-link a:hover .menu-itemtext .th-label,
+#addupdate-uploadsubmitdocument-menu .menulist-content ul .have-link a:hover .menu-itemtext .en-label {background:#465155;color:#FFFFFF;}
+#addupdate-uploadsubmitdocument-menu .menulist-content ul li a.menu-active {background:#FFFFFF;}
+#addupdate-uploadsubmitdocument-menu .menulist-content ul li a.menu-active .menu-itemtext .th-label,
+#addupdate-uploadsubmitdocument-menu .menulist-content ul li a.menu-active .menu-itemtext .en-label {color:#000000;}
+#addupdate-uploadsubmitdocument-menu .menulist-content ul li .link-msg .menu-itemtext {padding-left:9px;padding-top:7px;}
+#addupdate-uploadsubmitdocument-menu .menulist-content ul li .link-msg .menu-itemtext .th-label {color:#9EA4A4;}
+
+#addupdate-uploadsubmitdocument {margin-left:245px;}
+
+#addupdate-uploadsubmitdocument #addupdate-uploadsubmitdocument-layout {width:auto;}
+#addupdate-uploadsubmitdocument #addupdate-uploadsubmitdocument-content {width:inherit;}
+#addupdate-uploadsubmitdocument .uploaddocument-form .uploaddocument-layout {padding-left:0px;border:none;}
+#addupdate-uploadsubmitdocument .uploaddocument-form .picture-content {float:left;margin-left:10px;}
+#addupdate-uploadsubmitdocument .uploaddocument-form .nomargin.picture-content {margin-left:0px;}
+
+#addupdate-uploadsubmitdocumentstudentrecords-form .form-content .form-labelcol {width:40%;}
+#addupdate-uploadsubmitdocumentstudentrecords-form .form-content .form-inputcol {width:50%;}
+#addupdate-uploadsubmitdocumentstudentrecords-form #addupdate-uploadsubmitdocumentstudentrecords-studentpicture-content .form-inputcol {padding-top:10px;}
+#addupdate-uploadsubmitdocumentstudentrecords-form #addupdate-uploadsubmitdocumentstudentrecords-studentpicture-content .form-inputcol .profilepicture-content {width:128px;height:176px;}
+#addupdate-uploadsubmitdocumentstudentrecords-form #addupdate-uploadsubmitdocumentstudentrecords-studentpicture-content .form-inputcol .profilepicture-content img {width:inherit;height:inherit;}
+#addupdate-uploadsubmitdocumentstudentrecords-form #addupdate-uploadsubmitdocumentstudentrecords-studentid-content .form-inputcol {padding-top:0px;}
+#addupdate-uploadsubmitdocumentstudentrecords-form #addupdate-uploadsubmitdocumentstudentrecords-studentid-content .form-inputcol .en-label {font-size:22px;font-weight:bolder;line-height:45px;}
+
+#addupdate-uploadsubmitdocumentoverview-form .form:nth-child(2),
+#addupdate-uploadsubmitdocumentoverview-form .form:nth-child(3),
+#addupdate-uploadsubmitdocumentoverview-form .form:nth-child(4) {margin-top:10px;}
+#addupdate-uploadsubmitdocumentoverview-form .form:last-child .uploaddocument-layout {border-bottom:none;}
+#addupdate-uploadsubmitdocumentoverview-form .profilepicture-content {width:230px;height:312px;}
+#addupdate-uploadsubmitdocumentoverview-form .identitycard-content {width:230px;height:199px;}
+#addupdate-uploadsubmitdocumentoverview-form .transcriptfrontside-content,
+#addupdate-uploadsubmitdocumentoverview-form .transcriptbackside-content {width:230px;height:325px;}
+#addupdate-uploadsubmitdocumentoverview-form .picture-content img {width:inherit;height:inherit;}
+#addupdate-uploadsubmitdocumentoverview-form .detaildocument-content {margin-left:10px;}
+
+#addupdate-uploadsubmitdocumentprofilepicture-form .uploaddocument-content {width:494px;}
+#addupdate-uploadsubmitdocumentprofilepicture-form #save-uploadfile-profilepicture {width:104px;}
+
+#addupdate-uploadsubmitdocumentidentitycard-form .uploaddocument-content {width:754px;}
+#addupdate-uploadsubmitdocumentidentitycard-form .button ul li div {width:123px;}
+#addupdate-uploadsubmitdocumentidentitycard-form #save-uploadfile-identitycard {width:124px;}
+
+#addupdate-uploadsubmitdocumenttranscript-form .uploaddocument-content,
+#addupdate-uploadsubmitdocumenttranscript-form .uploaddocument-content .button .button-style3 li div {width:624px;}
+#addupdate-uploadsubmitdocumenttranscript-form .button ul li div {width:101px;}
+#addupdate-uploadsubmitdocumenttranscript-form #save-uploadfile-transcriptfrontside,
+#addupdate-uploadsubmitdocumenttranscript-form #save-uploadfile-transcriptbackside {width:104px;}
+#addupdate-uploadsubmitdocumenttranscript-form .uploaddocument-subject ul li {text-align:left;}
+#addupdate-uploadsubmitdocumenttranscript-form .uploaddocument-layout {padding-top:0px;}
+#addupdate-uploadsubmitdocumenttranscriptinstitute-form .uploaddocument-layout {padding:0px;}
+#addupdate-uploadsubmitdocumenttranscriptinstitute-form .form-content {border:solid 3px #ECECE4;border-top:none;}
+#addupdate-uploadsubmitdocumenttranscriptinstitute-form .form-content .form-row {height:52px;}
+#addupdate-uploadsubmitdocumenttranscriptinstitute-form .form-content .form-labelcol,
+#addupdate-uploadsubmitdocumenttranscriptinstitute-form .form-content .form-inputcol {min-width:0px;}
+#addupdate-uploadsubmitdocumenttranscriptinstitute-form .form-content .form-labelcol {width:135px;} 
+#addupdate-uploadsubmitdocumenttranscriptinstitute-form .form-content .form-labelcol .form-label .th-label {height:22px;}
+#addupdate-uploadsubmitdocumenttranscriptfrontside-form {margin-top:10px;}
+#addupdate-uploadsubmitdocumenttranscriptbackside-form {margin-top:10px;}
+
+#main-approvedocument-table .table-col1 {width:67px;}
+#main-approvedocument-table .table-col2 {width:65px;}
+#main-approvedocument-table .table-col4 {width:120px;}
+#main-approvedocument-table .table-col5 {width:63px;}
+#main-approvedocument-table .table-col6 {width:85px;}
+#main-approvedocument-table .table-col7 {width:60px;}
+#main-approvedocument-table .table-col8 {width:135px;}
+#main-approvedocument-table .table-col9 {width:72px;}
+#main-approvedocument-table .table-col10 {width:135px;}
+#main-approvedocument-table .table-grid .table-row.active {background:#F3781B;}
+#main-approvedocument-table .table-grid .table-col3 .table-col-msg div {text-align:left;}
+#main-approvedocument-table .table-grid .table-col8 .table-col-msg .th-label:nth-child(2),
+#main-approvedocument-table .table-grid .table-col10 .table-col-msg .th-label:nth-child(2) {margin-top:3px;}
+#main-approvedocument-table .table-grid .table-col9 .table-col-msg .uploaddocument-approvalstatus {position:absolute;top:-6px;left:25px;}
+#main-approvedocument-table .table-grid .table-col9 .table-col-msg .uploaddocument-approvalstatus:nth-child(2).identitycard-approvalstatus,
+#main-approvedocument-table .table-grid .table-col9 .table-col-msg .uploaddocument-approvalstatus:nth-child(2).transcriptbackside-approvalstatus {top:18px;}
+
+#main-approvedocument-form .form-layout {width:424px;border-left-color:#F3781B;}
+#main-approvedocument-form .form-content {width:inherit;}
+#main-approvedocument-form .form-content .titlebar {background:#F3781B;}
+#main-approvedocument-form .menulist {width:418px;}
+
+#edit-approvedocument-form {margin-top:26px;position:relative;}
+#edit-approvedocumentidentitycard-form,
+#edit-approvedocumenttranscriptbackside-form {margin-left:10px;}
+#edit-approvedocumentprofilepictureidentitycard-form,
+#edit-approvedocumenttranscript-form {padding:10px;}
+#edit-approvedocumenttranscript-form {margin-top:26px;position:absolute;left:40px;}
+#edit-approvedocument-form .picture-content img {width:inherit;height:inherit;}
+#edit-approvedocument-form .profilepicture-content {width:142px;height:192px;}
+#edit-approvedocument-form .identitycard-content {width:222px;height:192px;}
+#edit-approvedocument-form .transcriptfrontside-content, #edit-approvedocument-form .transcriptbackside-content {width:142px;height:192px;}
+#edit-approvedocument-form .approvedocument-preview-content {margin-top:5px;}
+#edit-approvedocument-form .approvedocument-preview-content .uploaddocument-approvalstatus {display:inline-block;margin-left:5px;position:relative;cursor:pointer;}
+#edit-approvedocument-form .approvedocument-preview-content .nomargin.uploaddocument-approvalstatus {margin-left:0px;}
+#edit-approvedocument-form .approvedocument-preview-content .check-mark {position:absolute;left:4px;top:4px;}
+#edit-approvedocument-form .approvedocument-preview-content .button ul li a {width:74px;height:28px;line-height:28px;font-size:14px;}
+#edit-approvedocumentidentitycard-form .approvedocument-preview-content .button ul li a {width:114px;}
+
+#addupdate-approvedocumentmessage-form .button {margin-top:10px;position:relative;left:297px;}
+#addupdate-approvedocumentmessage-form .button ul li a {width:80px;height:30px;line-height:30px;}
+
+#main-ourservicesdocumentstatusstudentlevel1viewtable-table .table-title .button ul li div {width:101px;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-table .table-col1 {width:67px;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-table .table-col2 {width:65px;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-table .table-col3 {width:65px;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-table .table-col5 {width:120px;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-table .table-col6 {width:63px;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-table .table-col7 {width:85px;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-table .table-col8 {width:60px;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-table .table-col9 {width:107px;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-table .table-grid .table-row.active {background:#B9B5AD;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-table .table-grid .table-col4 .table-col-msg div {text-align:left;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-table .table-grid .table-col9 .table-col-msg .uploaddocument-approvalstatus {position:absolute;top:-6px;left:7px;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-table .table-grid .table-col9 .table-col-msg .uploaddocument-approvalstatus:nth-child(2).identitycard-approvalstatus {left:31px;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-table .table-grid .table-col9 .table-col-msg .uploaddocument-approvalstatus:nth-child(3).transcriptfrontside-approvalstatus {left:55px;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-table .table-grid .table-col9 .table-col-msg .uploaddocument-approvalstatus:nth-child(4).transcriptbackside-approvalstatus {left:79px;}
+
+#main-ourservicesdocumentstatusstudentlevel1viewtable-form .form-layout {width:424px;border-left-color:#B9B5AD;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-form .form-content {width:inherit;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-form .form-content .titlebar {background:#B9B5AD;}
+#main-ourservicesdocumentstatusstudentlevel1viewtable-form .menulist {width:418px;}
+
+#preview-ourservicesdocumentstatusstudentlevel1viewtable-form {margin-top:26px;position:relative;}
+#preview-ourservicesdocumentstatusstudentlevel1viewtableidentitycard-form,
+#preview-ourservicesdocumentstatusstudentlevel1viewtabletranscriptbackside-form {margin-left:10px;}
+#preview-ourservicesdocumentstatusstudentlevel1viewtableprofilepictureidentitycard-form,
+#preview-ourservicesdocumentstatusstudentlevel1viewtabletranscript-form {padding:10px;}
+#preview-ourservicesdocumentstatusstudentlevel1viewtabletranscript-form {margin-top:26px;position:absolute;left:40px;}
+#preview-ourservicesdocumentstatusstudentlevel1viewtable-form .picture-content img {width:inherit;height:inherit;}
+#preview-ourservicesdocumentstatusstudentlevel1viewtable-form .profilepicture-content {width:142px;height:192px;}
+#preview-ourservicesdocumentstatusstudentlevel1viewtable-form .identitycard-content {width:222px;height:192px;}
+#preview-ourservicesdocumentstatusstudentlevel1viewtable-form .transcriptfrontside-content, #preview-ourservicesdocumentstatusstudentlevel1viewtable-form .transcriptbackside-content {width:142px;height:192px;}
+#preview-ourservicesdocumentstatusstudentlevel1viewtable-form .uploadsubmitdocument-preview-content {margin-top:5px;}
+#preview-ourservicesdocumentstatusstudentlevel1viewtable-form .uploadsubmitdocument-preview-content .uploaddocument-submittedstatus {display:block;position:relative;}
+
+#main-ourservicesexportprofilepictureapproved-table .table-title .button ul li div {width:101px;}
+#main-ourservicesexportprofilepictureapproved-table .table-col1 {width:67px;}
+#main-ourservicesexportprofilepictureapproved-table .table-col2 {width:65px;}
+#main-ourservicesexportprofilepictureapproved-table .table-col3 {width:65px;}
+#main-ourservicesexportprofilepictureapproved-table .table-col5 {width:53px;}
+#main-ourservicesexportprofilepictureapproved-table .table-col6 {width:120px;}
+#main-ourservicesexportprofilepictureapproved-table .table-col7 {width:63px;}
+#main-ourservicesexportprofilepictureapproved-table .table-col8 {width:85px;}
+#main-ourservicesexportprofilepictureapproved-table .table-col9 {width:60px;}
+#main-ourservicesexportprofilepictureapproved-table .table-col10 {width:135px;}
+#main-ourservicesexportprofilepictureapproved-table .table-grid .table-row.active {background:#E08283;}
+#main-ourservicesexportprofilepictureapproved-table .table-grid .table-col4 .table-col-msg div {text-align:left;}
+
+#main-ourservicesexportprofilepictureapproved-form .form-layout {width:238px;border-left-color:#E08283;}
+#main-ourservicesexportprofilepictureapproved-form .form-content {width:inherit;}
+#main-ourservicesexportprofilepictureapproved-form .form-content .titlebar {background:#E08283;}
+
+#preview-ourservicesexportprofilepictureapproved-form {position:relative;padding:10px;}
+#preview-ourservicesexportprofilepictureapproved-form .picture-content img {width:inherit;height:inherit;}
+#preview-ourservicesexportprofilepictureapproved-form .profilepicture-content {width:200px;height:271px;}
+
+#main-ourservicescopyprofilepictureapprovedtothestore-table .table-title .button ul li div {width:101px;}
+#main-ourservicescopyprofilepictureapprovedtothestore-table .table-col1 {width:67px;}
+#main-ourservicescopyprofilepictureapprovedtothestore-table .table-col2 {width:65px;}
+#main-ourservicescopyprofilepictureapprovedtothestore-table .table-col3 {width:65px;}
+#main-ourservicescopyprofilepictureapprovedtothestore-table .table-col5 {width:53px;}
+#main-ourservicescopyprofilepictureapprovedtothestore-table .table-col6 {width:120px;}
+#main-ourservicescopyprofilepictureapprovedtothestore-table .table-col7 {width:63px;}
+#main-ourservicescopyprofilepictureapprovedtothestore-table .table-col8 {width:85px;}
+#main-ourservicescopyprofilepictureapprovedtothestore-table .table-col9 {width:60px;}
+#main-ourservicescopyprofilepictureapprovedtothestore-table .table-grid .table-row.active {background:#E08283;}
+#main-ourservicescopyprofilepictureapprovedtothestore-table .table-grid .table-col4 .table-col-msg div {text-align:left;}
+
+#main-ourservicescopyprofilepictureapprovedtothestore-form .form-layout {width:238px;border-left-color:#E08283;}
+#main-ourservicescopyprofilepictureapprovedtothestore-form .form-content {width:inherit;}
+#main-ourservicescopyprofilepictureapprovedtothestore-form .form-content .titlebar {background:#E08283;}
+
+#preview-ourservicescopyprofilepictureapprovedtothestore-form {position:relative;padding:10px;}
+#preview-ourservicescopyprofilepictureapprovedtothestore-form .picture-content img {width:inherit;height:inherit;}
+#preview-ourservicescopyprofilepictureapprovedtothestore-form .profilepicture-content {width:200px;height:271px;}
+
+#main-ourservicesaudittranscriptapprovedlevel1viewtable-table .table-title .button ul li div {width:50px;}
+#main-ourservicesaudittranscriptapprovedlevel1viewtable-table .table-col2 {width:90px;}
+#main-ourservicesaudittranscriptapprovedlevel1viewtable-table .table-col3 {width:132px;}
+#main-ourservicesaudittranscriptapprovedlevel1viewtable-table .table-col4 {width:132px;}
+#main-ourservicesaudittranscriptapprovedlevel1viewtable-table .table-grid .table-col1 .table-col-msg div {text-align:left;}
+#main-ourservicesaudittranscriptapprovedlevel1viewtable-table .table-navpage .navpage .navpage-layout {height:1px;background:#E4E4E4;padding:0px;}
+
+#main-ourservicesaudittranscriptapprovedlevel21viewtable-table .table-title .button ul li div {width:50px;}
+#main-ourservicesaudittranscriptapprovedlevel21viewtable-table .table-col1 {width:67px;}
+#main-ourservicesaudittranscriptapprovedlevel21viewtable-table .table-col2 {width:58px;}
+#main-ourservicesaudittranscriptapprovedlevel21viewtable-table .table-col5 {width:120px;}
+#main-ourservicesaudittranscriptapprovedlevel21viewtable-table .table-grid .table-col3 .table-col-msg div,
+#main-ourservicesaudittranscriptapprovedlevel21viewtable-table .table-grid .table-col4 .table-col-msg div {text-align:left;}
+
+#main-ourservicesaudittranscriptapprovedlevel22viewtable-table .table-title .button ul li div {width:50px;}
+#main-ourservicesaudittranscriptapprovedlevel22viewtable-table .table-col1 {width:67px;}
+#main-ourservicesaudittranscriptapprovedlevel22viewtable-table .table-col2 {width:65px;}
+#main-ourservicesaudittranscriptapprovedlevel22viewtable-table .table-col4 {width:120px;}
+#main-ourservicesaudittranscriptapprovedlevel22viewtable-table .table-col5 {width:63px;}
+#main-ourservicesaudittranscriptapprovedlevel22viewtable-table .table-col6 {width:85px;}
+#main-ourservicesaudittranscriptapprovedlevel22viewtable-table .table-col7 {width:60px;}
+#main-ourservicesaudittranscriptapprovedlevel22viewtable-table .table-col8 {width:58px;}
+#main-ourservicesaudittranscriptapprovedlevel22viewtable-table .table-grid .table-col3 .table-col-msg div,
+#main-ourservicesaudittranscriptapprovedlevel22viewtable-table .table-grid .table-col9 .table-col-msg div,
+#main-ourservicesaudittranscriptapprovedlevel22viewtable-table .table-grid .table-col10 .table-col-msg div {text-align:left;}
+
+#main-ourservicesexportsaveaudittranscriptapproved-table .table-title .button ul li div {width:101px;}
+#main-ourservicesexportsaveaudittranscriptapproved-table .table-col1 {width:67px;}
+#main-ourservicesexportsaveaudittranscriptapproved-table .table-col2 {width:65px;}
+#main-ourservicesexportsaveaudittranscriptapproved-table .table-col3 {width:65px;}
+#main-ourservicesexportsaveaudittranscriptapproved-table .table-col5 {width:120px;}
+#main-ourservicesexportsaveaudittranscriptapproved-table .table-col6 {width:63px;}
+#main-ourservicesexportsaveaudittranscriptapproved-table .table-col7 {width:85px;}
+#main-ourservicesexportsaveaudittranscriptapproved-table .table-col8 {width:60px;}
+#main-ourservicesexportsaveaudittranscriptapproved-table .table-col9 {width:90px;}
+#main-ourservicesexportsaveaudittranscriptapproved-table .table-col10 {width:50px;}
+#main-ourservicesexportsaveaudittranscriptapproved-table .table-col11 {width:90px;}
+#main-ourservicesexportsaveaudittranscriptapproved-table .table-grid .table-row.active {background:#E08283;}
+#main-ourservicesexportsaveaudittranscriptapproved-table .table-grid .table-col4 .table-col-msg div {text-align:left;}
+#main-ourservicesexportsaveaudittranscriptapproved-table .table-grid .table-col10 .table-col-msg .uploaddocument-auditedstatus {position:absolute;top:-6px;left:15px;}
+
+#main-ourservicesexportsaveaudittranscriptapproved-form .form-layout {width:380px;border-left-color:#E08283;}
+#main-ourservicesexportsaveaudittranscriptapproved-form .form-content {width:inherit;}
+#main-ourservicesexportsaveaudittranscriptapproved-form .form-content .titlebar {background:#E08283;}
+#main-ourservicesexportsaveaudittranscriptapproved-form .menulist {width:418px;}
+
+#preview-ourservicesexportsaveaudittranscriptapproved-form {position:relative;}
+#preview-ourservicesexportsaveaudittranscriptapprovedtranscriptbackside-form {margin-left:10px;}
+#preview-ourservicesexportsaveaudittranscriptapprovedtranscript-form {padding:10px;padding-top:36px;}
+#preview-ourservicesexportsaveaudittranscriptapprovedtranscript-form .picture-content img {width:inherit;height:inherit;}
+#preview-ourservicesexportsaveaudittranscriptapprovedtranscript-form .transcriptfrontside-content, #preview-ourservicesexportsaveaudittranscriptapprovedtranscript-form .transcriptbackside-content {width:160px;height:216px;}
+#preview-ourservicesexportsaveaudittranscriptapprovedtranscriptinstitute-form .form .form-inputcol {width:237px;}
+
+#main-ourservicesexportstudentrecordsinformationforsmartcard-table .table-title .button ul li div {width:101px;}
+#main-ourservicesexportstudentrecordsinformationforsmartcard-table .table-col1 {width:67px;}
+#main-ourservicesexportstudentrecordsinformationforsmartcard-table .table-col2 {width:65px;}
+#main-ourservicesexportstudentrecordsinformationforsmartcard-table .table-col3 {width:65px;}
+#main-ourservicesexportstudentrecordsinformationforsmartcard-table .table-col5 {width:53px;}
+#main-ourservicesexportstudentrecordsinformationforsmartcard-table .table-col6 {width:120px;}
+#main-ourservicesexportstudentrecordsinformationforsmartcard-table .table-col7 {width:63px;}
+#main-ourservicesexportstudentrecordsinformationforsmartcard-table .table-col8 {width:85px;}
+#main-ourservicesexportstudentrecordsinformationforsmartcard-table .table-col9 {width:60px;}
+#main-ourservicesexportstudentrecordsinformationforsmartcard-table .table-grid .table-row.active {background:#E08283;}
+#main-ourservicesexportstudentrecordsinformationforsmartcard-table .table-grid .table-col4 .table-col-msg div {text-align:left;}
+
+#main-ourservicesexportstudentrecordsinformationforsmartcard-form .form-layout {width:238px;border-left-color:#E08283;}
+#main-ourservicesexportstudentrecordsinformationforsmartcard-form .form-content {width:inherit;}
+#main-ourservicesexportstudentrecordsinformationforsmartcard-form .form-content .titlebar {background:#E08283;}
+
+#preview-ourservicesexportstudentrecordsinformationforsmartcard-form {position:relative;padding:10px;}
+#preview-ourservicesexportstudentrecordsinformationforsmartcard-form .picture-content img {width:inherit;height:inherit;}
+#preview-ourservicesexportstudentrecordsinformationforsmartcard-form .profilepicture-content {width:200px;height:271px;}
