@@ -149,7 +149,7 @@ public class ePFUI
             !String.IsNullOrEmpty(_infoOperatorExportAll) ||
             !String.IsNullOrEmpty(_infoOperatorExportSelected) ||
             !String.IsNullOrEmpty(_infoOperatorProfile) ||
-            !String.IsNullOrEmpty(_infoOperatorClose) ||            
+            !String.IsNullOrEmpty(_infoOperatorClose) ||
             !String.IsNullOrEmpty(_infoLinkTo))
         {
             _html.AppendLine("              <div class='operator'>");
@@ -870,7 +870,7 @@ public class ePFUI
                 _html.AppendLine("                      </ul>");
                 _html.AppendLine("                      <div class='clear'></div>");
                 _html.AppendLine("                  </div>");
-                _html.AppendFormat("                <div class='menu-active' id='{0}' alt='{1}'>{2}</div>",   ePFUtil._menuPrivacyPolicy[0, 3].ToLower(), ePFUtil._menuPrivacyPolicy[0, 4], String.Empty);
+                _html.AppendFormat("                <div class='menu-active' id='{0}' alt='{1}'>{2}</div>", ePFUtil._menuPrivacyPolicy[0, 3].ToLower(), ePFUtil._menuPrivacyPolicy[0, 4], String.Empty);
                 _html.AppendFormat("                <div class='menu-noactive' id='{0}' alt='{1}'>{2}</div>", ePFUtil._menuPrivacyPolicy[1, 3].ToLower(), ePFUtil._menuPrivacyPolicy[1, 4], String.Empty);
                 _html.AppendFormat("                <div class='menu-noactive' id='{0}' alt='{1}'>{2}</div>", ePFUtil._menuPrivacyPolicy[2, 3].ToLower(), ePFUtil._menuPrivacyPolicy[2, 4], String.Empty);
                 _html.AppendLine("              </div>");

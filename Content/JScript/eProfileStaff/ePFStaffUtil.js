@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๔/๑๒/๒๕๕๗>
-Modify date : <๐๕/๐๓/๒๕๖๔>
+Modify date : <๑๒/๐๕/๒๕๖๔>
 Description : <รวมรวบฟังก์ชั่นใช้งานทั่วไปของระบบ>
 =============================================
 */
@@ -70,7 +70,7 @@ var ePFStaffUtil = {
     subjectSectionAdministrationStudentRecordsFamilyWork: "AdministrationStudentRecordsFamilyWork",
     subjectSectionOurServices: "OurServices",
     subjectSectionOurServicesExportStudentRecordsInformation: "OurServicesExportStudentRecordsInformation",
-    subjectSectionOurServicesUpdateStudentDistinctionProgram: "OurServicesUpdateStudentDistinctionProgram",
+    subjectSectionOurServicesUpdateStudentMedicalScholarsProgram: "OurServicesUpdateStudentMedicalScholarsProgram",
     subjectSectionSummaryNumberOfStudentLevel1ViewTable: "SummaryNumberOfStudentLevel1ViewTable",
     subjectSectionSummaryNumberOfStudentLevel2ViewTable: "SummaryNumberOfStudentLevel2ViewTable",
     subjectSectionOurServicesSummaryNumberOfStudent: "OurServicesSummaryNumberOfStudent",
@@ -176,10 +176,10 @@ var ePFStaffUtil = {
     idSectionOurServicesExportStudentRecordsInformationMain: "Main-OurServicesExportStudentRecordsInformation",
     idSectionOurServicesExportStudentRecordsInformationSearch: "Search-OurServicesExportStudentRecordsInformation",
     idSectionOurServicesExportStudentRecordsInformationProgress: "Progress-OurServicesExportStudentRecordsInformation",
-    idSectionOurServicesUpdateStudentDistinctionProgramMain: "Main-OurServicesUpdateStudentDistinctionProgram",
-    idSectionOurServicesUpdateStudentDistinctionProgramSearch: "Search-OurServicesUpdateStudentDistinctionProgram",
-    idSectionOurServicesUpdateStudentDistinctionProgramProgress: "Progress-OurServicesUpdateStudentDistinctionProgram",
-    idSectionOurServicesUpdateStudentDistinctionProgramPreview: "Preview-OurServicesUpdateStudentDistinctionProgram",
+    idSectionOurServicesUpdateStudentMedicalScholarsProgramMain: "Main-OurServicesUpdateStudentMedicalScholarsProgram",
+    idSectionOurServicesUpdateStudentMedicalScholarsProgramSearch: "Search-OurServicesUpdateStudentMedicalScholarsProgram",
+    idSectionOurServicesUpdateStudentMedicalScholarsProgramProgress: "Progress-OurServicesUpdateStudentMedicalScholarsProgram",
+    idSectionOurServicesUpdateStudentMedicalScholarsProgramPreview: "Preview-OurServicesUpdateStudentMedicalScholarsProgram",
     idSectionOurServicesSummaryNumberOfStudentMain: "Main-OurServicesSummaryNumberOfStudent",
     idSectionOurServicesSummaryNumberOfStudentSearch: "Search-OurServicesSummaryNumberOfStudent",
     idSectionOurServicesSummaryNumberOfStudentViewChartMain: "Main-OurServicesSummaryNumberOfStudentViewChart",
@@ -268,9 +268,9 @@ var ePFStaffUtil = {
     pageAdministrationStudentRecordsUpdateDatatoOldDBProgress: "AdministrationStudentRecordsUpdateDatatoOldDBProgress",
     pageOurServicesExportStudentRecordsInformationMain: "OurServicesExportStudentRecordsInformationMain",
     pageOurServicesExportStudentRecordsInformationProgress: "OurServicesExportStudentRecordsInformationProgress",
-    pageOurServicesUpdateStudentDistinctionProgramMain: "OurServicesUpdateStudentDistinctionProgramMain",
-    pageOurServicesUpdateStudentDistinctionProgramProgress: "OurServicesUpdateStudentDistinctionProgramProgress",
-    pageOurServicesUpdateStudentDistinctionProgramPreview: "OurServicesUpdateStudentDistinctionProgramPreview",
+    pageOurServicesUpdateStudentMedicalScholarsProgramMain: "OurServicesUpdateStudentMedicalScholarsProgramMain",
+    pageOurServicesUpdateStudentMedicalScholarsProgramProgress: "OurServicesUpdateStudentMedicalScholarsProgramProgress",
+    pageOurServicesUpdateStudentMedicalScholarsProgramPreview: "OurServicesUpdateStudentMedicalScholarsProgramPreview",
     pageOurServicesSummaryNumberOfStudentMain: "OurServicesSummaryNumberOfStudentMain",
     pageOurServicesSummaryNumberOfStudentViewChartMain: "OurServicesSummaryNumberOfStudentViewChartMain",
     pageOurServicesSummaryNumberOfStudentViewTableMain: "OurServicesSummaryNumberOfStudentViewTableMain",
@@ -412,9 +412,9 @@ var ePFStaffUtil = {
                         page: ("index.aspx?p=" + _this.pageOurServicesExportStudentRecordsInformationMain)
                     });
 
-                if (_idLink == ("link-" + _this.subjectSectionOurServicesUpdateStudentDistinctionProgram.toLowerCase()))
+                if (_idLink == ("link-" + _this.subjectSectionOurServicesUpdateStudentMedicalScholarsProgram.toLowerCase()))
                     Util.gotoPage({
-                        page: ("index.aspx?p=" + _this.pageOurServicesUpdateStudentDistinctionProgramMain)
+                        page: ("index.aspx?p=" + _this.pageOurServicesUpdateStudentMedicalScholarsProgramMain)
                     });
 
                 if (_idLink == ("link-" + _this.subjectSectionOurServicesSummaryNumberOfStudent.toLowerCase()))
@@ -573,7 +573,7 @@ var ePFStaffUtil = {
                 if (_idLink == ("search-" + _this.pageOurServicesExportStudentRecordsInformationMain.toLowerCase()))
                     Util.setSearchShow();
 
-                if (_idLink == ("search-" + _this.pageOurServicesUpdateStudentDistinctionProgramMain.toLowerCase()))
+                if (_idLink == ("search-" + _this.pageOurServicesUpdateStudentMedicalScholarsProgramMain.toLowerCase()))
                     Util.setSearchShow();
 
                 if (_idLink == ("search-" + _this.pageOurServicesSummaryNumberOfStudentMain.toLowerCase()))
@@ -665,7 +665,7 @@ var ePFStaffUtil = {
         _send["action"] = "page";
         _send["page"] = _page;
         _send["id"] = $("#id").html();
-        
+
         Util.msgPreloading = "Loading...";
         
         Util.loadAjax({
@@ -858,14 +858,14 @@ var ePFStaffUtil = {
                     Util.tut.tos.exportstudentrecordsinformation.sectionMain.initTable();
                 }
                 
-                if (_page == _this.pageOurServicesUpdateStudentDistinctionProgramMain) {
-                    Util.tut.tse.ourservices.updatestudentdistinctionprogram.initSearch();
+                if (_page == _this.pageOurServicesUpdateStudentMedicalScholarsProgramMain) {
+                    Util.tut.tse.ourservices.updatestudentmedicalscholarsprogram.initSearch();
                     Util.initSearch();
-                    Util.tut.tos.updatestudentdistinctionprogram.sectionMain.initMain();
-                    Util.tut.tos.updatestudentdistinctionprogram.sectionMain.initTable();
+                    Util.tut.tos.updatestudentmedicalscholarsprogram.sectionMain.initMain();
+                    Util.tut.tos.updatestudentmedicalscholarsprogram.sectionMain.initTable();
                 }
 
-                if (_page == _this.pageOurServicesSummaryNumberOfStudentMain) {                    
+                if (_page == _this.pageOurServicesSummaryNumberOfStudentMain) {
                     Util.tut.tse.ourservices.summarynumberofstudent.initSearch();
                     Util.initSearch();
                     Util.tut.tos.summarynumberofstudent.sectionMain.initMain();
@@ -913,6 +913,7 @@ var ePFStaffUtil = {
         var _valueFamilyRelation = "";
         var _valueGender = "";
         var _valueAction = "";
+        var _valueJoinProgram = "";
         var _widthInput;
         var _heightInput;
         var _idContent;
@@ -967,8 +968,8 @@ var ePFStaffUtil = {
             _param["id"] == ("#" + this.idSectionAdministrationStudentRecordsUpdateFacultyProgramProgress.toLowerCase() + "-faculty") ||
             _param["id"] == ("#" + this.idSectionOurServicesExportStudentRecordsInformationSearch.toLowerCase() + "-degreelevel") ||
             _param["id"] == ("#" + this.idSectionOurServicesExportStudentRecordsInformationSearch.toLowerCase() + "-faculty") ||
-            _param["id"] == ("#" + this.idSectionOurServicesUpdateStudentDistinctionProgramSearch.toLowerCase() + "-degreelevel") ||
-            _param["id"] == ("#" + this.idSectionOurServicesUpdateStudentDistinctionProgramSearch.toLowerCase() + "-faculty") ||
+            _param["id"] == ("#" + this.idSectionOurServicesUpdateStudentMedicalScholarsProgramSearch.toLowerCase() + "-degreelevel") ||
+            _param["id"] == ("#" + this.idSectionOurServicesUpdateStudentMedicalScholarsProgramSearch.toLowerCase() + "-faculty") ||
             _param["id"] == ("#" + this.idSectionOurServicesSummaryNumberOfStudentSearch.toLowerCase() + "-degreelevel") ||
             _param["id"] == ("#" + this.idSectionOurServicesSummaryNumberOfStudentSearch.toLowerCase() + "-faculty") ||
             _param["id"] == ("#" + this.idSectionOurServicesTransactionLogStudentRecordsSearch.toLowerCase() + "-degreelevel") ||
@@ -1032,9 +1033,9 @@ var ePFStaffUtil = {
                 _heightInput = 27;
             }
 
-            if (_param["id"] == ("#" + this.idSectionOurServicesUpdateStudentDistinctionProgramSearch.toLowerCase() + "-degreelevel")) {
+            if (_param["id"] == ("#" + this.idSectionOurServicesUpdateStudentMedicalScholarsProgramSearch.toLowerCase() + "-degreelevel")) {
                 _idContent = _param["id"].replace("#", "").replace("-degreelevel", "");
-                _cmd = "getprogrambydistinction";
+                _cmd = "getprogrambyjoinprogram";
                 _idCombobox = (_idContent + "-program");
                 _idContainer = (_idContent + "-program-combobox");
                 _valueDegreeLevel = (_param["value"] != "0" ? _param["value"] : "");
@@ -1043,13 +1044,14 @@ var ePFStaffUtil = {
                     type: "select",
                     valueTrue: Util.comboboxGetValue("#" + _idContent + "-faculty")
                 });
+                _valueJoinProgram = "MedicalScholarsProgram";
                 _widthInput = $(".form.search .form-content .form-inputcol .form-input .combobox-width-dynamic .combobox").width();
                 _heightInput = 27;
             }
 
-            if (_param["id"] == ("#" + this.idSectionOurServicesUpdateStudentDistinctionProgramSearch.toLowerCase() + "-faculty")) {
+            if (_param["id"] == ("#" + this.idSectionOurServicesUpdateStudentMedicalScholarsProgramSearch.toLowerCase() + "-faculty")) {
                 _idContent = _param["id"].replace("#", "").replace("-faculty", "");
-                _cmd = "getprogrambydistinction";
+                _cmd = "getprogrambyjoinprogram";
                 _idCombobox = (_idContent + "-program");
                 _idContainer = (_idContent + "-program-combobox");
                 _valueDegreeLevel = Util.getSelectionIsSelect({
@@ -1058,6 +1060,7 @@ var ePFStaffUtil = {
                     valueTrue: Util.comboboxGetValue("#" + _idContent + "-degreelevel")
                 });
                 _valueFaculty = _param["value"];
+                _valueJoinProgram = "MedicalScholarsProgram";
                 _widthInput = $(".form.search .form-content .form-inputcol .form-input .combobox-width-dynamic .combobox").width();
                 _heightInput = 27;
             }
@@ -1184,6 +1187,7 @@ var ePFStaffUtil = {
             _valueParam["degreelevel"] = _valueDegreeLevel;
             _valueParam["faculty"] = _valueFaculty;
             _valueParam["gender"] = _valueGender;
+            _valueParam["joinprogram"] = _valueJoinProgram;
             _valueDefault = "0";
             _widthInput = _widthInput;
             _heightInput = _heightInput;
@@ -1303,7 +1307,7 @@ var ePFStaffUtil = {
             _param["id"] == ("#" + this.idSectionMasterDataHealthImpairmentsMain.toLowerCase() + "-rowperpage") ||
             _param["id"] == ("#" + this.idSectionAdministrationStudentRecordsMain.toLowerCase() + "-rowperpage") ||
             _param["id"] == ("#" + this.idSectionOurServicesExportStudentRecordsInformationMain.toLowerCase() + "-rowperpage") ||
-            _param["id"] == ("#" + this.idSectionOurServicesUpdateStudentDistinctionProgramMain.toLowerCase() + "-rowperpage") ||
+            _param["id"] == ("#" + this.idSectionOurServicesUpdateStudentMedicalScholarsProgramMain.toLowerCase() + "-rowperpage") ||
             _param["id"] == ("#" + this.idSectionOurServicesTransactionLogStudentRecordsMain.toLowerCase() + "-rowperpage")) {
             if (_param["id"] == ("#" + this.idSectionMasterDataTitlePrefixMain.toLowerCase() + "-rowperpage"))
                 _page = this.pageMasterDataTitlePrefixMain;
@@ -1371,8 +1375,8 @@ var ePFStaffUtil = {
             if (_param["id"] == ("#" + this.idSectionOurServicesExportStudentRecordsInformationMain.toLowerCase() + "-rowperpage"))
                 _page = this.pageOurServicesExportStudentRecordsInformationMain;
 
-            if (_param["id"] == ("#" + this.idSectionOurServicesUpdateStudentDistinctionProgramMain.toLowerCase() + "-rowperpage"))
-                _page = this.pageOurServicesUpdateStudentDistinctionProgramMain;
+            if (_param["id"] == ("#" + this.idSectionOurServicesUpdateStudentMedicalScholarsProgramMain.toLowerCase() + "-rowperpage"))
+                _page = this.pageOurServicesUpdateStudentMedicalScholarsProgramMain;
 
             if (_param["id"] == ("#" + this.idSectionOurServicesTransactionLogStudentRecordsMain.toLowerCase() + "-rowperpage"))
                 _page = this.pageOurServicesTransactionLogStudentRecordsMain;
@@ -1425,6 +1429,7 @@ var ePFStaffUtil = {
         var _valueFaculty = "";
         var _valueFamilyRelation = "";
         var _valueGender = "";
+        var _valueJoinProgram = "";
         var _widthInput;
         var _heightInput;
         var _idContent;
@@ -1467,7 +1472,7 @@ var ePFStaffUtil = {
             _param["id"] == ("#" + this.idSectionAdministrationStudentRecordsFamilyParentAddressCurrentAddUpdate.toLowerCase() + "-subdistrict") ||
             _param["id"] == ("#" + this.idSectionAdministrationStudentRecordsUpdateFacultyProgramProgress.toLowerCase() + "-program") ||
             _param["id"] == ("#" + this.idSectionOurServicesExportStudentRecordsInformationSearch.toLowerCase() + "-program") ||
-            _param["id"] == ("#" + this.idSectionOurServicesUpdateStudentDistinctionProgramSearch.toLowerCase() + "-program") ||
+            _param["id"] == ("#" + this.idSectionOurServicesUpdateStudentMedicalScholarsProgramSearch.toLowerCase() + "-program") ||
             _param["id"] == ("#" + this.idSectionOurServicesSummaryNumberOfStudentSearch.toLowerCase() + "-program") ||
             _param["id"] == ("#" + this.idSectionOurServicesTransactionLogStudentRecordsSearch.toLowerCase() + "-program")) {
             if (_param["id"] == ("#" + this.idSectionMasterDataDistrictSearch.toLowerCase() + "-province") ||
@@ -1555,9 +1560,9 @@ var ePFStaffUtil = {
                 _heightInput = 27;
             }
 
-            if (_param["id"] == ("#" + this.idSectionOurServicesUpdateStudentDistinctionProgramSearch.toLowerCase() + "-program")) {
+            if (_param["id"] == ("#" + this.idSectionOurServicesUpdateStudentMedicalScholarsProgramSearch.toLowerCase() + "-program")) {
                 _idContent = _param["id"].replace("#", "").replace("-program", "");
-                _cmd = "getprogrambydistinction";
+                _cmd = "getprogrambyjoinprogram";
                 _idCombobox = (_idContent + "-program");
                 _idContainer = (_idContent + "-program-combobox");
                 _valueDegreeLevel = Util.getSelectionIsSelect({
@@ -1571,6 +1576,7 @@ var ePFStaffUtil = {
                     valueTrue: Util.comboboxGetValue("#" + _idContent + "-faculty"),
                     valueFalse: "0"
                 });
+                _valueJoinProgram = "MedicalScholarsProgram";
                 _widthInput = $(".form.search .form-content .form-inputcol .form-input .combobox-width-dynamic .combobox").width();
                 _heightInput = 27;
             }
@@ -1709,6 +1715,7 @@ var ePFStaffUtil = {
             _valueParam["degreelevel"] = _valueDegreeLevel;
             _valueParam["faculty"] = _valueFaculty;
             _valueParam["gender"] = _valueGender;
+            _valueParam["joinprogram"] = _valueJoinProgram;
             _valueDefault = _param["value"];
             _widthInput = _widthInput;
             _heightInput = _heightInput;

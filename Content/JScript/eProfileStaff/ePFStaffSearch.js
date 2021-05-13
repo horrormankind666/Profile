@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๐๖/๐๑/๒๕๕๘>
-Modify date : <๐๕/๐๓/๒๕๖๔>
+Modify date : <๑๒/๐๔/๒๕๖๔>
 Description : <รวมรวบฟังก์ชั่นใช้งานในส่วนของการค้นหาข้อมูล>
 =============================================
 */
@@ -252,12 +252,12 @@ var ePFStaffSearch = {
             _idTable = (Util.tut.tos.exportstudentrecordsinformation.idSectionMain + "-table");
         }
 
-        if (_param["page"] == Util.tut.pageOurServicesUpdateStudentDistinctionProgramMain) {
-            _pageMain = Util.tut.pageOurServicesUpdateStudentDistinctionProgramMain;
+        if (_param["page"] == Util.tut.pageOurServicesUpdateStudentMedicalScholarsProgramMain) {
+            _pageMain = Util.tut.pageOurServicesUpdateStudentMedicalScholarsProgramMain;
             _pageSearch = _param["page"];
-            _valueParam = this.ourservices.updatestudentdistinctionprogram.valueSearch();
+            _valueParam = this.ourservices.updatestudentmedicalscholarsprogram.valueSearch();
             _idChart = "";
-            _idTable = (Util.tut.tos.updatestudentdistinctionprogram.idSectionMain + "-table");
+            _idTable = (Util.tut.tos.updatestudentmedicalscholarsprogram.idSectionMain + "-table");
         }
 
         if (_param["page"] == Util.tut.pageOurServicesSummaryNumberOfStudentViewChartMain) {
@@ -382,8 +382,8 @@ var ePFStaffSearch = {
         if (_param["page"] == Util.tut.pageOurServicesExportStudentRecordsInformationMain)
             _this = this.ourservices.exportstudentrecordsinformation;
 
-        if (_param["page"] == Util.tut.pageOurServicesUpdateStudentDistinctionProgramMain)
-            _this = this.ourservices.updatestudentdistinctionprogram;
+        if (_param["page"] == Util.tut.pageOurServicesUpdateStudentMedicalScholarsProgramMain)
+            _this = this.ourservices.updatestudentmedicalscholarsprogram;
 
         if (_param["page"] == Util.tut.pageOurServicesSummaryNumberOfStudentMain)
             _this = this.ourservices.summarynumberofstudent;
@@ -468,8 +468,8 @@ var ePFStaffSearch = {
         if (_param["page"] == Util.tut.pageOurServicesExportStudentRecordsInformationMain)
             _this = this.ourservices.exportstudentrecordsinformation;
 
-        if (_param["page"] == Util.tut.pageOurServicesUpdateStudentDistinctionProgramMain)
-            _this = this.ourservices.updatestudentdistinctionprogram;
+        if (_param["page"] == Util.tut.pageOurServicesUpdateStudentMedicalScholarsProgramMain)
+            _this = this.ourservices.updatestudentmedicalscholarsprogram;
 
         if (_param["page"] == Util.tut.pageOurServicesSummaryNumberOfStudentMain)
             _this = this.ourservices.summarynumberofstudent;
@@ -544,8 +544,8 @@ var ePFStaffSearch = {
             if (_param["pageSearch"] == Util.tut.pageOurServicesExportStudentRecordsInformationMain)
                     Util.tut.tos.exportstudentrecordsinformation.sectionMain.initTable();
 
-            if (_param["pageSearch"] == Util.tut.pageOurServicesUpdateStudentDistinctionProgramMain)
-                Util.tut.tos.updatestudentdistinctionprogram.sectionMain.initTable();
+            if (_param["pageSearch"] == Util.tut.pageOurServicesUpdateStudentMedicalScholarsProgramMain)
+                Util.tut.tos.updatestudentmedicalscholarsprogram.sectionMain.initTable();
 
             if (_param["pageSearch"] == Util.tut.pageOurServicesSummaryNumberOfStudentLevel1ViewTableMain ||
                 _param["pageSearch"] == Util.tut.pageOurServicesSummaryNumberOfStudentLevel2ViewTableMain) {
@@ -2499,7 +2499,8 @@ var ePFStaffSearch = {
                 valueTrue: Util.comboboxGetValue("#" + this.idSectionSearch + "-studentrecordsstatus")
             });
             _send["distinction"] = "";
-            _send["distinctionstatus"] = "";
+            _send["joinprogram"] = "";
+            _send["joinprogramstatus"] = "";
             _send["startacademicyear"] = "";
             _send["endacademicyear"] = "";
             _send["gender"] = "";
@@ -2696,7 +2697,8 @@ var ePFStaffSearch = {
                     valueTrue: Util.comboboxGetValue("#" + this.idSectionSearch + "-studentrecordsstatus")
                 });
                 _send["distinction"] = "";
-                _send["distinctionstatus"] = "";
+                _send["joinprogram"] = "";
+                _send["joinprogramstatus"] = "";
                 _send["startacademicyear"] = "";
                 _send["endacademicyear"] = "";
                 _send["gender"] = "";
@@ -2722,9 +2724,9 @@ var ePFStaffSearch = {
             }
         
         },
-        updatestudentdistinctionprogram: {
-            idSectionMain: ePFStaffUtil.idSectionOurServicesUpdateStudentDistinctionProgramMain.toLowerCase(),
-            idSectionSearch: ePFStaffUtil.idSectionOurServicesUpdateStudentDistinctionProgramSearch.toLowerCase(),
+        updatestudentmedicalscholarsprogram: {
+            idSectionMain: ePFStaffUtil.idSectionOurServicesUpdateStudentMedicalScholarsProgramMain.toLowerCase(),
+            idSectionSearch: ePFStaffUtil.idSectionOurServicesUpdateStudentMedicalScholarsProgramSearch.toLowerCase(),
             initSearch: function () {
                 var _this = Util.tut.tse;
 
@@ -2764,7 +2766,7 @@ var ePFStaffSearch = {
                     height: 27
                 });
                 Util.initCombobox({
-                    id: ("#" + this.idSectionSearch + "-distinctionstatus"),
+                    id: ("#" + this.idSectionSearch + "-joinprogramstatus"),
                     width: 0,
                     height: 27
                 });
@@ -2837,8 +2839,8 @@ var ePFStaffSearch = {
                     value: (_param["reset"] == true ? "0" : $("#" + this.idSectionSearch + "-studentrecordsstatus-hidden").val())
                 });
                 Util.comboboxSetValue({
-                    id: ("#" + this.idSectionSearch + "-distinctionstatus"),
-                    value: (_param["reset"] == true ? "0" : $("#" + this.idSectionSearch + "-distinctionstatus-hidden").val())
+                    id: ("#" + this.idSectionSearch + "-joinprogramstatus"),
+                    value: (_param["reset"] == true ? "0" : $("#" + this.idSectionSearch + "-joinprogramstatus-hidden").val())
                 });
                 Util.comboboxSetValue({
                     id: ("#" + this.idSectionSearch + "-startacademicyear"),
@@ -2907,11 +2909,12 @@ var ePFStaffSearch = {
                     type: "select",
                     valueTrue: Util.comboboxGetValue("#" + this.idSectionSearch + "-studentrecordsstatus")
                 });
-                _send["distinction"] = "Y";
-                _send["distinctionstatus"] = Util.getSelectionIsSelect({
-                    id: ("#" + this.idSectionSearch + "-distinctionstatus"),
+                _send["distinction"] = "";
+                _send["joinprogram"] = "MedicalScholarsProgram";
+                _send["joinprogramstatus"] = Util.getSelectionIsSelect({
+                    id: ("#" + this.idSectionSearch + "-joinprogramstatus"),
                     type: "select",
-                    valueTrue: Util.comboboxGetValue("#" + this.idSectionSearch + "-distinctionstatus")
+                    valueTrue: Util.comboboxGetValue("#" + this.idSectionSearch + "-joinprogramstatus")
                 });
                 _send["startacademicyear"] = Util.getSelectionIsSelect({
                     id: ("#" + this.idSectionSearch + "-startacademicyear"),
@@ -3116,7 +3119,8 @@ var ePFStaffSearch = {
                     valueTrue: Util.comboboxGetValue("#" + this.idSectionSearch + "-studentrecordsstatus")
                 });
                 _send["distinction"] = "";
-                _send["distinctionstatus"] = "";
+                _send["joinprogram"] = "";
+                _send["joinprogramstatus"] = "";
                 _send["startacademicyear"] = "";
                 _send["endacademicyear"] = "";
                 _send["gender"] = "";
@@ -3312,7 +3316,8 @@ var ePFStaffSearch = {
                     valueTrue: Util.comboboxGetValue("#" + this.idSectionSearch + "-studentrecordsstatus")
                 });
                 _send["distinction"] = "";
-                _send["distinctionstatus"] = "";
+                _send["joinprogram"] = "";
+                _send["joinprogramstatus"] = "";
                 _send["startacademicyear"] = "";
                 _send["endacademicyear"] = "";
                 _send["gender"] = "";

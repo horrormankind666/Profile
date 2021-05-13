@@ -1,41 +1,38 @@
-﻿// =============================================
-// Author       : <ยุทธภูมิ ตวันนา>
-// Create date  : <๐๗/๐๗/๒๕๕๘>
-// Modify date  : <๑๓/๐๙/๒๕๕๙>
-// Description  : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผลในส่วนของการบริการข้อมูล>
-// =============================================
+﻿/*
+=============================================
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๐๗/๐๗/๒๕๕๘>
+Modify date : <๑๓/๐๙/๒๕๕๙>
+Description : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผลในส่วนของการบริการข้อมูล>
+=============================================
+*/
 
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
-using System.Linq;
 using System.Text;
 using System.Web;
 using NUtil;
-using NFinServiceLogin;
 
 public class UDSStaffOurServicesUI
 {   
     public class DocumentStatusStudentUI
     {
-        private static string _idSectionMain    = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENT_MAIN.ToLower();
-        private static string _idSectionSearch  = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENT_SEARCH.ToLower();
+        private static string _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENT_MAIN.ToLower();
+        private static string _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENT_SEARCH.ToLower();
         
-        //ฟังก์ชั่นสำหรับแสดงเนื้อหาตามส่วนที่ต้องการแสดงในส่วนของสถานะเอกสารของนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _infoLogin     เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-        //2. _section       เป็น string รับค่าส่วนที่ต้องการแสดง
-        //3. _sectionAction เป็น string รับค่าการกระทำที่เกิดขึ้นกับส่วนที่ต้องการแสดง
-        //4. _id            เป็น string รับค่ารหัสที่ต้องการ
         public static StringBuilder GetSection(Dictionary<string, object> _infoLogin, string _section, string _sectionAction, string _id)
         {
             StringBuilder _html = new StringBuilder();
 
             switch (_section)
             {
-                case "MAIN"     : { _html = SectionMainUI.GetMain(); break; }
-                case "SEARCH"   : { _html = SectionSearchUI.GetMain(); break; }
+                case "MAIN":
+                    _html = SectionMainUI.GetMain();
+                    break;
+                case "SEARCH":
+                    _html = SectionSearchUI.GetMain();
+                    break;
             }
 
             return _html;
@@ -43,7 +40,6 @@ public class UDSStaffOurServicesUI
 
         public class SectionMainUI
         {
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าหลักในส่วนของสถานะเอกสารของนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
             public static StringBuilder GetMain()
             {
                 Dictionary<string, object> _infoData = new Dictionary<string, object>();
@@ -62,9 +58,9 @@ public class UDSStaffOurServicesUI
                 {
                     _html.AppendFormat("            <li><a class='{0}' id='link-{1}' href='javascript:void(0)' alt='{1}'><div class='tab-itemtext'><div class='th-label'>{2}</div><div class='en-label'>{3}</div></div></a></li>",
                         (UDSStaffUtil._viewsDisplay[_i, 2].Equals("active") ? "tab-active" : String.Empty),
-                         (_idSectionMain + UDSStaffUtil._viewsDisplay[_i, 3]).ToLower(),
-                         UDSStaffUtil._viewsDisplay[_i, 0],
-                         UDSStaffUtil._viewsDisplay[_i, 1]);
+                        (_idSectionMain + UDSStaffUtil._viewsDisplay[_i, 3]).ToLower(),
+                        UDSStaffUtil._viewsDisplay[_i, 0],
+                        UDSStaffUtil._viewsDisplay[_i, 1]);
                 }
 
                 _html.AppendLine("              </ul>");
@@ -74,8 +70,8 @@ public class UDSStaffOurServicesUI
                 _html.AppendFormat("<div id='{0}'>", _idSectionMain);
                 _html.AppendFormat("    <div id='{0}-layout'>", _idSectionMain);
                 _html.AppendFormat("        <div id='{0}-content'>", _idSectionMain);
-                _html.AppendFormat("            <div class='tab-active' id='{0}' alt='{1}'>{2}</div>",      (_idSectionMain + UDSStaffUtil._viewsDisplay[0, 3]).ToLower(), UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTVIEWCHART_MAIN, ViewChartUI.SectionMainUI.GetMain());
-                _html.AppendFormat("            <div class='tab-noactive' id='{0}' alt='{1}'>{2}</div>",    (_idSectionMain + UDSStaffUtil._viewsDisplay[1, 3]).ToLower(), UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTVIEWTABLE_MAIN, String.Empty);
+                _html.AppendFormat("            <div class='tab-active' id='{0}' alt='{1}'>{2}</div>", (_idSectionMain + UDSStaffUtil._viewsDisplay[0, 3]).ToLower(), UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTVIEWCHART_MAIN, ViewChartUI.SectionMainUI.GetMain());
+                _html.AppendFormat("            <div class='tab-noactive' id='{0}' alt='{1}'>{2}</div>", (_idSectionMain + UDSStaffUtil._viewsDisplay[1, 3]).ToLower(), UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTVIEWTABLE_MAIN, String.Empty);
                 _html.AppendLine("          </div>");
                 _html.AppendLine("      </div>");
                 _html.AppendLine("  </div>");
@@ -87,7 +83,6 @@ public class UDSStaffOurServicesUI
 
         public class SectionSearchUI
         {
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าค้นหาในส่วนของสถานะเอกสารของนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
             public static StringBuilder GetMain()
             {
                 StringBuilder _html = new StringBuilder();
@@ -255,14 +250,13 @@ public class UDSStaffOurServicesUI
                 _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["DegreeLevel"]).ToString());
                 _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["Faculty"]).ToString());
                 _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["Program"]).ToString());
-                _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["YearAttended"]).ToString());                
-
+                _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["YearAttended"]).ToString());
                 _html.AppendLine("              </div>");
                 _html.AppendLine("              <div class='contentbody-left search-section2'>");
                 _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["EntranceType"]).ToString());
                 _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["StudentStatus"]).ToString());
                 _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["DocumentUpload"]).ToString());
-                _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["DocumentStatus"]).ToString());                
+                _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["DocumentStatus"]).ToString());
                 _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["Sort"]).ToString());
                 _html.AppendLine("              </div>");
                 _html.AppendLine("              <div class='contentbody-left search-section3'>");
@@ -290,19 +284,15 @@ public class UDSStaffOurServicesUI
         {
             private static string _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTVIEWCHART_MAIN.ToLower();
 
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาตามส่วนที่ต้องการแสดงในส่วนของสถานะเอกสารของนักศึกษามุมมองแผนภูมิ แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _infoLogin     เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-            //2. _section       เป็น string รับค่าส่วนที่ต้องการแสดง
-            //3. _sectionAction เป็น string รับค่าการกระทำที่เกิดขึ้นกับส่วนที่ต้องการแสดง
-            //4. _id            เป็น string รับค่ารหัสที่ต้องการ
             public static StringBuilder GetSection(Dictionary<string, object> _infoLogin, string _section, string _sectionAction, string _id)
             {
                 StringBuilder _html = new StringBuilder();
 
                 switch (_section)
                 {
-                    case "MAIN" : { _html = SectionMainUI.GetMain(); break; }
+                    case "MAIN":
+                        _html = SectionMainUI.GetMain();
+                        break;
                 }
 
                 return _html;
@@ -310,7 +300,6 @@ public class UDSStaffOurServicesUI
 
             public class SectionMainUI
             {
-                //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าหลักในส่วนของสถานะเอกสารของนักศึกษามุมมองแผนภูมิ แล้วส่งค่ากลับเป็น StringBuilder
                 public static StringBuilder GetMain()
                 {
                     Dictionary<string, object> _searchResult = new Dictionary<string, object>();
@@ -321,6 +310,7 @@ public class UDSStaffOurServicesUI
                     if (_cookieError.Equals(0))
                     {
                         HttpCookie _objCookie = Util.GetCookie(UDSStaffUtil._myParamSearchCookieName);
+
                         if (_objCookie["Command"].Equals(UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENT_MAIN))
                         {
                             _show = true;
@@ -335,8 +325,8 @@ public class UDSStaffOurServicesUI
                     _html.AppendLine("                  <div class='chart-title'>");
                     _html.AppendFormat("                    <div class='contentbody-left'><div class='th-label'>{0}</div><div class='en-label'>{1}</div></div>", UDSStaffUtil._submenu[7, 0], UDSStaffUtil._submenu[7, 1]);
                     _html.AppendLine("                      <div class='contentbody-right chart-recordcount en-label'>");
-                    _html.AppendFormat("                        <span class='recordcount-search hidden'>{0}</span>",            (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
-                    _html.AppendFormat("                        <span class='recordcountprimary-search th-label'>{0}</span>",   (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
+                    _html.AppendFormat("                        <span class='recordcount-search hidden'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
+                    _html.AppendFormat("                        <span class='recordcountprimary-search th-label'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
                     _html.AppendLine("                      </div>");
                     _html.AppendLine("                  </div>");
                     _html.AppendLine("                  <div class='clear'></div>");
@@ -349,10 +339,6 @@ public class UDSStaffOurServicesUI
                     return _html;
                 }
 
-                //ฟังก์ชั่นสำหรับแสดงแผนภูมิในส่วนของสถานะเอกสารของนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _infoLogin เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-                //2. _ds        เป็น DataSet รับค่าชุดของข้อมูล
                 public static StringBuilder GetList(Dictionary<string, object> _infoLogin, DataSet _ds)
                 {
                     StringBuilder _html = new StringBuilder();
@@ -363,40 +349,40 @@ public class UDSStaffOurServicesUI
  
                     if (_ds.Tables[1].Rows.Count > 0)
                     {
-                        _paramChart.Add("RenderTo",         null);
-                        _paramChart.Add("BackgroundColor",  null);
-                        _paramChart.Add("Title",            null);
-                        _paramChart.Add("LegendTitle",      ("สถานะเอกสาร : Document Status ( " + _ds.Tables[1].Rows.Count.ToString("#,##0") + " )"));
+                        _paramChart.Add("RenderTo", null);
+                        _paramChart.Add("BackgroundColor", null);
+                        _paramChart.Add("Title", null);
+                        _paramChart.Add("LegendTitle", ("สถานะเอกสาร : Document Status ( " + _ds.Tables[1].Rows.Count.ToString("#,##0") + " )"));
                         _paramChart.Add("Level1YAxisTitle", "");
                         _paramChart.Add("Level2YAxisTitle", "");
                         _paramChart.Add("Level3YAxisTitle", "");
                     
                         _html.AppendLine("<div class='chart-grid'>");
 
-                        _paramChart["RenderTo"]         = ("chart-" + (UDSStaffUtil.SUBJECT_SECTION_DOCUMENTSTATUSSTUDENT + "-" + UDSStaffUtil.SUBJECT_SECTION_PROFILEPICTURE).ToLower());
-                        _paramChart["BackgroundColor"]  = ((_i % 2) == 0 ?_backgroundColor1 : _backgroundColor2);
-                        _paramChart["Title"]            = (UDSStaffUtil._documentUpload[1, 0] + "<br />" + UDSStaffUtil._documentUpload[1, 1]);
+                        _paramChart["RenderTo"] = ("chart-" + (UDSStaffUtil.SUBJECT_SECTION_DOCUMENTSTATUSSTUDENT + "-" + UDSStaffUtil.SUBJECT_SECTION_PROFILEPICTURE).ToLower());
+                        _paramChart["BackgroundColor"] = ((_i % 2) == 0 ?_backgroundColor1 : _backgroundColor2);
+                        _paramChart["Title"] = (UDSStaffUtil._documentUpload[1, 0] + "<br />" + UDSStaffUtil._documentUpload[1, 1]);
                         GetChart("pie", _paramChart, _ds, 1, 2, 3);
                         _html.AppendLine(GetListRow(_i).ToString());
                         _i++;
                     
-                        _paramChart["RenderTo"]         = ("chart-" + (UDSStaffUtil.SUBJECT_SECTION_DOCUMENTSTATUSSTUDENT + "-" + UDSStaffUtil.SUBJECT_SECTION_IDENTITYCARD).ToLower());
-                        _paramChart["BackgroundColor"]  = ((_i % 2) == 0 ?_backgroundColor1 : _backgroundColor2);
-                        _paramChart["Title"]            = (UDSStaffUtil._documentUpload[2, 0] + "<br />" + UDSStaffUtil._documentUpload[2, 1]);
+                        _paramChart["RenderTo"] = ("chart-" + (UDSStaffUtil.SUBJECT_SECTION_DOCUMENTSTATUSSTUDENT + "-" + UDSStaffUtil.SUBJECT_SECTION_IDENTITYCARD).ToLower());
+                        _paramChart["BackgroundColor"] = ((_i % 2) == 0 ?_backgroundColor1 : _backgroundColor2);
+                        _paramChart["Title"] = (UDSStaffUtil._documentUpload[2, 0] + "<br />" + UDSStaffUtil._documentUpload[2, 1]);
                         GetChart("pie", _paramChart, _ds, 4, 5, 6);
                         _html.AppendLine(GetListRow(_i).ToString());
                         _i++;
 
-                        _paramChart["RenderTo"]         = ("chart-" + (UDSStaffUtil.SUBJECT_SECTION_DOCUMENTSTATUSSTUDENT + "-" + UDSStaffUtil.SUBJECT_SECTION_TRANSCRIPTFRONTSIDE).ToLower());
-                        _paramChart["BackgroundColor"]  = ((_i % 2) == 0 ?_backgroundColor1 : _backgroundColor2);
-                        _paramChart["Title"]            = (UDSStaffUtil._documentUpload[4, 0] + "<br />" + UDSStaffUtil._documentUpload[4, 1]);
+                        _paramChart["RenderTo"] = ("chart-" + (UDSStaffUtil.SUBJECT_SECTION_DOCUMENTSTATUSSTUDENT + "-" + UDSStaffUtil.SUBJECT_SECTION_TRANSCRIPTFRONTSIDE).ToLower());
+                        _paramChart["BackgroundColor"] = ((_i % 2) == 0 ?_backgroundColor1 : _backgroundColor2);
+                        _paramChart["Title"] = (UDSStaffUtil._documentUpload[4, 0] + "<br />" + UDSStaffUtil._documentUpload[4, 1]);
                         GetChart("pie", _paramChart, _ds, 7, 8, 9);
                         _html.AppendLine(GetListRow(_i).ToString());
                         _i++;
 
-                        _paramChart["RenderTo"]         = ("chart-" + (UDSStaffUtil.SUBJECT_SECTION_DOCUMENTSTATUSSTUDENT + "-" + UDSStaffUtil.SUBJECT_SECTION_TRANSCRIPTBACKSIDE).ToLower());
-                        _paramChart["BackgroundColor"]  = ((_i % 2) == 0 ?_backgroundColor1 : _backgroundColor2);
-                        _paramChart["Title"]            = (UDSStaffUtil._documentUpload[5, 0] + "<br />" + UDSStaffUtil._documentUpload[5, 1]);
+                        _paramChart["RenderTo"] = ("chart-" + (UDSStaffUtil.SUBJECT_SECTION_DOCUMENTSTATUSSTUDENT + "-" + UDSStaffUtil.SUBJECT_SECTION_TRANSCRIPTBACKSIDE).ToLower());
+                        _paramChart["BackgroundColor"] = ((_i % 2) == 0 ?_backgroundColor1 : _backgroundColor2);
+                        _paramChart["Title"] = (UDSStaffUtil._documentUpload[5, 0] + "<br />" + UDSStaffUtil._documentUpload[5, 1]);
                         GetChart("pie", _paramChart, _ds, 10, 11, 12);
                         _html.AppendLine(GetListRow(_i).ToString());
 
@@ -406,9 +392,6 @@ public class UDSStaffOurServicesUI
                     return _html;
                 }
 
-                //ฟังก์ชั่นสำหรับแสดงรายการในแถว แล้วส่งค่ากลับเป็น StringBuilder
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _row   เป็น int รับค่าลำดับแถว
                 private static StringBuilder GetListRow(int _row)
                 {
                     StringBuilder _html = new StringBuilder();
@@ -418,16 +401,8 @@ public class UDSStaffOurServicesUI
                     _html.AppendLine("  </div>");
 
                     return _html;
-                }                
+                }
                 
-                //ฟังก์ชั่นสำหรับแสดงแผนภูมิ
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _type          เป็น string รับค่าประเภทของแผนภูมิ
-                //2. _paramChart    เป็น Dictionary<string, object> รับค่าพารามิเตอร์สำหร้บสร้างแผนภูมิ
-                //2. _ds            เป็น DataSet รับค่าชุดของข้อมูล
-                //3. _tbChart1         เป็น int รับค่าลำดับของตารางที่ 1 สำหรับสร้างแผนภูมิ
-                //4. _tbChart2         เป็น int รับค่าลำดับของตารางที่ 2 สำหรับสร้างแผนภูมิ
-                //5. _tbChart3         เป็น int รับค่าลำดับของตารางที่ 3 สำหรับสร้างแผนภูมิ
                 private static void GetChart(string _type, Dictionary<string, object> _paramChart, DataSet _ds, int _tbChart1, int _tbChart2, int _tbChart3)
                 {
                     List<object> _level1SeriesName = new List<object>();
@@ -564,47 +539,47 @@ public class UDSStaffOurServicesUI
                             _level2SeriesDataDrillDown.Add(_seriesDrillDownTemp2);
                         }
 
-                        Util.ChartUtil.Type                         = _type;
-                        Util.ChartUtil.RenderTo                     = _paramChart["RenderTo"].ToString().ToLower();
-                        Util.ChartUtil.BackgroundColor              = _paramChart["BackgroundColor"].ToString();
-                        Util.ChartUtil.Title                        = _paramChart["Title"].ToString();
-                        Util.ChartUtil.LegendTitle                  = _paramChart["LegendTitle"].ToString();
-                        Util.ChartUtil.Level1XAxisTitle             = "";
-                        Util.ChartUtil.Level1YAxisTitle             = _paramChart["Level1YAxisTitle"].ToString();
-                        Util.ChartUtil.Level1SeriesName             = _level1SeriesName;
-                        Util.ChartUtil.Level1SeriesColor            = _level1SeriesColor;
-                        Util.ChartUtil.Level1SeriesColorByPoint     = false;
-                        Util.ChartUtil.Level1SeriesDataName         = _level1SeriesDataName;
-                        Util.ChartUtil.Level1SeriesDataColor        = _level1SeriesDataColor;
-                        Util.ChartUtil.Level1SeriesDataValue        = _level1SeriesDataValue;
-                        Util.ChartUtil.Level1SeriesDataDrillDown    = _level1SeriesDataDrillDown;
-                        Util.ChartUtil.Level2XAxisTitle             = "";
-                        Util.ChartUtil.Level2YAxisTitle             = _paramChart["Level2YAxisTitle"].ToString();
-                        Util.ChartUtil.Level2SeriesId               = _level2SeriesId;
-                        Util.ChartUtil.Level2SeriesName             = _level2SeriesName;
-                        Util.ChartUtil.Level2SeriesColorByPoint     = false;
-                        Util.ChartUtil.Level2SeriesDataName         = _level2SeriesDataName;
-                        Util.ChartUtil.Level2SeriesDataColor        = _level2SeriesDataColor;
-                        Util.ChartUtil.Level2SeriesDataValue        = _level2SeriesDataValue;
-                        Util.ChartUtil.Level2SeriesDataDrillDown    = _level2SeriesDataDrillDown;
-                        Util.ChartUtil.Level3XAxisTitle             = "";
-                        Util.ChartUtil.Level3YAxisTitle             = _paramChart["Level3YAxisTitle"].ToString();
-                        Util.ChartUtil.Level3SeriesId               = _level3SeriesId;
-                        Util.ChartUtil.Level3SeriesName             = _level3SeriesName;
-                        Util.ChartUtil.Level3SeriesColorByPoint     = false;
-                        Util.ChartUtil.Level3SeriesDataName         = _level3SeriesDataName;
-                        Util.ChartUtil.Level3SeriesDataColor        = _level3SeriesDataColor;
-                        Util.ChartUtil.Level3SeriesDataValue        = _level3SeriesDataValue;
-                        Util.ChartUtil.Level3SeriesDataDrillDown    = _level3SeriesDataDrillDown;
-                        Util.ChartUtil.Level4XAxisTitle             = "";
-                        Util.ChartUtil.Level4YAxisTitle             = "";
-                        Util.ChartUtil.Level4SeriesId               = new List<object>();
-                        Util.ChartUtil.Level4SeriesName             = new List<object>();
-                        Util.ChartUtil.Level4SeriesColorByPoint     = false;
-                        Util.ChartUtil.Level4SeriesDataName         = new List<object>();
-                        Util.ChartUtil.Level4SeriesDataColor        = new List<object>();
-                        Util.ChartUtil.Level4SeriesDataValue        = new List<object>();
-                        Util.ChartUtil.Level4SeriesDataDrillDown    = new List<object>();
+                        Util.ChartUtil.Type = _type;
+                        Util.ChartUtil.RenderTo = _paramChart["RenderTo"].ToString().ToLower();
+                        Util.ChartUtil.BackgroundColor = _paramChart["BackgroundColor"].ToString();
+                        Util.ChartUtil.Title = _paramChart["Title"].ToString();
+                        Util.ChartUtil.LegendTitle = _paramChart["LegendTitle"].ToString();
+                        Util.ChartUtil.Level1XAxisTitle = "";
+                        Util.ChartUtil.Level1YAxisTitle = _paramChart["Level1YAxisTitle"].ToString();
+                        Util.ChartUtil.Level1SeriesName = _level1SeriesName;
+                        Util.ChartUtil.Level1SeriesColor = _level1SeriesColor;
+                        Util.ChartUtil.Level1SeriesColorByPoint = false;
+                        Util.ChartUtil.Level1SeriesDataName = _level1SeriesDataName;
+                        Util.ChartUtil.Level1SeriesDataColor = _level1SeriesDataColor;
+                        Util.ChartUtil.Level1SeriesDataValue = _level1SeriesDataValue;
+                        Util.ChartUtil.Level1SeriesDataDrillDown = _level1SeriesDataDrillDown;
+                        Util.ChartUtil.Level2XAxisTitle = "";
+                        Util.ChartUtil.Level2YAxisTitle = _paramChart["Level2YAxisTitle"].ToString();
+                        Util.ChartUtil.Level2SeriesId = _level2SeriesId;
+                        Util.ChartUtil.Level2SeriesName = _level2SeriesName;
+                        Util.ChartUtil.Level2SeriesColorByPoint = false;
+                        Util.ChartUtil.Level2SeriesDataName = _level2SeriesDataName;
+                        Util.ChartUtil.Level2SeriesDataColor = _level2SeriesDataColor;
+                        Util.ChartUtil.Level2SeriesDataValue = _level2SeriesDataValue;
+                        Util.ChartUtil.Level2SeriesDataDrillDown = _level2SeriesDataDrillDown;
+                        Util.ChartUtil.Level3XAxisTitle = "";
+                        Util.ChartUtil.Level3YAxisTitle = _paramChart["Level3YAxisTitle"].ToString();
+                        Util.ChartUtil.Level3SeriesId = _level3SeriesId;
+                        Util.ChartUtil.Level3SeriesName = _level3SeriesName;
+                        Util.ChartUtil.Level3SeriesColorByPoint = false;
+                        Util.ChartUtil.Level3SeriesDataName = _level3SeriesDataName;
+                        Util.ChartUtil.Level3SeriesDataColor = _level3SeriesDataColor;
+                        Util.ChartUtil.Level3SeriesDataValue = _level3SeriesDataValue;
+                        Util.ChartUtil.Level3SeriesDataDrillDown = _level3SeriesDataDrillDown;
+                        Util.ChartUtil.Level4XAxisTitle = "";
+                        Util.ChartUtil.Level4YAxisTitle = "";
+                        Util.ChartUtil.Level4SeriesId = new List<object>();
+                        Util.ChartUtil.Level4SeriesName = new List<object>();
+                        Util.ChartUtil.Level4SeriesColorByPoint = false;
+                        Util.ChartUtil.Level4SeriesDataName = new List<object>();
+                        Util.ChartUtil.Level4SeriesDataColor = new List<object>();
+                        Util.ChartUtil.Level4SeriesDataValue = new List<object>();
+                        Util.ChartUtil.Level4SeriesDataDrillDown = new List<object>();
                     }
                 }
             }
@@ -612,26 +587,26 @@ public class UDSStaffOurServicesUI
 
         public class ViewTableUI
         {
-            private static string _idSectionMain            = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTVIEWTABLE_MAIN.ToLower();
-            private static string _idSectionLevel1Main      = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLE_MAIN.ToLower();
-            private static string _idSectionLevel1Preview   = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLE_PREVIEW.ToLower();
-            private static string _idSectionLevel1Progress  = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLE_PROGRESS.ToLower();
+            private static string _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTVIEWTABLE_MAIN.ToLower();
+            private static string _idSectionLevel1Main = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLE_MAIN.ToLower();
+            private static string _idSectionLevel1Preview = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLE_PREVIEW.ToLower();
+            private static string _idSectionLevel1Progress = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLE_PROGRESS.ToLower();
 
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาตามส่วนที่ต้องการแสดงในส่วนของสถานะเอกสารของนักศึกษามุมมองตาราง แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _infoLogin     เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-            //2. _section       เป็น string รับค่าส่วนที่ต้องการแสดง
-            //3. _sectionAction เป็น string รับค่าการกระทำที่เกิดขึ้นกับส่วนที่ต้องการแสดง
-            //4. _id            เป็น string รับค่ารหัสที่ต้องการ
             public static StringBuilder GetSection(Dictionary<string, object> _infoLogin, string _section, string _sectionAction, string _id)
             {
                 StringBuilder _html = new StringBuilder();
 
                 switch (_section)
                 {
-                    case "MAIN"                 : { _html.AppendLine(SectionMainUI.GetMain(UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLE_MAIN).ToString()); break; }
-                    case "PREVIEW"              : { _html = SectionPreviewUI.GetMain(_sectionAction, _id); break; }
-                    case "LEVEL1PROGRESSEXPORT" : { _html = UDSStaffUI.GetFrmProgressExportData(UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLE_PROGRESS, _idSectionLevel1Progress); break; }
+                    case "MAIN":
+                        _html.AppendLine(SectionMainUI.GetMain(UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLE_MAIN).ToString());
+                        break;
+                    case "PREVIEW":
+                        _html = SectionPreviewUI.GetMain(_sectionAction, _id);
+                        break;
+                    case "LEVEL1PROGRESSEXPORT":
+                        _html = UDSStaffUI.GetFrmProgressExportData(UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLE_PROGRESS, _idSectionLevel1Progress);
+                        break;
                 }
 
                 return _html;
@@ -639,9 +614,6 @@ public class UDSStaffOurServicesUI
 
             public class SectionMainUI
             {
-                //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าหลักในส่วนของสถานะเอกสารของนักศึกษามุมมองตารางแต่ละชั้น แล้วส่งค่ากลับเป็น StringBuilder
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _page เป็น string รับค่าชื่อชั้น
                 public static StringBuilder GetMain(string _page)
                 {
                     Dictionary<string, object> _searchResult = new Dictionary<string, object>();
@@ -655,13 +627,14 @@ public class UDSStaffOurServicesUI
 
                     if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLE_MAIN))
                     {
-                        _idMain     = _idSectionLevel1Main;
-                        _idPreview  = _idSectionLevel1Preview;
-                        _sublevel   = false;
+                        _idMain = _idSectionLevel1Main;
+                        _idPreview = _idSectionLevel1Preview;
+                        _sublevel = false;
                     
                         if (_cookieError.Equals(0))
                         {
                             HttpCookie _objCookie = Util.GetCookie(UDSStaffUtil._myParamSearchCookieName);
+
                             if (_objCookie["Command"].Equals(UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENT_MAIN))
                             {
                                 _show = true;
@@ -701,8 +674,8 @@ public class UDSStaffOurServicesUI
                     if (_sublevel.Equals(true))
                         _html.AppendLine("                      <span class='th-label link-click link-goback'>Go Back |</span>");
 
-                    _html.AppendFormat("                        <span class='recordcount-search hidden'>{0}</span>",                (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
-                    _html.AppendFormat("                        <span class='recordcountprimary-search th-label'>{0}</span>",       (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
+                    _html.AppendFormat("                        <span class='recordcount-search hidden'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
+                    _html.AppendFormat("                        <span class='recordcountprimary-search th-label'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
                     _html.AppendLine("                      </div>");                        
                     _html.AppendLine("                  </div>");
                     _html.AppendLine("                  <div class='clear'></div>");
@@ -761,11 +734,6 @@ public class UDSStaffOurServicesUI
                     return _html;
                 }
 
-                //ฟังก์ชั่นสำหรับแสดงข้อมูลสถานะเอกสารของนักศึกษามุมมองตารางแต่ละชั้น แล้วส่งค่ากลับเป็น StringBuilder
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _page      เป็น string รับค่าชื่อหน้า
-                //2. _infoLogin เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-                //3. _dr        เป็น DataRow[] รับค่าชุดของข้อมูล
                 public static StringBuilder GetList(string _page, Dictionary<string, object> _infoLogin, DataRow[] _dr)
                 {
                     StringBuilder _html = new StringBuilder();
@@ -779,8 +747,8 @@ public class UDSStaffOurServicesUI
 
                     if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLE_MAIN))
                     {
-                        _idMain     = _idSectionLevel1Main;
-                        _idPreview  = _idSectionLevel1Preview;
+                        _idMain = _idSectionLevel1Main;
+                        _idPreview = _idSectionLevel1Preview;
                     }
 
                     if (_dr.GetLength(0) > 0)
@@ -789,43 +757,43 @@ public class UDSStaffOurServicesUI
 
                         foreach (DataRow _dr1 in _dr)
                         {                            
-                            _approvalStatus  = String.Empty;
-                            _iconApprove     = String.Empty;
+                            _approvalStatus = String.Empty;
+                            _iconApprove = String.Empty;
 
-                            _documentUpload  = UDSStaffUtil._documentUpload[1, 2].ToLower();
-                            _approvalStatus  = _dr1[_documentUpload + "ApprovalStatus"].ToString();
-                            _iconApprove    += ("<div class='" + _documentUpload + "-approvalstatus uploaddocument-approvalstatus " + UDSStaffUtil.GetIconApprovalStatus(_approvalStatus) + " link-" + UDSStaffUtil.SUBJECT_SECTION_MEANINGOFAPPROVALSTATUS.ToLower() + "'><div class='en-label'>" + UDSStaffUtil._documentUpload[1, 3] + "</div></div>");
+                            _documentUpload = UDSStaffUtil._documentUpload[1, 2].ToLower();
+                            _approvalStatus = _dr1[_documentUpload + "ApprovalStatus"].ToString();
+                            _iconApprove += ("<div class='" + _documentUpload + "-approvalstatus uploaddocument-approvalstatus " + UDSStaffUtil.GetIconApprovalStatus(_approvalStatus) + " link-" + UDSStaffUtil.SUBJECT_SECTION_MEANINGOFAPPROVALSTATUS.ToLower() + "'><div class='en-label'>" + UDSStaffUtil._documentUpload[1, 3] + "</div></div>");
                                                      
-                            _documentUpload  = UDSStaffUtil._documentUpload[2, 2].ToLower();
-                            _approvalStatus  = _dr1[_documentUpload + "ApprovalStatus"].ToString();
-                            _iconApprove    += ("<div class='" + _documentUpload + "-approvalstatus uploaddocument-approvalstatus " + UDSStaffUtil.GetIconApprovalStatus(_approvalStatus) + " link-" + UDSStaffUtil.SUBJECT_SECTION_MEANINGOFAPPROVALSTATUS.ToLower() + "'><div class='en-label'>" + UDSStaffUtil._documentUpload[2, 3] + "</div></div>");
+                            _documentUpload = UDSStaffUtil._documentUpload[2, 2].ToLower();
+                            _approvalStatus = _dr1[_documentUpload + "ApprovalStatus"].ToString();
+                            _iconApprove += ("<div class='" + _documentUpload + "-approvalstatus uploaddocument-approvalstatus " + UDSStaffUtil.GetIconApprovalStatus(_approvalStatus) + " link-" + UDSStaffUtil.SUBJECT_SECTION_MEANINGOFAPPROVALSTATUS.ToLower() + "'><div class='en-label'>" + UDSStaffUtil._documentUpload[2, 3] + "</div></div>");
 
-                            _documentUpload  = UDSStaffUtil._documentUpload[4, 2].ToLower();
-                            _approvalStatus  = _dr1[_documentUpload + "ApprovalStatus"].ToString();
-                            _iconApprove    += ("<div class='" + _documentUpload + "-approvalstatus uploaddocument-approvalstatus " + UDSStaffUtil.GetIconApprovalStatus(_approvalStatus) + " link-" + UDSStaffUtil.SUBJECT_SECTION_MEANINGOFAPPROVALSTATUS.ToLower() + "'><div class='en-label'>" + UDSStaffUtil._documentUpload[4, 3] + "</div></div>");
+                            _documentUpload = UDSStaffUtil._documentUpload[4, 2].ToLower();
+                            _approvalStatus = _dr1[_documentUpload + "ApprovalStatus"].ToString();
+                            _iconApprove += ("<div class='" + _documentUpload + "-approvalstatus uploaddocument-approvalstatus " + UDSStaffUtil.GetIconApprovalStatus(_approvalStatus) + " link-" + UDSStaffUtil.SUBJECT_SECTION_MEANINGOFAPPROVALSTATUS.ToLower() + "'><div class='en-label'>" + UDSStaffUtil._documentUpload[4, 3] + "</div></div>");
 
-                            _documentUpload  = UDSStaffUtil._documentUpload[5, 2].ToLower();
-                            _approvalStatus  = _dr1[_documentUpload + "ApprovalStatus"].ToString();
-                            _iconApprove    += ("<div class='" + _documentUpload + "-approvalstatus uploaddocument-approvalstatus " + UDSStaffUtil.GetIconApprovalStatus(_approvalStatus) + " link-" + UDSStaffUtil.SUBJECT_SECTION_MEANINGOFAPPROVALSTATUS.ToLower() + "'><div class='en-label'>" + UDSStaffUtil._documentUpload[5, 3] + "</div></div>");
+                            _documentUpload = UDSStaffUtil._documentUpload[5, 2].ToLower();
+                            _approvalStatus = _dr1[_documentUpload + "ApprovalStatus"].ToString();
+                            _iconApprove += ("<div class='" + _documentUpload + "-approvalstatus uploaddocument-approvalstatus " + UDSStaffUtil.GetIconApprovalStatus(_approvalStatus) + " link-" + UDSStaffUtil.SUBJECT_SECTION_MEANINGOFAPPROVALSTATUS.ToLower() + "'><div class='en-label'>" + UDSStaffUtil._documentUpload[5, 3] + "</div></div>");
 
-                            _highlight  = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";                
-                            _callFunc   = "Util.tut.getFrmPreviewDocument({" +
-                                          "page:'" + UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLEPROFILEPICTUREIDENTITYCARD_PREVIEW + "'," +
-                                          "idMain:'" + _idMain + "'," +
-                                          "idPreview:'" + _idPreview + "'," +
-                                          "data:'" + _dr1["id"] + "'" + 
-                                          "},function(){})";
+                            _highlight = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";                
+                            _callFunc = "Util.tut.getFrmPreviewDocument({" +
+                                        "page:'" + UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLEPROFILEPICTUREIDENTITYCARD_PREVIEW + "'," +
+                                        "idMain:'" + _idMain + "'," +
+                                        "idPreview:'" + _idPreview + "'," +
+                                        "data:'" + _dr1["id"] + "'" + 
+                                        "},function(){})";
 
                             _html.AppendFormat("<div class='table-row{0}' id='table-row-id-{1}'>", _highlight, _dr1["id"]);
-                            _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",            _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
+                            _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
                             _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col2' onclick={0}><div class='table-col-msg'><div><input class='checkbox select-child' type='checkbox' id='select-child-{1}' name='select-child' alt='select-root' value='{1}' /></div></div></div>", _callFunc, _dr1["id"].ToString());
-                            _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",            _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));                
-                            _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",          _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
-                            _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",            _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
-                            _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",            _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
-                            _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>",    UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
-                            _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>",    UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
-                            _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'>{0}</div></div>",                                                    _iconApprove);
+                            _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));                
+                            _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
+                            _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
+                            _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
+                            _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
+                            _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
+                            _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'>{0}</div></div>", _iconApprove);
                             _html.AppendLine("  </div>");
                         }
 
@@ -838,33 +806,29 @@ public class UDSStaffOurServicesUI
 
             public class SectionPreviewUI
             {
-                //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าตัวอย่างเอกสารในส่วนของสถานะเอกสารของนักศึกษามุมมองตาราง แล้วส่งค่ากลับเป็น StringBuilder
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _section   เป็น string รับค่าส่วนที่ต้องการแสดง
-                //2. _id        เป็น string รับค่ารหัสที่ตั้องการ
                 public static StringBuilder GetMain(string _section, string _id)
                 {
                     StringBuilder _html = new StringBuilder();
 
                     if (_section.Equals(UDSStaffUtil.SUBJECT_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLEPROFILEPICTUREIDENTITYCARD))
                     {
-                        UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._subjectSectionProfilePictureIdentityCard     = UDSStaffUtil.SUBJECT_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLEPROFILEPICTUREIDENTITYCARD;
-                        UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePictureIdentityCardPreview   = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLEPROFILEPICTUREIDENTITYCARD_PREVIEW.ToLower();
-                        UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePicturePreview               = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLEPROFILEPICTURE_PREVIEW.ToLower();
-                        UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionIdentityCardPreview                 = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLEIDENTITYCARD_PREVIEW.ToLower();
-                        UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._pageProfilePictureIdentityCardPreview        = UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLEPROFILEPICTUREIDENTITYCARD_PREVIEW;
+                        UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._subjectSectionProfilePictureIdentityCard = UDSStaffUtil.SUBJECT_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLEPROFILEPICTUREIDENTITYCARD;
+                        UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePictureIdentityCardPreview = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLEPROFILEPICTUREIDENTITYCARD_PREVIEW.ToLower();
+                        UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePicturePreview = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLEPROFILEPICTURE_PREVIEW.ToLower();
+                        UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionIdentityCardPreview = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLEIDENTITYCARD_PREVIEW.ToLower();
+                        UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._pageProfilePictureIdentityCardPreview = UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLEPROFILEPICTUREIDENTITYCARD_PREVIEW;
 
                         _html = UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI.GetMain(_id, false, false);
                     }
 
                     if (_section.Equals(UDSStaffUtil.SUBJECT_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLETRANSCRIPT))
                     {
-                        UDSStaffUI.PreviewDocumentUI.TranscriptUI._subjectSectionTranscript             = UDSStaffUtil.SUBJECT_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLETRANSCRIPT;
-                        UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptPreview           = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLETRANSCRIPT_PREVIEW.ToLower();
-                        UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptInstitutePreview  = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLETRANSCRIPTINSTITUTE_PREVIEW.ToLower();
-                        UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptFrontsidePreview  = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLETRANSCRIPTFRONTSIDE_PREVIEW.ToLower();
-                        UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptBacksidePreview   = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLETRANSCRIPTBACKSIDE_PREVIEW.ToLower();
-                        UDSStaffUI.PreviewDocumentUI.TranscriptUI._pageTranscriptPreview                = UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLETRANSCRIPT_PREVIEW;
+                        UDSStaffUI.PreviewDocumentUI.TranscriptUI._subjectSectionTranscript = UDSStaffUtil.SUBJECT_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLETRANSCRIPT;
+                        UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptPreview = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLETRANSCRIPT_PREVIEW.ToLower();
+                        UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptInstitutePreview = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLETRANSCRIPTINSTITUTE_PREVIEW.ToLower();
+                        UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptFrontsidePreview = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLETRANSCRIPTFRONTSIDE_PREVIEW.ToLower();
+                        UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptBacksidePreview = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLETRANSCRIPTBACKSIDE_PREVIEW.ToLower();
+                        UDSStaffUI.PreviewDocumentUI.TranscriptUI._pageTranscriptPreview = UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLETRANSCRIPT_PREVIEW;
 
                         _html = UDSStaffUI.PreviewDocumentUI.TranscriptUI.GetMain(_id, false, false);
                     }
@@ -877,27 +841,29 @@ public class UDSStaffOurServicesUI
     
     public class ExportProfilePictureApprovedUI
     {
-        private static string _idSectionMain        = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_MAIN.ToLower();
-        private static string _idSectionSearch      = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_SEARCH.ToLower();
-        private static string _idSectionPreview     = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_PREVIEW.ToLower();
-        private static string _idSectionProgress    = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_PROGRESS.ToLower();
+        private static string _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_MAIN.ToLower();
+        private static string _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_SEARCH.ToLower();
+        private static string _idSectionPreview = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_PREVIEW.ToLower();
+        private static string _idSectionProgress = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_PROGRESS.ToLower();
         
-        //ฟังก์ชั่นสำหรับแสดงเนื้อหาตามส่วนที่ต้องการแสดงในส่วนของการส่งออกรุปภาพประจำตัวที่ผ่านการอนุมัติ แล้วส่งค่ากลับเป็น StringBuilder
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _infoLogin     เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-        //2. _section       เป็น string รับค่าส่วนที่ต้องการแสดง
-        //3. _sectionAction เป็น string รับค่าการกระทำที่เกิดขึ้นกับส่วนที่ต้องการแสดง
-        //4. _id            เป็น string รับค่ารหัสที่ต้องการ
         public static StringBuilder GetSection(Dictionary<string, object> _infoLogin, string _section, string _sectionAction, string _id)
         {
             StringBuilder _html = new StringBuilder();
 
             switch (_section)
             {
-                case "MAIN"             : { _html = SectionMainUI.GetMain(); break; }
-                case "SEARCH"           : { _html = SectionSearchUI.GetMain(); break; }
-                case "PREVIEW"          : { _html = SectionPreviewUI.GetMain(_sectionAction, _id); break; }
-                case "PROGRESSEXPORT"   : { _html = UDSStaffUI.GetFrmProgressExportData(UDSStaffUtil.PAGE_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_PROGRESS, _idSectionProgress); break; }   
+                case "MAIN":
+                    _html = SectionMainUI.GetMain();
+                    break;
+                case "SEARCH":
+                    _html = SectionSearchUI.GetMain();
+                    break;
+                case "PREVIEW":
+                    _html = SectionPreviewUI.GetMain(_sectionAction, _id);
+                    break;
+                case "PROGRESSEXPORT":
+                    _html = UDSStaffUI.GetFrmProgressExportData(UDSStaffUtil.PAGE_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_PROGRESS, _idSectionProgress);
+                    break;
             }
 
             return _html;
@@ -905,7 +871,6 @@ public class UDSStaffOurServicesUI
         
         public class SectionMainUI
         {
-            //ฟังก์ชั่นสำหรับแสดงหน้าหาหน้าหลักในส่วนของการส่งออกรุปภาพประจำตัวที่ผ่านการอนุมัติ แล้วส่งค่ากลับเป็น StringBuilder
             public static StringBuilder GetMain()
             {
                 Dictionary<string, object> _infoData = new Dictionary<string, object>();
@@ -946,8 +911,8 @@ public class UDSStaffOurServicesUI
                 _html.AppendLine("                              </div>");
                 _html.AppendLine("                          </div>");
                 _html.AppendLine("                          <div class='contentbody-right table-recordcount en-label'>");
-                _html.AppendFormat("                            <span class='recordcount-search hidden'>{0}</span>",            (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
-                _html.AppendFormat("                            <span class='recordcountprimary-search th-label'>{0}</span>",   (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
+                _html.AppendFormat("                            <span class='recordcount-search hidden'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
+                _html.AppendFormat("                            <span class='recordcountprimary-search th-label'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
                 _html.AppendLine("                          </div>");
                 _html.AppendLine("                      </div>");
                 _html.AppendLine("                      <div class='clear'></div>");
@@ -988,10 +953,6 @@ public class UDSStaffOurServicesUI
                 return _html;
             }
 
-            //ฟังก์ชั่นสำหรับแสดงรายการในส่วนของการส่งออกรุปภาพประจำตัวที่ผ่านการอนุมัติ แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _infoLogin เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-            //2. _dr        เป็น DataRow[] รับค่าชุดของข้อมูล
             public static StringBuilder GetList(Dictionary<string, object> _infoLogin, DataRow[] _dr)
             {
                 StringBuilder _html = new StringBuilder();
@@ -1006,25 +967,25 @@ public class UDSStaffOurServicesUI
 
                     foreach (DataRow _dr1 in _dr)
                     {
-                        _highlight  = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";
-                        _callFunc   = "Util.tut.getFrmPreviewDocument({" +
-                                      "page:'" + UDSStaffUtil.PAGE_OURSERVICESEXPORTPROFILEPICTUREAPPROVEDPROFILEPICTURE_PREVIEW + "'," +
-                                      "idMain:'" + _idSectionMain + "'," +
-                                      "idPreview:'" + _idSectionPreview + "'," +
-                                      "data:'" + _dr1["id"] + "'" +
-                                      "},function(){})";                     
+                        _highlight = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";
+                        _callFunc = "Util.tut.getFrmPreviewDocument({" +
+                                    "page:'" + UDSStaffUtil.PAGE_OURSERVICESEXPORTPROFILEPICTUREAPPROVEDPROFILEPICTURE_PREVIEW + "'," +
+                                    "idMain:'" + _idSectionMain + "'," +
+                                    "idPreview:'" + _idSectionPreview + "'," +
+                                    "data:'" + _dr1["id"] + "'" +
+                                    "},function(){})";                     
 
                         _html.AppendFormat("<div class='table-row{0}' id='table-row-id-{1}'>", _highlight, _dr1["id"]);
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col2' onclick={0}><div class='table-col-msg'><div><input class='checkbox select-child' type='checkbox' id='select-child-{1}' name='select-child' alt='select-root' value='{1}' /></div></div></div>", _callFunc, _dr1["id"].ToString());
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));                
-                        _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",  _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["facultyCode"].ToString()) ? _dr1["facultyCode"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>",    UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>",    UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col10' onclick={0}><div class='table-col-msg'><div class='th-label table-col-exportdate'>{1}</div></div></div>",  _callFunc, (!String.IsNullOrEmpty(_dr1["profilepictureExportDate"].ToString()) ? DateTime.Parse(_dr1["profilepictureExportDate"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));                
+                        _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["facultyCode"].ToString()) ? _dr1["facultyCode"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col10' onclick={0}><div class='table-col-msg'><div class='th-label table-col-exportdate'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["profilepictureExportDate"].ToString()) ? DateTime.Parse(_dr1["profilepictureExportDate"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") : String.Empty));
                         _html.AppendLine("  </div>");
                     }
 
@@ -1037,7 +998,6 @@ public class UDSStaffOurServicesUI
 
         public class SectionSearchUI
         {
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าค้นหาในส่วนของการส่งออกรุปภาพประจำตัวที่ผ่านการอนุมัติ แล้วส่งค่ากลับเป็น StringBuilder
             public static StringBuilder GetMain()
             {
                 StringBuilder _html = new StringBuilder();
@@ -1222,21 +1182,17 @@ public class UDSStaffOurServicesUI
         
         public class SectionPreviewUI
         {
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าตัวอย่างเอกสารในส่วนของการส่งออกรุปภาพประจำตัวที่ผ่านการอนุมัติ แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _section   เป็น string รับค่าส่วนที่ต้องการแสดง
-            //2. _id        เป็น string รับค่ารหัสที่ตั้องการ
             public static StringBuilder GetMain(string _section, string _id)
             {
                 StringBuilder _html = new StringBuilder();
 
                 if (_section.Equals(UDSStaffUtil.SUBJECT_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVEDPROFILEPICTURE))
                 {
-                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._subjectSectionProfilePictureIdentityCard     = UDSStaffUtil.SUBJECT_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVEDPROFILEPICTURE;
-                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePictureIdentityCardPreview   = "";
-                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePicturePreview               = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVEDPROFILEPICTURE_PREVIEW.ToLower();                                                                                                                          
-                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionIdentityCardPreview                 = "";
-                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._pageProfilePictureIdentityCardPreview        = UDSStaffUtil.PAGE_OURSERVICESEXPORTPROFILEPICTUREAPPROVEDPROFILEPICTURE_PREVIEW;
+                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._subjectSectionProfilePictureIdentityCard = UDSStaffUtil.SUBJECT_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVEDPROFILEPICTURE;
+                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePictureIdentityCardPreview = "";
+                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePicturePreview = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVEDPROFILEPICTURE_PREVIEW.ToLower();                                                                                                                          
+                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionIdentityCardPreview = "";
+                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._pageProfilePictureIdentityCardPreview = UDSStaffUtil.PAGE_OURSERVICESEXPORTPROFILEPICTUREAPPROVEDPROFILEPICTURE_PREVIEW;
 
                     _html = UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI.GetMain(_id, false, false);
                 }
@@ -1248,27 +1204,29 @@ public class UDSStaffOurServicesUI
 
     public class ExportStudentRecordsInformationForSmartCardUI
     {
-        private static string _idSectionMain        = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_MAIN.ToLower();
-        private static string _idSectionSearch      = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_SEARCH.ToLower();
-        private static string _idSectionPreview     = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PREVIEW.ToLower();
-        private static string _idSectionProgress    = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PROGRESS.ToLower();
+        private static string _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_MAIN.ToLower();
+        private static string _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_SEARCH.ToLower();
+        private static string _idSectionPreview = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PREVIEW.ToLower();
+        private static string _idSectionProgress = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PROGRESS.ToLower();
         
-        //ฟังก์ชั่นสำหรับแสดงเนื้อหาตามส่วนที่ต้องการแสดงในส่วนของการส่งออกข้อมูลนักศึกษาสำหรับทำบัตรนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _infoLogin     เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-        //2. _section       เป็น string รับค่าส่วนที่ต้องการแสดง
-        //3. _sectionAction เป็น string รับค่าการกระทำที่เกิดขึ้นกับส่วนที่ต้องการแสดง
-        //4. _id            เป็น string รับค่ารหัสที่ต้องการ
         public static StringBuilder GetSection(Dictionary<string, object> _infoLogin, string _section, string _sectionAction, string _id)
         {
             StringBuilder _html = new StringBuilder();
 
             switch (_section)
             {
-                case "MAIN"             : { _html = SectionMainUI.GetMain(); break; }
-                case "SEARCH"           : { _html = SectionSearchUI.GetMain(); break; }
-                case "PREVIEW"          : { _html = SectionPreviewUI.GetMain(_sectionAction, _id); break; }
-                case "PROGRESSEXPORT"   : { _html = UDSStaffUI.GetFrmProgressExportData(UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PROGRESS, _idSectionProgress); break; }   
+                case "MAIN":
+                    _html = SectionMainUI.GetMain();
+                    break;
+                case "SEARCH":
+                    _html = SectionSearchUI.GetMain();
+                    break;
+                case "PREVIEW":
+                    _html = SectionPreviewUI.GetMain(_sectionAction, _id);
+                    break;
+                case "PROGRESSEXPORT":
+                    _html = UDSStaffUI.GetFrmProgressExportData(UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PROGRESS, _idSectionProgress);
+                    break;
             }
 
             return _html;
@@ -1276,7 +1234,6 @@ public class UDSStaffOurServicesUI
 
         public class SectionMainUI
         {
-            //ฟังก์ชั่นสำหรับแสดงหน้าหาหน้าหลักในส่วนของการส่งออกข้อมูลนักศึกษาสำหรับทำบัตรนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
             public static StringBuilder GetMain()
             {
                 Dictionary<string, object> _infoData = new Dictionary<string, object>();
@@ -1317,8 +1274,8 @@ public class UDSStaffOurServicesUI
                 _html.AppendLine("                              </div>");
                 _html.AppendLine("                          </div>");
                 _html.AppendLine("                          <div class='contentbody-right table-recordcount en-label'>");
-                _html.AppendFormat("                            <span class='recordcount-search hidden'>{0}</span>",            (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
-                _html.AppendFormat("                            <span class='recordcountprimary-search th-label'>{0}</span>",   (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
+                _html.AppendFormat("                            <span class='recordcount-search hidden'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
+                _html.AppendFormat("                            <span class='recordcountprimary-search th-label'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
                 _html.AppendLine("                          </div>");
                 _html.AppendLine("                      </div>");
                 _html.AppendLine("                      <div class='clear'></div>");
@@ -1357,11 +1314,7 @@ public class UDSStaffOurServicesUI
 
                 return _html;
             }
-
-            //ฟังก์ชั่นสำหรับแสดงรายการในส่วนของการส่งออกข้อมูลนักศึกษาสำหรับทำบัตรนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _infoLogin เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-            //2. _dr        เป็น DataRow[] รับค่าชุดของข้อมูล
+            
             public static StringBuilder GetList(Dictionary<string, object> _infoLogin, DataRow[] _dr)
             {
                 StringBuilder _html = new StringBuilder();
@@ -1376,24 +1329,24 @@ public class UDSStaffOurServicesUI
 
                     foreach (DataRow _dr1 in _dr)
                     {
-                        _highlight  = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";
-                        _callFunc   = "Util.tut.getFrmPreviewDocument({" +
-                                      "page:'" + UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARDPROFILEPICTURE_PREVIEW + "'," +
-                                      "idMain:'" + _idSectionMain + "'," +
-                                      "idPreview:'" + _idSectionPreview + "'," +
-                                      "data:'" + _dr1["id"] + "'" +
-                                      "},function(){})";                     
+                        _highlight = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";
+                        _callFunc = "Util.tut.getFrmPreviewDocument({" +
+                                    "page:'" + UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARDPROFILEPICTURE_PREVIEW + "'," +
+                                    "idMain:'" + _idSectionMain + "'," +
+                                    "idPreview:'" + _idSectionPreview + "'," +
+                                    "data:'" + _dr1["id"] + "'" +
+                                    "},function(){})";
 
                         _html.AppendFormat("<div class='table-row{0}' id='table-row-id-{1}'>", _highlight, _dr1["id"]);
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col2' onclick={0}><div class='table-col-msg'><div><input class='checkbox select-child' type='checkbox' id='select-child-{1}' name='select-child' alt='select-root' value='{1}' /></div></div></div>", _callFunc, _dr1["id"].ToString());
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));                
-                        _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",  _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["facultyCode"].ToString()) ? _dr1["facultyCode"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>",    UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>",    UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));                
+                        _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["facultyCode"].ToString()) ? _dr1["facultyCode"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
                         _html.AppendLine("  </div>");
                     }
 
@@ -1576,23 +1529,19 @@ public class UDSStaffOurServicesUI
 
         public class SectionPreviewUI
         {
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าตัวอย่างเอกสารในส่วนของการส่งออกข้อมูลนักศึกษาสำหรับทำบัตรนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _section   เป็น string รับค่าส่วนที่ต้องการแสดง
-            //2. _id        เป็น string รับค่ารหัสที่ตั้องการ
             public static StringBuilder GetMain(string _section, string _id)
             {
                 StringBuilder _html = new StringBuilder();
                 
                 if (_section.Equals(UDSStaffUtil.SUBJECT_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARDPROFILEPICTURE))
                 {
-                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._subjectSectionProfilePictureIdentityCard     = UDSStaffUtil.SUBJECT_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARDPROFILEPICTURE;
-                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePictureIdentityCardPreview   = "";
-                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePicturePreview               = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARDPROFILEPICTURE_PREVIEW.ToLower();                                                                                                                          
-                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionIdentityCardPreview                 = "";
-                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._pageProfilePictureIdentityCardPreview        = UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARDPROFILEPICTURE_PREVIEW;
+                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._subjectSectionProfilePictureIdentityCard = UDSStaffUtil.SUBJECT_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARDPROFILEPICTURE;
+                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePictureIdentityCardPreview = "";
+                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePicturePreview = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARDPROFILEPICTURE_PREVIEW.ToLower();                                                                                                                          
+                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionIdentityCardPreview = "";
+                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._pageProfilePictureIdentityCardPreview = UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARDPROFILEPICTURE_PREVIEW;
 
-                    _html = UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI.GetMain(_id, false, false);                    
+                    _html = UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI.GetMain(_id, false, false);
                 }
                 
                 return _html;
@@ -1602,27 +1551,29 @@ public class UDSStaffOurServicesUI
 
     public class CopyProfilePictureApprovedtotheStoreUI
     {
-        private static string _idSectionMain        = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_MAIN.ToLower();
-        private static string _idSectionSearch      = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_SEARCH.ToLower();
-        private static string _idSectionPreview     = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_PREVIEW.ToLower();
-        private static string _idSectionProgress    = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_PROGRESS.ToLower();
+        private static string _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_MAIN.ToLower();
+        private static string _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_SEARCH.ToLower();
+        private static string _idSectionPreview = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_PREVIEW.ToLower();
+        private static string _idSectionProgress = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_PROGRESS.ToLower();
 
-        //ฟังก์ชั่นสำหรับแสดงเนื้อหาตามส่วนที่ต้องการแสดงในส่วนของการคัดลอกรูปภาพประจำตัวที่ผ่านการอนุมัติไปยังที่เก็บรูป แล้วส่งค่ากลับเป็น StringBuilder
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _infoLogin     เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-        //2. _section       เป็น string รับค่าส่วนที่ต้องการแสดง
-        //3. _sectionAction เป็น string รับค่าการกระทำที่เกิดขึ้นกับส่วนที่ต้องการแสดง
-        //4. _id            เป็น string รับค่ารหัสที่ต้องการ
         public static StringBuilder GetSection(Dictionary<string, object> _infoLogin, string _section, string _sectionAction, string _id)
         {
             StringBuilder _html = new StringBuilder();
 
             switch (_section)
             {
-                case "MAIN"         : { _html = SectionMainUI.GetMain(); break; }
-                case "SEARCH"       : { _html = SectionSearchUI.GetMain(); break; }
-                case "PREVIEW"      : { _html = SectionPreviewUI.GetMain(_sectionAction, _id); break; }
-                case "PROGRESSCOPY" : { _html = UDSStaffUI.GetFrmProgressCopyData(UDSStaffUtil.PAGE_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_PROGRESS, _idSectionProgress); break; }   
+                case "MAIN":
+                    _html = SectionMainUI.GetMain();
+                    break;
+                case "SEARCH":
+                    _html = SectionSearchUI.GetMain();
+                    break;
+                case "PREVIEW":
+                    _html = SectionPreviewUI.GetMain(_sectionAction, _id);
+                    break;
+                case "PROGRESSCOPY":
+                    _html = UDSStaffUI.GetFrmProgressCopyData(UDSStaffUtil.PAGE_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_PROGRESS, _idSectionProgress);
+                    break;
             }
 
             return _html;
@@ -1630,7 +1581,6 @@ public class UDSStaffOurServicesUI
 
         public class SectionMainUI
         {
-            //ฟังก์ชั่นสำหรับแสดงหน้าหาหน้าหลักในส่วนของการคัดลอกรูปภาพประจำตัวที่ผ่านการอนุมัติไปยังที่เก็บรูป แล้วส่งค่ากลับเป็น StringBuilder
             public static StringBuilder GetMain()
             {
                 Dictionary<string, object> _infoData = new Dictionary<string, object>();
@@ -1671,8 +1621,8 @@ public class UDSStaffOurServicesUI
                 _html.AppendLine("                              </div>");
                 _html.AppendLine("                          </div>");
                 _html.AppendLine("                          <div class='contentbody-right table-recordcount en-label'>");
-                _html.AppendFormat("                            <span class='recordcount-search hidden'>{0}</span>",            (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
-                _html.AppendFormat("                            <span class='recordcountprimary-search th-label'>{0}</span>",   (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
+                _html.AppendFormat("                            <span class='recordcount-search hidden'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
+                _html.AppendFormat("                            <span class='recordcountprimary-search th-label'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
                 _html.AppendLine("                          </div>");
                 _html.AppendLine("                      </div>");
                 _html.AppendLine("                      <div class='clear'></div>");
@@ -1712,10 +1662,6 @@ public class UDSStaffOurServicesUI
                 return _html;
             }
 
-            //ฟังก์ชั่นสำหรับแสดงรายการในส่วนของการคัดลอกรูปภาพประจำตัวที่ผ่านการอนุมัติไปยังที่เก็บรูป แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _infoLogin เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-            //2. _dr        เป็น DataRow[] รับค่าชุดของข้อมูล
             public static StringBuilder GetList(Dictionary<string, object> _infoLogin, DataRow[] _dr)
             {
                 StringBuilder _html = new StringBuilder();
@@ -1730,24 +1676,24 @@ public class UDSStaffOurServicesUI
 
                     foreach (DataRow _dr1 in _dr)
                     {
-                        _highlight  = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";
-                        _callFunc   = "Util.tut.getFrmPreviewDocument({" +
-                                      "page:'" + UDSStaffUtil.PAGE_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTOREPROFILEPICTURE_PREVIEW + "'," +
-                                      "idMain:'" + _idSectionMain + "'," +
-                                      "idPreview:'" + _idSectionPreview + "'," +
-                                      "data:'" + _dr1["id"] + "'" +
-                                      "},function(){})";                     
+                        _highlight = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";
+                        _callFunc = "Util.tut.getFrmPreviewDocument({" +
+                                    "page:'" + UDSStaffUtil.PAGE_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTOREPROFILEPICTURE_PREVIEW + "'," +
+                                    "idMain:'" + _idSectionMain + "'," +
+                                    "idPreview:'" + _idSectionPreview + "'," +
+                                    "data:'" + _dr1["id"] + "'" +
+                                    "},function(){})";                     
 
                         _html.AppendFormat("<div class='table-row{0}' id='table-row-id-{1}'>", _highlight, _dr1["id"]);
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col2' onclick={0}><div class='table-col-msg'><div><input class='checkbox select-child' type='checkbox' id='select-child-{1}' name='select-child' alt='select-root' value='{1}' /></div></div></div>", _callFunc, _dr1["id"].ToString());
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));                
-                        _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",  _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["facultyCode"].ToString()) ? _dr1["facultyCode"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>",    UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>",    UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));                
+                        _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["facultyCode"].ToString()) ? _dr1["facultyCode"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
                         _html.AppendLine("  </div>");
                     }
 
@@ -1760,7 +1706,6 @@ public class UDSStaffOurServicesUI
 
         public class SectionSearchUI
         {
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าค้นหาในส่วนของการคัดลอกรูปภาพประจำตัวที่ผ่านการอนุมัติไปยังที่เก็บรูป แล้วส่งค่ากลับเป็น StringBuilder
             public static StringBuilder GetMain()
             {
                 StringBuilder _html = new StringBuilder();
@@ -1930,21 +1875,17 @@ public class UDSStaffOurServicesUI
 
         public class SectionPreviewUI
         {
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าตัวอย่างเอกสารในส่วนของการคัดลอกรูปภาพประจำตัวที่ผ่านการอนุมัติไปยังที่เก็บรูป แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _section   เป็น string รับค่าส่วนที่ต้องการแสดง
-            //2. _id        เป็น string รับค่ารหัสที่ตั้องการ
             public static StringBuilder GetMain(string _section, string _id)
             {
                 StringBuilder _html = new StringBuilder();
 
                 if (_section.Equals(UDSStaffUtil.SUBJECT_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTOREPROFILEPICTURE))
                 {
-                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._subjectSectionProfilePictureIdentityCard     = UDSStaffUtil.SUBJECT_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTOREPROFILEPICTURE;
-                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePictureIdentityCardPreview   = "";
-                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePicturePreview               = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTOREPROFILEPICTURE_PREVIEW.ToLower();
-                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionIdentityCardPreview                 = "";
-                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._pageProfilePictureIdentityCardPreview        = UDSStaffUtil.PAGE_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTOREPROFILEPICTURE_PREVIEW;
+                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._subjectSectionProfilePictureIdentityCard = UDSStaffUtil.SUBJECT_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTOREPROFILEPICTURE;
+                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePictureIdentityCardPreview = "";
+                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePicturePreview = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTOREPROFILEPICTURE_PREVIEW.ToLower();
+                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionIdentityCardPreview = "";
+                    UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._pageProfilePictureIdentityCardPreview = UDSStaffUtil.PAGE_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTOREPROFILEPICTURE_PREVIEW;
 
                     _html = UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI.GetMain(_id, false, false);
                 }
@@ -1956,23 +1897,21 @@ public class UDSStaffOurServicesUI
 
     public class AuditTranscriptApprovedUI
     {
-        private static string _idSectionMain    = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVED_MAIN.ToLower();
-        private static string _idSectionSearch  = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVED_SEARCH.ToLower();
+        private static string _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVED_MAIN.ToLower();
+        private static string _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVED_SEARCH.ToLower();
 
-        //ฟังก์ชั่นสำหรับแสดงเนื้อหาตามส่วนที่ต้องการแสดงในส่วนของการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัด แล้วส่งค่ากลับเป็น StringBuilder
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _infoLogin     เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-        //2. _section       เป็น string รับค่าส่วนที่ต้องการแสดง
-        //3. _sectionAction เป็น string รับค่าการกระทำที่เกิดขึ้นกับส่วนที่ต้องการแสดง
-        //4. _id            เป็น string รับค่ารหัสที่ต้องการ
         public static StringBuilder GetSection(Dictionary<string, object> _infoLogin, string _section, string _sectionAction, string _id)
         {
             StringBuilder _html = new StringBuilder();
 
             switch (_section)
             {
-                case "MAIN"     : { _html = SectionMainUI.GetMain(); break; }
-                case "SEARCH"   : { _html = SectionSearchUI.GetMain(); break; }
+                case "MAIN":
+                    _html = SectionMainUI.GetMain();
+                    break;
+                case "SEARCH":
+                    _html = SectionSearchUI.GetMain();
+                    break;
             }
 
             return _html;
@@ -1980,7 +1919,6 @@ public class UDSStaffOurServicesUI
 
         public class SectionMainUI
         {
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าหลักในส่วนของการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัด แล้วส่งค่ากลับเป็น StringBuilder
             public static StringBuilder GetMain()
             {
                 Dictionary<string, object> _infoData = new Dictionary<string, object>();
@@ -1999,9 +1937,9 @@ public class UDSStaffOurServicesUI
                 {
                     _html.AppendFormat("            <li><a class='{0}' id='link-{1}' href='javascript:void(0)' alt='{1}'><div class='tab-itemtext'><div class='th-label'>{2}</div><div class='en-label'>{3}</div></div></a></li>",
                         (UDSStaffUtil._viewsDisplay[_i, 2].Equals("active") ? "tab-active" : String.Empty),
-                         (_idSectionMain + UDSStaffUtil._viewsDisplay[_i, 3]).ToLower(),
-                         UDSStaffUtil._viewsDisplay[_i, 0],
-                         UDSStaffUtil._viewsDisplay[_i, 1]);
+                        (_idSectionMain + UDSStaffUtil._viewsDisplay[_i, 3]).ToLower(),
+                        UDSStaffUtil._viewsDisplay[_i, 0],
+                        UDSStaffUtil._viewsDisplay[_i, 1]);
                 }
 
                 _html.AppendLine("              </ul>");
@@ -2011,8 +1949,8 @@ public class UDSStaffOurServicesUI
                 _html.AppendFormat("<div id='{0}'>", _idSectionMain);
                 _html.AppendFormat("    <div id='{0}-layout'>", _idSectionMain);
                 _html.AppendFormat("        <div id='{0}-content'>", _idSectionMain);
-                _html.AppendFormat("            <div class='tab-active' id='{0}' alt='{1}'>{2}</div>",      (_idSectionMain + UDSStaffUtil._viewsDisplay[0, 3]).ToLower(), UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDVIEWCHART_MAIN, ViewChartUI.SectionMainUI.GetMain());
-                _html.AppendFormat("            <div class='tab-noactive' id='{0}' alt='{1}'>{2}</div>",    (_idSectionMain + UDSStaffUtil._viewsDisplay[1, 3]).ToLower(), UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDVIEWTABLE_MAIN, String.Empty);
+                _html.AppendFormat("            <div class='tab-active' id='{0}' alt='{1}'>{2}</div>", (_idSectionMain + UDSStaffUtil._viewsDisplay[0, 3]).ToLower(), UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDVIEWCHART_MAIN, ViewChartUI.SectionMainUI.GetMain());
+                _html.AppendFormat("            <div class='tab-noactive' id='{0}' alt='{1}'>{2}</div>", (_idSectionMain + UDSStaffUtil._viewsDisplay[1, 3]).ToLower(), UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDVIEWTABLE_MAIN, String.Empty);
                 _html.AppendLine("          </div>");
                 _html.AppendLine("      </div>");
                 _html.AppendLine("  </div>");
@@ -2024,7 +1962,6 @@ public class UDSStaffOurServicesUI
 
         public class SectionSearchUI
         {                        
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าค้นหาในส่วนของการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัด แล้วส่งค่ากลับเป็น StringBuilder
             public static StringBuilder GetMain()
             {
                 StringBuilder _html = new StringBuilder();
@@ -2241,19 +2178,15 @@ public class UDSStaffOurServicesUI
         {
             private static string _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVEDVIEWCHART_MAIN.ToLower();
 
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาตามส่วนที่ต้องการแสดงในส่วนของการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัดมุมมองแผนภูมิ แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _infoLogin         เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-            //2. _section           เป็น string รับค่าส่วนที่ต้องการแสดง
-            //3. _sectionAction     เป็น string รับค่าการกระทำที่เกิดขึ้นกับส่วนที่ต้องการแสดง
-            //4. _id                เป็น string รับค่ารหัสที่ต้องการ
             public static StringBuilder GetSection(Dictionary<string, object> _infoLogin, string _section, string _sectionAction, string _id)
             {
                 StringBuilder _html = new StringBuilder();
 
                 switch (_section)
                 {
-                    case "MAIN" : { _html = SectionMainUI.GetMain(); break; }
+                    case "MAIN":
+                        _html = SectionMainUI.GetMain();
+                        break;
                 }
 
                 return _html;
@@ -2261,7 +2194,6 @@ public class UDSStaffOurServicesUI
 
             public class SectionMainUI
             {
-                //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าหลักในส่วนของการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัดมุมมองแผนภูมิ แล้วส่งค่ากลับเป็น StringBuilder
                 public static StringBuilder GetMain()
                 {
                     Dictionary<string, object> _searchResult = new Dictionary<string, object>();
@@ -2272,6 +2204,7 @@ public class UDSStaffOurServicesUI
                     if (_cookieError.Equals(0))
                     {
                         HttpCookie _objCookie = Util.GetCookie(UDSStaffUtil._myParamSearchCookieName);
+
                         if (_objCookie["Command"].Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVED_MAIN))
                         {
                             _show = true;
@@ -2286,8 +2219,8 @@ public class UDSStaffOurServicesUI
                     _html.AppendLine("                  <div class='chart-title'>");
                     _html.AppendLine("                      <div class='contentbody-left'><div class='th-label'></div><div class='en-label'></div></div>");
                     _html.AppendLine("                      <div class='contentbody-right chart-recordcount en-label'>");
-                    _html.AppendFormat("                        <span class='recordcount-search hidden'>{0}</span>",            (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
-                    _html.AppendFormat("                        <span class='recordcountprimary-search th-label'>{0}</span>",   (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
+                    _html.AppendFormat("                        <span class='recordcount-search hidden'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
+                    _html.AppendFormat("                        <span class='recordcountprimary-search th-label'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
                     _html.AppendLine("                      </div>");
                     _html.AppendLine("                  </div>");
                     _html.AppendLine("                  <div class='clear'></div>");
@@ -2300,10 +2233,6 @@ public class UDSStaffOurServicesUI
                     return _html;
                 }
 
-                //ฟังก์ชั่นสำหรับแสดงแผนภูมิในส่วนของการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัด แล้วส่งค่ากลับเป็น StringBuilder
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _infoLogin เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-                //2. _ds        เป็น DataSet รับค่าชุดของข้อมูล
                 public static StringBuilder GetList(Dictionary<string, object> _infoLogin, DataSet _ds)
                 {
                     StringBuilder _html = new StringBuilder();
@@ -2314,41 +2243,41 @@ public class UDSStaffOurServicesUI
  
                     if (_ds.Tables[0].Rows.Count > 0)
                     {   
-                        _paramChart.Add("RenderTo",         null);
-                        _paramChart.Add("BackgroundColor",  null);
-                        _paramChart.Add("Title",            null);
-                        _paramChart.Add("LegendTitle",      "จำนวน ( โรงเรียน / นักศึกษา ) : Number of ( school / student )");
+                        _paramChart.Add("RenderTo", null);
+                        _paramChart.Add("BackgroundColor", null);
+                        _paramChart.Add("Title", null);
+                        _paramChart.Add("LegendTitle", "จำนวน ( โรงเรียน / นักศึกษา ) : Number of ( school / student )");
                         _paramChart.Add("Level1XAxisTitle", "");
                         _paramChart.Add("Level2XAxisTitle", "ปีที่เข้าศึกษา : Year Attended");
                         
                         _html.AppendLine("<div class='chart-grid'>");
 
-                        _paramChart["RenderTo"]         = ("chart" + (_i + 1).ToString() + "-" + UDSStaffUtil.SUBJECT_SECTION_AUDITTRANSCRIPTAPPROVED).ToLower();
-                        _paramChart["BackgroundColor"]  = ((_i % 2) == 0 ? _backgroundColor1 : _backgroundColor2);
+                        _paramChart["RenderTo"] = ("chart" + (_i + 1).ToString() + "-" + UDSStaffUtil.SUBJECT_SECTION_AUDITTRANSCRIPTAPPROVED).ToLower();
+                        _paramChart["BackgroundColor"] = ((_i % 2) == 0 ? _backgroundColor1 : _backgroundColor2);
                         GetChart("bar", _paramChart, _ds, 1, 2, -1);
                         _html.AppendLine(GetListRow(_i).ToString());
                         _i++;
                         
-                        _paramChart["RenderTo"]         = ("chart" + (_i + 1).ToString() + "-" + UDSStaffUtil.SUBJECT_SECTION_AUDITTRANSCRIPTAPPROVED).ToLower();
-                        _paramChart["BackgroundColor"]  = ((_i % 2) == 0 ? _backgroundColor1 : _backgroundColor2);
+                        _paramChart["RenderTo"] = ("chart" + (_i + 1).ToString() + "-" + UDSStaffUtil.SUBJECT_SECTION_AUDITTRANSCRIPTAPPROVED).ToLower();
+                        _paramChart["BackgroundColor"] = ((_i % 2) == 0 ? _backgroundColor1 : _backgroundColor2);
                         GetChart("bar", _paramChart, _ds, 3, 4, -1);
                         _html.AppendLine(GetListRow(_i).ToString());
                         _i++;
                         
-                        _paramChart["RenderTo"]         = ("chart" + (_i + 1).ToString() + "-" + UDSStaffUtil.SUBJECT_SECTION_AUDITTRANSCRIPTAPPROVED).ToLower();
-                        _paramChart["BackgroundColor"]  = ((_i % 2) == 0 ? _backgroundColor1 : _backgroundColor2);
+                        _paramChart["RenderTo"] = ("chart" + (_i + 1).ToString() + "-" + UDSStaffUtil.SUBJECT_SECTION_AUDITTRANSCRIPTAPPROVED).ToLower();
+                        _paramChart["BackgroundColor"] = ((_i % 2) == 0 ? _backgroundColor1 : _backgroundColor2);
                         GetChart("bar", _paramChart, _ds, 5, 6, -1);
                         _html.AppendLine(GetListRow(_i).ToString());
                         _i++;
                         
-                        _paramChart["RenderTo"]         = ("chart" + (_i + 1).ToString() + "-" + UDSStaffUtil.SUBJECT_SECTION_AUDITTRANSCRIPTAPPROVED).ToLower();
-                        _paramChart["BackgroundColor"]  = ((_i % 2) == 0 ? _backgroundColor1 : _backgroundColor2);
+                        _paramChart["RenderTo"] = ("chart" + (_i + 1).ToString() + "-" + UDSStaffUtil.SUBJECT_SECTION_AUDITTRANSCRIPTAPPROVED).ToLower();
+                        _paramChart["BackgroundColor"] = ((_i % 2) == 0 ? _backgroundColor1 : _backgroundColor2);
                         GetChart("bar", _paramChart, _ds, 7, 8, -1);
                         _html.AppendLine(GetListRow(_i).ToString());
                         _i++;
                         
-                        _paramChart["RenderTo"]         = ("chart" + (_i + 1).ToString() + "-" + UDSStaffUtil.SUBJECT_SECTION_AUDITTRANSCRIPTAPPROVED).ToLower();
-                        _paramChart["BackgroundColor"]  = ((_i % 2) == 0 ? _backgroundColor1 : _backgroundColor2);
+                        _paramChart["RenderTo"] = ("chart" + (_i + 1).ToString() + "-" + UDSStaffUtil.SUBJECT_SECTION_AUDITTRANSCRIPTAPPROVED).ToLower();
+                        _paramChart["BackgroundColor"] = ((_i % 2) == 0 ? _backgroundColor1 : _backgroundColor2);
                         GetChart("bar", _paramChart, _ds, 9, 10, -1);
                         _html.AppendLine(GetListRow(_i).ToString());
                         
@@ -2358,9 +2287,6 @@ public class UDSStaffOurServicesUI
                     return _html;
                 }
 
-                //ฟังก์ชั่นสำหรับแสดงรายการในแถว แล้วส่งค่ากลับเป็น StringBuilder
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _row   เป็น int รับค่าลำดับแถว
                 private static StringBuilder GetListRow(int _row)
                 {
                     StringBuilder _html = new StringBuilder();
@@ -2372,14 +2298,6 @@ public class UDSStaffOurServicesUI
                     return _html;
                 }
 
-                //ฟังก์ชั่นสำหรับแสดงแผนภูมิ
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _type          เป็น string รับค่าประเภทของแผนภูมิ
-                //2. _paramChart    เป็น Dictionary<string, object> รับค่าพารามิเตอร์สำหร้บสร้างแผนภูมิ
-                //2. _ds            เป็น DataSet รับค่าชุดของข้อมูล
-                //3. _tbChart1      เป็น Dictionary<string, object> รับค่าพารามิเตรอร์ตารางที่ 1 สำหร้บสร้างแผนภูมิ
-                //4. _tbChart2      เป็น Dictionary<string, object> รับค่าพารามิเตรอร์ตารางที่ 2 สำหร้บสร้างแผนภูมิ
-                //5. _tbChart3      เป็น Dictionary<string, object> รับค่าพารามิเตรอร์ตารางที่ 3 สำหร้บสร้างแผนภูมิ
                 private static void GetChart(string _type, Dictionary<string, object> _paramChart, DataSet _ds, int _tbChart1, int _tbChart2, int _tbChart3)
                 {
                     List<object> _level1SeriesName = new List<object>();
@@ -2477,82 +2395,81 @@ public class UDSStaffOurServicesUI
                         }
                     }
 
-                    Util.ChartUtil.Type                         = _type;
-                    Util.ChartUtil.RenderTo                     = _paramChart["RenderTo"].ToString().ToLower();
-                    Util.ChartUtil.BackgroundColor              = _paramChart["BackgroundColor"].ToString();
-                    Util.ChartUtil.Title                        = _paramChart["Title"].ToString();
-                    Util.ChartUtil.LegendTitle                  = _paramChart["LegendTitle"].ToString();
-                    Util.ChartUtil.Level1XAxisTitle             = _paramChart["Level1XAxisTitle"].ToString();
-                    Util.ChartUtil.Level1YAxisTitle             = "";
-                    Util.ChartUtil.Level1SeriesName             = _level1SeriesName;
-                    Util.ChartUtil.Level1SeriesColor            = _level1SeriesColor;
-                    Util.ChartUtil.Level1SeriesColorByPoint     =  false;
-                    Util.ChartUtil.Level1SeriesDataName         = _level1SeriesDataName;
-                    Util.ChartUtil.Level1SeriesDataColor        = _level1SeriesDataColor;
-                    Util.ChartUtil.Level1SeriesDataValue        = _level1SeriesDataValue;
-                    Util.ChartUtil.Level1SeriesDataDrillDown    = _level1SeriesDataDrillDown;
-                    Util.ChartUtil.Level2XAxisTitle             = _paramChart["Level2XAxisTitle"].ToString();
-                    Util.ChartUtil.Level2YAxisTitle             = "";
-                    Util.ChartUtil.Level2SeriesId               = _level2SeriesId;
-                    Util.ChartUtil.Level2SeriesName             = _level2SeriesName;
-                    Util.ChartUtil.Level2SeriesColorByPoint     = true;
-                    Util.ChartUtil.Level2SeriesDataName         = _level2SeriesDataName;
-                    Util.ChartUtil.Level2SeriesDataColor        = _level2SeriesDataColor;
-                    Util.ChartUtil.Level2SeriesDataValue        = _level2SeriesDataValue;
-                    Util.ChartUtil.Level2SeriesDataDrillDown    = _level2SeriesDataDrillDown;
-                    Util.ChartUtil.Level3XAxisTitle             = "";
-                    Util.ChartUtil.Level3YAxisTitle             = "";
-                    Util.ChartUtil.Level3SeriesId               = new List<object>();
-                    Util.ChartUtil.Level3SeriesName             = new List<object>();
-                    Util.ChartUtil.Level3SeriesColorByPoint     = false;
-                    Util.ChartUtil.Level3SeriesDataName         = new List<object>();
-                    Util.ChartUtil.Level3SeriesDataColor        = new List<object>();
-                    Util.ChartUtil.Level3SeriesDataValue        = new List<object>();
-                    Util.ChartUtil.Level3SeriesDataDrillDown    = new List<object>();
-                    Util.ChartUtil.Level4XAxisTitle             = "";
-                    Util.ChartUtil.Level4YAxisTitle             = "";
-                    Util.ChartUtil.Level4SeriesId               = new List<object>();
-                    Util.ChartUtil.Level4SeriesName             = new List<object>();
-                    Util.ChartUtil.Level4SeriesColorByPoint     = false;
-                    Util.ChartUtil.Level4SeriesDataName         = new List<object>();
-                    Util.ChartUtil.Level4SeriesDataColor        = new List<object>();
-                    Util.ChartUtil.Level4SeriesDataValue        = new List<object>();
-                    Util.ChartUtil.Level4SeriesDataDrillDown    = new List<object>();
+                    Util.ChartUtil.Type = _type;
+                    Util.ChartUtil.RenderTo = _paramChart["RenderTo"].ToString().ToLower();
+                    Util.ChartUtil.BackgroundColor = _paramChart["BackgroundColor"].ToString();
+                    Util.ChartUtil.Title = _paramChart["Title"].ToString();
+                    Util.ChartUtil.LegendTitle = _paramChart["LegendTitle"].ToString();
+                    Util.ChartUtil.Level1XAxisTitle = _paramChart["Level1XAxisTitle"].ToString();
+                    Util.ChartUtil.Level1YAxisTitle = "";
+                    Util.ChartUtil.Level1SeriesName = _level1SeriesName;
+                    Util.ChartUtil.Level1SeriesColor = _level1SeriesColor;
+                    Util.ChartUtil.Level1SeriesColorByPoint =  false;
+                    Util.ChartUtil.Level1SeriesDataName = _level1SeriesDataName;
+                    Util.ChartUtil.Level1SeriesDataColor = _level1SeriesDataColor;
+                    Util.ChartUtil.Level1SeriesDataValue = _level1SeriesDataValue;
+                    Util.ChartUtil.Level1SeriesDataDrillDown = _level1SeriesDataDrillDown;
+                    Util.ChartUtil.Level2XAxisTitle = _paramChart["Level2XAxisTitle"].ToString();
+                    Util.ChartUtil.Level2YAxisTitle = "";
+                    Util.ChartUtil.Level2SeriesId = _level2SeriesId;
+                    Util.ChartUtil.Level2SeriesName = _level2SeriesName;
+                    Util.ChartUtil.Level2SeriesColorByPoint = true;
+                    Util.ChartUtil.Level2SeriesDataName = _level2SeriesDataName;
+                    Util.ChartUtil.Level2SeriesDataColor = _level2SeriesDataColor;
+                    Util.ChartUtil.Level2SeriesDataValue = _level2SeriesDataValue;
+                    Util.ChartUtil.Level2SeriesDataDrillDown = _level2SeriesDataDrillDown;
+                    Util.ChartUtil.Level3XAxisTitle = "";
+                    Util.ChartUtil.Level3YAxisTitle = "";
+                    Util.ChartUtil.Level3SeriesId = new List<object>();
+                    Util.ChartUtil.Level3SeriesName = new List<object>();
+                    Util.ChartUtil.Level3SeriesColorByPoint = false;
+                    Util.ChartUtil.Level3SeriesDataName = new List<object>();
+                    Util.ChartUtil.Level3SeriesDataColor = new List<object>();
+                    Util.ChartUtil.Level3SeriesDataValue = new List<object>();
+                    Util.ChartUtil.Level3SeriesDataDrillDown = new List<object>();
+                    Util.ChartUtil.Level4XAxisTitle = "";
+                    Util.ChartUtil.Level4YAxisTitle = "";
+                    Util.ChartUtil.Level4SeriesId = new List<object>();
+                    Util.ChartUtil.Level4SeriesName = new List<object>();
+                    Util.ChartUtil.Level4SeriesColorByPoint = false;
+                    Util.ChartUtil.Level4SeriesDataName = new List<object>();
+                    Util.ChartUtil.Level4SeriesDataColor = new List<object>();
+                    Util.ChartUtil.Level4SeriesDataValue = new List<object>();
+                    Util.ChartUtil.Level4SeriesDataDrillDown = new List<object>();
                 }
             }
         }
 
         public class ViewTableUI
         {
-            private static string _idSectionMain            = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVEDVIEWTABLE_MAIN.ToLower();
-            private static string _idSectionLevel1Main      = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL1VIEWTABLE_MAIN.ToLower();
-            private static string _idSectionLevel21Main     = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL21VIEWTABLE_MAIN.ToLower();
-            private static string _idSectionLevel22Main     = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL22VIEWTABLE_MAIN.ToLower();
-            private static string _idSectionLevel1Progress  = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL1VIEWTABLE_PROGRESS.ToLower();
+            private static string _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVEDVIEWTABLE_MAIN.ToLower();
+            private static string _idSectionLevel1Main = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL1VIEWTABLE_MAIN.ToLower();
+            private static string _idSectionLevel21Main = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL21VIEWTABLE_MAIN.ToLower();
+            private static string _idSectionLevel22Main = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL22VIEWTABLE_MAIN.ToLower();
+            private static string _idSectionLevel1Progress = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL1VIEWTABLE_PROGRESS.ToLower();
             private static string _idSectionLevel21Progress = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL21VIEWTABLE_PROGRESS.ToLower();
             private static string _idSectionLevel22Progress = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL22VIEWTABLE_PROGRESS.ToLower();
 
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาตามส่วนที่ต้องการแสดงในส่วนของการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัดมุมมองตาราง แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _infoLogin         เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-            //2. _section           เป็น string รับค่าส่วนที่ต้องการแสดง
-            //3. _sectionAction     เป็น string รับค่าการกระทำที่เกิดขึ้นกับส่วนที่ต้องการแสดง
-            //4. _id                เป็น string รับค่ารหัสที่ต้องการ
             public static StringBuilder GetSection(Dictionary<string, object> _infoLogin, string _section, string _sectionAction, string _id)
             {
                 StringBuilder _html = new StringBuilder();
 
                 switch (_section)
                 {
-                    case "MAIN"                     : { 
-                                                        _html.AppendLine(SectionMainUI.GetMain(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL1VIEWTABLE_MAIN).ToString());
-                                                        _html.AppendLine(SectionMainUI.GetMain(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL21VIEWTABLE_MAIN).ToString());
-                                                        _html.AppendLine(SectionMainUI.GetMain(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL22VIEWTABLE_MAIN).ToString());
-                                                        break;
-                                                      }
-                    case "LEVEL1PROGRESSEXPORT"     : { _html = UDSStaffUI.GetFrmProgressExportData(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL1VIEWTABLE_PROGRESS, _idSectionLevel1Progress); break; }
-                    case "LEVEL21PROGRESSEXPORT"    : { _html = UDSStaffUI.GetFrmProgressExportData(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL21VIEWTABLE_PROGRESS, _idSectionLevel21Progress); break; }
-                    case "LEVEL22PROGRESSEXPORT"    : { _html = UDSStaffUI.GetFrmProgressExportData(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL22VIEWTABLE_PROGRESS, _idSectionLevel22Progress); break; } 
+                    case "MAIN" : 
+                        _html.AppendLine(SectionMainUI.GetMain(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL1VIEWTABLE_MAIN).ToString());
+                        _html.AppendLine(SectionMainUI.GetMain(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL21VIEWTABLE_MAIN).ToString());
+                        _html.AppendLine(SectionMainUI.GetMain(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL22VIEWTABLE_MAIN).ToString());
+                        break;
+                    case "LEVEL1PROGRESSEXPORT":
+                        _html = UDSStaffUI.GetFrmProgressExportData(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL1VIEWTABLE_PROGRESS, _idSectionLevel1Progress);
+                        break;
+                    case "LEVEL21PROGRESSEXPORT":
+                        _html = UDSStaffUI.GetFrmProgressExportData(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL21VIEWTABLE_PROGRESS, _idSectionLevel21Progress);
+                        break;
+                    case "LEVEL22PROGRESSEXPORT":
+                        _html = UDSStaffUI.GetFrmProgressExportData(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL22VIEWTABLE_PROGRESS, _idSectionLevel22Progress);
+                        break;
                 }
 
                 return _html;
@@ -2560,9 +2477,6 @@ public class UDSStaffOurServicesUI
 
             public class SectionMainUI
             {
-                //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าหลักในส่วนของการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัดมุมมองตารางแต่ละชั้น แล้วส่งค่ากลับเป็น StringBuilder
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _page เป็น string รับค่าชื่อชั้น
                 public static StringBuilder GetMain(string _page)
                 {
                     Dictionary<string, object> _searchResult = new Dictionary<string, object>();
@@ -2575,12 +2489,13 @@ public class UDSStaffOurServicesUI
 
                     if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL1VIEWTABLE_MAIN))
                     {
-                        _idSection  = _idSectionLevel1Main;
-                        _sublevel   = false;
+                        _idSection = _idSectionLevel1Main;
+                        _sublevel = false;
                     
                         if (_cookieError.Equals(0))
                         {
                             HttpCookie _objCookie = Util.GetCookie(UDSStaffUtil._myParamSearchCookieName);
+
                             if (_objCookie["Command"].Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVED_MAIN))
                             {
                                 _show = true;
@@ -2590,10 +2505,10 @@ public class UDSStaffOurServicesUI
                     }
 
                     if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL21VIEWTABLE_MAIN))
-                        _idSection  = _idSectionLevel21Main;
+                        _idSection = _idSectionLevel21Main;
 
                     if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL22VIEWTABLE_MAIN))
-                        _idSection  = _idSectionLevel22Main;
+                        _idSection = _idSectionLevel22Main;
 
                     _html.AppendFormat("<div class='table{0}' id='{1}-table'>", (_sublevel.Equals(true) ? " table-level hidden" : ""), _idSection);
                     _html.AppendLine("      <div class='table-layout'>");
@@ -2612,8 +2527,8 @@ public class UDSStaffOurServicesUI
                     _html.AppendLine("                      </div>");
                     _html.AppendLine("                      <div class='contentbody-right table-recordcount en-label'>");
                     _html.AppendFormat("                        <span class='th-label link-click link-goback{0}'>Go Back |</span>", (_sublevel.Equals(true) ? "" : " hidden"));
-                    _html.AppendFormat("                        <span class='recordcount-search hidden'>{0}</span>",                (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
-                    _html.AppendFormat("                        <span class='recordcountprimary-search th-label'>{0}</span>",       (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
+                    _html.AppendFormat("                        <span class='recordcount-search hidden'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
+                    _html.AppendFormat("                        <span class='recordcountprimary-search th-label'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
                     _html.AppendLine("                      </div>");
                     _html.AppendLine("                  </div>");
                     _html.AppendLine("                  <div class='clear'></div>");
@@ -2664,11 +2579,6 @@ public class UDSStaffOurServicesUI
                     return _html;
                 }
 
-                //ฟังก์ชั่นสำหรับแสดงข้อมูลการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัดมุมมองตารางแต่ละชั้น แล้วส่งค่ากลับเป็น StringBuilder
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _page      เป็น string รับค่าชื่อหน้า
-                //2. _infoLogin เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-                //3. _dr        เป็น DataRow[] รับค่าชุดของข้อมูล
                 public static StringBuilder GetList(string _page, Dictionary<string, object> _infoLogin, DataRow[] _dr)
                 {
                     StringBuilder _html = new StringBuilder();
@@ -2684,7 +2594,7 @@ public class UDSStaffOurServicesUI
                         {
                             foreach (DataRow _dr1 in _dr)
                             {
-                                _highlight  = (_i % 2) == 0 ? " highlight-style2" : " highlight-style1";                
+                                _highlight = (_i % 2) == 0 ? " highlight-style2" : " highlight-style1";                
                             
                                 _html.AppendFormat("<div class='table-row{0}' id='table-row-id-{1}'>", _highlight, _dr1["id"].ToString().ToLower());
                                 _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col1'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", _dr1["title"].ToString());
@@ -2704,11 +2614,11 @@ public class UDSStaffOurServicesUI
                                 _highlight  = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";
 
                                 _html.AppendFormat("<div class='table-row{0}' id='table-row-id-{1}'>", _highlight, _dr1["id"].ToString());
-                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>",    double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0"));
-                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>",    (!String.IsNullOrEmpty(_dr1["instituteCountryCodes3LetterTranscript"].ToString()) ? _dr1["instituteCountryCodes3LetterTranscript"].ToString() : String.Empty));
-                                _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col3'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>",  (!String.IsNullOrEmpty(_dr1["instituteProvinceNameTranscript"].ToString()) ? _dr1["instituteProvinceNameTranscript"].ToString() : String.Empty));
-                                _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col4'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>",  (!String.IsNullOrEmpty(_dr1["instituteNameTranscript"].ToString()) ? _dr1["instituteNameTranscript"].ToString() : String.Empty));
-                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>",    double.Parse(_dr1["countPeople"].ToString()).ToString("#,##0"));
+                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0"));
+                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["instituteCountryCodes3LetterTranscript"].ToString()) ? _dr1["instituteCountryCodes3LetterTranscript"].ToString() : String.Empty));
+                                _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col3'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["instituteProvinceNameTranscript"].ToString()) ? _dr1["instituteProvinceNameTranscript"].ToString() : String.Empty));
+                                _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col4'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["instituteNameTranscript"].ToString()) ? _dr1["instituteNameTranscript"].ToString() : String.Empty));
+                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", double.Parse(_dr1["countPeople"].ToString()).ToString("#,##0"));
                                 _html.AppendLine("  </div>");
                             }                                
                         }
@@ -2717,22 +2627,22 @@ public class UDSStaffOurServicesUI
                         {
                             foreach (DataRow _dr1 in _dr)
                             {
-                                _highlight  = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";
-                                _callFunc   = "Util.gotoPage({" +
-                                                "page:('index.aspx?p=" + UDSStaffUtil.PAGE_STUDENTRECORDSSTUDENTCV_MAIN + "&id=" + _dr1["id"] + "')," +
-                                                "target:'_blank'" +
-                                                "})";
+                                _highlight = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";
+                                _callFunc = "Util.gotoPage({" +
+                                            "page:('index.aspx?p=" + UDSStaffUtil.PAGE_STUDENTRECORDSSTUDENTCV_MAIN + "&id=" + _dr1["id"] + "')," +
+                                            "target:'_blank'" +
+                                            "})";
 
                                 _html.AppendFormat("<div class='table-row{0}' id='table-row-id-{1}'>", _highlight, _dr1["id"]);
-                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
-                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col2' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));
-                                _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",  _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
-                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
-                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
-                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>",    UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
-                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>",    UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
-                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["instituteCountryCodes3LetterTranscript"].ToString()) ? _dr1["instituteCountryCodes3LetterTranscript"].ToString() : String.Empty));
-                                _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col9' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",  _callFunc, (!String.IsNullOrEmpty(_dr1["instituteProvinceNameTranscript"].ToString()) ? _dr1["instituteProvinceNameTranscript"].ToString() : String.Empty));
+                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
+                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col2' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));
+                                _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
+                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
+                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
+                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
+                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
+                                _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["instituteCountryCodes3LetterTranscript"].ToString()) ? _dr1["instituteCountryCodes3LetterTranscript"].ToString() : String.Empty));
+                                _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col9' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["instituteProvinceNameTranscript"].ToString()) ? _dr1["instituteProvinceNameTranscript"].ToString() : String.Empty));
                                 _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col10' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["institutelNameTranscript"].ToString()) ? _dr1["institutelNameTranscript"].ToString() : String.Empty));
                                 _html.AppendLine("  </div>");
                             }
@@ -2749,36 +2659,34 @@ public class UDSStaffOurServicesUI
 
     public class ExportSaveAuditTranscriptApprovedUI
     {
-        private static string _idSectionMain    = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_MAIN.ToLower();
-        private static string _idSectionSearch  = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_SEARCH.ToLower();
+        private static string _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_MAIN.ToLower();
+        private static string _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_SEARCH.ToLower();
         private static string _idSectionPreview = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_PREVIEW.ToLower();
         private static string _idSectionProgress;
 
-        //ฟังก์ชั่นสำหรับแสดงเนื้อหาตามส่วนที่ต้องการแสดงในส่วนของการส่งออกระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติและบันทึกการตรวจสอบวุฒิการศึกษากับสถานศึกษาต้นสังกัด แล้วส่งค่ากลับเป็น StringBuilder
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _infoLogin     เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-        //2. _section       เป็น string รับค่าส่วนที่ต้องการแสดง
-        //3. _sectionAction เป็น string รับค่าการกระทำที่เกิดขึ้นกับส่วนที่ต้องการแสดง
-        //4. _id            เป็น string รับค่ารหัสที่ต้องการ
         public static StringBuilder GetSection(Dictionary<string, object> _infoLogin, string _section, string _sectionAction, string _id)
         {
             StringBuilder _html = new StringBuilder();
 
             switch (_section)
             {
-                case "MAIN"             : { _html = SectionMainUI.GetMain(); break; }
-                case "SEARCH"           : { _html = SectionSearchUI.GetMain(); break; }
-                case "PREVIEW"          : { _html = SectionPreviewUI.GetMain(_sectionAction, _id); break; }
-                case "PROGRESSEXPORT"   : { 
-                                            _idSectionProgress  = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTTRANSCRIPTAPPROVED_PROGRESS.ToLower();
-                                            _html               = UDSStaffUI.GetFrmProgressExportData(UDSStaffUtil.PAGE_OURSERVICESEXPORTTRANSCRIPTAPPROVED_PROGRESS, _idSectionProgress);
-                                            break;
-                                          }
-                case "PROGRESSSAVE"     : { 
-                                            _idSectionProgress  = UDSStaffUtil.ID_SECTION_OURSERVICESSAVEAUDITTRANSCRIPTAPPROVED_PROGRESS.ToLower();
-                                            _html               = UDSStaffUI.GetFrmProgressSaveData(UDSStaffUtil.PAGE_OURSERVICESSAVEAUDITTRANSCRIPTAPPROVED_PROGRESS, _idSectionProgress);
-                                            break;
-                                          }
+                case "MAIN":
+                    _html = SectionMainUI.GetMain();
+                    break;
+                case "SEARCH":
+                    _html = SectionSearchUI.GetMain();
+                    break;
+                case "PREVIEW":
+                    _html = SectionPreviewUI.GetMain(_sectionAction, _id);
+                    break;
+                case "PROGRESSEXPORT":
+                    _idSectionProgress = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTTRANSCRIPTAPPROVED_PROGRESS.ToLower();
+                    _html = UDSStaffUI.GetFrmProgressExportData(UDSStaffUtil.PAGE_OURSERVICESEXPORTTRANSCRIPTAPPROVED_PROGRESS, _idSectionProgress);
+                    break;
+                case "PROGRESSSAVE":
+                    _idSectionProgress = UDSStaffUtil.ID_SECTION_OURSERVICESSAVEAUDITTRANSCRIPTAPPROVED_PROGRESS.ToLower();
+                    _html = UDSStaffUI.GetFrmProgressSaveData(UDSStaffUtil.PAGE_OURSERVICESSAVEAUDITTRANSCRIPTAPPROVED_PROGRESS, _idSectionProgress);
+                    break;
             }
 
             return _html;
@@ -2786,7 +2694,6 @@ public class UDSStaffOurServicesUI
 
         public class SectionMainUI
         {
-            //ฟังก์ชั่นสำหรับแสดงหน้าหาหน้าหลักในส่วนของการส่งออกระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติและบันทึกการตรวจสอบวุฒิการศึกษากับสถานศึกษาต้นสังกัด แล้วส่งค่ากลับเป็น StringBuilder
             public static StringBuilder GetMain()
             {
                 Dictionary<string, object> _infoData = new Dictionary<string, object>();
@@ -2828,8 +2735,8 @@ public class UDSStaffOurServicesUI
                 _html.AppendLine("                              </div>");
                 _html.AppendLine("                          </div>");
                 _html.AppendLine("                          <div class='contentbody-right table-recordcount en-label'>");
-                _html.AppendFormat("                            <span class='recordcount-search hidden'>{0}</span>",            (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
-                _html.AppendFormat("                            <span class='recordcountprimary-search th-label'>{0}</span>",   (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
+                _html.AppendFormat("                            <span class='recordcount-search hidden'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
+                _html.AppendFormat("                            <span class='recordcountprimary-search th-label'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
                 _html.AppendLine("                          </div>");
                 _html.AppendLine("                      </div>");
                 _html.AppendLine("                      <div class='clear'></div>");
@@ -2871,10 +2778,6 @@ public class UDSStaffOurServicesUI
                 return _html;
             }
 
-            //ฟังก์ชั่นสำหรับแสดงรายการในส่วนของการส่งออกระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติและบันทึกการตรวจสอบวุฒิการศึกษากับสถานศึกษาต้นสังกัด แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _infoLogin เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-            //2. _dr        เป็น DataRow[] รับค่าชุดของข้อมูล
             public static StringBuilder GetList(Dictionary<string, object> _infoLogin, DataRow[] _dr)
             {
                 StringBuilder _html = new StringBuilder();
@@ -2891,26 +2794,26 @@ public class UDSStaffOurServicesUI
 
                     foreach (DataRow _dr1 in _dr)
                     {
-                        _iconResultAudit    = ("<div class='uploaddocument-auditedstatus uploaddocument-auditedstatus-" + (!String.IsNullOrEmpty(_dr1["transcriptResultAudit"].ToString()) ? _dr1["transcriptResultAudit"].ToString().ToLower() : "blank") + " link-" + UDSStaffUtil.SUBJECT_SECTION_MEANINGOFAUDITEDSTATUS.ToLower() + "  '></div>");
-                        _highlight          = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";
-                        _callFunc           = "Util.tut.getFrmPreviewDocument({" +
-                                              "page:'" + UDSStaffUtil.PAGE_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVEDTRANSCRIPT_PREVIEW + "'," +
-                                              "idMain:'" + _idSectionMain + "'," +
-                                              "idPreview:'" + _idSectionPreview + "'," +
-                                              "data:'" + _dr1["id"] + "'" +
-                                              "},function(){})";                     
+                        _iconResultAudit = ("<div class='uploaddocument-auditedstatus uploaddocument-auditedstatus-" + (!String.IsNullOrEmpty(_dr1["transcriptResultAudit"].ToString()) ? _dr1["transcriptResultAudit"].ToString().ToLower() : "blank") + " link-" + UDSStaffUtil.SUBJECT_SECTION_MEANINGOFAUDITEDSTATUS.ToLower() + "  '></div>");
+                        _highlight = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";
+                        _callFunc = "Util.tut.getFrmPreviewDocument({" +
+                                  "page:'" + UDSStaffUtil.PAGE_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVEDTRANSCRIPT_PREVIEW + "'," +
+                                  "idMain:'" + _idSectionMain + "'," +
+                                  "idPreview:'" + _idSectionPreview + "'," +
+                                  "data:'" + _dr1["id"] + "'" +
+                                  "},function(){})";                     
 
                         _html.AppendFormat("<div class='table-row{0}' id='table-row-id-{1}'>", _highlight, _dr1["id"]);
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col2' onclick={0}><div class='table-col-msg'><div><input class='checkbox select-child' type='checkbox' id='select-child-{1}' name='select-child' alt='select-root' value='{1}' /></div></div></div>", _callFunc, _dr1["id"].ToString());
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));                
-                        _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",  _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>",    UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>",    UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9' onclick={0}><div class='table-col-msg'><div class='th-label table-col-sentdateaudit'>{1}</div></div></div>",   _callFunc, (!String.IsNullOrEmpty(_dr1["transcriptAuditSentDate"].ToString()) ? DateTime.Parse(_dr1["transcriptAuditSentDate"].ToString()).ToString("dd/MM/yyyy") : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col10'><div class='table-col-msg'>{0}</div></div>",                                           _iconResultAudit);
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));                
+                        _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9' onclick={0}><div class='table-col-msg'><div class='th-label table-col-sentdateaudit'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["transcriptAuditSentDate"].ToString()) ? DateTime.Parse(_dr1["transcriptAuditSentDate"].ToString()).ToString("dd/MM/yyyy") : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col10'><div class='table-col-msg'>{0}</div></div>", _iconResultAudit);
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col11' onclick={0}><div class='table-col-msg'><div class='th-label table-col-receiveddateresultaudit'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["transcriptResultAuditReceivedDate"].ToString()) ? DateTime.Parse(_dr1["transcriptResultAuditReceivedDate"].ToString()).ToString("dd/MM/yyyy") : String.Empty));
                         _html.AppendLine("  </div>");
                     }
@@ -2924,7 +2827,6 @@ public class UDSStaffOurServicesUI
        
         public class SectionSearchUI
         {
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าค้นหาในส่วนของการส่งออกระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติและบันทึกการตรวจสอบวุฒิการศึกษากับสถานศึกษาต้นสังกัด แล้วส่งค่ากลับเป็น StringBuilder
             public static StringBuilder GetMain()
             {
                 StringBuilder _html = new StringBuilder();
@@ -3177,22 +3079,18 @@ public class UDSStaffOurServicesUI
 
         public class SectionPreviewUI
         {
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าตัวอย่างเอกสารในส่วนของการส่งออกระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติและบันทึกการตรวจสอบวุฒิการศึกษากับสถานศึกษาต้นสังกัด แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _section   เป็น string รับค่าส่วนที่ต้องการแสดง
-            //2. _id        เป็น string รับค่ารหัสที่ตั้องการ
             public static StringBuilder GetMain(string _section, string _id)
             {
                 StringBuilder _html = new StringBuilder();
 
                 if (_section.Equals(UDSStaffUtil.SUBJECT_SECTION_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVEDTRANSCRIPT))
                 {
-                    UDSStaffUI.PreviewDocumentUI.TranscriptUI._subjectSectionTranscript             = UDSStaffUtil.SUBJECT_SECTION_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVEDTRANSCRIPT;
-                    UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptPreview           = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTTRANSCRIPTAPPROVEDSAVEAUDITTRANSCRIPT_PREVIEW.ToLower();
-                    UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptInstitutePreview  = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTTRANSCRIPTAPPROVEDSAVEAUDITTRANSCRIPTINSTITUTE_PREVIEW.ToLower();
-                    UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptFrontsidePreview  = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTTRANSCRIPTAPPROVEDSAVEAUDITTRANSCRIPTFRONTSIDE_PREVIEW.ToLower();
-                    UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptBacksidePreview   = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTTRANSCRIPTAPPROVEDSAVEAUDITTRANSCRIPTBACKSIDE_PREVIEW.ToLower();
-                    UDSStaffUI.PreviewDocumentUI.TranscriptUI._pageTranscriptPreview                = UDSStaffUtil.PAGE_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVEDTRANSCRIPT_PREVIEW;
+                    UDSStaffUI.PreviewDocumentUI.TranscriptUI._subjectSectionTranscript = UDSStaffUtil.SUBJECT_SECTION_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVEDTRANSCRIPT;
+                    UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptPreview = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTTRANSCRIPTAPPROVEDSAVEAUDITTRANSCRIPT_PREVIEW.ToLower();
+                    UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptInstitutePreview = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTTRANSCRIPTAPPROVEDSAVEAUDITTRANSCRIPTINSTITUTE_PREVIEW.ToLower();
+                    UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptFrontsidePreview = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTTRANSCRIPTAPPROVEDSAVEAUDITTRANSCRIPTFRONTSIDE_PREVIEW.ToLower();
+                    UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptBacksidePreview = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTTRANSCRIPTAPPROVEDSAVEAUDITTRANSCRIPTBACKSIDE_PREVIEW.ToLower();
+                    UDSStaffUI.PreviewDocumentUI.TranscriptUI._pageTranscriptPreview = UDSStaffUtil.PAGE_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVEDTRANSCRIPT_PREVIEW;
 
                     _html = UDSStaffUI.PreviewDocumentUI.TranscriptUI.GetMain(_id, false, false);
                 }

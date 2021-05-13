@@ -16,7 +16,7 @@ using NStudentService;
 
 public class ePFStudentRecordsUI
 {
-    private static string _idSectionMain      = ePFUtil.ID_SECTION_STUDENTRECORDS_MAIN.ToLower();
+    private static string _idSectionMain = ePFUtil.ID_SECTION_STUDENTRECORDS_MAIN.ToLower();
     private static string _idSectionAddUpdate = ePFUtil.ID_SECTION_STUDENTRECORDS_ADDUPDATE.ToLower();
         
     public static StringBuilder GetSection(Dictionary<string, object> _infoLogin, string _section, string _sectionAction, string _id)
@@ -747,7 +747,7 @@ public class ePFStudentRecordsUI
                     _contentTemp.AppendLine("<div class='clear'></div>");
                 }
 
-                _ds.Dispose();                
+                _ds.Dispose();
               
                 _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
                 _contentFrmColumnDetail[_i].Add("ID", (_idSectionAddUpdate + "-maritalstatus"));
@@ -1353,7 +1353,7 @@ public class ePFStudentRecordsUI
                 _html.AppendFormat("<input type='hidden' id='{0}-gpa-hidden' value='{1}' />", _idSection, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "GPAHighSchool", _dataRecorded["GPAHighSchool"], Util._valueTextDefault) : Util._valueTextDefault));
                 _html.AppendFormat("<input type='hidden' id='{0}-educationalbackground-hidden' value='{1}' />", _idSection, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "EducationalBackgroundHighSchool", _dataRecorded["EducationalBackgroundHighSchool"], Util._valueTextDefault) : Util._valueTextDefault));
 
-                _idSection = UniversityUI._idSectionAddUpdate;              
+                _idSection = UniversityUI._idSectionAddUpdate;
 
                 _html.AppendFormat("<input type='hidden' id='{0}-educationalbackground-hidden' value='{1}' />", _idSection, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "EducationalBackground", _dataRecorded["EducationalBackground"], Util._valueTextDefault) : Util._valueTextDefault));
                 _html.AppendFormat("<input type='hidden' id='{0}-graduateby-hidden' value='{1}' />", _idSection, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "GraduateBy", _dataRecorded["GraduateBy"], Util._valueTextDefault) : Util._valueTextDefault));
@@ -1427,11 +1427,11 @@ public class ePFStudentRecordsUI
                 _html.AppendFormat("<div id='{0}'>", _idSectionAddUpdate);
                 _html.AppendFormat("    <div id='{0}-layout'>", _idSectionAddUpdate);
                 _html.AppendFormat("        <div id='{0}-content'>", _idSectionAddUpdate);            
-                //_html.AppendFormat("          <div class='tab-active' id='{0}' alt='{1}'>{2}</div>",    ePFStudentRecordsUtil._menuRecords[9, 3].ToLower(), ePFStudentRecordsUtil._menuRecords[9, 4], PrimarySchoolUI.GetMain());
-                //_html.AppendFormat("          <div class='tab-noactive' id='{0}' alt='{1}'>{2}</div>",  ePFStudentRecordsUtil._menuRecords[10, 3].ToLower(), ePFStudentRecordsUtil._menuRecords[10, 4], String.Empty);
-                _html.AppendFormat("            <div class='tab-active' id='{0}' alt='{1}'>{2}</div>",    ePFStudentRecordsUtil._menuRecords[11, 3].ToLower(), ePFStudentRecordsUtil._menuRecords[11, 4], HighSchoolUI.GetMain());
-                _html.AppendFormat("            <div class='tab-noactive' id='{0}' alt='{1}'>{2}</div>",  ePFStudentRecordsUtil._menuRecords[12, 3].ToLower(), ePFStudentRecordsUtil._menuRecords[12, 4], String.Empty);
-                _html.AppendFormat("            <div class='tab-noactive' id='{0}' alt='{1}'>{2}</div>",  ePFStudentRecordsUtil._menuRecords[13, 3].ToLower(), ePFStudentRecordsUtil._menuRecords[13, 4], String.Empty);
+                //_html.AppendFormat("          <div class='tab-active' id='{0}' alt='{1}'>{2}</div>",  ePFStudentRecordsUtil._menuRecords[9, 3].ToLower(), ePFStudentRecordsUtil._menuRecords[9, 4], PrimarySchoolUI.GetMain());
+                //_html.AppendFormat("          <div class='tab-noactive' id='{0}' alt='{1}'>{2}</div>", ePFStudentRecordsUtil._menuRecords[10, 3].ToLower(), ePFStudentRecordsUtil._menuRecords[10, 4], String.Empty);
+                _html.AppendFormat("            <div class='tab-active' id='{0}' alt='{1}'>{2}</div>", ePFStudentRecordsUtil._menuRecords[11, 3].ToLower(), ePFStudentRecordsUtil._menuRecords[11, 4], HighSchoolUI.GetMain());
+                _html.AppendFormat("            <div class='tab-noactive' id='{0}' alt='{1}'>{2}</div>", ePFStudentRecordsUtil._menuRecords[12, 3].ToLower(), ePFStudentRecordsUtil._menuRecords[12, 4], String.Empty);
+                _html.AppendFormat("            <div class='tab-noactive' id='{0}' alt='{1}'>{2}</div>", ePFStudentRecordsUtil._menuRecords[13, 3].ToLower(), ePFStudentRecordsUtil._menuRecords[13, 4], String.Empty);
                 _html.AppendLine("          </div>");
                 _html.AppendLine("      </div>");
                 _html.AppendLine("  </div>");
@@ -1704,7 +1704,7 @@ public class ePFStudentRecordsUI
                     _html.AppendLine("          <div class='form-content'>");
                     _html.AppendLine(               ePFUI.GetFrmColumn(_contentFrmColumn["InstituteName"]).ToString());
                     _html.AppendLine(               ePFUI.GetFrmColumn(_contentFrmColumn["InstituteCountry"]).ToString());
-                    _html.AppendLine(               ePFUI.GetFrmColumn(_contentFrmColumn["InstituteProvince"]).ToString());                       
+                    _html.AppendLine(               ePFUI.GetFrmColumn(_contentFrmColumn["InstituteProvince"]).ToString());
                     _html.AppendLine(               ePFUI.GetFrmColumn(_contentFrmColumn["YearAttended"]).ToString());
                     _html.AppendLine(               ePFUI.GetFrmColumn(_contentFrmColumn["YearGraduate"]).ToString());
                     _html.AppendLine(               ePFUI.GetFrmColumn(_contentFrmColumn["GPA"]).ToString());
@@ -2379,7 +2379,7 @@ public class ePFStudentRecordsUI
                 _contentTemp.AppendLine("       <div class='clear'></div>");
                 _contentTemp.AppendFormat("     <div class='form-inputcol'><textarea class='textareabox' id='{0}-specialistsportdetail'></textarea></div>", _idSectionAddUpdate);
                 _contentTemp.AppendLine("  </div>");
-                _contentTemp.AppendLine("  <div class='clear'></div>");                    
+                _contentTemp.AppendLine("  <div class='clear'></div>");
                 _contentTemp.AppendFormat("<div class='form-subcontent' id='{0}-specialistart-content'>", _idSectionAddUpdate);
                 _contentTemp.AppendLine("       <div class='form-labelcol'>");
                 _contentTemp.AppendLine("           <div class='checkbox-content'>");
@@ -2393,7 +2393,7 @@ public class ePFStudentRecordsUI
                 _contentTemp.AppendLine("       <div class='clear'></div>");
                 _contentTemp.AppendFormat("     <div class='form-inputcol'><textarea class='textareabox' id='{0}-specialistartdetail'></textarea></div>", _idSectionAddUpdate);
                 _contentTemp.AppendLine("  </div>");
-                _contentTemp.AppendLine("  <div class='clear'></div>");                    
+                _contentTemp.AppendLine("  <div class='clear'></div>");
                 _contentTemp.AppendFormat("<div class='form-subcontent' id='{0}-specialisttechnical-content'>", _idSectionAddUpdate);
                 _contentTemp.AppendLine("       <div class='form-labelcol'>");
                 _contentTemp.AppendLine("           <div class='checkbox-content'>");
@@ -2407,7 +2407,7 @@ public class ePFStudentRecordsUI
                 _contentTemp.AppendLine("       <div class='clear'></div>");
                 _contentTemp.AppendFormat("     <div class='form-inputcol'><textarea class='textareabox' id='{0}-specialisttechnicaldetail'></textarea></div>", _idSectionAddUpdate);
                 _contentTemp.AppendLine("  </div>");
-                _contentTemp.AppendLine("  <div class='clear'></div>");                    
+                _contentTemp.AppendLine("  <div class='clear'></div>");
                 _contentTemp.AppendFormat("<div class='form-subcontent' id='{0}-specialistother-content'>", _idSectionAddUpdate);
                 _contentTemp.AppendLine("       <div class='form-labelcol'>");
                 _contentTemp.AppendLine("           <div class='checkbox-content'>");
@@ -2795,7 +2795,7 @@ public class ePFStudentRecordsUI
                 _contentTemp.AppendLine("       </div>");
                 _contentTemp.AppendLine("       <div class='clear'></div>");
                 _contentTemp.AppendLine("       <div class='form-inputlist-list'></div>");
-                _contentTemp.AppendLine("  </div>");        
+                _contentTemp.AppendLine("  </div>");
 
                 _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
                 _contentFrmColumnDetail[_i].Add("ID", (_idSectionAddUpdate + "-travelabroad"));
@@ -2928,7 +2928,7 @@ public class ePFStudentRecordsUI
                     StringBuilder _html = new StringBuilder();
                     DataTable _dt = ePFStudentRecordsUtil.HealthyUtil.BodyMassIndexUtil.SetValueDataRecorded(_valueDataRecorded);
                     StudentService _ss = new StudentService();
-                    string _callFunc = String.Empty;        
+                    string _callFunc = String.Empty;
                     string _weight = String.Empty;
                     string _height = String.Empty;
                     string _bmi = String.Empty;
@@ -2945,13 +2945,13 @@ public class ePFStudentRecordsUI
                             {
                                 _i++;
 
-                                _weight = double.Parse(_dr["1"].ToString()).ToString("#,##0.00");                
+                                _weight = double.Parse(_dr["1"].ToString()).ToString("#,##0.00");
                                 _height = double.Parse(_dr["2"].ToString()).ToString("#,##0.00");
-                                _bmi = _ss.CalBMI(_weight, _height).ToString("#,##0.00");                
+                                _bmi = _ss.CalBMI(_weight, _height).ToString("#,##0.00");
                                 _date = DateTime.Parse(_dr["4"].ToString()).ToString("dd/MM/yyyy");
                                 _callFunc = "Util.tut.tsr.sectionAddUpdate.healthy.bodymassindex.setList({" +
-                                            "   action:'delete'," + 
-                                            "   row:" + _i +
+                                            "action:'delete'," + 
+                                            "row:" + _i +
                                             "})";
                 
                                 _html.AppendFormat("<div class='list-row' id='{0}-bodymassdetail-list-row{1}'>", _idSectionAddUpdate, _i);
@@ -2985,7 +2985,7 @@ public class ePFStudentRecordsUI
                     StringBuilder _html = new StringBuilder();
                     DataTable _dt = ePFStudentRecordsUtil.HealthyUtil.TravelAbroadUtil.SetValueDataRecorded(_valueDataRecorded);
                     string _callFunc = String.Empty;
-                    string _country = String.Empty;        
+                    string _country = String.Empty;
                     string _date = String.Empty;
                     string[] _countryArray;
                     int _i = 0;
@@ -3002,8 +3002,8 @@ public class ePFStudentRecordsUI
                                 _countryArray = _country.Split(':');
                                 _date = DateTime.Parse(_dr["2"].ToString()).ToString("dd/MM/yyyy");
                                 _callFunc = "Util.tut.tsr.sectionAddUpdate.healthy.travelabroad.setList({" +
-                                            "   action:'delete'," +
-                                            "   row:" + _i +
+                                            "action:'delete'," +
+                                            "row:" + _i +
                                             "})";
 
                                 _html.AppendFormat("<div class='list-row' id='{0}-travelabroaddetail-list-row{1}'>", _idSectionAddUpdate,  _i);
@@ -3512,7 +3512,7 @@ public class ePFStudentRecordsUI
 
         public class FamilyUI
         {
-            private static string _idSectionAddUpdate       = ePFUtil.ID_SECTION_STUDENTRECORDSFAMILY_ADDUPDATE.ToLower();
+            private static string _idSectionAddUpdate = ePFUtil.ID_SECTION_STUDENTRECORDSFAMILY_ADDUPDATE.ToLower();
             private static string _idSectionFatherAddUpdate = ePFUtil.ID_SECTION_STUDENTRECORDSFAMILYFATHER_ADDUPDATE.ToLower();
             private static string _idSectionMotherAddUpdate = ePFUtil.ID_SECTION_STUDENTRECORDSFAMILYMOTHER_ADDUPDATE.ToLower();
             private static string _idSectionParentAddUpdate = ePFUtil.ID_SECTION_STUDENTRECORDSFAMILYPARENT_ADDUPDATE.ToLower();
@@ -3593,7 +3593,7 @@ public class ePFStudentRecordsUI
                         (ePFStudentRecordsUtil._menuRecords[_i, 2].Equals("active") ? "subtab-active" : String.Empty),
                         ePFStudentRecordsUtil._menuRecords[_i, 3].ToLower(),
                         ePFStudentRecordsUtil._menuRecords[_i, 0],
-                        ePFStudentRecordsUtil._menuRecords[_i, 1]);                        
+                        ePFStudentRecordsUtil._menuRecords[_i, 1]);
                 }
 
                 _html.AppendLine("              </ul>");
@@ -4599,8 +4599,8 @@ public class ePFStudentRecordsUI
                         _contentFrmColumnDetail[_i].Add("LastRow", false);
                         _contentFrmColumn.Add("Relationship", _contentFrmColumnDetail[_i]);
                         _i++;
-                    }                    
-                                                                                
+                    }
+
                     _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
                     _contentFrmColumnDetail[_i].Add("ID", (_idSection + "-occupation"));
                     _contentFrmColumnDetail[_i].Add("HighLight", false);

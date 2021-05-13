@@ -81,26 +81,43 @@
 </body>
 <script type="text/javascript">
     $(window).resize(function () {
-        try
-        {
-            if ($("#" + Util.dialogPreloading).is(":visible")) $("#" + Util.dialogLoading).dialog("option", "position", { my: "center", at: "center", of: window });
+        try {
+            if ($("#" + Util.dialogPreloading).is(":visible"))
+                $("#" + Util.dialogLoading).dialog("option", "position", { my: "center", at: "center", of: window });
             /*
-            if ($("#" + Util.dialogBox).is(":visible"))                 $("#" + Util.dialogBox).dialog("option", "position", { my: "bottom", at: "bottom", of: window });
-            if ($("#" + Util.dialogError).is(":visible"))               $("#" + Util.dialogError).dialog("option", "position", { my: "bottom", at: "bottom", of: window });
-            if ($("#" + Util.dialogConfirm).is(":visible"))             $("#" + Util.dialogConfirm).dialog("option", "position", { my: "bottom", at: "bottom", of: window });
+            if ($("#" + Util.dialogBox).is(":visible"))
+                $("#" + Util.dialogBox).dialog("option", "position", { my: "bottom", at: "bottom", of: window });
+
+            if ($("#" + Util.dialogError).is(":visible"))
+                $("#" + Util.dialogError).dialog("option", "position", { my: "bottom", at: "bottom", of: window });
+
+            if ($("#" + Util.dialogConfirm).is(":visible"))
+                $("#" + Util.dialogConfirm).dialog("option", "position", { my: "bottom", at: "bottom", of: window });
             */
-            if ($("#" + Util.dialogBox).is(":visible"))                 $("#" + Util.dialogBox).dialog("option", "position", { my: "center", at: "center", of: window });
-            if ($("#" + Util.dialogError).is(":visible"))               $("#" + Util.dialogError).dialog("option", "position", { my: "center", at: "center", of: window });
-            if ($("#" + Util.dialogConfirm).is(":visible"))             $("#" + Util.dialogConfirm).dialog("option", "position", { my: "center", at: "center", of: window });
-            if ($("#" + Util.dialogForm + "1").is(":visible"))          $("#" + Util.dialogForm + "1").dialog("option", "position", { my: "center", at: "center", of: window });
-            if ($("#" + Util.dialogForm + "picture").is(":visible"))    $("#" + Util.dialogForm + "picture").dialog("option", "position", { my: "center", at: "center", of: window });
-            if ($(".select2-dropdown").is(":visible"))                  $("select").select2("close");
-            if ($(".ui-datepicker").is(":visible"))                     $(".ui-datepicker").hide();
+            if ($("#" + Util.dialogBox).is(":visible"))
+                $("#" + Util.dialogBox).dialog("option", "position", { my: "center", at: "center", of: window });
+
+            if ($("#" + Util.dialogError).is(":visible"))
+                $("#" + Util.dialogError).dialog("option", "position", { my: "center", at: "center", of: window });
+
+            if ($("#" + Util.dialogConfirm).is(":visible"))
+                $("#" + Util.dialogConfirm).dialog("option", "position", { my: "center", at: "center", of: window });
+
+            if ($("#" + Util.dialogForm + "1").is(":visible"))
+                $("#" + Util.dialogForm + "1").dialog("option", "position", { my: "center", at: "center", of: window });
+
+            if ($("#" + Util.dialogForm + "picture").is(":visible"))
+                $("#" + Util.dialogForm + "picture").dialog("option", "position", { my: "center", at: "center", of: window });
+
+            if ($(".select2-dropdown").is(":visible"))
+                $("select").select2("close");
+
+            if ($(".ui-datepicker").is(":visible"))
+                $(".ui-datepicker").hide();
         }
-        catch (_e)
-        {
+        catch (_e) {
         }
-                        
+
         Util.setStickyTop(0);
         Util.setMenuBarLayout();
         Util.setInfoBarLayout();
@@ -114,29 +131,28 @@
     });
 
     $(window).scroll(function () {
-        try
-        {
-            if ($(".select2-dropdown").is(":visible"))  $("select").select2("close");
-            if ($(".ui-datepicker").is(":visible"))     $(".ui-datepicker").hide();
+        try {
+            if ($(".select2-dropdown").is(":visible"))
+                $("select").select2("close");
+
+            if ($(".ui-datepicker").is(":visible"))
+                $(".ui-datepicker").hide();
         }
-        catch (_e)
-        {
+        catch (_e) {
         }
     });
 
-    try
-    {
-        Util.tut        = UDSStaffUtil;
-        Util.tut.tse    = UDSStaffSearch;
-        Util.tut.tst    = UDSStaffSetting;
-        Util.tut.tus    = UDSStaffUploadSubmitDocument;
-        Util.tut.tap    = UDSStaffApproveDocument;
-        Util.tut.tos    = UDSStaffOurServices;
-        Util.tut.tpd    = UDSStaffProgressData;
+    try {
+        Util.tut = UDSStaffUtil;
+        Util.tut.tse = UDSStaffSearch;
+        Util.tut.tst = UDSStaffSetting;
+        Util.tut.tus = UDSStaffUploadSubmitDocument;
+        Util.tut.tap = UDSStaffApproveDocument;
+        Util.tut.tos = UDSStaffOurServices;
+        Util.tut.tpd = UDSStaffProgressData;
         Util.getPage();
     }
-    catch (_e)
-    {
+    catch (_e) {
         Util.dialogMessageError({
             content: "<div class='th-label'>ประมวลผลไม่สำเร็จ</div><div class='en-label'>Processing was not successful</div>",
         });

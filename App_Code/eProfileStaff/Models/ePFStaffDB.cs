@@ -577,7 +577,7 @@ public class ePFStaffDB
                     }
 
                     _dr = _ds.Tables[0].Rows[0];
-                    _saveError = (int.Parse(_dr[0].ToString()).Equals(1) ? 0 : 1);                    
+                    _saveError = (int.Parse(_dr[0].ToString()).Equals(1) ? 0 : 1);
                 }
             }
             

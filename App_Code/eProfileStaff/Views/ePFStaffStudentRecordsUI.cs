@@ -104,7 +104,7 @@ public class ePFStaffStudentRecordsUI
                 }
             }
             
-            _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());                            
+            _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
             _html.AppendLine("<div class='after-sticky main'>");
             _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
             _html.AppendLine("      <div class='table-layout'>");
@@ -171,7 +171,7 @@ public class ePFStaffStudentRecordsUI
             string _faculty = _infoLogin["Faculty"].ToString();
             string _userlevel = _infoLogin["Userlevel"].ToString();
             string _highlight = String.Empty;
-            string _callFunc = String.Empty;                
+            string _callFunc = String.Empty;
 
             if (_dr.GetLength(0) > 0)
             {
@@ -1397,7 +1397,7 @@ public class ePFStaffStudentRecordsUI
             public class PermanentAddressUI
             {
                 public static string _idSectionAddUpdate = ePFStaffUtil.ID_SECTION_ADMINISTRATIONSTUDENTRECORDSADDRESSPERMANENT_ADDUPDATE.ToLower();
-                            
+
                 public static StringBuilder GetMain()
                 {
                     return GetFrmAddress(ePFStaffUtil.PAGE_ADMINISTRATIONSTUDENTRECORDSADDRESSPERMANENT_ADDUPDATE);
@@ -1690,7 +1690,7 @@ public class ePFStaffStudentRecordsUI
                 _html.AppendLine("  </div>");
 
                 return _html;
-            }                        
+            }
         }
 
         public class EducationUI
@@ -1807,7 +1807,7 @@ public class ePFStaffStudentRecordsUI
                 _html.AppendLine(   GetValueDataRecorded(_valueDataRecorded).ToString());
                 _html.AppendFormat("<div id='{0}'>", _idSectionAddUpdate);
                 _html.AppendFormat("    <div id='{0}-layout'>", _idSectionAddUpdate);
-                _html.AppendFormat("        <div id='{0}-content'>", _idSectionAddUpdate);            
+                _html.AppendFormat("        <div id='{0}-content'>", _idSectionAddUpdate);
                 //_html.AppendFormat("          <div class='tab-active' id='{0}' alt='{1}'>{2}</div>",    ePFStaffStudentRecordsUtil._menuRecords[9, 3].ToLower(), ePFStaffStudentRecordsUtil._menuRecords[9, 4], PrimarySchoolUI.GetMain());
                 //_html.AppendFormat("          <div class='tab-noactive' id='{0}' alt='{1}'>{2}</div>",  ePFStaffStudentRecordsUtil._menuRecords[10, 3].ToLower(), ePFStaffStudentRecordsUtil._menuRecords[10, 4], String.Empty);
                 _html.AppendFormat("            <div class='tab-active' id='{0}' alt='{1}'>{2}</div>",    ePFStaffStudentRecordsUtil._menuRecords[11, 3].ToLower(), ePFStaffStudentRecordsUtil._menuRecords[11, 4], HighSchoolUI.GetMain());
@@ -1946,7 +1946,7 @@ public class ePFStaffStudentRecordsUI
                     _html.AppendLine("          <div class='form-content'>");
                     _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["InstituteName"]).ToString());
                     _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["InstituteCountry"]).ToString());
-                    _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["InstituteProvince"]).ToString());                       
+                    _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["InstituteProvince"]).ToString());
                     _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["YearAttended"]).ToString());
                     _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["YearGraduate"]).ToString());
                     _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["GPA"]).ToString());
@@ -2085,7 +2085,7 @@ public class ePFStaffStudentRecordsUI
                     _html.AppendLine("          <div class='form-content'>");
                     _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["InstituteName"]).ToString());
                     _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["InstituteCountry"]).ToString());
-                    _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["InstituteProvince"]).ToString());                       
+                    _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["InstituteProvince"]).ToString());
                     _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["YearAttended"]).ToString());
                     _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["YearGraduate"]).ToString());
                     _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["GPA"]).ToString());
@@ -2385,7 +2385,7 @@ public class ePFStaffStudentRecordsUI
                     _contentFrmColumn.Add("EducationalBackground", _contentFrmColumnDetail[_i]);
                     _i++;
                         
-                    _contentTemp.Clear();        
+                    _contentTemp.Clear();
 
                     for (_j = 0; _j < ePFStaffStudentRecordsUtil._graduateBy.GetLength(0); _j++)
                     {
@@ -2446,7 +2446,7 @@ public class ePFStaffStudentRecordsUI
                     _contentFrmColumn.Add("EntranceTime", _contentFrmColumnDetail[_i]);
                     _i++;
                         
-                    _contentTemp.Clear();        
+                    _contentTemp.Clear();
 
                     for (_j = 0; _j < ePFStaffStudentRecordsUtil._studentIs.GetLength(0); _j++)
                     {
@@ -2570,9 +2570,9 @@ public class ePFStaffStudentRecordsUI
                     _html.AppendLine("          <div class='form-content'>");
                     _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["EducationalBackground"]).ToString());
                     _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["GraduateBy"]).ToString());
-                    _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["EntranceTime"]).ToString());                       
-                    _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["StudentIs"]).ToString());                       
-                    _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["EntranceType"]).ToString());                       
+                    _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["EntranceTime"]).ToString());
+                    _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["StudentIs"]).ToString());
+                    _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["EntranceType"]).ToString());
                     _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["AdmissionRanking"]).ToString());
                     _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["Save"]).ToString());
                     _html.AppendLine("          </div>");
@@ -2734,7 +2734,7 @@ public class ePFStaffStudentRecordsUI
                 _contentFrmColumn.Add("Sportsman", _contentFrmColumnDetail[_i]);
                 _i++;
                     
-                _contentTemp.Clear();        
+                _contentTemp.Clear();
 
                 for (_j = 0; _j < ePFStaffUtil._ynHaveWithout.GetLength(0); _j++)
                 {
@@ -2760,7 +2760,7 @@ public class ePFStaffStudentRecordsUI
                 _contentTemp.AppendLine("       <div class='clear'></div>");
                 _contentTemp.AppendFormat("     <div class='form-inputcol'><textarea class='textareabox' id='{0}-specialistsportdetail'></textarea></div>", _idSectionAddUpdate);
                 _contentTemp.AppendLine("  </div>");
-                _contentTemp.AppendLine("  <div class='clear'></div>");                    
+                _contentTemp.AppendLine("  <div class='clear'></div>");
                 _contentTemp.AppendFormat("<div class='form-subcontent' id='{0}-specialistart-content'>", _idSectionAddUpdate);
                 _contentTemp.AppendLine("       <div class='form-labelcol'>");
                 _contentTemp.AppendLine("           <div class='checkbox-content'>");
@@ -2774,7 +2774,7 @@ public class ePFStaffStudentRecordsUI
                 _contentTemp.AppendLine("       <div class='clear'></div>");
                 _contentTemp.AppendFormat("     <div class='form-inputcol'><textarea class='textareabox' id='{0}-specialistartdetail'></textarea></div>", _idSectionAddUpdate);
                 _contentTemp.AppendLine("  </div>");
-                _contentTemp.AppendLine("  <div class='clear'></div>");                    
+                _contentTemp.AppendLine("  <div class='clear'></div>");
                 _contentTemp.AppendFormat("<div class='form-subcontent' id='{0}-specialisttechnical-content'>", _idSectionAddUpdate);
                 _contentTemp.AppendLine("       <div class='form-labelcol'>");
                 _contentTemp.AppendLine("           <div class='checkbox-content'>");
@@ -2788,7 +2788,7 @@ public class ePFStaffStudentRecordsUI
                 _contentTemp.AppendLine("       <div class='clear'></div>");
                 _contentTemp.AppendFormat("     <div class='form-inputcol'><textarea class='textareabox' id='{0}-specialisttechnicaldetail'></textarea></div>", _idSectionAddUpdate);
                 _contentTemp.AppendLine("  </div>");
-                _contentTemp.AppendLine("  <div class='clear'></div>");                    
+                _contentTemp.AppendLine("  <div class='clear'></div>");
                 _contentTemp.AppendFormat("<div class='form-subcontent' id='{0}-specialistother-content'>", _idSectionAddUpdate);
                 _contentTemp.AppendLine("       <div class='form-labelcol'>");
                 _contentTemp.AppendLine("           <div class='checkbox-content'>");
@@ -3143,7 +3143,7 @@ public class ePFStaffStudentRecordsUI
                 _contentFrmColumn.Add("AilHistoryFamily", _contentFrmColumnDetail[_i]);
                 _i++;
 
-                _contentTemp.Clear();        
+                _contentTemp.Clear();
 
                 for (_j = 0; _j < ePFStaffUtil._ynEverNever.GetLength(0); _j++)
                 {
@@ -3192,7 +3192,7 @@ public class ePFStaffStudentRecordsUI
                 _contentFrmColumn.Add("TravelAbroad", _contentFrmColumnDetail[_i]);
                 _i++;
 
-                _contentTemp.Clear();        
+                _contentTemp.Clear();
 
                 for (_j = 0; _j < ePFStaffUtil._ynHaveWithout.GetLength(0); _j++)
                 {
@@ -3309,7 +3309,7 @@ public class ePFStaffStudentRecordsUI
                     StringBuilder _html = new StringBuilder();
                     DataTable _dt = ePFStaffStudentRecordsUtil.HealthyUtil.BodyMassIndexUtil.SetValueDataRecorded(_valueDataRecorded);
                     StudentService _ss = new StudentService();
-                    string _callFunc = String.Empty;        
+                    string _callFunc = String.Empty;
                     string _weight = String.Empty;
                     string _height = String.Empty;
                     string _bmi = String.Empty;
@@ -3320,7 +3320,7 @@ public class ePFStaffStudentRecordsUI
                     {
                         if (_dt.Rows.Count > 0)
                         {
-                            string[] _valueList = new string[_dt.Rows.Count];                                
+                            string[] _valueList = new string[_dt.Rows.Count];
 
                             foreach (DataRow _dr in _dt.Select(String.Empty, "4 DESC"))
                             {
@@ -3331,8 +3331,8 @@ public class ePFStaffStudentRecordsUI
                                 _bmi = _ss.CalBMI(_weight, _height).ToString("#,##0.00");
                                 _date = DateTime.Parse(_dr["4"].ToString()).ToString("dd/MM/yyyy");
                                 _callFunc = "Util.tut.tsr.sectionAddUpdate.healthy.bodymassindex.setList({" +
-                                            "   action: 'delete'," + 
-                                            "   row: " + _i +
+                                            "action:'delete'," + 
+                                            "row:" + _i +
                                             "})";
 
                                 _html.AppendFormat("<div class='list-row' id='{0}-bodymassdetail-list-row{1}'>", _idSectionAddUpdate, _i);
@@ -3366,7 +3366,7 @@ public class ePFStaffStudentRecordsUI
                     StringBuilder _html = new StringBuilder();
                     DataTable _dt = ePFStaffStudentRecordsUtil.HealthyUtil.TravelAbroadUtil.SetValueDataRecorded(_valueDataRecorded);
                     string _callFunc = String.Empty;
-                    string _country = String.Empty;        
+                    string _country = String.Empty;
                     string _date = String.Empty;
                     string[] _countryArray;
                     int _i = 0;
@@ -3381,10 +3381,10 @@ public class ePFStaffStudentRecordsUI
 
                                 _country = _dr["1"].ToString();
                                 _countryArray = _country.Split(':');
-                                _date = DateTime.Parse(_dr["2"].ToString()).ToString("dd/MM/yyyy");                                                    
+                                _date = DateTime.Parse(_dr["2"].ToString()).ToString("dd/MM/yyyy");
                                 _callFunc = "Util.tut.tsr.sectionAddUpdate.healthy.travelabroad.setList({" +
-                                            "   action: 'delete'," +
-                                            "   row: " + _i +
+                                            "action:'delete'," +
+                                            "row:" + _i +
                                             "})";
 
                                 _html.AppendFormat("<div class='list-row' id='{0}-travelabroaddetail-list-row{1}'>", _idSectionAddUpdate,  _i);
@@ -3770,7 +3770,7 @@ public class ePFStaffStudentRecordsUI
                 _contentFrmColumn.Add("Worked", _contentFrmColumnDetail[_i]);
                 _i++;
 
-                _contentTemp.Clear();        
+                _contentTemp.Clear();
 
                 for (_j = 0; _j < ePFStaffStudentRecordsUtil._financialSupportFrom.GetLength(0); _j++)
                 {
@@ -3976,7 +3976,7 @@ public class ePFStaffStudentRecordsUI
                         ePFStaffStudentRecordsUtil._menuRecords[_i, 3].ToLower(),
                         ePFStaffStudentRecordsUtil._menuRecords[_i, 0],
                         ePFStaffStudentRecordsUtil._menuRecords[_i, 1]
-                    );                        
+                    );
                 }
 
                 _html.AppendLine("              </ul>");
@@ -5131,7 +5131,7 @@ public class ePFStaffStudentRecordsUI
                     _html.AppendLine("              </div>");
                     _html.AppendLine("          </div>");
                     _html.AppendLine("      </div>");
-                    _html.AppendLine("  </div>");                        
+                    _html.AppendLine("  </div>");
 
                     return _html;
                 }                   
@@ -6120,7 +6120,7 @@ public class ePFStaffStudentRecordsUI
 
             public static StringBuilder GetMain()
             {
-                StringBuilder _html = new StringBuilder();        
+                StringBuilder _html = new StringBuilder();
 
                 _html.AppendFormat("<div class='dialog-form' id='{0}-form'>", _idSectionPreview);
                 _html.AppendLine("    <div class='form-layout'>");
@@ -6169,14 +6169,13 @@ public class ePFStaffStudentRecordsUI
                 return _html;
             }
 
-            //ฟังก์ชั่นสำหรับแสดงรายการประมวลผลข้อมูลก่อนประมวลผลข้อมูลจริงในส่วนของการปรับปรุงสถานภาพการเป็นนักศึกษาของนักศึกษาในส่วนของการจัดการข้อมูลระเบียนประวัตินักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
             public static StringBuilder GetList()
             {
-            StringBuilder _html = new StringBuilder();
+                StringBuilder _html = new StringBuilder();
 
-            _html.AppendLine("<div class='table-grid'></div>");
+                _html.AppendLine("<div class='table-grid'></div>");
 
-            return _html;
+                return _html;
             }
         }
 
@@ -6184,56 +6183,55 @@ public class ePFStaffStudentRecordsUI
         {
             private static string _idSectionPreview = ePFStaffUtil.ID_SECTION_ADMINISTRATIONSTUDENTRECORDSUPDATEADMISSIONDATE_PREVIEW.ToLower();
 
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาให้กับการแสดงผลประมวลผลข้อมูลก่อนประมวลผลข้อมูลจริงในส่วนของการปรับปรุงวันที่เข้าศึกษาของนักศึกษาในส่วนของการจัดการข้อมูลระเบียนประวัตินักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
             public static StringBuilder GetMain()
             {
-            StringBuilder _html = new StringBuilder();
+                StringBuilder _html = new StringBuilder();
 
-            _html.AppendFormat("<div class='dialog-form' id='{0}-form'>", _idSectionPreview);
-            _html.AppendLine("      <div class='form-layout'>");
-            _html.AppendLine("          <div class='form-content'>");
-            _html.AppendFormat("            <div class='table table-previewprogress' id='{0}-table'>", _idSectionPreview);
-            _html.AppendLine("                  <div class='table-layout'>");
-            _html.AppendLine("                      <div class='table-content'>");
-            _html.AppendLine("                          <div class='table-freeze'>");
-            _html.AppendLine("                              <div class='table-title'>");
-            _html.AppendLine("                                  <div class='contentbody-right table-recordcount en-label'>");
-            _html.AppendLine("                                      <span class='en-label'>Update Total of </span>");
-            _html.AppendLine("                                      <span class='recordcount-search th-label'></span>");
-            _html.AppendLine("                                      <span class='en-label'> people</span>");
-            _html.AppendLine("                                  </div>");
-            _html.AppendLine("                              </div>");
-            _html.AppendLine("                              <div class='clear'></div>");
-            _html.AppendLine("                              <div class='table-head'>");
-            _html.AppendLine("                                  <div class='table-row'>");
-            _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='en-label'>No.</div></div></div>");
-            _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='en-label'>Student</div><div class='en-label'>ID</div></div></div>");
-            _html.AppendLine("                                      <div class='table-col table-col-width-dynamic table-col3'><div class='table-col-msg'><div class='en-label'>Full Name</div><div class='en-label'>( TH )</div></div></div>");
-            _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col4'><div class='table-col-msg'><div class='en-label'>Year Attended</div><div class='en-label'>( Old )</div></div></div>");
-            _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col5'><div class='table-col-msg'><div class='en-label'>Admission Date</div><div class='en-label'>( Old )</div></div></div>");
-            _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col6'><div class='table-col-msg'><div class='en-label'>Year Attended</div><div class='en-label'>( New )</div></div></div>");
-            _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='en-label'>Admission Date</div><div class='en-label'>( New )</div></div></div>");
-            _html.AppendLine("                                  </div>");
-            _html.AppendLine("                              </div>");
-            _html.AppendLine("                          </div>");
-            _html.AppendFormat("                        <div class='table-list'>{0}</div>", GetList());
-            _html.AppendLine("                          <div class='button'>");
-            _html.AppendLine("                              <div class='button-layout'>");
-            _html.AppendLine("                                  <div class='button-content'>");
-            _html.AppendLine("                                      <ul class='button-style1'>");
-            _html.AppendLine("                                          <li class='nomargin'><div class='click-button en-label button-submit'>SUBMIT</div></li>");
-            _html.AppendLine("                                      </ul>");
-            _html.AppendLine("                                  </div>");
-            _html.AppendLine("                              </div>");
-            _html.AppendLine("                          </div>");
-            _html.AppendLine("                      </div>");
-            _html.AppendLine("                  </div>");
-            _html.AppendLine("              </div>");
-            _html.AppendLine("          </div>");
-            _html.AppendLine("      </div>");
-            _html.AppendLine("  </div>");
+                _html.AppendFormat("<div class='dialog-form' id='{0}-form'>", _idSectionPreview);
+                _html.AppendLine("      <div class='form-layout'>");
+                _html.AppendLine("          <div class='form-content'>");
+                _html.AppendFormat("            <div class='table table-previewprogress' id='{0}-table'>", _idSectionPreview);
+                _html.AppendLine("                  <div class='table-layout'>");
+                _html.AppendLine("                      <div class='table-content'>");
+                _html.AppendLine("                          <div class='table-freeze'>");
+                _html.AppendLine("                              <div class='table-title'>");
+                _html.AppendLine("                                  <div class='contentbody-right table-recordcount en-label'>");
+                _html.AppendLine("                                      <span class='en-label'>Update Total of </span>");
+                _html.AppendLine("                                      <span class='recordcount-search th-label'></span>");
+                _html.AppendLine("                                      <span class='en-label'> people</span>");
+                _html.AppendLine("                                  </div>");
+                _html.AppendLine("                              </div>");
+                _html.AppendLine("                              <div class='clear'></div>");
+                _html.AppendLine("                              <div class='table-head'>");
+                _html.AppendLine("                                  <div class='table-row'>");
+                _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='en-label'>No.</div></div></div>");
+                _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='en-label'>Student</div><div class='en-label'>ID</div></div></div>");
+                _html.AppendLine("                                      <div class='table-col table-col-width-dynamic table-col3'><div class='table-col-msg'><div class='en-label'>Full Name</div><div class='en-label'>( TH )</div></div></div>");
+                _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col4'><div class='table-col-msg'><div class='en-label'>Year Attended</div><div class='en-label'>( Old )</div></div></div>");
+                _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col5'><div class='table-col-msg'><div class='en-label'>Admission Date</div><div class='en-label'>( Old )</div></div></div>");
+                _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col6'><div class='table-col-msg'><div class='en-label'>Year Attended</div><div class='en-label'>( New )</div></div></div>");
+                _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='en-label'>Admission Date</div><div class='en-label'>( New )</div></div></div>");
+                _html.AppendLine("                                  </div>");
+                _html.AppendLine("                              </div>");
+                _html.AppendLine("                          </div>");
+                _html.AppendFormat("                        <div class='table-list'>{0}</div>", GetList());
+                _html.AppendLine("                          <div class='button'>");
+                _html.AppendLine("                              <div class='button-layout'>");
+                _html.AppendLine("                                  <div class='button-content'>");
+                _html.AppendLine("                                      <ul class='button-style1'>");
+                _html.AppendLine("                                          <li class='nomargin'><div class='click-button en-label button-submit'>SUBMIT</div></li>");
+                _html.AppendLine("                                      </ul>");
+                _html.AppendLine("                                  </div>");
+                _html.AppendLine("                              </div>");
+                _html.AppendLine("                          </div>");
+                _html.AppendLine("                      </div>");
+                _html.AppendLine("                  </div>");
+                _html.AppendLine("              </div>");
+                _html.AppendLine("          </div>");
+                _html.AppendLine("      </div>");
+                _html.AppendLine("  </div>");
                 
-            return _html;
+                return _html;
             }
 
             public static StringBuilder GetList()

@@ -1,22 +1,20 @@
-﻿// =============================================
-// Author       : <ยุทธภูมิ ตวันนา>
-// Create date  : <๓๑/๐๘/๒๕๕๘>
-// Modify date  : <๑๗/๐๕/๒๕๕๙>
-// Description  : <หน้าใช้งานเกี่ยวกับการอัพโหลดไฟล์>
-// =============================================
+﻿/*
+=============================================
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๓๑/๐๘/๒๕๕๘>
+Modify date : <๑๗/๐๕/๒๕๕๙>
+Description : <หน้าใช้งานเกี่ยวกับการอัพโหลดไฟล์>
+=============================================
+*/
 
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using NUtil;
 
 public partial class UDSStaffUploadFile : Page
@@ -110,7 +108,6 @@ public partial class UDSStaffUploadFile : Page
         }
 
         Response.Write("<script language='javascript' type='text/javascript'>window.parent.Util.tut.tus.sectionAddUpdate.stopUploadFile({" + _uploadfileResult.ToString() + "})</script>");
-
     }
 
     private static Dictionary<string, object> GetWidthHeightImage(int _width, int _height, int _maxWidth, int _maxHeight)

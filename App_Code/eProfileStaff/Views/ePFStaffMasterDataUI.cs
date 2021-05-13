@@ -46,7 +46,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.TitlePrefixUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATATITLEPREFIX_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
                 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());                
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -89,7 +89,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -261,7 +261,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.GenderUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATAGENDER_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());       
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -276,7 +276,7 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine("                  </div>");
                 _html.AppendLine("                  <div class='clear'></div>");
                 _html.AppendLine("                  <div class='table-head'>");
-                _html.AppendLine("                      <div class='table-row'>");                
+                _html.AppendLine("                      <div class='table-row'>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='en-label'>No.</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='en-label'>ID</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-dynamic table-col3'><div class='table-col-msg'><div class='en-label'>Full Name</div><div class='en-label'>( TH )</div></div></div>");
@@ -303,7 +303,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -459,7 +459,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.NationalityRaceUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATANATIONALITYRACE_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());    
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -501,7 +501,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -657,7 +657,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.ReligionUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATARELIGION_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());    
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -697,7 +697,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -891,7 +891,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -1045,7 +1045,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.MaritalStatusUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATAMARITALSTATUS_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());    
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -1085,7 +1085,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -1239,7 +1239,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.FamilyRelationshipsUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATAFAMILYRELATIONSHIPS_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());    
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -1254,7 +1254,7 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine("                  </div>");
                 _html.AppendLine("                  <div class='clear'></div>");
                 _html.AppendLine("                  <div class='table-head'>");
-                _html.AppendLine("                      <div class='table-row'>");                
+                _html.AppendLine("                      <div class='table-row'>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='en-label'>No.</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='en-label'>ID</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-dynamic table-col3'><div class='table-col-msg'><div class='en-label'>Full Name</div><div class='en-label'>( TH )</div></div></div>");
@@ -1280,7 +1280,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -1450,7 +1450,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.AgencyUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATAAGENCY_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());    
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -1490,7 +1490,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -1644,7 +1644,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.EducationalLevelUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATAEDUCATIONALLEVEL_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());    
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -1659,7 +1659,7 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine("                  </div>");
                 _html.AppendLine("                  <div class='clear'></div>");
                 _html.AppendLine("                  <div class='table-head'>");
-                _html.AppendLine("                      <div class='table-row'>");                
+                _html.AppendLine("                      <div class='table-row'>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='en-label'>No.</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='en-label'>ID</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-dynamic table-col3'><div class='table-col-msg'><div class='en-label'>Full Name</div><div class='en-label'>( TH )</div></div></div>");
@@ -1684,7 +1684,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -2246,7 +2246,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.AdmissionTypeUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATAADMISSIONTYPE_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());    
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -2261,7 +2261,7 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine("                  </div>");
                 _html.AppendLine("                  <div class='clear'></div>");
                 _html.AppendLine("                  <div class='table-head'>");
-                _html.AppendLine("                      <div class='table-row'>");                
+                _html.AppendLine("                      <div class='table-row'>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='en-label'>No.</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='en-label'>ID</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-dynamic table-col3'><div class='table-col-msg'><div class='en-label'>Full Name</div><div class='en-label'>( TH )</div></div></div>");
@@ -2286,7 +2286,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -2384,7 +2384,7 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["CancelledStatus"]).ToString());
                 _html.AppendLine("              </div>");
-                _html.AppendLine("              <div class='contentbody-left search-section2'>");                                              
+                _html.AppendLine("              <div class='contentbody-left search-section2'>");
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Sort"]).ToString());
                 _html.AppendLine("              </div>");
                 _html.AppendLine("              <div class='contentbody-left search-section3'>");
@@ -2440,7 +2440,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.StudentStatusUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATASTUDENTSTATUS_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());    
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -2455,7 +2455,7 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine("                  </div>");
                 _html.AppendLine("                  <div class='clear'></div>");
                 _html.AppendLine("                  <div class='table-head'>");
-                _html.AppendLine("                      <div class='table-row'>");                
+                _html.AppendLine("                      <div class='table-row'>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='en-label'>No.</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='en-label'>ID</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-dynamic table-col3'><div class='table-col-msg'><div class='en-label'>Full Name</div><div class='en-label'>( TH )</div></div></div>");
@@ -2480,7 +2480,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -2579,7 +2579,7 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["CancelledStatus"]).ToString());
                 _html.AppendLine("              </div>");
-                _html.AppendLine("              <div class='contentbody-left search-section2'>");                                              
+                _html.AppendLine("              <div class='contentbody-left search-section2'>");
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Sort"]).ToString());
                 _html.AppendLine("              </div>");
                 _html.AppendLine("              <div class='contentbody-left search-section3'>");
@@ -2635,7 +2635,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.CountryUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATACOUNTRY_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());    
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -2650,7 +2650,7 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine("                  </div>");
                 _html.AppendLine("                  <div class='clear'></div>");
                 _html.AppendLine("                  <div class='table-head'>");
-                _html.AppendLine("                      <div class='table-row'>");                
+                _html.AppendLine("                      <div class='table-row'>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='en-label'>No.</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='en-label'>ID</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-dynamic table-col3'><div class='table-col-msg'><div class='en-label'>Full Name</div><div class='en-label'>( TH )</div></div></div>");
@@ -2677,7 +2677,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -2777,7 +2777,7 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["CancelledStatus"]).ToString());
                 _html.AppendLine("              </div>");
-                _html.AppendLine("              <div class='contentbody-left search-section2'>");                                              
+                _html.AppendLine("              <div class='contentbody-left search-section2'>");
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Sort"]).ToString());
                 _html.AppendLine("              </div>");
                 _html.AppendLine("              <div class='contentbody-left search-section3'>");
@@ -2833,7 +2833,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.ProvinceUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATAPROVINCE_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());    
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -2874,7 +2874,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -2984,11 +2984,11 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine("          <div class='form-content search-content'>");
                 _html.AppendLine(               ePFStaffUI.GetValueSearch(ePFStaffUtil.PAGE_MASTERDATAPROVINCE_MAIN).ToString());
                 _html.AppendLine("              <div class='contentbody-left search-section1'>");
-                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());                
+                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Country"]).ToString());
                 _html.AppendLine("              </div>");
-                _html.AppendLine("              <div class='contentbody-left search-section2'>");                     
-                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["CancelledStatus"]).ToString());         
+                _html.AppendLine("              <div class='contentbody-left search-section2'>");
+                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["CancelledStatus"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Sort"]).ToString());
                 _html.AppendLine("              </div>");
                 _html.AppendLine("              <div class='contentbody-left search-section3'>");
@@ -3044,7 +3044,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.DistrictUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATADISTRICT_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());    
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -3059,7 +3059,7 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine("                  </div>");
                 _html.AppendLine("                  <div class='clear'></div>");
                 _html.AppendLine("                  <div class='table-head'>");
-                _html.AppendLine("                      <div class='table-row'>");                
+                _html.AppendLine("                      <div class='table-row'>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='en-label'>No.</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='en-label'>ID</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col3'><div class='table-col-msg'><div class='en-label'>Country</div></div></div>");
@@ -3215,12 +3215,12 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine("          <div class='form-content search-content'>");
                 _html.AppendLine(               ePFStaffUI.GetValueSearch(ePFStaffUtil.PAGE_MASTERDATADISTRICT_MAIN).ToString());
                 _html.AppendLine("              <div class='contentbody-left search-section1'>");
-                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());                
+                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Country"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Province"]).ToString());
                 _html.AppendLine("              </div>");
-                _html.AppendLine("              <div class='contentbody-left search-section2'>");                     
-                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["CancelledStatus"]).ToString());         
+                _html.AppendLine("              <div class='contentbody-left search-section2'>");
+                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["CancelledStatus"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Sort"]).ToString());
                 _html.AppendLine("              </div>");
                 _html.AppendLine("              <div class='contentbody-left search-section3'>");
@@ -3276,7 +3276,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.SubdistrictUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATASUBDISTRICT_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());    
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -3291,7 +3291,7 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine("                  </div>");
                 _html.AppendLine("                  <div class='clear'></div>");
                 _html.AppendLine("                  <div class='table-head'>");
-                _html.AppendLine("                      <div class='table-row'>");                
+                _html.AppendLine("                      <div class='table-row'>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='en-label'>No.</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='en-label'>ID</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col3'><div class='table-col-msg'><div class='en-label'>Country</div></div></div>");
@@ -3322,7 +3322,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -3465,13 +3465,13 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine("          <div class='form-content search-content'>");
                 _html.AppendLine(               ePFStaffUI.GetValueSearch(ePFStaffUtil.PAGE_MASTERDATASUBDISTRICT_MAIN).ToString());
                 _html.AppendLine("              <div class='contentbody-left search-section1'>");
-                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());                
+                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Country"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Province"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["District"]).ToString());
                 _html.AppendLine("              </div>");
-                _html.AppendLine("              <div class='contentbody-left search-section2'>");                     
-                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["CancelledStatus"]).ToString());         
+                _html.AppendLine("              <div class='contentbody-left search-section2'>");
+                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["CancelledStatus"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Sort"]).ToString());
                 _html.AppendLine("              </div>");
                 _html.AppendLine("              <div class='contentbody-left search-section3'>");
@@ -3535,7 +3535,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.InstituteUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATAINSTITUTE_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
                 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());                
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -3578,7 +3578,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -3707,12 +3707,12 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine("          <div class='form-content search-content'>");
                 _html.AppendLine(               ePFStaffUI.GetValueSearch(ePFStaffUtil.PAGE_MASTERDATAINSTITUTE_MAIN).ToString());
                 _html.AppendLine("              <div class='contentbody-left search-section1'>");
-                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());                
+                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Country"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Province"]).ToString());
                 _html.AppendLine("              </div>");
-                _html.AppendLine("              <div class='contentbody-left search-section2'>");                     
-                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["CancelledStatus"]).ToString());         
+                _html.AppendLine("              <div class='contentbody-left search-section2'>");
+                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["CancelledStatus"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Sort"]).ToString());
                 _html.AppendLine("              </div>");
                 _html.AppendLine("              <div class='contentbody-left search-section3'>");
@@ -3954,7 +3954,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.DiseasesUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATADISEASES_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
                 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());                
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -3994,7 +3994,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -4089,10 +4089,10 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine("          <div class='form-content search-content'>");
                 _html.AppendLine(               ePFStaffUI.GetValueSearch(ePFStaffUtil.PAGE_MASTERDATADISEASES_MAIN).ToString());
                 _html.AppendLine("              <div class='contentbody-left search-section1'>");
-                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());                
-                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["CancelledStatus"]).ToString());         
+                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());
+                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["CancelledStatus"]).ToString());
                 _html.AppendLine("              </div>");
-                _html.AppendLine("              <div class='contentbody-left search-section2'>");                                    
+                _html.AppendLine("              <div class='contentbody-left search-section2'>");
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Sort"]).ToString());
                 _html.AppendLine("              </div>");
                 _html.AppendLine("              <div class='contentbody-left search-section3'>");
@@ -4148,7 +4148,7 @@ public class ePFStaffMasterDataUI
                 Dictionary<string, object> _searchResult = ePFStaffMasterDataUtil.HealthImpairmentsUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_MASTERDATAHEALTHIMPAIRMENTS_MAIN, null, true));
                 StringBuilder _html = new StringBuilder();
                 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());                
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -4188,7 +4188,7 @@ public class ePFStaffMasterDataUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -4283,10 +4283,10 @@ public class ePFStaffMasterDataUI
                 _html.AppendLine("          <div class='form-content search-content'>");
                 _html.AppendLine(               ePFStaffUI.GetValueSearch(ePFStaffUtil.PAGE_MASTERDATAHEALTHIMPAIRMENTS_MAIN).ToString());
                 _html.AppendLine("              <div class='contentbody-left search-section1'>");
-                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());                
-                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["CancelledStatus"]).ToString());         
+                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());
+                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["CancelledStatus"]).ToString());
                 _html.AppendLine("              </div>");
-                _html.AppendLine("              <div class='contentbody-left search-section2'>");                                    
+                _html.AppendLine("              <div class='contentbody-left search-section2'>");
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Sort"]).ToString());
                 _html.AppendLine("              </div>");
                 _html.AppendLine("              <div class='contentbody-left search-section3'>");

@@ -1,16 +1,16 @@
-﻿// =============================================
-// Author       : <ยุทธภูมิ ตวันนา>
-// Create date  : <๒๓/๐๖/๒๕๕๘>
-// Modify date  : <๒๓/๐๕/๒๕๕๙>
-// Description  : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผลในส่วนของการจัดการระบบ>
-// =============================================
+﻿/*
+=============================================
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๒๓/๐๖/๒๕๕๘>
+Modify date : <๒๓/๐๕/๒๕๕๙>
+Description : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผลในส่วนของการจัดการระบบ>
+=============================================
+*/
 
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Web;
 using NUtil;
 
 public class UDSStaffSettingUI
@@ -19,19 +19,15 @@ public class UDSStaffSettingUI
     {
         private static string _idSectionEdit = UDSStaffUtil.ID_SECTION_SETTINGACCESSTOTHESYSTEM_EDIT.ToLower();
 
-        //ฟังก์ชั่นสำหรับแสดงเนื้อหาตามส่วนที่ต้องการแสดงในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยบริการสุขภาพ แล้วส่งค่ากลับเป็น StringBuilder
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _infoLogin     เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-        //2. _section       เป็น string รับค่าส่วนที่ต้องการแสดง
-        //3. _sectionAction เป็น string รับค่าการกระทำที่เกิดขึ้นกับส่วนที่ต้องการแสดง
-        //4. _id            เป็น string รับค่ารหัสที่ต้องการ        
         public static StringBuilder GetSection(Dictionary<string, object> _infoLogin, string _section, string _sectionAction, string _id)
         {
             StringBuilder _html = new StringBuilder();
 
             switch (_section)
             {
-                case "EDIT" : { _html = SectionAddUpdateUI.SectionEditUI.GetMain(_infoLogin, _id); break; }
+                case "EDIT":
+                    _html = SectionAddUpdateUI.SectionEditUI.GetMain(_infoLogin, _id);
+                    break;
             }
 
             return _html;
@@ -43,10 +39,6 @@ public class UDSStaffSettingUI
 
             public class SectionEditUI
             {
-                //ฟังก์ชั่นสำหรับแสดงเนื้อหาให้กับการแก้ไขในส่วนของการจัดการระบบ-การเข้าใช้งานระบบ แล้วส่งค่ากลับเป็น StringBuilder
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _infoLogin เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-                //2. _id        เป็น string รับค่ารหัสที่ตั้องการ
                 public static StringBuilder GetMain(Dictionary<string, object> _infoLogin, string _id)
                 {
                     Dictionary<string, object> _infoData = new Dictionary<string, object>();
@@ -63,33 +55,27 @@ public class UDSStaffSettingUI
                 }
             }
 
-            //ฟังก์ชั่นสำหรับแสดงค่าต่าง ๆ ของข้อมูลที่บันทึกไว้ให้กับการเพิ่มหรือแก้ไขในส่วนของการจัดการระบบ-การเข้าใช้งานระบบ แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _valueDataRecorded เป็น Dictionary<string, object> รับค่าต่าง ๆ ของข้อมูลที่บันทึกไว้
             public static StringBuilder GetValueDataRecorded(Dictionary<string, object> _valueDataRecorded)
             {
                 StringBuilder _html = new StringBuilder();
                 Dictionary<string, object> _dataRecorded = (_valueDataRecorded != null ? (Dictionary<string, object>)_valueDataRecorded["DataRecorded" + UDSStaffUtil.SUBJECT_SECTION_ACCESSTOTHESYSTEM] : null);
 
-                _html.AppendFormat("<input type='hidden' id='{0}-startdate-hidden' value='{1}' />",         _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StartDate", _dataRecorded["StartDate"], Util._valueTextDefault) : Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-starthour-hidden' value='{1}' />",         _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StartHour", _dataRecorded["StartHour"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-startminute-hidden' value='{1}' />",       _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StartMinute", _dataRecorded["StartMinute"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-startsecond-hidden' value='{1}' />",       _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StartSecond", _dataRecorded["StartSecond"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-enddate-hidden' value='{1}' />",           _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "EndDate", _dataRecorded["EndDate"], Util._valueTextDefault) : Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-endhour-hidden' value='{1}' />",           _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "EndHour", _dataRecorded["EndHour"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-endminute-hidden' value='{1}' />",         _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "EndMinute", _dataRecorded["EndMinute"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-endsecond-hidden' value='{1}' />",         _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "EndSecond", _dataRecorded["EndSecond"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-yearattended-hidden' value='{1}' />",      _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "YearEntry", _dataRecorded["YearEntry"], Util._valueTextDefault) : Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-entrancetype-hidden' value='{1}' />",      _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "EntranceType", _dataRecorded["EntranceType"], Util._valueTextDefault) : Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-facultyprogram-hidden' value='{1}' />",    _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "FacultyProgram", _dataRecorded["FacultyProgram"], Util._valueTextDefault) : Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-cancelledstatus-hidden' value='{1}' />",   _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "CancelledStatus", _dataRecorded["CancelledStatus"], Util._valueTextDefault) : Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-startdate-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StartDate", _dataRecorded["StartDate"], Util._valueTextDefault) : Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-starthour-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StartHour", _dataRecorded["StartHour"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-startminute-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StartMinute", _dataRecorded["StartMinute"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-startsecond-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StartSecond", _dataRecorded["StartSecond"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-enddate-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "EndDate", _dataRecorded["EndDate"], Util._valueTextDefault) : Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-endhour-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "EndHour", _dataRecorded["EndHour"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-endminute-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "EndMinute", _dataRecorded["EndMinute"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-endsecond-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "EndSecond", _dataRecorded["EndSecond"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-yearattended-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "YearEntry", _dataRecorded["YearEntry"], Util._valueTextDefault) : Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-entrancetype-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "EntranceType", _dataRecorded["EntranceType"], Util._valueTextDefault) : Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-facultyprogram-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "FacultyProgram", _dataRecorded["FacultyProgram"], Util._valueTextDefault) : Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-cancelledstatus-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "CancelledStatus", _dataRecorded["CancelledStatus"], Util._valueTextDefault) : Util._valueTextDefault));
 
                 return _html;
             }
 
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาให้กับการเพิ่มหรือแก้ไขในส่วนของการจัดการระบบ-การเข้าใช้งานระบบ แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _infoLogin เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
             public static StringBuilder GetMain(Dictionary<string, object> _infoLogin)
             {
                 StringBuilder _html = new StringBuilder();

@@ -344,7 +344,7 @@ var ePFStaffProgressData = {
         var _valueAdmissionDate = "";
         var _valueGraduationDate = "";
         var _valueUpdateReason = "";
-        var _valueDistinctionStatus;
+        var _valueJoinProgramStatus;
         var _valueStartSemester;
         var _valueStartYear;
         var _valueEndSemester;
@@ -366,8 +366,8 @@ var ePFStaffProgressData = {
         _valueStudentStatus = (_valueProcess["valuestudentstatus"] == undefined ? "" : _valueProcess["valuestudentstatus"]);
         _valueYearAttended = (_valueProcess["valueyearattended"] == undefined ? "" : _valueProcess["valueyearattended"]);
         _valueAdmissionDate = (_valueProcess["valueadmissiondate"] == undefined ? "" : _valueProcess["valueadmissiondate"]);
-        _valueGraduationDate = (_valueProcess["valuegraduationdate"] == undefined ? "" : _valueProcess["valuegraduationdate"]);        
-        _valueDistinctionStatus = (_valueProcess["valuedistinctionstatus"] == undefined ? "" : _valueProcess["valuedistinctionstatus"]);
+        _valueGraduationDate = (_valueProcess["valuegraduationdate"] == undefined ? "" : _valueProcess["valuegraduationdate"]);
+        _valueJoinProgramStatus = (_valueProcess["valuejoinprogramstatus"] == undefined ? "" : _valueProcess["valuejoinprogramstatus"]);
         _valueStartSemester = (_valueProcess["valuestartsemester"] == undefined ? "" : _valueProcess["valuestartsemester"]);
         _valueStartYear = (_valueProcess["valuestartyear"] == undefined ? "" : _valueProcess["valuestartyear"]);
         _valueEndSemester = (_valueProcess["valueendsemester"] == undefined ? "" : _valueProcess["valueendsemester"]);
@@ -389,8 +389,8 @@ var ePFStaffProgressData = {
         _send["studentstatus"] = _valueStudentStatus;
         _send["yearattended"] = _valueYearAttended;
         _send["admissiondate"] = _valueAdmissionDate;
-        _send["graduationdate"] = _valueGraduationDate;        
-        _send["distinctionstatus"] = _valueDistinctionStatus;
+        _send["graduationdate"] = _valueGraduationDate;
+        _send["joinprogramstatus"] = _valueJoinProgramStatus;
         _send["startsemester"] = _valueStartSemester;
         _send["startyear"] = _valueStartYear;
         _send["endsemester"] = _valueEndSemester;
@@ -478,7 +478,7 @@ var ePFStaffProgressData = {
             _param["page"] == Util.tut.pageAdministrationStudentRecordsUpdateAdmissionDateProgress ||
             _param["page"] == Util.tut.pageAdministrationStudentRecordsUpdateDatatoOldDBProgress ||
             _param["page"] == Util.tut.pageOurServicesExportStudentRecordsInformationProgress ||
-            _param["page"] == Util.tut.pageOurServicesUpdateStudentDistinctionProgramProgress ||
+            _param["page"] == Util.tut.pageOurServicesUpdateStudentMedicalScholarsProgramProgress ||
             _param["page"] == Util.tut.pageOurServicesSummaryNumberOfStudentLevel2ViewTableProgress) {
             _totalUnitTH = "คน";
             _totalUnitEN = "people";

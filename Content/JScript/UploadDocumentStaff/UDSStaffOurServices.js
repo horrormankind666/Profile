@@ -1,47 +1,39 @@
-﻿// =============================================
-// Author       : <ยุทธภูมิ ตวันนา>
-// Create date  : <๒๔/๐๖/๒๕๕๘>
-// Modify date  : <๒๙/๐๕/๒๕๖๒>
-// Description  : <รวมรวบฟังก์ชั่นใช้งานทั่วไปในส่วนของการส่งออกข้อมูล>
-// =============================================
+﻿/*
+=============================================
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๒๔/๐๖/๒๕๕๘>
+Modify date : <๒๙/๐๕/๒๕๖๒>
+Description : <รวมรวบฟังก์ชั่นใช้งานทั่วไปในส่วนของการส่งออกข้อมูล>
+=============================================
+*/
 
 var UDSStaffOurServices = {
     documentstatusstudent: {
         idSectionMain: UDSStaffUtil.idSectionOurServicesDocumentStatusStudentMain.toLowerCase(),
-
         sectionMain: {
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับหน้าหลักในส่วนของสถานะเอกสารของนักศึกษา
             initMain: function () {
                 var _this = Util.tut.tos.documentstatusstudent;
                 
                 Util.initTabChartTable({
                     this: _this,
                     section: Util.tut.subjectSectionOurServices
-                }, function (_result) { });
+                }, function (_result) {
+                });
             }
         },
-
         viewchart: {
             idSectionMain: UDSStaffUtil.idSectionOurServicesDocumentStatusStudentViewChartMain.toLowerCase(),
-
             sectionMain: {
-                //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานในส่วนของหน้าหลักสถานะเอกสารของนักศึกษามุมมองแผนภูมิ
                 initMain: function () {
                 },
             },
         },
-
         viewtable: {
             idSectionMain: UDSStaffUtil.idSectionOurServicesDocumentStatusStudentViewTableMain.toLowerCase(),
             idSectionLevel1Main: UDSStaffUtil.idSectionOurServicesDocumentStatusStudentLevel1ViewTableMain.toLowerCase(),
             idSectionLevel1Preview: UDSStaffUtil.idSectionOurServicesDocumentStatusStudentLevel1ViewTablePreview.toLowerCase(),
             idSectionLevel1Progress: UDSStaffUtil.idSectionOurServicesDocumentStatusStudentLevel1ViewTableProgress.toLowerCase(),
-
             sectionMain: {
-                //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานในส่วนของหน้าหลักสถานะเอกสารของนักศึกษามุมมองตาราง
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-                //page      รับค่าชื่อหน้า
                 initMain: function (_param) {
                     _param["page"] = (_param["page"] == undefined ? Util.tut.pageOurServicesDocumentStatusStudentLevel1ViewTableMain : _param["page"]);
                     
@@ -53,12 +45,11 @@ var UDSStaffOurServices = {
                     var _idPreview;
                     var _idProgress;
 
-                    if (_param["page"] == Util.tut.pageOurServicesDocumentStatusStudentLevel1ViewTableMain)
-                    {
-                        _action     = Util.tut.subjectSectionExport;
-                        _page       = Util.tut.pageOurServicesDocumentStatusStudentLevel1ViewTableProgress;
-                        _idMain     = _this2.idSectionLevel1Main;
-                        _idPreview  = _this2.idSectionLevel1Preview;
+                    if (_param["page"] == Util.tut.pageOurServicesDocumentStatusStudentLevel1ViewTableMain) {
+                        _action = Util.tut.subjectSectionExport;
+                        _page = Util.tut.pageOurServicesDocumentStatusStudentLevel1ViewTableProgress;
+                        _idMain = _this2.idSectionLevel1Main;
+                        _idPreview = _this2.idSectionLevel1Preview;
                         _idProgress = _this2.idSectionLevel1Progress;
 
                         Util.tut.initPreviewDocument({
@@ -91,30 +82,19 @@ var UDSStaffOurServices = {
                         page: _param["page"]
                     });
                 },
-
-                //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับหน้าหลักในส่วนของสถานะเอกสารของนักศึกษามุมมองตาราง
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-                //page      รับค่าชื่อหน้า
                 resetMain: function (_param) {
                     _param["page"] = (_param["page"] == undefined ? Util.tut.pageOurServicesDocumentStatusStudentLevel1ViewTableMain : _param["page"]);
 
                     var _this1 = Util.tut.tos.documentstatusstudent;
                     var _this2 = _this1.viewtable;
 
-                    if (_param["page"] == Util.tut.pageOurServicesDocumentStatusStudentLevel1ViewTableMain)
-                    {
+                    if (_param["page"] == Util.tut.pageOurServicesDocumentStatusStudentLevel1ViewTableMain) {
                         Util.comboboxSetValue({
                             id: ("#" + _this2.idSectionLevel1Main + "-rowperpage"),
                             value: $("#" + _this1.idSectionMain + "-rowperpage-hidden").val()
                         });
                     }
                 },
-
-                //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานของการแสดงข้อมูลสถานะเอกสารของนักศึกษามุมมองตาราง
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-                //page      รับค่าชื่อหน้า
                 initTable: function (_param) {
                     _param["page"] = (_param["page"] == undefined ? Util.tut.pageOurServicesDocumentStatusStudentLevel1ViewTableMain : _param["page"]);
 
@@ -124,16 +104,10 @@ var UDSStaffOurServices = {
                     Util.tut.getDialogFormOnClick();
                 }
             },
-
             sectionPreview: {
-                //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการแสดงตัวอย่างเอกสารในส่วนของสถานะเอกสารของนักศึกษา
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-                //page      รับค่าชื่อหน้า
-                //section   รับค่าชื่อหัวข้อที่ต้องการ
                 resetMain: function (_param) {
-                    _param["page"]      = (_param["page"] == undefined ? Util.tut.pageOurServicesDocumentStatusStudentLevel1ViewTableMain : _param["page"]);
-                    _param["section"]   = (_param["section"] == undefined ? "" : _param["section"]);
+                    _param["page"] = (_param["page"] == undefined ? Util.tut.pageOurServicesDocumentStatusStudentLevel1ViewTableMain : _param["page"]);
+                    _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
                     var _this1 = Util.tut.tos.documentstatusstudent;
                     var _this2 = _this1.viewtable;
@@ -141,10 +115,9 @@ var UDSStaffOurServices = {
                     var _idPreview;
                     var _idProgress;
 
-                    if (_param["page"] == Util.tut.pageOurServicesDocumentStatusStudentLevel1ViewTableMain)
-                    {
-                        _idMain     = _this2.idSectionLevel1Main;
-                        _idPreview  = _this2.idSectionLevel1Preview;
+                    if (_param["page"] == Util.tut.pageOurServicesDocumentStatusStudentLevel1ViewTableMain) {
+                        _idMain = _this2.idSectionLevel1Main;
+                        _idPreview = _this2.idSectionLevel1Preview;
                     }
 
                     var _idContent = (_idPreview + _param["section"].toLowerCase());
@@ -161,48 +134,36 @@ var UDSStaffOurServices = {
                     
                     if (_valueDocumentStatus == "NNS" || _valueDocumentStatus == "YNS" || _valueDocumentStatus == "YYS" || _valueDocumentStatus == "YYW" || _valueDocumentStatus == "YYY" || _valueDocumentStatus == "YYN")
                         _show = true;
-                    else
-                        {
-                            _valueSubject = Util.tut.getSubjectDocumentUpload({
-                                                section: _param["section"]
-                                            });
-                            Util.dialogMessageError({
-                                content: ("<div class='th-label'>สถานะเอกสารของ" + _valueSubject["subjectth"] + "มีการเปลี่ยนแปลง กรุณารีเฟรชหน้าจอ</div><div class='en-label'>Document status " + $.trim(_valueSubject["subjecten"]) + " is not valid, Please refresh this page.</div>")
-                            });
-                        }
+                    else {
+                        _valueSubject = Util.tut.getSubjectDocumentUpload({
+                            section: _param["section"]
+                        });
+                        Util.dialogMessageError({
+                            content: ("<div class='th-label'>สถานะเอกสารของ" + _valueSubject["subjectth"] + "มีการเปลี่ยนแปลง กรุณารีเฟรชหน้าจอ</div><div class='en-label'>Document status " + $.trim(_valueSubject["subjecten"]) + " is not valid, Please refresh this page.</div>")
+                        });
+                    }
 
-                    if (_show == true)
-                    {
-                        if (_objImage.is("[src]") == false)
-                        {
+                    if (_show == true) {
+                        if (_objImage.is("[src]") == false) {
                             _objWatermark.hide();
                             _objImage.removeAttr("src").hide();
 
-                            if (_valueFileFullPath.length > 0)
-                            {
+                            if (_valueFileFullPath.length > 0) {
                                 _objWatermark.show();
-                                _objImage.attr({ "src": _valueFileFullPath }).show();
+                                _objImage.attr({
+                                    "src": _valueFileFullPath
+                                }).show();
                             }
                         }
                     }
                 },
             },
-
             sectionProgress: {
-                //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการประมวลผลข้อมูลในส่วนของสถานะเอกสารของนักศึกษามุมมองตาราง
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-                //page      รับค่าชื่อหน้า
                 resetMain: function (_param) {
                     _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
                     var _this = Util.tut.tos.documentstatusstudent;
                 },
-
-                //ฟังก์ชั่นสำหรับตรวจสอบความถูกต้องในการประมวลผลข้อมูลในส่วนของสถานะเอกสารของนักศึกษามุมมองตาราง
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-                //page      รับค่าชื่อหน้า
                 validateProcess: function (_param) {
                     _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
@@ -212,27 +173,18 @@ var UDSStaffOurServices = {
 
                     return (_i > 0 ? false : true);
                 },
-
-                //ฟังก์ชั่นสำหรับแสดงผลการประมวลผลข้อมูลในส่วนของการส่งออกสถานะเอกสารของนักศึกษา
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _param             รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-                //page                  รับค่าชื่อหน้า
-                //resultValueProcess    รับค่าผลลัพธ์ของการประมวลผลข้อมูล
                 getResultProcess: function (_param) {
-                    _param["page"]                  = (_param["page"] == undefined ? "" : _param["page"]);
-                    _param["resultValueProcess"]    = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
+                    _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
+                    _param["resultValueProcess"] = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
                 }
             }
         }
-    },
-    
+    },    
     exportprofilepictureapproved: {
         idSectionMain: UDSStaffUtil.idSectionOurServicesExportProfilePictureApprovedMain.toLowerCase(),
         idSectionPreview: UDSStaffUtil.idSectionOurServicesExportProfilePictureApprovedPreview.toLowerCase(),
         idSectionProgress: UDSStaffUtil.idSectionOurServicesExportProfilePictureApprovedProgress.toLowerCase(),
-
         sectionMain: {
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับหน้าหลักในส่วนของการส่งออกรูปภาพประจำตัวที่ผ่านการอนุมัติ
             initMain: function () {
                 var _this = Util.tut.tos.exportprofilepictureapproved;
                 
@@ -258,9 +210,7 @@ var UDSStaffOurServices = {
                 });
                     
                 this.resetMain();
-            },            
-
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับหน้าหลักในส่วนของการส่งออกรูปภาพประจำตัวที่ผ่านการอนุมัติ
+            },
             resetMain: function () {
                 var _this = Util.tut.tos.exportprofilepictureapproved;
 
@@ -269,18 +219,11 @@ var UDSStaffOurServices = {
                     value: $("#" + _this.idSectionMain + "-rowperpage-hidden").val()
                 });
             },
-            
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการแสดงข้อมูลนักศึกษาในส่วนของการส่งออกรูปภาพประจำตัวที่ผ่านการอนุมัติ
             initTable: function () {
                 Util.tut.getDialogFormOnClick();
-            },            
-        },
-        
+            },
+        },        
         sectionPreview: {
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการแสดงตัวอย่างเอกสารในส่วนของการส่งออกรูปภาพประจำตัวที่ผ่านการอนุมัติ
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //section   รับค่าชื่อหัวข้อที่ต้องการ
             resetMain: function (_param) {
                 _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -299,49 +242,36 @@ var UDSStaffOurServices = {
         
                 if (_valueDocumentStatus == "YYY")
                     _show = true;
-                else
-                    {
-                        _valueSubject = Util.tut.getSubjectDocumentUpload({
-                            section: _param["section"]
-                        });
-                        Util.dialogMessageError({
-                            content: ("<div class='th-label'>สถานะการอนุมัติ" + _valueSubject["subjectth"] + "มีการเปลี่ยนแปลง กรุณารีเฟรชหน้าจอ</div><div class='en-label'>Approval status " + $.trim(_valueSubject["subjecten"]) + " is not valid, Please refresh this page.</div>")
-                        });
+                else {
+                    _valueSubject = Util.tut.getSubjectDocumentUpload({
+                        section: _param["section"]
+                    });
+                    Util.dialogMessageError({
+                        content: ("<div class='th-label'>สถานะการอนุมัติ" + _valueSubject["subjectth"] + "มีการเปลี่ยนแปลง กรุณารีเฟรชหน้าจอ</div><div class='en-label'>Approval status " + $.trim(_valueSubject["subjecten"]) + " is not valid, Please refresh this page.</div>")
+                    });
+                }
 
-                    }
-
-                if (_show == true)
-                {
-                    if (_objImage.is("[src]") == false)
-                    {
+                if (_show == true) {
+                    if (_objImage.is("[src]") == false) {
                         _objWatermark.hide();
                         _objImage.removeAttr("src").hide();
 
-                        if (_valueFileFullPath.length > 0)
-                        {
+                        if (_valueFileFullPath.length > 0) {
                             _objWatermark.show();
-                            _objImage.attr({ "src": _valueFileFullPath }).show();
+                            _objImage.attr({
+                                "src": _valueFileFullPath
+                            }).show();
                         }
                     }
                 }
             }
         },
-
         sectionProgress: {
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการประมวลผลข้อมูลในส่วนของการส่งออกรูปภาพประจำตัวที่ผ่านการอนุมัติ
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //page      รับค่าชื่อหน้า
             resetMain: function (_param) {
                 _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
                 var _this = Util.tut.tos.exportprofilepictureapproved;
             },
-
-            //ฟังก์ชั่นสำหรับตรวจสอบความถูกต้องในการประมวลผลข้อมูลในส่วนของการส่งออกรูปภาพประจำตัวที่ผ่านการอนุมัติ
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //page      รับค่าชื่อหน้า
             validateProcess: function (_param) {
                 _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
@@ -351,15 +281,9 @@ var UDSStaffOurServices = {
 
                 return (_i > 0 ? false : true);
             },
-
-            //ฟังก์ชั่นสำหรับแสดงผลการประมวลผลข้อมูลในส่วนของการส่งออกรูปภาพประจำตัวที่ผ่านการอนุมัติ
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param             รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //page                  รับค่าชื่อหน้า
-            //resultValueProcess    รับค่าผลลัพธ์ของการประมวลผลข้อมูล
             getResultProcess: function (_param) {
-                _param["page"]                  = (_param["page"] == undefined ? "" : _param["page"]);
-                _param["resultValueProcess"]    = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
+                _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
+                _param["resultValueProcess"] = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
 
                 var _this = Util.tut.tos.exportprofilepictureapproved;
                 var _detailComplete = _param["resultValueProcess"].DetailComplete;
@@ -368,10 +292,9 @@ var UDSStaffOurServices = {
                 var _valueArray = _detailComplete.split(",");
                 var _valueSubArray;
 
-                for (_i = 0; _i < _valueArray.length; _i++)
-                {
-                    _valueSubArray  = _valueArray[_i].split(";");
-                    _idTableRow     = (_idTable + " .table-grid #table-row-id-" + _valueSubArray[0]);
+                for (_i = 0; _i < _valueArray.length; _i++) {
+                    _valueSubArray = _valueArray[_i].split(";");
+                    _idTableRow = (_idTable + " .table-grid #table-row-id-" + _valueSubArray[0]);
 
                     if ($("#" + _idTableRow).length > 0)
                         $("#" + _idTableRow + " .table-col-exportdate").html(_valueSubArray[1]);
@@ -379,14 +302,11 @@ var UDSStaffOurServices = {
             }
         }
     },
-
     exportstudentrecordsinformationforsmartcard: {
         idSectionMain: UDSStaffUtil.idSectionOurServicesExportStudentRecordsInformationForSmartCardMain.toLowerCase(),
         idSectionPreview: UDSStaffUtil.idSectionOurServicesExportStudentRecordsInformationForSmartCardPreview.toLowerCase(),
         idSectionProgress: UDSStaffUtil.idSectionOurServicesExportStudentRecordsInformationForSmartCardProgress.toLowerCase(),
-
         sectionMain: {
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับหน้าหลักในส่วนของการส่งออกข้อมูลนักศึกษาสำหรับทำบัตรนักศึกษา
             initMain: function () {
                 var _this = Util.tut.tos.exportstudentrecordsinformationforsmartcard;
                 
@@ -412,9 +332,7 @@ var UDSStaffOurServices = {
                 });
 
                 this.resetMain();
-            },            
-
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับหน้าหลักในส่วนของการส่งออกข้อมูลนักศึกษาสำหรับทำบัตรนักศึกษา
+            },
             resetMain: function () {
                 var _this = Util.tut.tos.exportstudentrecordsinformationforsmartcard;
 
@@ -423,18 +341,11 @@ var UDSStaffOurServices = {
                     value: $("#" + _this.idSectionMain + "-rowperpage-hidden").val()
                 });
             },
-            
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการแสดงข้อมูลนักศึกษาในส่วนของการส่งออกข้อมูลนักศึกษาสำหรับทำบัตรนักศึกษา
             initTable: function () {
                 Util.tut.getDialogFormOnClick();
-            },            
+            },
         },
-
         sectionPreview: {
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการแสดงตัวอย่างเอกสารในส่วนของการส่งออกข้อมูลนักศึกษาสำหรับทำบัตรนักศึกษา
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //section   รับค่าชื่อหัวข้อที่ต้องการ
             resetMain: function (_param) {
                 _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -445,35 +356,25 @@ var UDSStaffOurServices = {
                 var _objWatermark = $("#" + _idContent + "-form .picture-watermark");
                 var _objImage = $("#" + _idContent + "-form img");
         
-                if (_objImage.is("[src]") == false)
-                {
+                if (_objImage.is("[src]") == false) {
                     _objWatermark.hide();
                     _objImage.removeAttr("src").hide();
 
-                    if (_valueFileFullPath.length > 0)
-                    {
+                    if (_valueFileFullPath.length > 0) {
                         _objWatermark.show();
-                        _objImage.attr({ "src": _valueFileFullPath }).show();
+                        _objImage.attr({
+                            "src": _valueFileFullPath
+                        }).show();
                     }
                 }
             }
         },
-
         sectionProgress: {
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการประมวลผลข้อมูลในส่วนของการส่งออกข้อมูลนักศึกษาสำหรับทำบัตรนักศึกษา
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //page      รับค่าชื่อหน้า
             resetMain: function (_param) {
                 _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
                 var _this = Util.tut.tos.exportstudentrecordsinformationforsmartcard;
             },
-
-            //ฟังก์ชั่นสำหรับตรวจสอบความถูกต้องในการประมวลผลข้อมูลในส่วนของการส่งออกข้อมูลนักศึกษาสำหรับทำบัตรนักศึกษา
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //page      รับค่าชื่อหน้า
             validateProcess: function (_param) {
                 _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
@@ -483,26 +384,17 @@ var UDSStaffOurServices = {
 
                 return (_i > 0 ? false : true);
             },
-
-            //ฟังก์ชั่นสำหรับแสดงผลการประมวลผลข้อมูลในส่วนของการส่งออกข้อมูลนักศึกษาสำหรับทำบัตรนักศึกษา
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param             รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //page                  รับค่าชื่อหน้า
-            //resultValueProcess    รับค่าผลลัพธ์ของการประมวลผลข้อมูล
             getResultProcess: function (_param) {
-                _param["page"]                  = (_param["page"] == undefined ? "" : _param["page"]);
-                _param["resultValueProcess"]    = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
+                _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
+                _param["resultValueProcess"] = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
             }
         }
     },
-
     copyprofilepictureapprovedtothestore: {
         idSectionMain: UDSStaffUtil.idSectionOurServicesCopyProfilePictureApprovedtotheStoreMain.toLowerCase(),
         idSectionPreview: UDSStaffUtil.idSectionOurServicesCopyProfilePictureApprovedtotheStorePreview.toLowerCase(),
         idSectionProgress: UDSStaffUtil.idSectionOurServicesCopyProfilePictureApprovedtotheStoreProgress.toLowerCase(),
-
         sectionMain: {
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับหน้าหลักในส่วนของการคัดลอกรูปภาพประจำตัวที่ผ่านการอนุมัติไปยังที่เก็บรูป
             initMain: function () {
                 var _this = Util.tut.tos.copyprofilepictureapprovedtothestore;
 
@@ -529,8 +421,6 @@ var UDSStaffOurServices = {
                 
                 this.resetMain();
             },
-
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับหน้าหลักในส่วนของการคัดลอกรูปภาพประจำตัวที่ผ่านการอนุมัติไปยังที่เก็บรูป
             resetMain: function () {
                 var _this = Util.tut.tos.copyprofilepictureapprovedtothestore;
 
@@ -539,18 +429,11 @@ var UDSStaffOurServices = {
                     value: $("#" + _this.idSectionMain + "-rowperpage-hidden").val()
                 });
             },
-
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการแสดงข้อมูลนักศึกษาในส่วนของการคัดลอกรูปภาพประจำตัวที่ผ่านการอนุมัติไปยังที่เก็บรูป
             initTable: function () {
                 Util.tut.getDialogFormOnClick();
             }
         },
-
         sectionPreview: {
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการแสดงตัวอย่างเอกสารในส่วนของการคัดลอกรูปภาพประจำตัวที่ผ่านการอนุมัติไปยังที่เก็บรูป
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //section   รับค่าชื่อหัวข้อที่ต้องการ
             resetMain: function (_param) {
                 _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -569,49 +452,36 @@ var UDSStaffOurServices = {
         
                 if (_valueDocumentStatus == "YYY")
                     _show = true;
-                else
-                    {
-                        _valueSubject = Util.tut.getSubjectDocumentUpload({
-                            section: _param["section"]
-                        });
-                        Util.dialogMessageError({
-                            content: ("<div class='th-label'>สถานะการอนุมัติ" + _valueSubject["subjectth"] + "มีการเปลี่ยนแปลง กรุณารีเฟรชหน้าจอ</div><div class='en-label'>Approval status " + $.trim(_valueSubject["subjecten"]) + " is not valid, Please refresh this page.</div>")
-                        });
+                else {
+                    _valueSubject = Util.tut.getSubjectDocumentUpload({
+                        section: _param["section"]
+                    });
+                    Util.dialogMessageError({
+                        content: ("<div class='th-label'>สถานะการอนุมัติ" + _valueSubject["subjectth"] + "มีการเปลี่ยนแปลง กรุณารีเฟรชหน้าจอ</div><div class='en-label'>Approval status " + $.trim(_valueSubject["subjecten"]) + " is not valid, Please refresh this page.</div>")
+                    });
+                }
 
-                    }
-
-                if (_show == true)
-                {
-                    if (_objImage.is("[src]") == false)
-                    {
+                if (_show == true) {
+                    if (_objImage.is("[src]") == false) {
                         _objWatermark.hide();
                         _objImage.removeAttr("src").hide();
 
-                        if (_valueFileFullPath.length > 0)
-                        {
+                        if (_valueFileFullPath.length > 0) {
                             _objWatermark.show();
-                            _objImage.attr({ "src": _valueFileFullPath }).show();
+                            _objImage.attr({
+                                "src": _valueFileFullPath
+                            }).show();
                         }
                     }
                 }
             }
         },
-
         sectionProgress: {
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการประมวลผลข้อมูลในส่วนของการคัดลอกรูปภาพประจำตัวที่ผ่านการอนุมัติไปยังที่เก็บรูป
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //page      รับค่าชื่อหน้า
             resetMain: function (_param) {
                 _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
                 var _this = Util.tut.tos.copyprofilepictureapprovedtothestore;
             },
-
-            //ฟังก์ชั่นสำหรับตรวจสอบความถูกต้องในการประมวลผลข้อมูลในส่วนของการคัดลอกรูปภาพประจำตัวที่ผ่านการอนุมัติไปยังที่เก็บรูป
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //page      รับค่าชื่อหน้า
             validateProcess: function (_param) {
                 _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
@@ -621,24 +491,15 @@ var UDSStaffOurServices = {
 
                 return (_i > 0 ? false : true);
             },
-
-            //ฟังก์ชั่นสำหรับแสดงผลการประมวลผลข้อมูลในส่วนของการคัดลอกรูปภาพประจำตัวที่ผ่านการอนุมัติไปยังที่เก็บรูป
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param             รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //page                  รับค่าชื่อหน้า
-            //resultValueProcess    รับค่าผลลัพธ์ของการประมวลผลข้อมูล
             getResultProcess: function (_param) {
-                _param["page"]                  = (_param["page"] == undefined ? "" : _param["page"]);
-                _param["resultValueProcess"]    = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
+                _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
+                _param["resultValueProcess"] = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
             }
         }
     },
-
     audittranscriptapproved: {
         idSectionMain: UDSStaffUtil.idSectionOurServicesAuditTranscriptApprovedMain.toLowerCase(),
-
         sectionMain: {
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับหน้าหลักในส่วนของการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัด
             initMain: function () {
                 var _this = Util.tut.tos.audittranscriptapproved;
 
@@ -648,17 +509,13 @@ var UDSStaffOurServices = {
                 }, function (_result) { });
             }
         },
-
         viewchart: {
             idSectionMain: UDSStaffUtil.idSectionOurServicesAuditTranscriptApprovedViewChartMain.toLowerCase(),
-
             sectionMain: {
-                //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานในส่วนของหน้าหลักการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัดมุมมองแผนภูมิ
                 initMain: function () {
                 },
             },
         },
-
         viewtable: {
             idSectionMain: UDSStaffUtil.idSectionOurServicesAuditTranscriptApprovedViewTableMain.toLowerCase(),
             idSectionLevel1Main: UDSStaffUtil.idSectionOurServicesAuditTranscriptApprovedLevel1ViewTableMain.toLowerCase(),
@@ -668,12 +525,7 @@ var UDSStaffOurServices = {
             idSectionLevel21Progress: UDSStaffUtil.idSectionOurServicesAuditTranscriptApprovedLevel21ViewTableProgress.toLowerCase(),
             idSectionLevel22Progress: UDSStaffUtil.idSectionOurServicesAuditTranscriptApprovedLevel22ViewTableProgress.toLowerCase(),
             yearEntry: "",
-
             sectionMain: {
-                //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานในส่วนของหน้าหลักการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัดมุมมองตาราง
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-                //page      รับค่าชื่อหน้า
                 initMain: function (_param) {
                     _param["page"] = (_param["page"] == undefined ? Util.tut.pageOurServicesAuditTranscriptApprovedLevel1ViewTableMain : _param["page"]);
                     
@@ -684,23 +536,21 @@ var UDSStaffOurServices = {
                     var _idMain;
                     var _idProgress;
 
-                    if (_param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel1ViewTableMain)
-                    {
-                        _action     = Util.tut.subjectSectionExport;
-                        _page       = Util.tut.pageOurServicesAuditTranscriptApprovedLevel1ViewTableProgress;
-                        _idMain     = _this2.idSectionLevel1Main;
+                    if (_param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel1ViewTableMain) {
+                        _action = Util.tut.subjectSectionExport;
+                        _page = Util.tut.pageOurServicesAuditTranscriptApprovedLevel1ViewTableProgress;
+                        _idMain = _this2.idSectionLevel1Main;
                         _idProgress = _this2.idSectionLevel1Progress;
                     }
-                                        
+
                     if (_param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel21ViewTableNeedSendMain ||
                         _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel21ViewTableSendMain ||
                         _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel21ViewTableNotSendMain ||
                         _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel21ViewTableSendReceiveMain ||
-                        _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel21ViewTableSendNotReceiveMain)
-                    {
-                        _action     = Util.tut.subjectSectionExport;
-                        _page       = _param["page"].replace("Main", "Progress")
-                        _idMain     = _this2.idSectionLevel21Main;
+                        _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel21ViewTableSendNotReceiveMain) {
+                        _action = Util.tut.subjectSectionExport;
+                        _page = _param["page"].replace("Main", "Progress")
+                        _idMain = _this2.idSectionLevel21Main;
                         _idProgress = _this2.idSectionLevel21Progress;
                     }
 
@@ -708,11 +558,10 @@ var UDSStaffOurServices = {
                         _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel22ViewTableSendMain ||
                         _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel22ViewTableNotSendMain ||
                         _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel22ViewTableSendReceiveMain ||
-                        _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel22ViewTableSendNotReceiveMain)
-                    {
-                        _action     = Util.tut.subjectSectionExport;
-                        _page       = _param["page"].replace("Main", "Progress")
-                        _idMain     = _this2.idSectionLevel22Main;
+                        _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel22ViewTableSendNotReceiveMain) {
+                        _action = Util.tut.subjectSectionExport;
+                        _page = _param["page"].replace("Main", "Progress")
+                        _idMain = _this2.idSectionLevel22Main;
                         _idProgress = _this2.idSectionLevel22Progress;
                     }
 
@@ -730,13 +579,8 @@ var UDSStaffOurServices = {
 
                     this.resetMain({
                         page: _param["page"]
-                    });                    
+                    });
                 },
-
-                //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับหน้าหลักในส่วนของการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัดมุมมองตาราง
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-                //page      รับค่าชื่อหน้า
                 resetMain: function (_param) {
                     _param["page"] = (_param["page"] == undefined ? Util.tut.pageOurServicesAuditTranscriptApprovedLevel1ViewTableMain : _param["page"]);
 
@@ -748,56 +592,70 @@ var UDSStaffOurServices = {
                     var _objTableNew;
                     var _subject;
 
-                    if (_param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel1ViewTableMain)
-                    {
-                        _idSectionOld   = "";
-                        _idSectionNew   = _this2.idSectionLevel1Main;
-                        _subject        = "";
+                    if (_param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel1ViewTableMain) {
+                        _idSectionOld = "";
+                        _idSectionNew = _this2.idSectionLevel1Main;
+                        _subject = "";
                     }
 
                     if (_param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel21ViewTableNeedSendMain ||
                         _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel21ViewTableSendMain ||
                         _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel21ViewTableNotSendMain ||
                         _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel21ViewTableSendReceiveMain ||
-                        _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel21ViewTableSendNotReceiveMain)
-                    {
+                        _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel21ViewTableSendNotReceiveMain) {
                         _subject = _param["page"].replace("OurServicesAuditTranscriptApprovedLevel21ViewTable", "").replace("Main", "");
                         
-                        if (_subject == "NeedSend")       _subject = "ต้องส่งไปตรวจสอบคุณวุฒิ";
-                        if (_subject == "Send")           _subject = "ส่งไปตรวจสอบคุณวุฒิ";
-                        if (_subject == "NotSend")        _subject = "ยังไม่ส่งไปตรวจสอบคุณวุฒิ";
-                        if (_subject == "SendReceive")    _subject = "ส่งไปตรวจสอบคุณวุฒิและตอบกลับมา";
-                        if (_subject == "SendNotReceive") _subject = "ส่งไปตรวจสอบคุณวุฒิและยังไม่ตอบกลับมา";
+                        if (_subject == "NeedSend")
+                            _subject = "ต้องส่งไปตรวจสอบคุณวุฒิ";
 
-                        _idSectionOld   = _this2.idSectionLevel1Main;
-                        _idSectionNew   = _this2.idSectionLevel21Main;
-                        _subject        = ("โรงเรียนทั้งหมดที่" + _subject + ", ปีที่เข้าศึกษา " + _this2.yearEntry);
+                        if (_subject == "Send")
+                            _subject = "ส่งไปตรวจสอบคุณวุฒิ";
+
+                        if (_subject == "NotSend")
+                            _subject = "ยังไม่ส่งไปตรวจสอบคุณวุฒิ";
+
+                        if (_subject == "SendReceive")
+                            _subject = "ส่งไปตรวจสอบคุณวุฒิและตอบกลับมา";
+
+                        if (_subject == "SendNotReceive")
+                            _subject = "ส่งไปตรวจสอบคุณวุฒิและยังไม่ตอบกลับมา";
+
+                        _idSectionOld = _this2.idSectionLevel1Main;
+                        _idSectionNew = _this2.idSectionLevel21Main;
+                        _subject = ("โรงเรียนทั้งหมดที่" + _subject + ", ปีที่เข้าศึกษา " + _this2.yearEntry);
                     }
 
                     if (_param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel22ViewTableNeedSendMain ||
                         _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel22ViewTableSendMain ||
                         _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel22ViewTableNotSendMain ||
                         _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel22ViewTableSendReceiveMain ||
-                        _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel22ViewTableSendNotReceiveMain)
-                    {
+                        _param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel22ViewTableSendNotReceiveMain) {
                         _subject = _param["page"].replace("OurServicesAuditTranscriptApprovedLevel22ViewTable", "").replace("Main", "");
                         
-                        if (_subject == "NeedSend")       _subject = "ต้องส่งไปตรวจสอบคุณวุฒิ";
-                        if (_subject == "Send")           _subject = "ส่งไปตรวจสอบคุณวุฒิ";
-                        if (_subject == "NotSend")        _subject = "ยังไม่ส่งไปตรวจสอบคุณวุฒิ";
-                        if (_subject == "SendReceive")    _subject = "ส่งไปตรวจสอบคุณวุฒิและตอบกลับมา";
-                        if (_subject == "SendNotReceive") _subject = "ส่งไปตรวจสอบคุณวุฒิและยังไม่ตอบกลับมา";
+                        if (_subject == "NeedSend")
+                            _subject = "ต้องส่งไปตรวจสอบคุณวุฒิ";
 
-                        _idSectionOld   = _this2.idSectionLevel1Main;
-                        _idSectionNew   = _this2.idSectionLevel22Main;
-                        _subject        = ("นักศึกษาทั้งหมดที่" + _subject + ", ปีที่เข้าศึกษา " + _this2.yearEntry);
+                        if (_subject == "Send")
+                            _subject = "ส่งไปตรวจสอบคุณวุฒิ";
+
+                        if (_subject == "NotSend")
+                            _subject = "ยังไม่ส่งไปตรวจสอบคุณวุฒิ";
+
+                        if (_subject == "SendReceive")
+                            _subject = "ส่งไปตรวจสอบคุณวุฒิและตอบกลับมา";
+
+                        if (_subject == "SendNotReceive")
+                            _subject = "ส่งไปตรวจสอบคุณวุฒิและยังไม่ตอบกลับมา";
+
+                        _idSectionOld = _this2.idSectionLevel1Main;
+                        _idSectionNew = _this2.idSectionLevel22Main;
+                        _subject = ("นักศึกษาทั้งหมดที่" + _subject + ", ปีที่เข้าศึกษา " + _this2.yearEntry);
                     }
 
                     _objTableOld = ("#" + _idSectionOld + "-table");
                     _objTableNew = ("#" + _idSectionNew + "-table");
 
-                    if (_idSectionOld.length > 0)
-                    {                   
+                    if (_idSectionOld.length > 0) {
                         $(_objTableOld).hide();
                         $(_objTableNew + " .table-subject").html(_subject);
                         $(_objTableNew).show();
@@ -818,11 +676,6 @@ var UDSStaffOurServices = {
                     else
                         $(_objTableNew + " .link-goback").hide();
                 },
-
-                //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานของการแสดงข้อมูลการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัดมุมมองตาราง
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-                //page      รับค่าชื่อหน้า
                 initTable: function (_param) {
                     _param["page"] = (_param["page"] == undefined ? Util.tut.pageOurServicesAuditTranscriptApprovedLevel1ViewTableMain : _param["page"]);
 
@@ -830,19 +683,19 @@ var UDSStaffOurServices = {
                     var _this2 = _this1.viewtable;
                     var _idSection;
                     var _page;
-                    var _valueArray;                    
+                    var _valueArray;
 
                     Util.tut.getDialogFormOnClick();
                     
-                    if (_param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel1ViewTableMain) _idSection = _this2.idSectionLevel1Main;
+                    if (_param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel1ViewTableMain)
+                        _idSection = _this2.idSectionLevel1Main;
 
                     $("#" + _idSection + "-table .table-grid .link-click").click(function () {
                         if ($(this).hasClass("link-" + Util.tut.subjectSectionAuditTranscriptApprovedLevel21ViewTable.toLowerCase()) == true ||
-                            $(this).hasClass("link-" + Util.tut.subjectSectionAuditTranscriptApprovedLevel22ViewTable.toLowerCase()) == true)
-                        {
-                            _valueArray         = ($(this).attr("alt")).split(",");
-                            _page               = _valueArray[0];
-                            _this2.yearEntry    = _valueArray[1];
+                            $(this).hasClass("link-" + Util.tut.subjectSectionAuditTranscriptApprovedLevel22ViewTable.toLowerCase()) == true) {
+                            _valueArray = ($(this).attr("alt")).split(",");
+                            _page = _valueArray[0];
+                            _this2.yearEntry = _valueArray[1];
                             
                             Util.tut.tse.getSearch({
                                 page: _page
@@ -850,13 +703,8 @@ var UDSStaffOurServices = {
                         }
                     });
                 }
-            },
-    
+            },    
             sectionProgress: {
-                //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการประมวลผลข้อมูลในส่วนของการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัด
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-                //page      รับค่าชื่อหน้า
                 resetMain: function (_param) {
                     _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
@@ -866,11 +714,6 @@ var UDSStaffOurServices = {
                     if (_param["page"] == Util.tut.pageOurServicesAuditTranscriptApprovedLevel1ViewTableProgress)
                         $("#" + _this2.idSectionLevel1Progress + "-total").html($("#" + _this2.idSectionLevel1Main + "-table .table-grid .table-row").length);
                 },
-
-                //ฟังก์ชั่นสำหรับตรวจสอบความถูกต้องในการประมวลผลข้อมูลในส่วนของการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัด
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-                //page      รับค่าชื่อหน้า
                 validateProcess: function (_param) {
                     _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
@@ -880,31 +723,22 @@ var UDSStaffOurServices = {
 
                     return (_i > 0 ? false : true);
                 },
-
-                //ฟังก์ชั่นสำหรับแสดงผลการประมวลผลข้อมูลในส่วนของการตรวจสอบวุฒิการศึกษาจากระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติกับสถานศึกษาตันสังกัด
-                //โดยมีพารามิเตอร์ดังนี้
-                //1. _param             รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-                //page                  รับค่าชื่อหน้า
-                //resultValueProcess    รับค่าผลลัพธ์ของการประมวลผลข้อมูล
                 getResultProcess: function (_param) {
-                    _param["page"]                  = (_param["page"] == undefined ? "" : _param["page"]);
-                    _param["resultValueProcess"]    = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
+                    _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
+                    _param["resultValueProcess"] = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
                 }
             }
         }
     },
-
     exportsaveaudittranscriptapproved: {
         idSectionMain: UDSStaffUtil.idSectionOurServicesExportSaveAuditTranscriptApprovedMain.toLowerCase(),
         idSectionPreview: UDSStaffUtil.idSectionOurServicesExportSaveAuditTranscriptApprovedPreview.toLowerCase(),
         idSectionProgress: "",
-
         sectionMain: {
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับหน้าหลักในส่วนของการส่งออกระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติและบันทึกการตรวจสอบวุฒิการศึกษากับสถานศึกษาต้นสังกัด
             initMain: function () {
                 var _this = Util.tut.tos.exportsaveaudittranscriptapproved;
                 var _action;
-                var _page;                
+                var _page;
 
                 Util.initCombobox({
                     id: ("#" + _this.idSectionMain + "-rowperpage"),
@@ -914,19 +748,17 @@ var UDSStaffOurServices = {
                 Util.initCheck({
                     id: "select-root"
                 });
-                                    
+
                 $("#" + _this.idSectionMain + "-table .button .click-button").click(function () {
-                    if ($(this).hasClass("button-exportselected") == true || $(this).hasClass("button-exportall") == true)
-                    {
-                        _action                 = Util.tut.subjectSectionExport;
-                        _page                   = Util.tut.pageOurServicesExportTranscriptApprovedProgress;
+                    if ($(this).hasClass("button-exportselected") == true || $(this).hasClass("button-exportall") == true) {
+                        _action = Util.tut.subjectSectionExport;
+                        _page = Util.tut.pageOurServicesExportTranscriptApprovedProgress;
                         _this.idSectionProgress = Util.tut.idSectionOurServicesExportTranscriptApprovedProgress.toLowerCase();
                     }
 
-                    if ($(this).hasClass("button-saveselected") == true)
-                    {
-                        _action                 = Util.tut.subjectSectionSave;
-                        _page                   = Util.tut.pageOurServicesSaveAuditTranscriptApprovedProgress;
+                    if ($(this).hasClass("button-saveselected") == true) {
+                        _action = Util.tut.subjectSectionSave;
+                        _page = Util.tut.pageOurServicesSaveAuditTranscriptApprovedProgress;
                         _this.idSectionProgress = Util.tut.idSectionOurServicesSaveAuditTranscriptApprovedProgress.toLowerCase();
                     }
 
@@ -942,8 +774,6 @@ var UDSStaffOurServices = {
                 
                 this.resetMain();
             },
-
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับหน้าหลักในส่วนของการส่งออกระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติและบันทึกการตรวจสอบวุฒิการศึกษากับสถานศึกษาต้นสังกัด
             resetMain: function () {
                 var _this = Util.tut.tos.exportsaveaudittranscriptapproved;
 
@@ -952,18 +782,11 @@ var UDSStaffOurServices = {
                     value: $("#" + _this.idSectionMain + "-rowperpage-hidden").val()
                 });
             },
-
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการแสดงข้อมูลนักศึกษาในส่วนของการส่งออกระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติและบันทึกการตรวจสอบวุฒิการศึกษากับสถานศึกษาต้นสังกัด
             initTable: function () {
                 Util.tut.getDialogFormOnClick();
             }
         },
-
         sectionPreview: {
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการแสดงตัวอย่างเอกสารในส่วนของการส่งออกระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติและบันทึกการตรวจสอบวุฒิการศึกษากับสถานศึกษาต้นสังกัด
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //section   รับค่าชื่อหัวข้อที่ต้องการ
             resetMain: function (_param) {
                 _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -982,53 +805,44 @@ var UDSStaffOurServices = {
 
                 if (_valueDocumentStatus == "YYY")
                     _show = true;
-                else
-                    {                        
-                        _valueSubject = Util.tut.getSubjectDocumentUpload({
-                            section: _param["section"]
-                        });
-                        Util.dialogMessageError({
-                            content: ("<div class='th-label'>สถานะการอนุมัติ" + _valueSubject["subjectth"] + "มีการเปลี่ยนแปลง กรุณารีเฟรชหน้าจอ</div><div class='en-label'>Approval status " + $.trim(_valueSubject["subjecten"]) + " is not valid, Please refresh this page.</div>")
-                        });
-                    }
+                else {
+                    _valueSubject = Util.tut.getSubjectDocumentUpload({
+                        section: _param["section"]
+                    });
+                    Util.dialogMessageError({
+                        content: ("<div class='th-label'>สถานะการอนุมัติ" + _valueSubject["subjectth"] + "มีการเปลี่ยนแปลง กรุณารีเฟรชหน้าจอ</div><div class='en-label'>Approval status " + $.trim(_valueSubject["subjecten"]) + " is not valid, Please refresh this page.</div>")
+                    });
+                }
 
-                if (_show == true)
-                {
-                    if (_objImage.is("[src]") == false)
-                    {
+                if (_show == true) {
+                    if (_objImage.is("[src]") == false) {
                         _objWatermark.hide();
                         _objImage.removeAttr("src").hide();
 
-                        if (_valueFileFullPath.length > 0)
-                        {
+                        if (_valueFileFullPath.length > 0) {
                             _objWatermark.show();
-                            _objImage.attr({ "src": _valueFileFullPath }).show();
+                            _objImage.attr({
+                                "src": _valueFileFullPath
+                            }).show();
                         }
                     }
                 }
             }
         },
-
         sectionProgress: {
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการประมวลผลข้อมูลในส่วนของการส่งออกระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติและบันทึกการตรวจสอบวุฒิการศึกษากับสถานศึกษาต้นสังกัด
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //page      รับค่าชื่อหน้า
             resetMain: function (_param) {
                 _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
                 var _this = Util.tut.tos.exportsaveaudittranscriptapproved;
                     
-                if (_param["page"] == Util.tut.pageOurServicesExportTranscriptApprovedProgress)
-                {
+                if (_param["page"] == Util.tut.pageOurServicesExportTranscriptApprovedProgress) {
                     Util.initCalendar({
                         id: ("#" + _this.idSectionProgress + "-sentdateaudit")
                     });
                     $("#" + _this.idSectionProgress + "-sentdateaudit").val("");
                 }
 
-                if (_param["page"] == Util.tut.pageOurServicesSaveAuditTranscriptApprovedProgress)
-                {
+                if (_param["page"] == Util.tut.pageOurServicesSaveAuditTranscriptApprovedProgress) {
                     Util.initCombobox({
                         id: ("#" + _this.idSectionProgress + "-auditedstatus"),
                         width: 480,
@@ -1045,11 +859,6 @@ var UDSStaffOurServices = {
                     $("#" + _this.idSectionProgress + "-receiveddateresultaudit").val("");
                 }
             },
-
-            //ฟังก์ชั่นสำหรับตรวจสอบความถูกต้องในการประมวลผลข้อมูลในส่วนของการส่งออกระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติและบันทึกการตรวจสอบวุฒิการศึกษากับสถานศึกษาต้นสังกัด
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //page      รับค่าชื่อหน้า
             validateProcess: function (_param) {
                 _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
@@ -1057,10 +866,16 @@ var UDSStaffOurServices = {
                 var _error = new Array();
                 var _i = 0;
 
-                if (_param["page"] == Util.tut.pageOurServicesSaveAuditTranscriptApprovedProgress)
-                {
-                    if (Util.comboboxGetValue("#" + _this.idSectionProgress + "-auditedstatus") == "0") { _error[_i] = "กรุณาเลือกผลการตรวจสอบวุฒิการศึกษา;Please select result transcript audit.;"; _i++; }
-                    if ($("#" + _this.idSectionProgress + "-receiveddateresultaudit").val().length == 0) { _error[_i] = "กรุณาใส่วันที่รับผลการตรวจสอบวุฒิการศึกษา;Please enter received date result transcript audit.;"; _i++; }
+                if (_param["page"] == Util.tut.pageOurServicesSaveAuditTranscriptApprovedProgress) {
+                    if (Util.comboboxGetValue("#" + _this.idSectionProgress + "-auditedstatus") == "0") {
+                        _error[_i] = "กรุณาเลือกผลการตรวจสอบวุฒิการศึกษา;Please select result transcript audit.;";
+                        _i++;
+                    }
+
+                    if ($("#" + _this.idSectionProgress + "-receiveddateresultaudit").val().length == 0) {
+                        _error[_i] = "กรุณาใส่วันที่รับผลการตรวจสอบวุฒิการศึกษา;Please enter received date result transcript audit.;";
+                        _i++;
+                    }
                 }
 
                 Util.dialogListMessageError({
@@ -1069,15 +884,9 @@ var UDSStaffOurServices = {
 
                 return (_i > 0 ? false : true);
             },
-
-            //ฟังก์ชั่นสำหรับแสดงผลการประมวลผลข้อมูลในส่วนของการส่งออกระเบียนแสดงผลการเรียนที่ผ่านการอนุมัติและบันทึกการตรวจสอบวุฒิการศึกษากับสถานศึกษาต้นสังกัด
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param             รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //page                  รับค่าชื่อหน้า
-            //resultValueProcess    รับค่าผลลัพธ์ของการประมวลผลข้อมูล
             getResultProcess: function (_param) {
-                _param["page"]                  = (_param["page"] == undefined ? "" : _param["page"]);
-                _param["resultValueProcess"]    = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
+                _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
+                _param["resultValueProcess"] = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
 
                 var _this = Util.tut.tos.exportsaveaudittranscriptapproved;
                 var _detailComplete = _param["resultValueProcess"].DetailComplete;
@@ -1088,26 +897,22 @@ var UDSStaffOurServices = {
                 var _valueArray = _detailComplete.split(",");
                 var _i;
 
-                for (_i = 0; _i < _valueArray.length; _i++)
-                {
+                for (_i = 0; _i < _valueArray.length; _i++) {
                     _idTableRow = (_idTable + " .table-grid #table-row-id-" + _valueArray[_i]);
 
-                    if ($("#" + _idTableRow).length > 0)
-                    {
-                        if (_param["page"] == Util.tut.pageOurServicesExportTranscriptApprovedProgress)
-                        {
+                    if ($("#" + _idTableRow).length > 0) {
+                        if (_param["page"] == Util.tut.pageOurServicesExportTranscriptApprovedProgress) {
                             if ($("#" + _this.idSectionProgress + "-sentdateaudit").val().length > 0)
                                 $("#" + _idTableRow + " .table-col-sentdateaudit").html($("#" + _this.idSectionProgress + "-sentdateaudit").val());
                         }
 
-                        if (_param["page"] == Util.tut.pageOurServicesSaveAuditTranscriptApprovedProgress)
-                        {
+                        if (_param["page"] == Util.tut.pageOurServicesSaveAuditTranscriptApprovedProgress) {
                             _auditedStatus = Util.getSelectionIsSelect({
-                                                id: ("#" + _this.idSectionProgress + "-auditedstatus"),
-                                                type: "select",
-                                                valueTrue: Util.comboboxGetValue("#" + _this.idSectionProgress + "-auditedstatus"),
-                                                valueFalse: "blank"
-                                             });
+                                id: ("#" + _this.idSectionProgress + "-auditedstatus"),
+                                type: "select",
+                                valueTrue: Util.comboboxGetValue("#" + _this.idSectionProgress + "-auditedstatus"),
+                                valueFalse: "blank"
+                            });
 
                             $("#" + _idTableRow + " .uploaddocument-auditedstatus").removeClass("uploaddocument-auditedstatus-blank")
                             $("#" + _idTableRow + " .uploaddocument-auditedstatus").removeClass("uploaddocument-auditedstatus-y");

@@ -28,7 +28,8 @@ public class UDSDB
     public static DataSet GetUDSStudentRecords(string _personId)
     {
         DataSet _ds = Util.DBUtil.ExecuteCommandStoredProcedure("sp_udsGetPersonStudent",
-            new SqlParameter("@personId", _personId));
+            new SqlParameter("@personId", _personId)
+        );
 
         return _ds;
     }
@@ -52,22 +53,22 @@ public class UDSDB
 
         try
         {
-
             if (_page.Equals(UDSUtil.PAGE_UPLOADSUBMITDOCUMENT_ADDUPDATE))
             {
                 if (_actionSave.Equals(true))
                 {
                     _ds = Util.DBUtil.ExecuteCommandStoredProcedure("sp_udsSetUploadLog",
-                            new SqlParameter("@personId", _personId),
-                            new SqlParameter("@section",_c.Request["section"]),
-                            new SqlParameter("@sectionAction", _c.Request["sectionaction"]),                            
-                            new SqlParameter("@filename", _c.Request["filename"]),
-                            new SqlParameter("@transcriptInstitute", _c.Request["transcriptinstitute"]),
-                            new SqlParameter("@savedStatus", _c.Request["savedstatus"]),
-                            new SqlParameter("@submittedStatus", _c.Request["submittedstatus"]),
-                            new SqlParameter("@approvalStatus", _c.Request["approvalstatus"]),
-                            new SqlParameter("@by", _personId),
-                            new SqlParameter("@ip", Util.GetIP()));
+                        new SqlParameter("@personId", _personId),
+                        new SqlParameter("@section",_c.Request["section"]),
+                        new SqlParameter("@sectionAction", _c.Request["sectionaction"]),
+                        new SqlParameter("@filename", _c.Request["filename"]),
+                        new SqlParameter("@transcriptInstitute", _c.Request["transcriptinstitute"]),
+                        new SqlParameter("@savedStatus", _c.Request["savedstatus"]),
+                        new SqlParameter("@submittedStatus", _c.Request["submittedstatus"]),
+                        new SqlParameter("@approvalStatus", _c.Request["approvalstatus"]),
+                        new SqlParameter("@by", _personId),
+                        new SqlParameter("@ip", Util.GetIP())
+                    );
                 }
             }
 

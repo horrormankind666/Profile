@@ -1,42 +1,44 @@
-﻿// =============================================
-// Author       : <ยุทธภูมิ ตวันนา>
-// Create date  : <๒๑/๐๘/๒๕๕๘>
-// Modify date  : <๐๖/๐๙/๒๕๕๙>
-// Description  : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผลในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา>
-// =============================================
+﻿/*
+=============================================
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๒๑/๐๘/๒๕๕๘>
+Modify date : <๐๖/๐๙/๒๕๕๙>
+Description : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผลในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา>
+=============================================
+*/
 
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
 using System.Web;
 using NUtil;
-using NFinServiceLogin;
 
 public class UDSStaffUploadSubmitDocumentUI
 {
-    private static string _idSectionMain        = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENT_MAIN.ToLower();
-    private static string _idSectionSearch      = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENT_SEARCH.ToLower();
-    private static string _idSectionPreview     = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENT_PREVIEW.ToLower();
-    private static string _idSectionAddUpdate   = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENT_ADDUPDATE.ToLower();
+    private static string _idSectionMain = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENT_MAIN.ToLower();
+    private static string _idSectionSearch = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENT_SEARCH.ToLower();
+    private static string _idSectionPreview = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENT_PREVIEW.ToLower();
+    private static string _idSectionAddUpdate = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENT_ADDUPDATE.ToLower();
 
-    //ฟังก์ชั่นสำหรับแสดงเนื้อหาตามส่วนที่ต้องการแสดงในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _infoLogin     เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-    //2. _section       เป็น string รับค่าส่วนที่ต้องการแสดง
-    //3. _sectionAction เป็น string รับค่าการกระทำที่เกิดขึ้นกับส่วนที่ต้องการแสดง
-    //4. _id            เป็น string รับค่ารหัสที่ต้องการ
     public static StringBuilder GetSection(Dictionary<string, object> _infoLogin, string _section, string _sectionAction, string _id)
     {                        
         StringBuilder _html = new StringBuilder();
         
         switch (_section)
         {
-            case "MAIN"         : { _html = SectionMainUI.GetMain(); break; }
-            case "SEARCH"       : { _html = SectionSearchUI.GetMain(); break; }
-            case "PREVIEW"      : { _html = SectionPreviewUI.GetMain(_sectionAction, _id); break; }
-            case "ADDUPDATE"    : { _html = SectionAddUpdateUI.GetMain(_id); break; }
+            case "MAIN":
+                _html = SectionMainUI.GetMain();
+                break;
+            case "SEARCH":
+                _html = SectionSearchUI.GetMain();
+                break;
+            case "PREVIEW":
+                _html = SectionPreviewUI.GetMain(_sectionAction, _id);
+                break;
+            case "ADDUPDATE":
+                _html = SectionAddUpdateUI.GetMain(_id);
+                break;
         }
         
         return _html;
@@ -44,7 +46,6 @@ public class UDSStaffUploadSubmitDocumentUI
 
     public class SectionMainUI
     {
-        //ฟังก์ชั่นสำหรับแสดงหน้าหาหน้าหลักในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
         public static StringBuilder GetMain()
         {
             Dictionary<string, object> _infoData = new Dictionary<string, object>();
@@ -75,8 +76,8 @@ public class UDSStaffUploadSubmitDocumentUI
             _html.AppendLine("                      <div class='table-title'>");
             _html.AppendFormat("                        <div class='contentbody-left table-option table-rowperpage en-label'>{0}</div>", UDSStaffUI.GetComboboxRowPerPage(_idSectionMain + "-rowperpage"));
             _html.AppendLine("                          <div class='contentbody-right table-recordcount en-label'>");
-            _html.AppendFormat("                            <span class='recordcount-search hidden'>{0}</span>",            (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
-            _html.AppendFormat("                            <span class='recordcountprimary-search th-label'>{0}</span>",   (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
+            _html.AppendFormat("                            <span class='recordcount-search hidden'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
+            _html.AppendFormat("                            <span class='recordcountprimary-search th-label'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
             _html.AppendLine("                          </div>");
             _html.AppendLine("                      </div>");
             _html.AppendLine("                      <div class='clear'></div>");
@@ -132,10 +133,6 @@ public class UDSStaffUploadSubmitDocumentUI
             return _html;
         }
 
-        //ฟังก์ชั่นสำหรับแสดงรายการในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _infoLogin เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-        //2. _dr         เป็น DataRow[] รับค่าชุดของข้อมูล
         public static StringBuilder GetList(Dictionary<string, object> _infoLogin, DataRow[] _dr)
         {
             StringBuilder _html = new StringBuilder();
@@ -159,12 +156,12 @@ public class UDSStaffUploadSubmitDocumentUI
 
                 foreach (DataRow _dr1 in _dr)
                 {
-                    _documentUpload     = _dr1["documentUpload"].ToString().ToLower();
-                    _uploadedStatus     = String.Empty;
-                    _uploadedDate       = String.Empty;
-                    _submittedStatus    = String.Empty;
-                    _submittedDate      = String.Empty;
-                    _iconSubmit         = String.Empty;
+                    _documentUpload = _dr1["documentUpload"].ToString().ToLower();
+                    _uploadedStatus = String.Empty;
+                    _uploadedDate = String.Empty;
+                    _submittedStatus = String.Empty;
+                    _submittedDate = String.Empty;
+                    _iconSubmit = String.Empty;
 
                     if (!String.IsNullOrEmpty(_documentUpload))
                     {
@@ -190,43 +187,43 @@ public class UDSStaffUploadSubmitDocumentUI
                         {
                             for (_i = _j; _i <= _k; _i++)
                             {
-                                _documentUpload     = UDSStaffUtil._documentUpload[_i, 2].ToLower();
-                                _uploadedStatus     = _dr1[_documentUpload + "SavedStatus"].ToString();
-                                _uploadedDate      += (!String.IsNullOrEmpty(_dr1[_documentUpload + "SavedDate"].ToString()) && _uploadedStatus.Equals("Y") ? ("<div class='th-label'>" + DateTime.Parse(_dr1[_documentUpload + "SavedDate"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") + "</div>") : "<div class='th-label'>&nbsp;</div>");
-                                _submittedStatus    = _dr1[_documentUpload + "SubmittedStatus"].ToString();
-                                _submittedDate     += (!String.IsNullOrEmpty(_dr1[_documentUpload + "SubmittedDate"].ToString()) && _submittedStatus.Equals("Y") ? ("<div class='th-label'>" + DateTime.Parse(_dr1[_documentUpload + "SubmittedDate"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") + "</div>") : "<div class='th-label'>&nbsp;</div>");
-                                _iconSubmit        += ("<div class='" + _documentUpload + "-submittedstatus uploaddocument-submittedstatus " + UDSStaffUtil.GetIconSubmittedStatus(_submittedStatus) + " link-" + UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSUBMITTEDSTATUS.ToLower() + "'><div class='en-label'>" + UDSStaffUtil._documentUpload[_i, 3] + "</div></div>");
+                                _documentUpload = UDSStaffUtil._documentUpload[_i, 2].ToLower();
+                                _uploadedStatus = _dr1[_documentUpload + "SavedStatus"].ToString();
+                                _uploadedDate += (!String.IsNullOrEmpty(_dr1[_documentUpload + "SavedDate"].ToString()) && _uploadedStatus.Equals("Y") ? ("<div class='th-label'>" + DateTime.Parse(_dr1[_documentUpload + "SavedDate"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") + "</div>") : "<div class='th-label'>&nbsp;</div>");
+                                _submittedStatus = _dr1[_documentUpload + "SubmittedStatus"].ToString();
+                                _submittedDate += (!String.IsNullOrEmpty(_dr1[_documentUpload + "SubmittedDate"].ToString()) && _submittedStatus.Equals("Y") ? ("<div class='th-label'>" + DateTime.Parse(_dr1[_documentUpload + "SubmittedDate"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") + "</div>") : "<div class='th-label'>&nbsp;</div>");
+                                _iconSubmit += ("<div class='" + _documentUpload + "-submittedstatus uploaddocument-submittedstatus " + UDSStaffUtil.GetIconSubmittedStatus(_submittedStatus) + " link-" + UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSUBMITTEDSTATUS.ToLower() + "'><div class='en-label'>" + UDSStaffUtil._documentUpload[_i, 3] + "</div></div>");
                             }
                         }
                         else
-                            {
-                                _uploadedStatus     = _dr1[_documentUpload + "SavedStatus"].ToString();
-                                _uploadedDate       = (!String.IsNullOrEmpty(_dr1[_documentUpload + "SavedDate"].ToString()) && _uploadedStatus.Equals("Y") ? ("<div class='th-label'>" + DateTime.Parse(_dr1[_documentUpload + "SavedDate"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") + "</div>") : "<div class='th-label'>&nbsp;</div>");
-                                _submittedStatus    = _dr1[_documentUpload + "SubmittedStatus"].ToString();
-                                _submittedDate      = (!String.IsNullOrEmpty(_dr1[_documentUpload + "SubmittedDate"].ToString()) && _submittedStatus.Equals("Y") ? ("<div class='th-label'>" + DateTime.Parse(_dr1[_documentUpload + "SubmittedDate"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") + "</div>") : "<div class='th-label'>&nbsp;</div>");
-                                _iconSubmit         = ("<div class='" + _documentUpload + "-submittedstatus uploaddocument-submittedstatus " + UDSStaffUtil.GetIconSubmittedStatus(_submittedStatus) + " link-" + UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSUBMITTEDSTATUS.ToLower() + "'><div class='en-label'>" + _dr1["documentUploadInitials"].ToString() + "</div></div>");
-                            }
+                        {
+                            _uploadedStatus = _dr1[_documentUpload + "SavedStatus"].ToString();
+                            _uploadedDate = (!String.IsNullOrEmpty(_dr1[_documentUpload + "SavedDate"].ToString()) && _uploadedStatus.Equals("Y") ? ("<div class='th-label'>" + DateTime.Parse(_dr1[_documentUpload + "SavedDate"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") + "</div>") : "<div class='th-label'>&nbsp;</div>");
+                            _submittedStatus = _dr1[_documentUpload + "SubmittedStatus"].ToString();
+                            _submittedDate = (!String.IsNullOrEmpty(_dr1[_documentUpload + "SubmittedDate"].ToString()) && _submittedStatus.Equals("Y") ? ("<div class='th-label'>" + DateTime.Parse(_dr1[_documentUpload + "SubmittedDate"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") + "</div>") : "<div class='th-label'>&nbsp;</div>");
+                            _iconSubmit = ("<div class='" + _documentUpload + "-submittedstatus uploaddocument-submittedstatus " + UDSStaffUtil.GetIconSubmittedStatus(_submittedStatus) + " link-" + UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSUBMITTEDSTATUS.ToLower() + "'><div class='en-label'>" + _dr1["documentUploadInitials"].ToString() + "</div></div>");
+                        }
                     }
 
-                    _highlight  = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";                
-                    _callFunc   = "Util.tut.getFrmPreviewDocument({" +
-                                  "page:'" + UDSStaffUtil.PAGE_UPLOADSUBMITDOCUMENTPROFILEPICTUREIDENTITYCARD_PREVIEW + "'," +
-                                  "idMain:'" + _idSectionMain + "'," +
-                                  "idPreview:'" + _idSectionPreview + "'," +
-                                  "data:'" + _dr1["id"] + "'" + 
-                                  "},function(){})";
+                    _highlight = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";                
+                    _callFunc = "Util.tut.getFrmPreviewDocument({" +
+                                "page:'" + UDSStaffUtil.PAGE_UPLOADSUBMITDOCUMENTPROFILEPICTUREIDENTITYCARD_PREVIEW + "'," +
+                                "idMain:'" + _idSectionMain + "'," +
+                                "idPreview:'" + _idSectionPreview + "'," +
+                                "data:'" + _dr1["id"] + "'" + 
+                                "},function(){})";
 
                     _html.AppendFormat("<div class='table-row{0}' id='table-row-id-{1}'>", _highlight, _dr1["id"]);
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col2' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));                
-                    _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",  _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>",    UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>",    UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8' onclick={0}><div class='table-col-msg'>{1}</div></div>",    _callFunc, _uploadedDate);
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col2' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));                
+                    _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8' onclick={0}><div class='table-col-msg'>{1}</div></div>", _callFunc, _uploadedDate);
                     _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg table-col-submittedstatus'>{0}</div></div>", _iconSubmit);
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col10' onclick={0}><div class='table-col-msg'>{1}</div></div>",    _callFunc, _submittedDate);
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col10' onclick={0}><div class='table-col-msg'>{1}</div></div>", _callFunc, _submittedDate);
                     _html.AppendLine("  </div>");
                 }
 
@@ -239,7 +236,6 @@ public class UDSStaffUploadSubmitDocumentUI
     
     public class SectionSearchUI
     {
-        //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าค้นหาในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
         public static StringBuilder GetMain()
         {
             StringBuilder _html = new StringBuilder();
@@ -439,33 +435,29 @@ public class UDSStaffUploadSubmitDocumentUI
     
     public class SectionPreviewUI
     {
-        //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าตัวอย่างเอกสารในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _section   เป็น string รับค่าส่วนที่ต้องการแสดง
-        //2. _id        เป็น string รับค่ารหัสที่ตั้องการ
         public static StringBuilder GetMain(string _section, string _id)
         {
             StringBuilder _html = new StringBuilder();
             
             if (_section.Equals(UDSStaffUtil.SUBJECT_SECTION_UPLOADSUBMITDOCUMENTPROFILEPICTUREIDENTITYCARD))
             {
-                UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._subjectSectionProfilePictureIdentityCard     = UDSStaffUtil.SUBJECT_SECTION_UPLOADSUBMITDOCUMENTPROFILEPICTUREIDENTITYCARD;
-                UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePictureIdentityCardPreview   = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTPROFILEPICTUREIDENTITYCARD_PREVIEW.ToLower();
-                UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePicturePreview               = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTPROFILEPICTURE_PREVIEW.ToLower();
-                UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionIdentityCardPreview                 = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTIDENTITYCARD_PREVIEW.ToLower();
-                UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._pageProfilePictureIdentityCardPreview        = UDSStaffUtil.PAGE_UPLOADSUBMITDOCUMENTPROFILEPICTUREIDENTITYCARD_PREVIEW;
+                UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._subjectSectionProfilePictureIdentityCard = UDSStaffUtil.SUBJECT_SECTION_UPLOADSUBMITDOCUMENTPROFILEPICTUREIDENTITYCARD;
+                UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePictureIdentityCardPreview = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTPROFILEPICTUREIDENTITYCARD_PREVIEW.ToLower();
+                UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionProfilePicturePreview = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTPROFILEPICTURE_PREVIEW.ToLower();
+                UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._idSectionIdentityCardPreview = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTIDENTITYCARD_PREVIEW.ToLower();
+                UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI._pageProfilePictureIdentityCardPreview = UDSStaffUtil.PAGE_UPLOADSUBMITDOCUMENTPROFILEPICTUREIDENTITYCARD_PREVIEW;
 
                 _html = UDSStaffUI.PreviewDocumentUI.ProfilePictureIdentityCardUI.GetMain(_id, true, false);
             }
             
             if (_section.Equals(UDSStaffUtil.SUBJECT_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPT))
             {
-                UDSStaffUI.PreviewDocumentUI.TranscriptUI._subjectSectionTranscript             = UDSStaffUtil.SUBJECT_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPT;
-                UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptPreview           = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPT_PREVIEW.ToLower();
-                UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptInstitutePreview  = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTINSTITUTE_PREVIEW.ToLower();
-                UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptFrontsidePreview  = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTFRONTSIDE_PREVIEW.ToLower();
-                UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptBacksidePreview   = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTBACKSIDE_PREVIEW.ToLower();
-                UDSStaffUI.PreviewDocumentUI.TranscriptUI._pageTranscriptPreview                = UDSStaffUtil.PAGE_UPLOADSUBMITDOCUMENTTRANSCRIPT_PREVIEW;
+                UDSStaffUI.PreviewDocumentUI.TranscriptUI._subjectSectionTranscript = UDSStaffUtil.SUBJECT_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPT;
+                UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptPreview = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPT_PREVIEW.ToLower();
+                UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptInstitutePreview = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTINSTITUTE_PREVIEW.ToLower();
+                UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptFrontsidePreview = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTFRONTSIDE_PREVIEW.ToLower();
+                UDSStaffUI.PreviewDocumentUI.TranscriptUI._idSectionTranscriptBacksidePreview = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTBACKSIDE_PREVIEW.ToLower();
+                UDSStaffUI.PreviewDocumentUI.TranscriptUI._pageTranscriptPreview = UDSStaffUtil.PAGE_UPLOADSUBMITDOCUMENTTRANSCRIPT_PREVIEW;
 
                 _html = UDSStaffUI.PreviewDocumentUI.TranscriptUI.GetMain(_id, true, false);
             }
@@ -476,9 +468,6 @@ public class UDSStaffUploadSubmitDocumentUI
 
     public class SectionAddUpdateUI
     {
-        //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าเพิ่มหรือแก้ไขในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _id    เป็น string รับค่ารหัสที่ต้องการ
         public static StringBuilder GetMain(string _id)
         {
             StringBuilder _html = new StringBuilder();
@@ -506,11 +495,11 @@ public class UDSStaffUploadSubmitDocumentUI
             _html.AppendFormat("    <div id='{0}'>", _idSectionAddUpdate);
             _html.AppendFormat("        <div id='{0}-layout'>", _idSectionAddUpdate);
             _html.AppendFormat("            <div id='{0}-content'>", _idSectionAddUpdate);
-            _html.AppendFormat("                <div class='menu-active' id='{0}'>{1}</div>",               UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTSTUDENTRECORDS_ADDUPDATE.ToLower(), StudentRecordsUI.GetMain(_id));
-            _html.AppendFormat("                <div class='menu-noactive' id='{0}' alt='{1}'>{2}</div>",   UDSStaffUploadSubmitDocumentUtil._menuUpload[0, 6].ToLower(), UDSStaffUploadSubmitDocumentUtil._menuUpload[0, 7], String.Empty);
-            _html.AppendFormat("                <div class='menu-noactive' id='{0}' alt='{1}'>{2}</div>",   UDSStaffUploadSubmitDocumentUtil._menuUpload[1, 6].ToLower(), UDSStaffUploadSubmitDocumentUtil._menuUpload[1, 7], String.Empty);
-            _html.AppendFormat("                <div class='menu-noactive' id='{0}' alt='{1}'>{2}</div>",   UDSStaffUploadSubmitDocumentUtil._menuUpload[2, 6].ToLower(), UDSStaffUploadSubmitDocumentUtil._menuUpload[2, 7], String.Empty);
-            _html.AppendFormat("                <div class='menu-noactive' id='{0}' alt='{1}'>{2}</div>",   UDSStaffUploadSubmitDocumentUtil._menuUpload[3, 6].ToLower(), UDSStaffUploadSubmitDocumentUtil._menuUpload[3, 7], String.Empty);
+            _html.AppendFormat("                <div class='menu-active' id='{0}'>{1}</div>", UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTSTUDENTRECORDS_ADDUPDATE.ToLower(), StudentRecordsUI.GetMain(_id));
+            _html.AppendFormat("                <div class='menu-noactive' id='{0}' alt='{1}'>{2}</div>", UDSStaffUploadSubmitDocumentUtil._menuUpload[0, 6].ToLower(), UDSStaffUploadSubmitDocumentUtil._menuUpload[0, 7], String.Empty);
+            _html.AppendFormat("                <div class='menu-noactive' id='{0}' alt='{1}'>{2}</div>", UDSStaffUploadSubmitDocumentUtil._menuUpload[1, 6].ToLower(), UDSStaffUploadSubmitDocumentUtil._menuUpload[1, 7], String.Empty);
+            _html.AppendFormat("                <div class='menu-noactive' id='{0}' alt='{1}'>{2}</div>", UDSStaffUploadSubmitDocumentUtil._menuUpload[2, 6].ToLower(), UDSStaffUploadSubmitDocumentUtil._menuUpload[2, 7], String.Empty);
+            _html.AppendFormat("                <div class='menu-noactive' id='{0}' alt='{1}'>{2}</div>", UDSStaffUploadSubmitDocumentUtil._menuUpload[3, 6].ToLower(), UDSStaffUploadSubmitDocumentUtil._menuUpload[3, 7], String.Empty);
             _html.AppendLine("              </div>");
             _html.AppendLine("          </div>");
             _html.AppendLine("      </div>");
@@ -524,25 +513,19 @@ public class UDSStaffUploadSubmitDocumentUI
         {
             private static string _idSectionAddUpdate = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTSTUDENTRECORDS_ADDUPDATE.ToLower();
 
-            //ฟังก์ชั่นสำหรับแสดงค่าต่าง ๆ ของข้อมูลที่บันทึกไว้ให้กับการเพิ่มหรือแก้ไขในส่วนของข้อมูลการเป็นนักศึกษาในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _valueDataRecorded เป็น Dictionary<string, object> รับค่าต่าง ๆ ของข้อมูลที่บันทึกไว้
             public static StringBuilder GetValueDataRecorded(Dictionary<string, object> _valueDataRecorded)
             {
                 StringBuilder _html = new StringBuilder();
                 Dictionary<string, object> _dataRecorded = (_valueDataRecorded != null ? (Dictionary<string, object>)_valueDataRecorded["DataRecorded" + UDSStaffUtil.SUBJECT_SECTION_UPLOADSUBMITDOCUMENTSTUDENTRECORDS] : null);
 
-                _html.AppendFormat("<input type='hidden' id='{0}-personid-hidden' value='{1}' />",          _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "PersonId", _dataRecorded["PersonId"], Util._valueTextDefault) : Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-studentcode-hidden' value='{1}' />",       _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StudentCode", _dataRecorded["StudentCode"], Util._valueTextDefault) : Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-gender-hidden' value='{1}' />",            _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "Gender", _dataRecorded["Gender"], Util._valueTextDefault) : Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-studentpicture-hidden' value='{1}' />",    _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StudentPicture", _dataRecorded["StudentPicture"], Util._valueTextDefault) : Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-personid-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "PersonId", _dataRecorded["PersonId"], Util._valueTextDefault) : Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-studentcode-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StudentCode", _dataRecorded["StudentCode"], Util._valueTextDefault) : Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-gender-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "Gender", _dataRecorded["Gender"], Util._valueTextDefault) : Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-studentpicture-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StudentPicture", _dataRecorded["StudentPicture"], Util._valueTextDefault) : Util._valueTextDefault));
 
                 return _html;
             }
             
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาให้กับการเพิ่มหรือแก้ไขในส่วนของข้อมูลการเป็นนักศึกษาในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _id    เป็น string รับค่ารหัสที่ตั้องการ
             public static StringBuilder GetMain(string _id)
             {
                 StringBuilder _html = new StringBuilder();
@@ -775,9 +758,6 @@ public class UDSStaffUploadSubmitDocumentUI
         {
             private static string _idSectionAddUpdate = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTOVERVIEW_ADDUPDATE.ToLower();
             
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหารายละเอียดของเอกสารที่นักศึกษาอัพโหลดให้กับการเพิ่มหรือแก้ไขในส่วนของผลการอัพโหลดเอกสารในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _section   เป็น string รับค่าชื่อหัวข้อที่ต้องการ
             private static Dictionary<string, Dictionary<string, object>> GetFrmDocumentOverview(string _section)
             {       
                 StringBuilder _contentTemp = new StringBuilder();
@@ -830,25 +810,22 @@ public class UDSStaffUploadSubmitDocumentUI
                         _contentTemp.AppendFormat("<div class='th-label' id='{0}'></div>", (_idContent + UDSStaffUploadSubmitDocumentUtil._documentUploadDetail[_i, 1].ToLower()));
                     
                     _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
-                    _contentFrmColumnDetail[_i].Add("ID",                       _idContent);
-                    _contentFrmColumnDetail[_i].Add("HighLight",                false);
-                    _contentFrmColumnDetail[_i].Add("TitleTH",                  String.Empty);
-                    _contentFrmColumnDetail[_i].Add("TitleEN",                  UDSStaffUploadSubmitDocumentUtil._documentUploadDetail[_i, 0]);
-                    _contentFrmColumnDetail[_i].Add("DiscriptionTH",            String.Empty);
-                    _contentFrmColumnDetail[_i].Add("DiscriptionEN",            String.Empty);
-                    _contentFrmColumnDetail[_i].Add("InputContentPaddingDown",  false);
-                    _contentFrmColumnDetail[_i].Add("InputContent",             _contentTemp.ToString());
-                    _contentFrmColumnDetail[_i].Add("Require",                  false);
-                    _contentFrmColumnDetail[_i].Add("LastRow",                  true);
+                    _contentFrmColumnDetail[_i].Add("ID", _idContent);
+                    _contentFrmColumnDetail[_i].Add("HighLight", false);
+                    _contentFrmColumnDetail[_i].Add("TitleTH", String.Empty);
+                    _contentFrmColumnDetail[_i].Add("TitleEN", UDSStaffUploadSubmitDocumentUtil._documentUploadDetail[_i, 0]);
+                    _contentFrmColumnDetail[_i].Add("DiscriptionTH", String.Empty);
+                    _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
+                    _contentFrmColumnDetail[_i].Add("InputContentPaddingDown", false);
+                    _contentFrmColumnDetail[_i].Add("InputContent", _contentTemp.ToString());
+                    _contentFrmColumnDetail[_i].Add("Require", false);
+                    _contentFrmColumnDetail[_i].Add("LastRow", true);
                     _contentFrmColumn.Add((_section +  UDSStaffUploadSubmitDocumentUtil._documentUploadDetail[_i, 1]), _contentFrmColumnDetail[_i]);
                 }
 
                 return _contentFrmColumn;
             }
             
-            //ฟังก์ชั่นสำหรับแสดงค่าต่าง ๆ ของข้อมูลที่บันทึกไว้ให้กับการเพิ่มหรือแก้ไขในส่วนของผลการอัพโหลดเอกสารในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _valueDataRecorded เป็น Dictionary<string, object> รับค่าต่าง ๆ ของข้อมูลที่บันทึกไว้
             public static StringBuilder GetValueDataRecorded(Dictionary<string, object> _valueDataRecorded)
             {
                 StringBuilder _html = new StringBuilder();
@@ -860,16 +837,16 @@ public class UDSStaffUploadSubmitDocumentUI
                 for (_i = 0; _i < UDSStaffUploadSubmitDocumentUtil._documentUpload.GetLength(0); _i++)
                 {
                     _section = UDSStaffUploadSubmitDocumentUtil._documentUpload[_i, 2];
-                    _keyDict[0]  = (_section + "InstituteNameTH");
-                    _keyDict[1]  = (_section + "InstituteNameEN");
-                    _keyDict[2]  = (_section + "InstituteCountryNameTH");
-                    _keyDict[3]  = (_section + "InstituteCountryNameEN");
-                    _keyDict[4]  = (_section + "InstituteProvinceNameTH");
-                    _keyDict[5]  = (_section + "InstituteProvinceNameEN");
-                    _keyDict[6]  = (_section + "FileDir");
-                    _keyDict[7]  = (_section + "FileName");
-                    _keyDict[8]  = (_section + "FullPath");
-                    _keyDict[9]  = (_section + "FileType");
+                    _keyDict[0] = (_section + "InstituteNameTH");
+                    _keyDict[1] = (_section + "InstituteNameEN");
+                    _keyDict[2] = (_section + "InstituteCountryNameTH");
+                    _keyDict[3] = (_section + "InstituteCountryNameEN");
+                    _keyDict[4] = (_section + "InstituteProvinceNameTH");
+                    _keyDict[5] = (_section + "InstituteProvinceNameEN");
+                    _keyDict[6] = (_section + "FileDir");
+                    _keyDict[7] = (_section + "FileName");
+                    _keyDict[8] = (_section + "FullPath");
+                    _keyDict[9] = (_section + "FileType");
                     _keyDict[10] = (_section + "FileSize");
                     _keyDict[11] = (_section + "SavedDate");
                     _keyDict[12] = (_section + "SubmittedStatus");
@@ -879,31 +856,28 @@ public class UDSStaffUploadSubmitDocumentUI
 
                     if (_section.Equals(UDSStaffUtil.SUBJECT_SECTION_TRANSCRIPTFRONTSIDE) || _section.Equals(UDSStaffUtil.SUBJECT_SECTION_TRANSCRIPTBACKSIDE))
                     {
-                        _html.AppendFormat("<input type='hidden' id='{0}-{1}institutenameth-hidden' value='{2}' />",            _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[0], _dataRecorded[_keyDict[0]], Util._valueTextDefault));
-                        _html.AppendFormat("<input type='hidden' id='{0}-{1}institutenameen-hidden' value='{2}' />",            _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[1], _dataRecorded[_keyDict[1]], Util._valueTextDefault));
-                        _html.AppendFormat("<input type='hidden' id='{0}-{1}institutecountrynameth-hidden' value='{2}' />",     _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[2], _dataRecorded[_keyDict[2]], Util._valueTextDefault));
-                        _html.AppendFormat("<input type='hidden' id='{0}-{1}institutecountrynameen-hidden' value='{2}' />",     _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[3], _dataRecorded[_keyDict[3]], Util._valueTextDefault));
-                        _html.AppendFormat("<input type='hidden' id='{0}-{1}instituteprovincenameth-hidden' value='{2}' />",    _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[4], _dataRecorded[_keyDict[4]], Util._valueTextDefault));
-                        _html.AppendFormat("<input type='hidden' id='{0}-{1}instituteprovincenameen-hidden' value='{2}' />",    _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[5], _dataRecorded[_keyDict[5]], Util._valueTextDefault));
+                        _html.AppendFormat("<input type='hidden' id='{0}-{1}institutenameth-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[0], _dataRecorded[_keyDict[0]], Util._valueTextDefault));
+                        _html.AppendFormat("<input type='hidden' id='{0}-{1}institutenameen-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[1], _dataRecorded[_keyDict[1]], Util._valueTextDefault));
+                        _html.AppendFormat("<input type='hidden' id='{0}-{1}institutecountrynameth-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[2], _dataRecorded[_keyDict[2]], Util._valueTextDefault));
+                        _html.AppendFormat("<input type='hidden' id='{0}-{1}institutecountrynameen-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[3], _dataRecorded[_keyDict[3]], Util._valueTextDefault));
+                        _html.AppendFormat("<input type='hidden' id='{0}-{1}instituteprovincenameth-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[4], _dataRecorded[_keyDict[4]], Util._valueTextDefault));
+                        _html.AppendFormat("<input type='hidden' id='{0}-{1}instituteprovincenameen-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[5], _dataRecorded[_keyDict[5]], Util._valueTextDefault));
                     }
-                    _html.AppendFormat("<input type='hidden' id='{0}-{1}filedir-hidden' value='{2}' />",            _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[6], _dataRecorded[_keyDict[6]], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-{1}filename-hidden' value='{2}' />",           _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[7], _dataRecorded[_keyDict[7]], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-{1}fullpath-hidden' value='{2}' />",           _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[8], _dataRecorded[_keyDict[8]], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-{1}filetype-hidden' value='{2}' />",           _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[9], _dataRecorded[_keyDict[9]], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-{1}filesize-hidden' value='{2}' />",           _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[10], _dataRecorded[_keyDict[10]], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-{1}saveddate-hidden' value='{2}' />",          _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[11], _dataRecorded[_keyDict[11]], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-{1}submittedstatus-hidden' value='{2}' />",    _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[12], _dataRecorded[_keyDict[12]], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-{1}approvalstatus-hidden' value='{2}' />",     _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[13], _dataRecorded[_keyDict[13]], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-{1}approvaldate-hidden' value='{2}' />",       _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[14], _dataRecorded[_keyDict[14]], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-{1}message-hidden' value='{2}' />",            _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[15], _dataRecorded[_keyDict[15]], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-{1}filedir-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[6], _dataRecorded[_keyDict[6]], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-{1}filename-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[7], _dataRecorded[_keyDict[7]], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-{1}fullpath-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[8], _dataRecorded[_keyDict[8]], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-{1}filetype-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[9], _dataRecorded[_keyDict[9]], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-{1}filesize-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[10], _dataRecorded[_keyDict[10]], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-{1}saveddate-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[11], _dataRecorded[_keyDict[11]], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-{1}submittedstatus-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[12], _dataRecorded[_keyDict[12]], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-{1}approvalstatus-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[13], _dataRecorded[_keyDict[13]], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-{1}approvaldate-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[14], _dataRecorded[_keyDict[14]], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-{1}message-hidden' value='{2}' />", _idSectionAddUpdate, _section.ToLower(), Util.GetValueDataDictionary(_dataRecorded, _keyDict[15], _dataRecorded[_keyDict[15]], Util._valueTextDefault));
                 }
 
                 return _html;
             }
             
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาให้กับการเพิ่มหรือแก้ไขในส่วนของผลการอัพโหลดเอกสารในส่วนของการการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _id    เป็น string รับค่ารหัสที่ต้องการ
             public static StringBuilder GetMain(string _id)
             {        
                 StringBuilder _html = new StringBuilder();                
@@ -1066,12 +1040,9 @@ public class UDSStaffUploadSubmitDocumentUI
                 _html.AppendLine("  </div>");
                 
                 return _html;
-            }            
+            }
         }
         
-        //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าอัพโหลดเอกสาร แล้วส่งค่ากลับเป็น StringBuilder
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _section   เป็น string รับค่าชื่อหัวข้อที่ต้องการ
         private static StringBuilder GetFrmUploadFile(string _section)
         {
             StringBuilder _html = new StringBuilder();
@@ -1086,11 +1057,11 @@ public class UDSStaffUploadSubmitDocumentUI
             _html.AppendLine("                  <div class='button-content'>");
             _html.AppendLine("                      <ul class='button-style1'>");
             _html.AppendFormat("                        <li class='nomargin'><div class='uploadfile-button browse-uploadfile en-label' alt='{0}' id='browse-uploadfile-{1}'>BROWSE<input type='file' id='{1}-browse-uploadfile' name='{1}-browse-uploadfile' alt='uploadfile-{1}' /></div></li>", _section, _section.ToLower());
-            _html.AppendFormat("                        <li><div class='uploadfile-button en-label' alt='{0}' id='clear-uploadfile-{1}'>CLEAR</div></li>",      _section, _section.ToLower());
-            _html.AppendFormat("                        <li><div class='uploadfile-button en-label' alt='{0}' id='upload-uploadfile-{1}'>UPLOAD</div></li>",    _section, _section.ToLower());
+            _html.AppendFormat("                        <li><div class='uploadfile-button en-label' alt='{0}' id='clear-uploadfile-{1}'>CLEAR</div></li>", _section, _section.ToLower());
+            _html.AppendFormat("                        <li><div class='uploadfile-button en-label' alt='{0}' id='upload-uploadfile-{1}'>UPLOAD</div></li>", _section, _section.ToLower());
             _html.AppendFormat("                        <li><div class='uploadfile-button en-label' alt='{0}' id='save-uploadfile-{1}'>CROP & SAVE</div></li>", _section, _section.ToLower());
-            _html.AppendFormat("                        <li><div class='uploadfile-button en-label' alt='{0}' id='delete-uploadfile-{1}'>DELETE</div></li>",    _section, _section.ToLower());
-            _html.AppendFormat("                        <li><div class='uploadfile-button en-label' alt='{0}' id='submit-uploadfile-{1}'>SUBMIT</div></li>",    _section, _section.ToLower());
+            _html.AppendFormat("                        <li><div class='uploadfile-button en-label' alt='{0}' id='delete-uploadfile-{1}'>DELETE</div></li>", _section, _section.ToLower());
+            _html.AppendFormat("                        <li><div class='uploadfile-button en-label' alt='{0}' id='submit-uploadfile-{1}'>SUBMIT</div></li>", _section, _section.ToLower());
             _html.AppendLine("                      </ul>");
             _html.AppendLine("                  </div>");
             _html.AppendLine("              </div>");
@@ -1105,30 +1076,24 @@ public class UDSStaffUploadSubmitDocumentUI
         {
             private static string _idSectionAddUpdate = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTPROFILEPICTURE_ADDUPDATE.ToLower();
 
-            //ฟังก์ชั่นสำหรับแสดงค่าต่าง ๆ ของข้อมูลที่บันทึกไว้ให้กับการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดรูปภาพประจำตัวในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _valueDataRecorded เป็น Dictionary<string, object> รับค่าต่าง ๆ ของข้อมูลที่บันทึกไว้
             public static StringBuilder GetValueDataRecorded(Dictionary<string, object> _valueDataRecorded)
             {
                 StringBuilder _html = new StringBuilder();
                 Dictionary<string, object> _dataRecorded = (Dictionary<string, object>)_valueDataRecorded["DataRecorded" + UDSStaffUtil.SUBJECT_SECTION_UPLOADSUBMITDOCUMENTPROFILEPICTURE];
 
-                _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />",           _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureFileDir", _dataRecorded["ProfilePictureFileDir"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />",          _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureFileName", _dataRecorded["ProfilePictureFileName"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-cropx-hidden' value='{1}' />",             _idSectionAddUpdate, Util._valueTextDefault);
-                _html.AppendFormat("<input type='hidden' id='{0}-cropy-hidden' value='{1}' />",             _idSectionAddUpdate, Util._valueTextDefault);
-                _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />",             _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureWidth", _dataRecorded["ProfilePictureWidth"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />",            _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureHeight", _dataRecorded["ProfilePictureHeight"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />",       _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureSavedStatus", _dataRecorded["ProfilePictureSavedStatus"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />",   _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureSubmittedStatus", _dataRecorded["ProfilePictureSubmittedStatus"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />",    _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureApprovalStatus", _dataRecorded["ProfilePictureApprovalStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />", _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureFileDir", _dataRecorded["ProfilePictureFileDir"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />", _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureFileName", _dataRecorded["ProfilePictureFileName"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-cropx-hidden' value='{1}' />", _idSectionAddUpdate, Util._valueTextDefault);
+                _html.AppendFormat("<input type='hidden' id='{0}-cropy-hidden' value='{1}' />", _idSectionAddUpdate, Util._valueTextDefault);
+                _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />", _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureWidth", _dataRecorded["ProfilePictureWidth"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />", _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureHeight", _dataRecorded["ProfilePictureHeight"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />", _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureSavedStatus", _dataRecorded["ProfilePictureSavedStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />", _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureSubmittedStatus", _dataRecorded["ProfilePictureSubmittedStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />", _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureApprovalStatus", _dataRecorded["ProfilePictureApprovalStatus"], Util._valueTextDefault));
 
                 return _html;
             }
 
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาให้กับการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดรูปภาพประจำตัวในส่วนของการการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _id    เป็น string รับค่ารหัสที่ต้องการ
             public static StringBuilder GetMain(string _id)
             {
                 StringBuilder _html = new StringBuilder();
@@ -1136,7 +1101,7 @@ public class UDSStaffUploadSubmitDocumentUI
                 _html.AppendLine(GetValueDataRecorded(UDSStaffUtil.SetValueDataRecorded(UDSStaffUtil.PAGE_UPLOADSUBMITDOCUMENTPROFILEPICTURE_ADDUPDATE, _id)).ToString());
                 _html.AppendFormat("<div class='form uploaddocument-form' id='{0}-form'>", _idSectionAddUpdate);
                 _html.AppendLine("      <div class='form-layout'>");
-                _html.AppendLine("          <div class='form-content'>");            
+                _html.AppendLine("          <div class='form-content'>");
                 _html.AppendLine("              <div class='uploaddocument-layout' align='center'>");
                 _html.AppendLine("                  <div class='uploaddocument-content'>");
                 _html.AppendLine("                      <div>");
@@ -1154,7 +1119,7 @@ public class UDSStaffUploadSubmitDocumentUI
                 _html.AppendLine("                      </div>");
                 _html.AppendLine("                      <div class='clear'></div>");
                 _html.AppendFormat("                    <div>{0}</div>", GetFrmUploadFile(UDSStaffUtil.SUBJECT_SECTION_PROFILEPICTURE));
-                _html.AppendLine("                  </div>");                        
+                _html.AppendLine("                  </div>");
                 _html.AppendLine("              </div>");
                 _html.AppendLine("          </div>");
                 _html.AppendLine("      </div>");
@@ -1168,30 +1133,24 @@ public class UDSStaffUploadSubmitDocumentUI
         {
             private static string _idSectionAddUpdate = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTIDENTITYCARD_ADDUPDATE.ToLower();
 
-            //ฟังก์ชั่นสำหรับแสดงค่าต่าง ๆ ของข้อมูลที่บันทึกไว้ให้กับการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดบัตรประจำตัวประชาชนในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _valueDataRecorded เป็น Dictionary<string, object> รับค่าต่าง ๆ ของข้อมูลที่บันทึกไว้
             public static StringBuilder GetValueDataRecorded(Dictionary<string, object> _valueDataRecorded)
             {
                 StringBuilder _html = new StringBuilder();
                 Dictionary<string, object> _dataRecorded = (Dictionary<string, object>)_valueDataRecorded["DataRecorded" + UDSStaffUtil.SUBJECT_SECTION_UPLOADSUBMITDOCUMENTIDENTITYCARD];
 
-                _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />",           _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardFileDir", _dataRecorded["IdentityCardFileDir"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />",          _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardFileName", _dataRecorded["IdentityCardFileName"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-cropx-hidden' value='{1}' />",             _idSectionAddUpdate, Util._valueTextDefault);
-                _html.AppendFormat("<input type='hidden' id='{0}-cropy-hidden' value='{1}' />",             _idSectionAddUpdate, Util._valueTextDefault);
-                _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />",             _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardWidth", _dataRecorded["IdentityCardWidth"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />",            _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardHeight", _dataRecorded["IdentityCardHeight"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />",       _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardSavedStatus", _dataRecorded["IdentityCardSavedStatus"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />",   _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardSubmittedStatus", _dataRecorded["IdentityCardSubmittedStatus"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />",    _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardApprovalStatus", _dataRecorded["IdentityCardApprovalStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />", _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardFileDir", _dataRecorded["IdentityCardFileDir"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />", _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardFileName", _dataRecorded["IdentityCardFileName"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-cropx-hidden' value='{1}' />", _idSectionAddUpdate, Util._valueTextDefault);
+                _html.AppendFormat("<input type='hidden' id='{0}-cropy-hidden' value='{1}' />", _idSectionAddUpdate, Util._valueTextDefault);
+                _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />", _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardWidth", _dataRecorded["IdentityCardWidth"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />", _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardHeight", _dataRecorded["IdentityCardHeight"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />", _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardSavedStatus", _dataRecorded["IdentityCardSavedStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />", _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardSubmittedStatus", _dataRecorded["IdentityCardSubmittedStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />", _idSectionAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardApprovalStatus", _dataRecorded["IdentityCardApprovalStatus"], Util._valueTextDefault));
 
                 return _html;
             }
 
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาให้กับการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดบัตรประจำตัวประชาชนในส่วนของการการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _id    เป็น string รับค่ารหัสที่ต้องการ
             public static StringBuilder GetMain(string _id)
             {
                 StringBuilder _html = new StringBuilder();
@@ -1199,7 +1158,7 @@ public class UDSStaffUploadSubmitDocumentUI
                 _html.AppendLine(GetValueDataRecorded(UDSStaffUtil.SetValueDataRecorded(UDSStaffUtil.PAGE_UPLOADSUBMITDOCUMENTIDENTITYCARD_ADDUPDATE, _id)).ToString());
                 _html.AppendFormat("<div class='form uploaddocument-form' id='{0}-form'>", _idSectionAddUpdate);
                 _html.AppendLine("      <div class='form-layout'>");
-                _html.AppendLine("          <div class='form-content'>");            
+                _html.AppendLine("          <div class='form-content'>");
                 _html.AppendLine("              <div class='uploaddocument-layout' align='center'>");
                 _html.AppendLine("                  <div class='uploaddocument-content'>");
                 _html.AppendLine("                      <div>");
@@ -1217,7 +1176,7 @@ public class UDSStaffUploadSubmitDocumentUI
                 _html.AppendLine("                      </div>");
                 _html.AppendLine("                      <div class='clear'></div>");
                 _html.AppendFormat("                    <div>{0}</div>", GetFrmUploadFile(UDSStaffUtil.SUBJECT_SECTION_IDENTITYCARD));
-                _html.AppendLine("                  </div>");            
+                _html.AppendLine("                  </div>");
                 _html.AppendLine("              </div>");
                 _html.AppendLine("          </div>");
                 _html.AppendLine("      </div>");
@@ -1229,47 +1188,41 @@ public class UDSStaffUploadSubmitDocumentUI
         
         public class TranscriptUI
         {
-            private static string _idSectionAddUpdate                       = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPT_ADDUPDATE.ToLower();
-            private static string _idSectionTranscriptInstituteAddUpdate    = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTINSTITUTE_ADDUPDATE.ToLower();
-            private static string _idSectionTranscriptFrontsideAddUpdate    = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTFRONTSIDE_ADDUPDATE.ToLower();
-            private static string _idSectionTranscriptBacksideAddUpdate     = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTBACKSIDE_ADDUPDATE.ToLower();
+            private static string _idSectionAddUpdate = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPT_ADDUPDATE.ToLower();
+            private static string _idSectionTranscriptInstituteAddUpdate = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTINSTITUTE_ADDUPDATE.ToLower();
+            private static string _idSectionTranscriptFrontsideAddUpdate = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTFRONTSIDE_ADDUPDATE.ToLower();
+            private static string _idSectionTranscriptBacksideAddUpdate = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTBACKSIDE_ADDUPDATE.ToLower();
 
-            //ฟังก์ชั่นสำหรับแสดงค่าต่าง ๆ ของข้อมูลที่บันทึกไว้ให้กับการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดระเบียนแสดงผลการเรียนในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder            
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _valueDataRecorded เป็น Dictionary<string, object> รับค่าต่าง ๆ ของข้อมูลที่บันทึกไว้
             public static StringBuilder GetValueDataRecorded(Dictionary<string, object> _valueDataRecorded)
             {
                 StringBuilder _html = new StringBuilder();
                 Dictionary<string, object> _dataRecorded = (Dictionary<string, object>)_valueDataRecorded["DataRecorded" + UDSStaffUtil.SUBJECT_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPT];
 
-                _html.AppendFormat("<input type='hidden' id='{0}-institutecountry-hidden' value='{1}' />",  _idSectionTranscriptInstituteAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptInstituteCountry", _dataRecorded["TranscriptInstituteCountry"], Util._valueComboboxDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-institutecountry-hidden' value='{1}' />", _idSectionTranscriptInstituteAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptInstituteCountry", _dataRecorded["TranscriptInstituteCountry"], Util._valueComboboxDefault));
                 _html.AppendFormat("<input type='hidden' id='{0}-instituteprovince-hidden' value='{1}' />", _idSectionTranscriptInstituteAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptInstituteProvince", _dataRecorded["TranscriptInstituteProvince"], Util._valueComboboxDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-institute-hidden' value='{1}' />",         _idSectionTranscriptInstituteAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptInstitute", _dataRecorded["TranscriptInstitute"], Util._valueComboboxDefault));            
-                _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />",           _idSectionTranscriptFrontsideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideFileDir", _dataRecorded["TranscriptFrontsideFileDir"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />",          _idSectionTranscriptFrontsideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideFileName", _dataRecorded["TranscriptFrontsideFileName"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-cropx-hidden' value='{1}' />",             _idSectionTranscriptFrontsideAddUpdate, Util._valueTextDefault);
-                _html.AppendFormat("<input type='hidden' id='{0}-cropy-hidden' value='{1}' />",             _idSectionTranscriptFrontsideAddUpdate, Util._valueTextDefault);
-                _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />",             _idSectionTranscriptFrontsideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideWidth", _dataRecorded["TranscriptFrontsideWidth"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />",            _idSectionTranscriptFrontsideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideHeight", _dataRecorded["TranscriptFrontsideHeight"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />",       _idSectionTranscriptFrontsideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideSavedStatus", _dataRecorded["TranscriptFrontsideSavedStatus"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />",   _idSectionTranscriptFrontsideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideSubmittedStatus", _dataRecorded["TranscriptFrontsideSubmittedStatus"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />",    _idSectionTranscriptFrontsideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideApprovalStatus", _dataRecorded["TranscriptFrontsideApprovalStatus"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />",           _idSectionTranscriptBacksideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideFileDir", _dataRecorded["TranscriptBacksideFileDir"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />",          _idSectionTranscriptBacksideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideFileName", _dataRecorded["TranscriptBacksideFileName"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-cropx-hidden' value='{1}' />",             _idSectionTranscriptBacksideAddUpdate, Util._valueTextDefault);
-                _html.AppendFormat("<input type='hidden' id='{0}-cropy-hidden' value='{1}' />",             _idSectionTranscriptBacksideAddUpdate, Util._valueTextDefault);
-                _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />",             _idSectionTranscriptBacksideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideWidth", _dataRecorded["TranscriptBacksideWidth"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />",            _idSectionTranscriptBacksideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideHeight", _dataRecorded["TranscriptBacksideHeight"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />",       _idSectionTranscriptBacksideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideSavedStatus", _dataRecorded["TranscriptBacksideSavedStatus"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />",   _idSectionTranscriptBacksideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideSubmittedStatus", _dataRecorded["TranscriptBacksideSubmittedStatus"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />",    _idSectionTranscriptBacksideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideApprovalStatus", _dataRecorded["TranscriptBacksideApprovalStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-institute-hidden' value='{1}' />", _idSectionTranscriptInstituteAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptInstitute", _dataRecorded["TranscriptInstitute"], Util._valueComboboxDefault));            
+                _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />", _idSectionTranscriptFrontsideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideFileDir", _dataRecorded["TranscriptFrontsideFileDir"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />", _idSectionTranscriptFrontsideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideFileName", _dataRecorded["TranscriptFrontsideFileName"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-cropx-hidden' value='{1}' />", _idSectionTranscriptFrontsideAddUpdate, Util._valueTextDefault);
+                _html.AppendFormat("<input type='hidden' id='{0}-cropy-hidden' value='{1}' />", _idSectionTranscriptFrontsideAddUpdate, Util._valueTextDefault);
+                _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />", _idSectionTranscriptFrontsideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideWidth", _dataRecorded["TranscriptFrontsideWidth"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />", _idSectionTranscriptFrontsideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideHeight", _dataRecorded["TranscriptFrontsideHeight"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />", _idSectionTranscriptFrontsideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideSavedStatus", _dataRecorded["TranscriptFrontsideSavedStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />", _idSectionTranscriptFrontsideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideSubmittedStatus", _dataRecorded["TranscriptFrontsideSubmittedStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />", _idSectionTranscriptFrontsideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideApprovalStatus", _dataRecorded["TranscriptFrontsideApprovalStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />", _idSectionTranscriptBacksideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideFileDir", _dataRecorded["TranscriptBacksideFileDir"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />", _idSectionTranscriptBacksideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideFileName", _dataRecorded["TranscriptBacksideFileName"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-cropx-hidden' value='{1}' />", _idSectionTranscriptBacksideAddUpdate, Util._valueTextDefault);
+                _html.AppendFormat("<input type='hidden' id='{0}-cropy-hidden' value='{1}' />", _idSectionTranscriptBacksideAddUpdate, Util._valueTextDefault);
+                _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />", _idSectionTranscriptBacksideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideWidth", _dataRecorded["TranscriptBacksideWidth"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />", _idSectionTranscriptBacksideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideHeight", _dataRecorded["TranscriptBacksideHeight"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />", _idSectionTranscriptBacksideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideSavedStatus", _dataRecorded["TranscriptBacksideSavedStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />", _idSectionTranscriptBacksideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideSubmittedStatus", _dataRecorded["TranscriptBacksideSubmittedStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />", _idSectionTranscriptBacksideAddUpdate, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideApprovalStatus", _dataRecorded["TranscriptBacksideApprovalStatus"], Util._valueTextDefault));
                 
                 return _html;
             }
 
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาให้กับการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดระเบียนแสดงผลการเรียนในส่วนของการการอัพโหลดและส่งเอกสารให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _id    เป็น string รับค่ารหัสที่ต้องการ
             public static StringBuilder GetMain(string _id)
             {
                 Dictionary<string, Dictionary<string, object>> _contentFrmColumn = new Dictionary<string, Dictionary<string, object>>();

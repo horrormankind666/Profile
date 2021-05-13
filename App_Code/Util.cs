@@ -1863,16 +1863,18 @@ namespace NUtil
             {
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_sysGetDateEvent",
                     new SqlParameter("@sysName",  _systemGroup),
-                    new SqlParameter("@sysEvent", _systemGroup));
+                    new SqlParameter("@sysEvent", _systemGroup)
+                );
 
-                return _ds;                
+                return _ds;
             }
 
             public static DataSet GetSystemDateEvent(string _systemGroup)
             {
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_sysGetSystemDateEvent",
                     new SqlParameter("@sysName",  _systemGroup),
-                    new SqlParameter("@sysEvent", _systemGroup));
+                    new SqlParameter("@sysEvent", _systemGroup)
+                );
 
                 return _ds;
             }
@@ -1880,9 +1882,10 @@ namespace NUtil
             public static DataSet GetUserStudent(string _personId)
             {
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_perGetPersonStudent",
-                    new SqlParameter("@personId", _personId));
+                    new SqlParameter("@personId", _personId)
+                );
 
-                return _ds;                
+                return _ds;
             }
 
             public static DataSet GetUserStudentWithAuthenStaff(string _username, string _userlevel, string _systemGroup, string _personId)
@@ -1891,9 +1894,10 @@ namespace NUtil
                     new SqlParameter("@username", _username),
                     new SqlParameter("@userlevel", _userlevel),
                     new SqlParameter("@systemGroup", _systemGroup),
-                    new SqlParameter("@personId", _personId));
+                    new SqlParameter("@personId", _personId)
+                );
 
-                return _ds;                
+                return _ds;
             }
 
             public static int ChkUserStudent(string _personId)
@@ -1999,9 +2003,10 @@ namespace NUtil
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_autUserAccessProgram",
                     new SqlParameter("@username", _username),
                     new SqlParameter("@userlevel", _userlevel),
-                    new SqlParameter("@systemGroup", _systemGroup));
+                    new SqlParameter("@systemGroup", _systemGroup)
+                );
 
-                return _ds;                
+                return _ds;
             }
 
             public static int ChkUserStaff(string _username, string _userlevel, string _systemGroup)
@@ -2042,23 +2047,26 @@ namespace NUtil
             public static DataSet GetRecordCountPerson(string _personId)
             {
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_perGetRecordCountPerson",
-                    new SqlParameter("@personId", _personId));
+                    new SqlParameter("@personId", _personId)
+                );
 
-                return _ds;   
+                return _ds;
             }
 
             public static DataSet GetStudentRecords(string _personId)
             {
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_perGetPersonStudent",
-                    new SqlParameter("@personId", _personId));
+                    new SqlParameter("@personId", _personId)
+                );
 
                 return _ds;
-            }            
+            }
 
             public static DataSet GetPersonRecordsPersonal(string _personId)
             {
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_perGetPerson",
-                    new SqlParameter("@personId", _personId));
+                    new SqlParameter("@personId", _personId)
+                );
 
                 return _ds;
             }
@@ -2066,7 +2074,8 @@ namespace NUtil
             public static DataSet GetPersonRecordsAddress(string _personId)
             {
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_perGetAddress",
-                    new SqlParameter("@personId", _personId));
+                    new SqlParameter("@personId", _personId)
+                );
 
                 return _ds;
             }
@@ -2074,7 +2083,8 @@ namespace NUtil
             public static DataSet GetPersonRecordsEducation(string _personId)
             {
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_perGetEducation",
-                    new SqlParameter("@personId", _personId));
+                    new SqlParameter("@personId", _personId)
+                );
 
                 return _ds;
             }
@@ -2082,7 +2092,8 @@ namespace NUtil
             public static DataSet GetPersonRecordsActivity(string _personId)
             {
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_perGetActivity",
-                    new SqlParameter("@personId", _personId));
+                    new SqlParameter("@personId", _personId)
+                );
 
                 return _ds;
             }
@@ -2090,7 +2101,8 @@ namespace NUtil
             public static DataSet GetPersonRecordsHealthy(string _personId)
             {
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_perGetHealthy",
-                    new SqlParameter("@personId", _personId));
+                    new SqlParameter("@personId", _personId)
+                );
 
                 return _ds;
             }
@@ -2098,7 +2110,8 @@ namespace NUtil
             public static DataSet GetPersonRecordsWork(string _personId)
             {
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_perGetWork",
-                    new SqlParameter("@personId", _personId));
+                    new SqlParameter("@personId", _personId)
+                );
 
                 return _ds;
             }
@@ -2106,7 +2119,8 @@ namespace NUtil
             public static DataSet GetPersonRecordsFinancial(string _personId)
             {
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_perGetFinancial",
-                    new SqlParameter("@personId", _personId));
+                    new SqlParameter("@personId", _personId)
+                );
 
                 return _ds;
             }
@@ -2114,7 +2128,8 @@ namespace NUtil
             public static DataSet GetPersonRecordsFamily(string _personId)
             {
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_perGetParent",
-                    new SqlParameter("@personId", _personId));
+                    new SqlParameter("@personId", _personId)
+                );
 
                 return _ds;
             }
@@ -2122,7 +2137,8 @@ namespace NUtil
             public static DataSet GetStudentRecordsToStudentCV(string _personId)
             {
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_stdStudentCV",
-                    new SqlParameter("@personId", _personId));
+                    new SqlParameter("@personId", _personId)
+                );
 
                 return _ds;
             }
@@ -2134,7 +2150,8 @@ namespace NUtil
                     new SqlParameter("@gender", (_paramSearch.ContainsKey("Gender").Equals(true) ? _paramSearch["Gender"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2145,7 +2162,8 @@ namespace NUtil
                     new SqlParameter("@keyword", (_paramSearch.ContainsKey("Keyword").Equals(true) ? _paramSearch["Keyword"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2156,7 +2174,8 @@ namespace NUtil
                     new SqlParameter("@keyword", (_paramSearch.ContainsKey("Keyword").Equals(true) ? _paramSearch["Keyword"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2167,7 +2186,8 @@ namespace NUtil
                     new SqlParameter("@keyword", (_paramSearch.ContainsKey("Keyword").Equals(true) ? _paramSearch["Keyword"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2178,7 +2198,8 @@ namespace NUtil
                     new SqlParameter("@keyword", (_paramSearch.ContainsKey("Keyword").Equals(true) ? _paramSearch["Keyword"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2189,7 +2210,8 @@ namespace NUtil
                     new SqlParameter("@keyword", (_paramSearch.ContainsKey("Keyword").Equals(true) ? _paramSearch["Keyword"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2202,7 +2224,8 @@ namespace NUtil
                     new SqlParameter("@relationship", (_paramSearch.ContainsKey("Relationship").Equals(true) ? _paramSearch["Relationship"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2213,7 +2236,8 @@ namespace NUtil
                     new SqlParameter("@keyword", (_paramSearch.ContainsKey("Keyword").Equals(true) ? _paramSearch["Keyword"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2224,7 +2248,8 @@ namespace NUtil
                     new SqlParameter("@keyword", (_paramSearch.ContainsKey("Keyword").Equals(true) ? _paramSearch["Keyword"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2236,7 +2261,8 @@ namespace NUtil
                     new SqlParameter("@educationalLevel", (_paramSearch.ContainsKey("DegreeLevel").Equals(true) ? _paramSearch["DegreeLevel"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2247,7 +2273,8 @@ namespace NUtil
                     new SqlParameter("@keyword", (_paramSearch.ContainsKey("Keyword").Equals(true) ? _paramSearch["Keyword"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2258,7 +2285,8 @@ namespace NUtil
                     new SqlParameter("@keyword", (_paramSearch.ContainsKey("Keyword").Equals(true) ? _paramSearch["Keyword"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2269,7 +2297,8 @@ namespace NUtil
                     new SqlParameter("@keyword", (_paramSearch.ContainsKey("Keyword").Equals(true) ? _paramSearch["Keyword"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2280,7 +2309,8 @@ namespace NUtil
                     new SqlParameter("@keyword", (_paramSearch.ContainsKey("Keyword").Equals(true) ? _paramSearch["Keyword"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2292,7 +2322,8 @@ namespace NUtil
                     new SqlParameter("@country", (_paramSearch.ContainsKey("Country").Equals(true) ? _paramSearch["Country"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2305,7 +2336,8 @@ namespace NUtil
                     new SqlParameter("@province", (_paramSearch.ContainsKey("Province").Equals(true) ? _paramSearch["Province"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2319,7 +2351,8 @@ namespace NUtil
                     new SqlParameter("@district", (_paramSearch.ContainsKey("District").Equals(true) ? _paramSearch["District"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2332,7 +2365,8 @@ namespace NUtil
                     new SqlParameter("@province", (_paramSearch.ContainsKey("Province").Equals(true) ? _paramSearch["Province"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2340,7 +2374,8 @@ namespace NUtil
             public static DataSet GetInstitute(string _id)
             {
                 DataSet _ds = Util.DBUtil.ExecuteCommandStoredProcedure("sp_perGetInstitute",
-                    new SqlParameter("@id", _id));
+                    new SqlParameter("@id", _id)
+                );
 
                 return _ds;
             }
@@ -2351,7 +2386,8 @@ namespace NUtil
                     new SqlParameter("@keyword", (_paramSearch.ContainsKey("Keyword").Equals(true) ? _paramSearch["Keyword"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2362,7 +2398,8 @@ namespace NUtil
                     new SqlParameter("@keyword", (_paramSearch.ContainsKey("Keyword").Equals(true) ? _paramSearch["Keyword"] : String.Empty)),
                     new SqlParameter("@cancelledStatus", (_paramSearch.ContainsKey("CancelledStatus").Equals(true) ? _paramSearch["CancelledStatus"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2380,7 +2417,8 @@ namespace NUtil
                     new SqlParameter("@username", _username),
                     new SqlParameter("@systemGroup", _systemGroup),
                     new SqlParameter("@faculty", (_paramSearch.ContainsKey("Faculty").Equals(true) ? _paramSearch["Faculty"] : String.Empty)),
-                    new SqlParameter("@distinction", (_paramSearch.ContainsKey("Distinction").Equals(true) ? _paramSearch["Distinction"] : String.Empty)));
+                    new SqlParameter("@joinProgram", (_paramSearch.ContainsKey("JoinProgram").Equals(true) ? _paramSearch["JoinProgram"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2393,7 +2431,8 @@ namespace NUtil
                     new SqlParameter("@degreeLevel", (_paramSearch.ContainsKey("DegreeLevel").Equals(true) ? _paramSearch["DegreeLevel"] : String.Empty)),
                     new SqlParameter("@faculty", (_paramSearch.ContainsKey("Faculty").Equals(true) ? _paramSearch["Faculty"] : String.Empty)),
                     new SqlParameter("@program", (_paramSearch.ContainsKey("Program").Equals(true) ? _paramSearch["Program"] : String.Empty)),
-                    new SqlParameter("@distinction", (_paramSearch.ContainsKey("Distinction").Equals(true) ? _paramSearch["Distinction"] : String.Empty)));
+                    new SqlParameter("@joinProgram", (_paramSearch.ContainsKey("JoinProgram").Equals(true) ? _paramSearch["JoinProgram"] : String.Empty))
+                );
                 
                 return _ds;
             }
@@ -2401,7 +2440,8 @@ namespace NUtil
             public static DataSet GetProgram(Dictionary<string, object> _paramSearch)
             {
                 DataSet _ds = ExecuteCommandStoredProcedure("sp_acaGetProgram",
-                    new SqlParameter("@programId", (_paramSearch.ContainsKey("Program").Equals(true) ? _paramSearch["Program"] : String.Empty)));
+                    new SqlParameter("@programId", (_paramSearch.ContainsKey("Program").Equals(true) ? _paramSearch["Program"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2425,13 +2465,15 @@ namespace NUtil
                     new SqlParameter("@studentStatusTypeGroup", (_paramSearch.ContainsKey("StudentStatusGroup").Equals(true) ? _paramSearch["StudentStatusGroup"] : String.Empty)),
                     new SqlParameter("@studentRecordsStatus", (_paramSearch.ContainsKey("StudentRecordsStatus").Equals(true) ? _paramSearch["StudentRecordsStatus"] : String.Empty)),
                     new SqlParameter("@distinctionStatus", (_paramSearch.ContainsKey("Distinction").Equals(true) ? _paramSearch["Distinction"] : String.Empty)),
-                    new SqlParameter("@distinctionJoinStatus", (_paramSearch.ContainsKey("DistinctionStatus").Equals(true) ? _paramSearch["DistinctionStatus"] : String.Empty)),
+                    new SqlParameter("@joinProgram", (_paramSearch.ContainsKey("JoinProgram").Equals(true) ? _paramSearch["JoinProgram"] : String.Empty)),
+                    new SqlParameter("@joinProgramStatus", (_paramSearch.ContainsKey("JoinProgramStatus").Equals(true) ? _paramSearch["JoinProgramStatus"] : String.Empty)),
                     new SqlParameter("@startAcademicYear", (_paramSearch.ContainsKey("StartAcademicYear").Equals(true) ? _paramSearch["StartAcademicYear"] : String.Empty)),
                     new SqlParameter("@endAcademicYear", (_paramSearch.ContainsKey("EndAcademicYear").Equals(true) ? _paramSearch["EndAcademicYear"] : String.Empty)),
                     new SqlParameter("@genderId", (_paramSearch.ContainsKey("Gender").Equals(true) ? _paramSearch["Gender"] : String.Empty)),                    
                     new SqlParameter("@nationalityId", (_paramSearch.ContainsKey("Nationality").Equals(true) ? _paramSearch["Nationality"] : String.Empty)),
                     new SqlParameter("@sortOrderBy", (_paramSearch.ContainsKey("SortOrderBy").Equals(true) ? _paramSearch["SortOrderBy"] : String.Empty)),
-                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty)));
+                    new SqlParameter("@sortExpression", (_paramSearch.ContainsKey("SortExpression").Equals(true) ? _paramSearch["SortExpression"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2443,7 +2485,8 @@ namespace NUtil
                     new SqlParameter("@userlevel", _userlevel),
                     new SqlParameter("@systemGroup", _systemGroup),
                     new SqlParameter("@reportName", _reportName),
-                    new SqlParameter("@personId", (_paramSearch.ContainsKey("PersonId").Equals(true) ? _paramSearch["PersonId"] : String.Empty)));
+                    new SqlParameter("@personId", (_paramSearch.ContainsKey("PersonId").Equals(true) ? _paramSearch["PersonId"] : String.Empty))
+                );
 
                 return _ds;
             }
@@ -2955,7 +2998,7 @@ namespace NUtil
                     _html.AppendLine("      },");
                 }
 
-                _html.AppendLine("      ],");                  
+                _html.AppendLine("      ],");
                 _html.AppendLine("      drilldown: {");
                 _html.AppendLine("          drillUpButton: {");
                 _html.AppendLine("              relativeTo: 'spacingBox',");

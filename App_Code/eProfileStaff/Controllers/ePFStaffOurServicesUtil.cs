@@ -70,7 +70,7 @@ public class ePFStaffOurServicesUtil
         }
     }
 
-    public class UpdateStudentDistinctionProgramUtil
+    public class UpdateStudentMedicalScholarsProgramUtil
     {
         public static string[] _sortOrderBy = new string[]
         {
@@ -108,15 +108,15 @@ public class ePFStaffOurServicesUtil
             _dr = _ds.Tables[0].Select("rowNum >= " + _paramSearch["StartRow"] + " AND rowNum <= " + _paramSearch["EndRow"]);
             _recordCount = _ds.Tables[0].Rows.Count;
             _recordCountPrimary = _ds.Tables[0].Rows.Count;
-            _list = ePFStaffOurServicesUI.UpdateStudentDistinctionProgramUI.SectionMainUI.GetList(_loginResult, _dr);
-            _navPage = Util.GetNavPageNew(_recordCount, (int)(_paramSearch["CurrentPage"]), ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_MAIN, (int)(_paramSearch["RowPerPage"]));
+            _list = ePFStaffOurServicesUI.UpdateStudentMedicalScholarsProgramUI.SectionMainUI.GetList(_loginResult, _dr);
+            _navPage = Util.GetNavPageNew(_recordCount, (int)(_paramSearch["CurrentPage"]), ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_MAIN, (int)(_paramSearch["RowPerPage"]));
 
             _ds.Dispose();
 
             _searchResult.Add("RecordCount", _recordCount);
             _searchResult.Add("RecordCountPrimary", _recordCountPrimary);
             _searchResult.Add("RecordCountSecondary", _recordCountSecondary);
-            _searchResult.Add("RecordCountAllPrimary", _recordCountAllPrimary);                
+            _searchResult.Add("RecordCountAllPrimary", _recordCountAllPrimary);
             _searchResult.Add("RecordCountAllSecondary", _recordCountAllSecondary);
             _searchResult.Add("List", _list);
             _searchResult.Add("NavPage", _navPage);

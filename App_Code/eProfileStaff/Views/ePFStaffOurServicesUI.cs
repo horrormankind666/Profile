@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๓/๐๗/๒๕๕๙>
-Modify date : <๐๓/๐๓/๒๕๖๔>
+Modify date : <๑๒/๐๕/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผลในส่วนของการบริการข้อมูล>
 =============================================
 */
@@ -124,7 +124,7 @@ public class ePFStaffOurServicesUI
                 string _faculty = _infoLogin["Faculty"].ToString();
                 string _userlevel = _infoLogin["Userlevel"].ToString();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -381,10 +381,10 @@ public class ePFStaffOurServicesUI
         }
     }
 
-    public class UpdateStudentDistinctionProgramUI
+    public class UpdateStudentMedicalScholarsProgramUI
     {     
-        private static string _idSectionMain = ePFStaffUtil.ID_SECTION_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_MAIN.ToLower();
-        private static string _idSectionSearch = ePFStaffUtil.ID_SECTION_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_SEARCH.ToLower();
+        private static string _idSectionMain = ePFStaffUtil.ID_SECTION_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_MAIN.ToLower();
+        private static string _idSectionSearch = ePFStaffUtil.ID_SECTION_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_SEARCH.ToLower();
 
         public static StringBuilder GetSection(Dictionary<string, object> _infoLogin, string _section, string _sectionAction, string _id)
         {
@@ -414,7 +414,7 @@ public class ePFStaffOurServicesUI
             public static StringBuilder GetMain()
             {
                 Dictionary<string, object> _infoData = new Dictionary<string, object>();
-                Dictionary<string, object> _infoDataResult = ePFStaffUtil.GetInfoData(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_MAIN, _infoData);
+                Dictionary<string, object> _infoDataResult = ePFStaffUtil.GetInfoData(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_MAIN, _infoData);
                 Dictionary<string, object> _searchResult = new Dictionary<string, object>();
                 StringBuilder _html = new StringBuilder();
                 int _cookieError = Util.ChkCookie(ePFStaffUtil._myParamSearchCookieName);
@@ -425,10 +425,10 @@ public class ePFStaffOurServicesUI
                 {
                     HttpCookie _objCookie = Util.GetCookie(ePFStaffUtil._myParamSearchCookieName);
 
-                    if (_objCookie["Command"].Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_MAIN))
+                    if (_objCookie["Command"].Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_MAIN))
                     {
                         _show = true;
-                        _searchResult = ePFStaffOurServicesUtil.UpdateStudentDistinctionProgramUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_MAIN, null, true));
+                        _searchResult = ePFStaffOurServicesUtil.UpdateStudentMedicalScholarsProgramUtil.GetSearch(ePFStaffUtil.SetParameterSearch(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_MAIN, null, true));
                     }
                 }
 
@@ -466,7 +466,7 @@ public class ePFStaffOurServicesUI
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='en-label'>Class</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='en-label'>Admission</div><div class='en-label'>Type</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'><div class='en-label'>Student</div><div class='en-label'>Status</div></div></div>");
-                _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col10'><div class='table-col-msg'><div class='en-label'>Distinction Program</div><div class='en-label'>Status</div></div></div>");
+                _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col10'><div class='table-col-msg'><div class='en-label'>Join Program</div><div class='en-label'>Status</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col11'><div class='table-col-msg'><div class='en-label'>Start</div><div class='en-label'>Semester / Year</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col12'><div class='table-col-msg'><div class='en-label'>End</div><div class='en-label'>Semester / Year</div></div></div>");
                 _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col13'><div class='table-col-msg'><div class='en-label'>Resign Date</div></div></div>");
@@ -490,7 +490,7 @@ public class ePFStaffOurServicesUI
                 string _faculty = _infoLogin["Faculty"].ToString();
                 string _userlevel = _infoLogin["Userlevel"].ToString();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -514,10 +514,10 @@ public class ePFStaffOurServicesUI
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["class"].ToString()) ? _dr1["class"].ToString() : String.Empty));
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", ePFStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", ePFStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col10' onclick={0}><div class='table-col-msg'><div class='th-label table-col-distinctionstatus'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["distinctionStatus"].ToString()) ? _dr1["distinctionStatus"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col11' onclick={0}><div class='table-col-msg'><div class='th-label table-col-startsemesteryear'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["distinctionStartSemester"].ToString()) && !String.IsNullOrEmpty(_dr1["distinctionStartYear"].ToString()) ? (_dr1["distinctionStartSemester"].ToString() + " / " + _dr1["distinctionStartYear"].ToString()) : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col12' onclick={0}><div class='table-col-msg'><div class='th-label table-col-endsemesteryear'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["distinctionEndSemester"].ToString()) && !String.IsNullOrEmpty(_dr1["distinctionEndYear"].ToString()) ? (_dr1["distinctionEndSemester"].ToString() + " / " + _dr1["distinctionEndYear"].ToString()) : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col13' onclick={0}><div class='table-col-msg'><div class='th-label table-col-resigndate'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["distinctionResignDate"].ToString()) ? _dr1["distinctionResignDate"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col10' onclick={0}><div class='table-col-msg'><div class='th-label table-col-joinprogramstatus'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["mspJoin"].ToString()) ? _dr1["mspJoin"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col11' onclick={0}><div class='table-col-msg'><div class='th-label table-col-startsemesteryear'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["mspStartSemester"].ToString()) && !String.IsNullOrEmpty(_dr1["mspStartYear"].ToString()) ? (_dr1["mspStartSemester"].ToString() + " / " + _dr1["mspStartYear"].ToString()) : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col12' onclick={0}><div class='table-col-msg'><div class='th-label table-col-endsemesteryear'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["mspEndSemester"].ToString()) && !String.IsNullOrEmpty(_dr1["mspEndYear"].ToString()) ? (_dr1["mspEndSemester"].ToString() + " / " + _dr1["mspEndYear"].ToString()) : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col13' onclick={0}><div class='table-col-msg'><div class='th-label table-col-resigndate'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["mspResignDate"].ToString()) ? _dr1["mspResignDate"].ToString() : String.Empty));
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col14' {0}><div class='table-col-msg'><div class='th-label {1}' alt='{2}'>{3}</div></div></div>", (_dr1["studentRecordsStatus"].ToString().Equals("Y") ? ("onclick=" + _callFunc) : ""), (_dr1["studentRecordsStatus"].ToString().Equals("N") ? ("link-click link-" + ePFStaffUtil.SUBJECT_SECTION_TOPICSSTUDENTRECORDSSTATUSNOTCOMPLETE.ToLower()) : ""), _dr1["id"], (!String.IsNullOrEmpty(_dr1["studentRecordsStatus"].ToString()) ? (_dr1["studentRecordsStatus"].ToString().Equals("Y") ? ePFStaffUtil._studentRecordsStatus[0, 2] : ePFStaffUtil._studentRecordsStatus[1, 2]) : String.Empty));
                         _html.AppendLine("  </div>");
                     }
@@ -575,7 +575,7 @@ public class ePFStaffOurServicesUI
                 _contentFrmColumnDetail[_i].Add("DiscriptionTH", String.Empty);
                 _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
                 _contentFrmColumnDetail[_i].Add("InputContentPaddingDown", false);
-                _contentFrmColumnDetail[_i].Add("InputContent", ("<div class='combobox-width-dynamic' id='" + _idSectionSearch + "-faculty-combobox'>" + ePFStaffUI.GetComboboxFacultyByDistinction(_idSectionSearch + "-faculty") + "</div>"));
+                _contentFrmColumnDetail[_i].Add("InputContent", ("<div class='combobox-width-dynamic' id='" + _idSectionSearch + "-faculty-combobox'>" + ePFStaffUI.GetComboboxFacultyByJoinProgram((_idSectionSearch + "-faculty"), "MedicalScholarsProgram") + "</div>"));
                 _contentFrmColumnDetail[_i].Add("Require", false);
                 _contentFrmColumnDetail[_i].Add("LastRow", true);
                 _contentFrmColumn.Add("Faculty", _contentFrmColumnDetail[_i]);
@@ -666,17 +666,17 @@ public class ePFStaffOurServicesUI
                 _i++;
 
                 _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
-                _contentFrmColumnDetail[_i].Add("ID", (_idSectionSearch + "-distinctionstatus"));
+                _contentFrmColumnDetail[_i].Add("ID", (_idSectionSearch + "-joinprogramstatus"));
                 _contentFrmColumnDetail[_i].Add("HighLight", false);
                 _contentFrmColumnDetail[_i].Add("TitleTH", "<span class='th-label'>สถานะการเข้าโครงการ</span><span class='en-label'> : Status of Joined the Program</span>");
                 _contentFrmColumnDetail[_i].Add("TitleEN", String.Empty);
                 _contentFrmColumnDetail[_i].Add("DiscriptionTH", String.Empty);
                 _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
                 _contentFrmColumnDetail[_i].Add("InputContentPaddingDown", false);
-                _contentFrmColumnDetail[_i].Add("InputContent", ("<div class='combobox-width-dynamic' id='" + _idSectionSearch + "-distinctionstatus-combobox'>" + ePFStaffUI.GetComboboxDistinctionStatus(_idSectionSearch + "-distinctionstatus") + "</div>"));
+                _contentFrmColumnDetail[_i].Add("InputContent", ("<div class='combobox-width-dynamic' id='" + _idSectionSearch + "-joinprogramstatus-combobox'>" + ePFStaffUI.GetComboboxJoinProgramStatus(_idSectionSearch + "-joinprogramstatus") + "</div>"));
                 _contentFrmColumnDetail[_i].Add("Require", false);
                 _contentFrmColumnDetail[_i].Add("LastRow", true);
-                _contentFrmColumn.Add("DistinctionStatus", _contentFrmColumnDetail[_i]);
+                _contentFrmColumn.Add("JoinProgramStatus", _contentFrmColumnDetail[_i]);
                 _i++;
 
                 _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
@@ -710,7 +710,7 @@ public class ePFStaffOurServicesUI
                 _contentTemp.Clear();
                 _contentTemp.AppendLine("<div class='search-floatcol search-floatcol2'>");
                 _contentTemp.AppendLine("   <div class='contentbody-left'>");
-                _contentTemp.AppendFormat("     <div id='{0}-sortorderby-combobox'>{1}</div>", _idSectionSearch, ePFStaffUI.GetComboboxOrder((_idSectionSearch + "-sortorderby"), ePFStaffOurServicesUtil.UpdateStudentDistinctionProgramUtil._sortOrderBy));
+                _contentTemp.AppendFormat("     <div id='{0}-sortorderby-combobox'>{1}</div>", _idSectionSearch, ePFStaffUI.GetComboboxOrder((_idSectionSearch + "-sortorderby"), ePFStaffOurServicesUtil.UpdateStudentMedicalScholarsProgramUtil._sortOrderBy));
                 _contentTemp.AppendLine("   </div>");
                 _contentTemp.AppendLine("   <div class='contentbody-left'>");
                 _contentTemp.AppendFormat("     <div id='{0}-sortexpression-combobox'>{1}</div>", _idSectionSearch, ePFStaffUI.GetComboboxOrder((_idSectionSearch + "-sortexpression"), ePFStaffUtil._sortExpression));
@@ -734,7 +734,7 @@ public class ePFStaffOurServicesUI
                 _html.AppendFormat("<div class='form search' id='{0}-form'>", _idSectionSearch);
                 _html.AppendLine("      <div class='form-layout search-layout'>");
                 _html.AppendLine("          <div class='form-content search-content'>");
-                _html.AppendLine(               ePFStaffUI.GetValueSearch(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_MAIN).ToString());
+                _html.AppendLine(               ePFStaffUI.GetValueSearch(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_MAIN).ToString());
                 _html.AppendLine("              <div class='contentbody-left search-section1'>");
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["DegreeLevel"]).ToString());
@@ -747,7 +747,7 @@ public class ePFStaffOurServicesUI
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["EntranceType"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["StudentStatus"]).ToString());
                 _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["StudentRecordsStatus"]).ToString());
-                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["DistinctionStatus"]).ToString());
+                _html.AppendLine(                   ePFStaffUI.GetFrmColumn(_contentFrmColumn["JoinProgramStatus"]).ToString());
                 _html.AppendLine("                  <div class='search-floatcol search-floatcol1'>");
                 _html.AppendFormat("                    <div class='contentbody-left'>{0}</div>", ePFStaffUI.GetFrmColumn(_contentFrmColumn["StartAcademicYear"]).ToString());
                 _html.AppendFormat("                    <div class='contentbody-left'>{0}</div>", ePFStaffUI.GetFrmColumn(_contentFrmColumn["EndAcademicYear"]).ToString());
@@ -760,8 +760,8 @@ public class ePFStaffOurServicesUI
                 _html.AppendLine("                      <div class='button-layout'>");
                 _html.AppendLine("                          <div class='button-content'>");
                 _html.AppendLine("                              <ul class='button-style1'>");
-                _html.AppendFormat("                                <li class='nomargin'><div class='click-button en-label button-search' alt='{0}'>SEARCH</div></li>", ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_MAIN);
-                _html.AppendFormat("                                <li class='nomargin'><div class='click-button en-label button-undo' alt='{0}'>CLEAR</div></li>", ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_MAIN);
+                _html.AppendFormat("                                <li class='nomargin'><div class='click-button en-label button-search' alt='{0}'>SEARCH</div></li>", ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_MAIN);
+                _html.AppendFormat("                                <li class='nomargin'><div class='click-button en-label button-undo' alt='{0}'>CLEAR</div></li>", ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_MAIN);
                 _html.AppendLine("                              </ul>");
                 _html.AppendLine("                          </div>");
                 _html.AppendLine("                      </div>");
@@ -778,7 +778,7 @@ public class ePFStaffOurServicesUI
 
         public class SectionProgressUI
         {
-            private static string _idSectionProgress = ePFStaffUtil.ID_SECTION_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_PROGRESS.ToLower();
+            private static string _idSectionProgress = ePFStaffUtil.ID_SECTION_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_PROGRESS.ToLower();
 
             public static StringBuilder GetMain()
             {                
@@ -813,14 +813,14 @@ public class ePFStaffOurServicesUI
                 _contentTemp.Clear();
                 _contentTemp.AppendLine("<div class='checkbox-content'>");
                 _contentTemp.AppendLine("   <ul>");
-                _contentTemp.AppendFormat("     <li class='checkbox-inputcol'><input class='checkbox' type='checkbox' name='{0}-distinctionstatus' value='Y' /></li>", _idSectionProgress);
+                _contentTemp.AppendFormat("     <li class='checkbox-inputcol'><input class='checkbox' type='checkbox' name='{0}-joinprogramstatus' value='Y' /></li>", _idSectionProgress);
                 _contentTemp.AppendLine("       <li class='checkbox-labelcol'></li>");
                 _contentTemp.AppendLine("   </ul>");
                 _contentTemp.AppendLine("</div>");
                 _contentTemp.AppendLine("<div class='clear'></div>");
 
                 _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
-                _contentFrmColumnDetail[_i].Add("ID", (_idSectionProgress + "-distinctionstatus"));
+                _contentFrmColumnDetail[_i].Add("ID", (_idSectionProgress + "-joinprogramstatus"));
                 _contentFrmColumnDetail[_i].Add("HighLight", false);
                 _contentFrmColumnDetail[_i].Add("TitleTH", "เข้าโครงการ");
                 _contentFrmColumnDetail[_i].Add("TitleEN", "Joined the Program");
@@ -830,7 +830,7 @@ public class ePFStaffOurServicesUI
                 _contentFrmColumnDetail[_i].Add("InputContent", _contentTemp.ToString());
                 _contentFrmColumnDetail[_i].Add("Require", false);
                 _contentFrmColumnDetail[_i].Add("LastRow", false);
-                _contentFrmColumn.Add("DistinctionStatus", _contentFrmColumnDetail[_i]);
+                _contentFrmColumn.Add("JoinProgramStatus", _contentFrmColumnDetail[_i]);
                 _i++;
 
                 _contentTemp.Clear();
@@ -976,13 +976,13 @@ public class ePFStaffOurServicesUI
                 _contentFrmColumnDetail[_i].Add("InputContent", _contentTemp.ToString());
                 _contentFrmColumnDetail[_i].Add("Require", false);
                 _contentFrmColumnDetail[_i].Add("LastRow", false);
-                _contentFrmColumn.Add("Save", _contentFrmColumnDetail[_i]);                
+                _contentFrmColumn.Add("Save", _contentFrmColumnDetail[_i]);
 
                 _html.AppendFormat("<div class='dialog-form form progress' id='{0}-form'>", _idSectionProgress);
                 _html.AppendLine("      <div class='form-layout'>");
-                _html.AppendLine("          <div class='form-content'>");       
+                _html.AppendLine("          <div class='form-content'>");
                 _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["Student"]).ToString());
-                _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["DistinctionStatus"]).ToString());
+                _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["JoinProgramStatus"]).ToString());
                 _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["StartSemesterYear"]).ToString());
                 _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["EndSemesterYear"]).ToString());
                 _html.AppendLine(               ePFStaffUI.GetFrmColumn(_contentFrmColumn["ResignDate"]).ToString());
@@ -1000,7 +1000,7 @@ public class ePFStaffOurServicesUI
 
         public class SectionPreviewUI
         {
-            private static string _idSectionPreview = ePFStaffUtil.ID_SECTION_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_PREVIEW.ToLower();
+            private static string _idSectionPreview = ePFStaffUtil.ID_SECTION_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_PREVIEW.ToLower();
 
             public static StringBuilder GetMain()
             {
@@ -1026,7 +1026,7 @@ public class ePFStaffOurServicesUI
                 _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='en-label'>No.</div></div></div>");
                 _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='en-label'>Student</div><div class='en-label'>ID</div></div></div>");
                 _html.AppendLine("                                      <div class='table-col table-col-width-dynamic table-col3'><div class='table-col-msg'><div class='en-label'>Full Name</div><div class='en-label'>( TH )</div></div></div>");
-                _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col4'><div class='table-col-msg'><div class='en-label'>Distinction Program</div><div class='en-label'>Status</div><div class='en-label'>New ( Old )</div></div></div>");
+                _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col4'><div class='table-col-msg'><div class='en-label'>Join Program</div><div class='en-label'>Status</div><div class='en-label'>New ( Old )</div></div></div>");
                 _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col5'><div class='table-col-msg'><div class='en-label'>Start</div><div class='en-label'>Semester / Year</div><div class='en-label'>New ( Old )</div></div></div>");
                 _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col6'><div class='table-col-msg'><div class='en-label'>End</div><div class='en-label'>Semester / Year</div><div class='en-label'>New ( Old )</div></div></div>");
                 _html.AppendLine("                                      <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='en-label'>Resign Date</div><div class='en-label'>&nbsp;</div><div class='en-label'>New ( Old )</div></div></div>");
@@ -1899,7 +1899,7 @@ public class ePFStaffOurServicesUI
                     Util.ChartUtil.RenderTo = _paramChart["RenderTo"].ToString().ToLower();
                     Util.ChartUtil.BackgroundColor = _paramChart["BackgroundColor"].ToString();
                     Util.ChartUtil.Title = _paramChart["Title"].ToString();
-                    Util.ChartUtil.LegendTitle = _paramChart["LegendTitle"].ToString();                                
+                    Util.ChartUtil.LegendTitle = _paramChart["LegendTitle"].ToString();
                     Util.ChartUtil.Level1XAxisTitle = _paramChart["Level1XAxisTitle"].ToString();
                     Util.ChartUtil.Level1YAxisTitle = _paramChart["Level1YAxisTitle"].ToString();
                     Util.ChartUtil.Level1SeriesName = _level1SeriesName;
@@ -1908,7 +1908,7 @@ public class ePFStaffOurServicesUI
                     Util.ChartUtil.Level1SeriesDataName = _level1SeriesDataName;
                     Util.ChartUtil.Level1SeriesDataColor = _level1SeriesDataColor;
                     Util.ChartUtil.Level1SeriesDataValue = _level1SeriesDataValue;
-                    Util.ChartUtil.Level1SeriesDataDrillDown = _level1SeriesDataDrillDown;                    
+                    Util.ChartUtil.Level1SeriesDataDrillDown = _level1SeriesDataDrillDown;
                     Util.ChartUtil.Level2XAxisTitle = _paramChart["Level2XAxisTitle"].ToString();
                     Util.ChartUtil.Level2YAxisTitle = _paramChart["Level2YAxisTitle"].ToString();
                     Util.ChartUtil.Level2SeriesId = _level2SeriesId;
@@ -2019,7 +2019,7 @@ public class ePFStaffOurServicesUI
                     _html.AppendFormat("                        <span class='recordcount-search hidden'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
                     _html.AppendFormat("                        <span class='recordcountprimary-search th-label'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
                     _html.AppendFormat("                        <span class='recordcountsecondary-search th-label'>{0}</span>", (_show.Equals(true) && !_searchResult["RecordCountSecondary"].Equals(0) ? (" ( " + double.Parse(_searchResult["RecordCountSecondary"].ToString()).ToString("#,##0") + " )") : String.Empty));
-                    _html.AppendLine("                      </div>");                        
+                    _html.AppendLine("                      </div>");
                     _html.AppendLine("                  </div>");
                     _html.AppendLine("                  <div class='clear'></div>");
                     _html.AppendLine("                  <div class='table-head'>");
@@ -2464,7 +2464,7 @@ public class ePFStaffOurServicesUI
                     }
                 }
                 
-                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());                
+                _html.AppendLine(ePFStaffUI.GetInfoBar(_infoDataResult, true).ToString());
                 _html.AppendLine("<div class='after-sticky main'>");
                 _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
                 _html.AppendLine("      <div class='table-layout'>");
@@ -2510,7 +2510,7 @@ public class ePFStaffOurServicesUI
             {
                 StringBuilder _html = new StringBuilder();
                 string _highlight = String.Empty;
-                string _callFunc = String.Empty;                
+                string _callFunc = String.Empty;
 
                 if (_dr.GetLength(0) > 0)
                 {
@@ -2520,7 +2520,7 @@ public class ePFStaffOurServicesUI
                     {
                         _highlight = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";
                         _callFunc = "Util.tut.tos.transactionlogstudentrecords.sectionView.getFrm({" +
-                                    "   id: '" + _dr1["id"] + "'" +
+                                    "id:'" + _dr1["id"] + "'" +
                                     "})";
 
                         _html.AppendFormat("<div class='table-row{0}' id='table-row-id-{1}'>", _highlight, _dr1["id"]);
@@ -2903,16 +2903,17 @@ public class ePFStaffOurServicesUI
                         _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>Admission Date</div></div></div>");
                         _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>Graduation Date</div></div></div>");
                         _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>Graduation Year</div></div></div>");
-                        _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>Distinction Program Status</div></div></div>");
-                        _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>Distinction Program Start Semester / Year</div></div></div>");
-                        _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>Distinction Program End Semester / Year</div></div></div>");
-                        _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>Distinction Program Resign Date</div></div></div>");
+                        _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>MSP Join Status</div></div></div>");
+                        _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>MSP Start Semester / Year</div></div></div>");
+                        _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>MSP End Semester / Year</div></div></div>");
+                        _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>MSP Resign Date</div></div></div>");
                         _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>Regis Extra</div></div></div>");
                         _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>Picture Name</div></div></div>");
                         _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>Update Grad Date</div></div></div>");
                         _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>Update Grad By</div></div></div>");
                         _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>Update What</div><div class='en-label'>( TH )</div></div></div>");
                         _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>Update What</div><div class='en-label'>( EN )</div></div></div>");
+                        _html.AppendLine("                  <div class='table-col'><div class='table-col-msg'><div class='en-label'>Update Reason</div></div></div>");
                     }
 
                     if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESTRANSACTIONLOGSTUDENTRECORDSPERSONAL_VIEW))
@@ -3161,7 +3162,7 @@ public class ePFStaffOurServicesUI
                 {
                     StringBuilder _html = new StringBuilder();
                     string _highlight = String.Empty;
-                    string _callFunc = String.Empty;                                    
+                    string _callFunc = String.Empty;
                     int _i = 1;
 
                     _html.AppendLine("<div class='table-grid'>");
@@ -3180,7 +3181,7 @@ public class ePFStaffOurServicesUI
                             _html.AppendFormat("    <div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["modifyBy"].ToString()) ? _dr1["modifyBy"].ToString() : String.Empty));
 
                             if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESTRANSACTIONLOGSTUDENTRECORDSSTUDENTRECORDS_VIEW))
-                            {                                                            
+                            {
                                 _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["degree"].ToString()) ? _dr1["degree"].ToString() : String.Empty));
                                 _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["facultyCode"].ToString()) ? _dr1["facultyCode"].ToString() : String.Empty));
                                 _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
@@ -3194,16 +3195,17 @@ public class ePFStaffOurServicesUI
                                 _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["admissionDate"].ToString()) ? DateTime.Parse(_dr1["admissionDate"].ToString()).ToString("dd/MM/yyyy") : String.Empty));
                                 _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["graduateDate"].ToString()) ? DateTime.Parse(_dr1["graduateDate"].ToString()).ToString("dd/MM/yyyy") : String.Empty));
                                 _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["graduateYear"].ToString()) ? _dr1["graduateYear"].ToString() : String.Empty));
-                                _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["distinctionStatus"].ToString()) ? _dr1["distinctionStatus"].ToString() : String.Empty));
-                                _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["distinctionStartSemester"].ToString()) && !String.IsNullOrEmpty(_dr1["distinctionStartYear"].ToString()) ? (_dr1["distinctionStartSemester"].ToString() + " / " + _dr1["distinctionStartYear"].ToString()) : String.Empty));
-                                _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["distinctionEndSemester"].ToString()) && !String.IsNullOrEmpty(_dr1["distinctionEndYear"].ToString()) ? (_dr1["distinctionEndSemester"].ToString() + " / " + _dr1["distinctionEndYear"].ToString()) : String.Empty));
-                                _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["distinctionResignDate"].ToString()) ? _dr1["distinctionResignDate"].ToString() : String.Empty));
+                                _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["mspJoin"].ToString()) ? _dr1["mspJoin"].ToString() : String.Empty));
+                                _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["mspStartSemester"].ToString()) && !String.IsNullOrEmpty(_dr1["mspStartYear"].ToString()) ? (_dr1["mspStartSemester"].ToString() + " / " + _dr1["mspStartYear"].ToString()) : String.Empty));
+                                _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["mspEndSemester"].ToString()) && !String.IsNullOrEmpty(_dr1["mspEndYear"].ToString()) ? (_dr1["mspEndSemester"].ToString() + " / " + _dr1["mspEndYear"].ToString()) : String.Empty));
+                                _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["mspResignDate"].ToString()) ? _dr1["mspResignDate"].ToString() : String.Empty));
                                 _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["regisExtra"].ToString()) ? _dr1["regisExtra"].ToString() : String.Empty));
                                 _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["pictureName"].ToString()) ? _dr1["pictureName"].ToString() : String.Empty));
                                 _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["updateGradDate"].ToString()) ? DateTime.Parse(_dr1["updateGradDate"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") : String.Empty));
                                 _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["updateGradBy"].ToString()) ? _dr1["updateGradBy"].ToString() : String.Empty));
                                 _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["updateWhatTH"].ToString()) ? _dr1["updateWhatTH"].ToString() : String.Empty));
                                 _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["updateWhatEN"].ToString()) ? _dr1["updateWhatEN"].ToString() : String.Empty));
+                                _html.AppendFormat("<div class='table-col'><div class='table-col-msg'><div class='th-label'>{0}</div></div></div>", (!String.IsNullOrEmpty(_dr1["updateReason"].ToString()) ? _dr1["updateReason"].ToString() : String.Empty));
                             }
             
                             if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESTRANSACTIONLOGSTUDENTRECORDSPERSONAL_VIEW))

@@ -1,26 +1,21 @@
-﻿// =============================================
-// Author       : <ยุทธภูมิ ตวันนา>
-// Create date  : <๒๒/๐๖/๒๕๕๘>
-// Modify date  : <๑๔/๐๖/๒๕๖๒>
-// Description  : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผล>
-// =============================================
+﻿/*
+=============================================
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๒๒/๐๖/๒๕๕๘>
+Modify date : <๑๔/๐๖/๒๕๖๒>
+Description : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผล>
+=============================================
+*/
 
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Web;
 using NUtil;
 using NFinServiceLogin;
 
 public class UDSStaffUI
 {
-    //ฟังก์ชั่นสำหรับแสดงเมนูบาร์ แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _infoLogin เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-    //2. _page      เป็น string รับค่าชื่อหน้า
     public static StringBuilder GetMenuBar(Dictionary<string, object> _infoLogin, string _page)
     {
         StringBuilder _html = new StringBuilder();
@@ -91,10 +86,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับแสดงเนื้อหาที่เป็นหัวข้อในหน้าที่ต้องการ แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _data      เป็น Dictionary รับค่าข้อมูลที่ต้องการให้แสดง
-    //2. _sticky    เป็น bool รับค่าการว่าต้องการให้ตรึงแนวหรือไม่
     public static StringBuilder GetInfoBar(Dictionary<string, object> _data, bool _sticky)
     {        
         int _i = 0;
@@ -148,7 +139,7 @@ public class UDSStaffUI
             _html.AppendLine("              </ul>");
         }
 
-        _html.AppendLine("              </div>");        
+        _html.AppendLine("              </div>");
         _html.AppendLine("              <div class='contentbody-right'>");
 
         if (!String.IsNullOrEmpty(_infoOperatorHome) ||
@@ -171,22 +162,22 @@ public class UDSStaffUI
             _html.AppendLine("              <div class='operator'>");
             _html.AppendLine("                  <ul>");
 
-            if (!String.IsNullOrEmpty(_infoOperatorHome))           _infoOperator.Add("operator-home;" + _infoOperatorHome + ";Home");
-            if (!String.IsNullOrEmpty(_infoOperatorNew))            _infoOperator.Add("operator-new;" + _infoOperatorNew + ";New");
-            if (!String.IsNullOrEmpty(_infoOperatorEdit))           _infoOperator.Add("operator-edit;" + _infoOperatorEdit + ";Edit");
-            if (!String.IsNullOrEmpty(_infoOperatorDelete))         _infoOperator.Add("operator-delete;" + _infoOperatorDelete + ";Delete");
-            if (!String.IsNullOrEmpty(_infoOperatorExportAll))      _infoOperator.Add("operator-exportall;" + _infoOperatorExportAll + ";Export All");
+            if (!String.IsNullOrEmpty(_infoOperatorHome)) _infoOperator.Add("operator-home;" + _infoOperatorHome + ";Home");
+            if (!String.IsNullOrEmpty(_infoOperatorNew)) _infoOperator.Add("operator-new;" + _infoOperatorNew + ";New");
+            if (!String.IsNullOrEmpty(_infoOperatorEdit)) _infoOperator.Add("operator-edit;" + _infoOperatorEdit + ";Edit");
+            if (!String.IsNullOrEmpty(_infoOperatorDelete)) _infoOperator.Add("operator-delete;" + _infoOperatorDelete + ";Delete");
+            if (!String.IsNullOrEmpty(_infoOperatorExportAll)) _infoOperator.Add("operator-exportall;" + _infoOperatorExportAll + ";Export All");
             if (!String.IsNullOrEmpty(_infoOperatorExportSelected)) _infoOperator.Add("operator-exportselected;" + _infoOperatorExportSelected + ";Export Selected");
-            if (!String.IsNullOrEmpty(_infoOperatorSearch))         _infoOperator.Add("operator-search;" + _infoOperatorSearch + ";Search");
-            if (!String.IsNullOrEmpty(_infoOperatorReset))          _infoOperator.Add("operator-reset;" + _infoOperatorReset + ";Reset");
-            if (!String.IsNullOrEmpty(_infoOperatorSave))           _infoOperator.Add("operator-save;" + _infoOperatorSave + ";Save");
-            if (!String.IsNullOrEmpty(_infoOperatorApply))          _infoOperator.Add("operator-apply;" + _infoOperatorApply + ";Apply");
-            if (!String.IsNullOrEmpty(_infoOperatorUndo))           _infoOperator.Add("operator-undo;" + _infoOperatorUndo + ";Clear");
-            if (!String.IsNullOrEmpty(_infoOperatorPrint))          _infoOperator.Add("operator-print;" + _infoOperatorPrint + ";Print");
-            if (!String.IsNullOrEmpty(_infoOperatorUpload))         _infoOperator.Add("operator-upload;" + _infoOperatorUpload + ";Upload");
-            if (!String.IsNullOrEmpty(_infoOperatorTransfer))       _infoOperator.Add("operator-transfer;" + _infoOperatorTransfer + ";Transfer");
-            if (!String.IsNullOrEmpty(_infoOperatorProfile))        _infoOperator.Add("operator-profile;" + _infoOperatorProfile + ";Profile");
-            if (!String.IsNullOrEmpty(_infoOperatorClose))          _infoOperator.Add("operator-close;" + _infoOperatorClose + ";Close");
+            if (!String.IsNullOrEmpty(_infoOperatorSearch)) _infoOperator.Add("operator-search;" + _infoOperatorSearch + ";Search");
+            if (!String.IsNullOrEmpty(_infoOperatorReset)) _infoOperator.Add("operator-reset;" + _infoOperatorReset + ";Reset");
+            if (!String.IsNullOrEmpty(_infoOperatorSave)) _infoOperator.Add("operator-save;" + _infoOperatorSave + ";Save");
+            if (!String.IsNullOrEmpty(_infoOperatorApply)) _infoOperator.Add("operator-apply;" + _infoOperatorApply + ";Apply");
+            if (!String.IsNullOrEmpty(_infoOperatorUndo)) _infoOperator.Add("operator-undo;" + _infoOperatorUndo + ";Clear");
+            if (!String.IsNullOrEmpty(_infoOperatorPrint)) _infoOperator.Add("operator-print;" + _infoOperatorPrint + ";Print");
+            if (!String.IsNullOrEmpty(_infoOperatorUpload)) _infoOperator.Add("operator-upload;" + _infoOperatorUpload + ";Upload");
+            if (!String.IsNullOrEmpty(_infoOperatorTransfer)) _infoOperator.Add("operator-transfer;" + _infoOperatorTransfer + ";Transfer");
+            if (!String.IsNullOrEmpty(_infoOperatorProfile)) _infoOperator.Add("operator-profile;" + _infoOperatorProfile + ";Profile");
+            if (!String.IsNullOrEmpty(_infoOperatorClose)) _infoOperator.Add("operator-close;" + _infoOperatorClose + ";Close");
 
             for (_i = 0; _i < _infoOperator.Count; _i++)
             {
@@ -278,9 +269,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //สำหรับแสดงรายละเบียดรายการต่าง ๆ ของฟอร์มแล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _contentFrmColumn  เป็น Dictionary<string, object> รับค่ารายละเอียดของคอลัมภ์
     public static StringBuilder GetFrmColumn(Dictionary<string, object> _contentFrmColumn)
     {
         StringBuilder _html = new StringBuilder();
@@ -349,7 +337,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับแสดงความหมายของระบบการสอบเข้า แล้วส่งค่ากลับเป็น StringBuilder
     public static StringBuilder GetFrmMeaningOfAdmissionType()
     {
         StringBuilder _html = new StringBuilder();        
@@ -383,7 +370,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับแสดงความหมายของสถานภาพการเป็นนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
     public static StringBuilder GetFrmMeaningOfStudentStatus()
     {
         StringBuilder _html = new StringBuilder();        
@@ -460,7 +446,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับแสดงความหมายของสถานะผลการอนุมัติเอกสารที่อัพโหลด แล้วส่งค่ากลับเป็น StringBuilder
     public static StringBuilder GetFrmMeaningOfDocumentApprovalStatus()
     {
         StringBuilder _html = new StringBuilder();
@@ -503,7 +488,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับแสดงความหมายของสถานะผลการผลการตรวจสอบเอกสารที่อัพโหลด แล้วส่งค่ากลับเป็น StringBuilder
     public static StringBuilder GetFrmMeaningOfDocumentAuditedStatus()
     {
         StringBuilder _html = new StringBuilder();
@@ -518,7 +502,7 @@ public class UDSStaffUI
             _html.AppendLine("          <div>");
             _html.AppendLine("              <ul>");
             _html.AppendFormat("                <li><div class='uploaddocument-auditedstatus uploaddocument-auditedstatus-{0}'></div></li>", UDSStaffUtil._auditedStatus[_i, 2].ToLower());
-            _html.AppendFormat("                <li><div class='th-label'>{0}</div></li>",     UDSStaffUtil._auditedStatus[_i, 0]);
+            _html.AppendFormat("                <li><div class='th-label'>{0}</div></li>", UDSStaffUtil._auditedStatus[_i, 0]);
             _html.AppendFormat("                <li><div class='en-label'>&nbsp;: {0}</div></li>", UDSStaffUtil._auditedStatus[_i, 1]);
             _html.AppendLine("              </ul>");
             _html.AppendLine("          </div>");
@@ -532,11 +516,7 @@ public class UDSStaffUI
 
         return _html;
     }
-
-    //ฟังก์ชั่นสำหรับสร้างฟอร์มแสดงเอกสารที่นักศึกษาอัพโหลด แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _section       เป็น string รับค่าชื่อหัวข้อที่ต้องการ
-    //2. _fileFullPath  เป็น string รับค่าที่อยู่และชื่อของไฟล์
+    
     public static StringBuilder GetFrmViewDocument(string _section, string _fileFullPath)
     {
         StringBuilder _html = new StringBuilder();
@@ -561,9 +541,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้างฟอร์มระบุข้อความ แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idContent เป็น string รับค่าชื่อฟอร์ม
     public static StringBuilder GetFrmEnterMessage(string _idContent)
     {
         StringBuilder _html = new StringBuilder();
@@ -589,7 +566,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้างฟอร์มแสดงข้อความ แล้วส่งค่ากลับเป็น StringBuilder
     public static StringBuilder GetFrmViewMessage()
     {
         StringBuilder _html = new StringBuilder();
@@ -605,10 +581,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้างฟอร์มแสดงการประมวลผลข้อมูลในส่วนของการส่งออกข้อมูล แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _page      เป็น string รับค่าชื่อหน้า
-    //2. _idContent เป็น string รับค่าชื่อฟอร์ม
     public static StringBuilder GetFrmProgressExportData(string _page, string _idContent)
     {
         StringBuilder _html = new StringBuilder();
@@ -658,8 +630,8 @@ public class UDSStaffUI
         _contentTemp.Clear();
         _contentTemp.AppendLine("<div class='progresstotal'>");
         _contentTemp.AppendFormat(" <span class='th-label' id='{0}-total'></span>", _idContent);
-        _contentTemp.AppendFormat("   <span class='th-label'> {0}</span>", _unitTH);
-        _contentTemp.AppendFormat("   <span class='en-label'> : {0}</span>", _unitEN);
+        _contentTemp.AppendFormat(" <span class='th-label'> {0}</span>", _unitTH);
+        _contentTemp.AppendFormat(" <span class='en-label'> : {0}</span>", _unitEN);
         _contentTemp.AppendLine("</div>");
 
         _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
@@ -759,11 +731,6 @@ public class UDSStaffUI
 
         return _html;
     }
-
-    //ฟังก์ชั่นสำหรับสร้างฟอร์มแสดงการประมวลผลข้อมูลในส่วนของการคัดลอกข้อมูล แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _page      เป็น string รับค่าชื่อหน้า
-    //2. _idContent เป็น string รับค่าชื่อฟอร์ม
     public static StringBuilder GetFrmProgressCopyData(string _page, string _idContent)
     {
         StringBuilder _html = new StringBuilder();
@@ -908,10 +875,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้างฟอร์มแสดงการประมวลผลข้อมูลในส่วนของการบันทึกข้อมูล แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _page      เป็น string รับค่าชื่อหน้า
-    //2. _idContent เป็น string รับค่าชื่อฟอร์ม
     public static StringBuilder GetFrmProgressSaveData(string _page, string _idContent)
     {
         StringBuilder _html = new StringBuilder();
@@ -1072,9 +1035,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลชั่วโมง แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxHour(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1085,8 +1045,8 @@ public class UDSStaffUI
 
         for (_i = 0; _i <= UDSStaffUtil.MAX_HOUR; _i++)
         {
-            _optionValue[_i]    = _i.ToString();
-            _optionText[_i]     = _i.ToString("00 ");
+            _optionValue[_i] = _i.ToString();
+            _optionText[_i] = _i.ToString("00 ");
         }
 
         _html = Util.GetSelect(_idCombobox, "", _optionValue, _optionText);
@@ -1094,9 +1054,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลนาที แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxMinute(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1107,8 +1064,8 @@ public class UDSStaffUI
 
         for (_i = 0; _i <= UDSStaffUtil.MAX_MINUTE; _i++)
         {
-            _optionValue[_i]    = _i.ToString();
-            _optionText[_i]     = _i.ToString("00 ");
+            _optionValue[_i] = _i.ToString();
+            _optionText[_i] = _i.ToString("00 ");
         }
 
         _html = Util.GetSelect(_idCombobox, "", _optionValue, _optionText);
@@ -1116,9 +1073,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลวืนาที แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxSecond(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1129,8 +1083,8 @@ public class UDSStaffUI
 
         for (_i = 0; _i <= UDSStaffUtil.MAX_SECOND; _i++)
         {
-            _optionValue[_i]    = _i.ToString();
-            _optionText[_i]     = _i.ToString("00 ");
+            _optionValue[_i] = _i.ToString();
+            _optionText[_i] = _i.ToString("00 ");
         }
 
         _html = Util.GetSelect(_idCombobox, "", _optionValue, _optionText);
@@ -1138,9 +1092,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลการแสดงจำนวนข้อมูลในแต่ละหน้า แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxRowPerPage(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1152,8 +1103,8 @@ public class UDSStaffUI
 
         for (_i = 0; _i < _rowPerPage.GetLength(0); _i++)
         {
-            _optionValue[_i]    = _rowPerPage[_i];
-            _optionText[_i]     = ("Display " + _rowPerPage[_i]);
+            _optionValue[_i] = _rowPerPage[_i];
+            _optionText[_i] = ("Display " + _rowPerPage[_i]);
         }
 
         _html = Util.GetSelect(_idCombobox, "", _optionValue, _optionText);
@@ -1161,9 +1112,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลรูปแบบการส่งออกข้อมูล แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxExportOption(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1174,8 +1122,8 @@ public class UDSStaffUI
 
         for (_i = 0; _i < UDSStaffUtil._selectOption.GetLength(0); _i++)
         {
-            _optionValue[_i]    = UDSStaffUtil._selectOption[_i].ToLower();
-            _optionText[_i]     = ("Export " + UDSStaffUtil._selectOption[_i]);
+            _optionValue[_i] = UDSStaffUtil._selectOption[_i].ToLower();
+            _optionText[_i] = ("Export " + UDSStaffUtil._selectOption[_i]);
         }
 
         _html = Util.GetSelect(_idCombobox, "Export Option", _optionValue, _optionText);
@@ -1183,9 +1131,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลรูปแบบการส่งออกและบันทึกข้อมูล แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxExportAndSaveOption(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1196,8 +1141,8 @@ public class UDSStaffUI
 
         for (_i = 0; _i < UDSStaffUtil._selectOption.GetLength(0); _i++)
         {
-            _optionValue[_i]    = UDSStaffUtil._selectOption[_i].ToLower();
-            _optionText[_i]     = ("Export & Save " + UDSStaffUtil._selectOption[_i]);
+            _optionValue[_i] = UDSStaffUtil._selectOption[_i].ToLower();
+            _optionText[_i] = ("Export & Save " + UDSStaffUtil._selectOption[_i]);
         }
 
         _html = Util.GetSelect(_idCombobox, "Export & Save Option", _optionValue, _optionText);
@@ -1205,9 +1150,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลรูปแบบการคัดลอกข้อมูล แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxCopyOption(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1218,8 +1160,8 @@ public class UDSStaffUI
 
         for (_i = 0; _i < UDSStaffUtil._selectOption.GetLength(0); _i++)
         {
-            _optionValue[_i]    = UDSStaffUtil._selectOption[_i].ToLower();
-            _optionText[_i]     = ("Copy " + UDSStaffUtil._selectOption[_i]);
+            _optionValue[_i] = UDSStaffUtil._selectOption[_i].ToLower();
+            _optionText[_i] = ("Copy " + UDSStaffUtil._selectOption[_i]);
         }
 
         _html = Util.GetSelect(_idCombobox, "Copy Option", _optionValue, _optionText);
@@ -1227,9 +1169,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลระดับปริญญา แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxDegreeLevel(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1241,8 +1180,8 @@ public class UDSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["id"].ToString();
-            _optionText[_i]     = (_dr["degreeLevelNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["degreeLevelNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["degreeLevelNameTH"].ToString()) ? " : " : String.Empty) + _dr["degreeLevelNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["id"].ToString();
+            _optionText[_i] = (_dr["degreeLevelNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["degreeLevelNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["degreeLevelNameTH"].ToString()) ? " : " : String.Empty) + _dr["degreeLevelNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -1254,9 +1193,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลคณะ แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxFaculty(string _idCombobox)
     {
         Dictionary<string, object> _loginResult = UDSStaffUtil.GetInfoLogin("", "");
@@ -1276,8 +1212,8 @@ public class UDSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["facultyId"].ToString();
-            _optionText[_i]     = (_dr["facultyCode"].ToString() + " : " + _dr["facultyNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["facultyNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["facultyNameTH"].ToString()) ? " : " : String.Empty) + _dr["facultyNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["facultyId"].ToString();
+            _optionText[_i] = (_dr["facultyCode"].ToString() + " : " + _dr["facultyNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["facultyNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["facultyNameTH"].ToString()) ? " : " : String.Empty) + _dr["facultyNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -1289,11 +1225,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลหลักสูตร แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
-    //2. _degreeLevel   เป็น string รับค่าระดับปริญญา
-    //3. _faculty       เป็น string รับค่ารหัสคณะ
     public static StringBuilder GetComboboxProgram(string _idCombobox, string _degreeLevel, string _faculty)
     {
         Dictionary<string, object> _loginResult = UDSStaffUtil.GetInfoLogin("", "");
@@ -1306,8 +1237,8 @@ public class UDSStaffUI
 
         _paramSearch.Clear();
         _paramSearch.Add("DegreeLevel", _degreeLevel);
-        _paramSearch.Add("Faculty",     _faculty);
-        _paramSearch.Add("Program",     _program);
+        _paramSearch.Add("Faculty", _faculty);
+        _paramSearch.Add("Program", _program);
 
         DataSet _ds = Util.DBUtil.GetListProgram(_username, _systemGroup, _paramSearch);
         string[] _optionValue = new string[_ds.Tables[0].Rows.Count];
@@ -1315,8 +1246,8 @@ public class UDSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["programId"].ToString();
-            _optionText[_i]     = (_dr["programCode"].ToString() + " " + _dr["majorCode"].ToString() + " " + _dr["groupNum"].ToString() + " : " + _dr["programNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["programNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["programNameTH"].ToString()) ? " : " : String.Empty) + _dr["programNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["programId"].ToString();
+            _optionText[_i] = (_dr["programCode"].ToString() + " " + _dr["majorCode"].ToString() + " " + _dr["groupNum"].ToString() + " : " + _dr["programNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["programNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["programNameTH"].ToString()) ? " : " : String.Empty) + _dr["programNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -1328,9 +1259,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลปีที่เข้าศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxYearAttended(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1342,8 +1270,8 @@ public class UDSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["yearEntry"].ToString();
-            _optionText[_i]     = _dr["yearEntry"].ToString();
+            _optionValue[_i] = _dr["yearEntry"].ToString();
+            _optionText[_i] = _dr["yearEntry"].ToString();
 
             _i++;
         }
@@ -1355,9 +1283,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลประเภทการสอบเข้ามหาวิทยาลัยมหิดล แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxEntranceType(string _idCombobox)
     {
         Dictionary<string, object> _paramSearch = new Dictionary<string, object>();
@@ -1373,8 +1298,8 @@ public class UDSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["id"].ToString();
-            _optionText[_i]     = (_dr["entranceTypeNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["entranceTypeNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["entranceTypeNameTH"].ToString()) ? " : " : String.Empty) + _dr["entranceTypeNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["id"].ToString();
+            _optionText[_i] = (_dr["entranceTypeNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["entranceTypeNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["entranceTypeNameTH"].ToString()) ? " : " : String.Empty) + _dr["entranceTypeNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -1386,9 +1311,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลสถานภาพการเป็นนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxStudentStatus(string _idCombobox)
     {
         Dictionary<string, object> _paramSearch = new Dictionary<string, object>();
@@ -1401,8 +1323,8 @@ public class UDSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["id"].ToString();
-            _optionText[_i]     = (_dr["statusTypeNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["statusTypeNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["statusTypeNameTH"].ToString()) ? " : " : String.Empty) + _dr["statusTypeNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["id"].ToString();
+            _optionText[_i] = (_dr["statusTypeNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["statusTypeNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["statusTypeNameTH"].ToString()) ? " : " : String.Empty) + _dr["statusTypeNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -1414,9 +1336,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลเอกสารที่อัพโหลด แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxDocumentUpload(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1427,8 +1346,8 @@ public class UDSStaffUI
 
         for (_i = 0; _i < UDSStaffUtil._documentUpload.GetLength(0); _i++)
         {
-            _optionValue[_i]    = UDSStaffUtil._documentUpload[_i, 2];
-            _optionText[_i]     = (UDSStaffUtil._documentUpload[_i, 0] + " : " + UDSStaffUtil._documentUpload[_i, 1]);
+            _optionValue[_i] = UDSStaffUtil._documentUpload[_i, 2];
+            _optionText[_i] = (UDSStaffUtil._documentUpload[_i, 0] + " : " + UDSStaffUtil._documentUpload[_i, 1]);
         }
 
         _html = Util.GetSelect(_idCombobox, "กรุณาเลือก : Please Select", _optionValue, _optionText);
@@ -1436,9 +1355,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลสถานะการส่งเอกสาร แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxSubmittedStatus(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1449,8 +1365,8 @@ public class UDSStaffUI
 
         for (_i = 0; _i < UDSStaffUtil._submittedStatus.GetLength(0); _i++)
         {
-            _optionValue[_i]    = UDSStaffUtil._submittedStatus[_i, 2];
-            _optionText[_i]     = (UDSStaffUtil._submittedStatus[_i, 0] + " : " + UDSStaffUtil._submittedStatus[_i, 1]);
+            _optionValue[_i] = UDSStaffUtil._submittedStatus[_i, 2];
+            _optionText[_i] = (UDSStaffUtil._submittedStatus[_i, 0] + " : " + UDSStaffUtil._submittedStatus[_i, 1]);
         }
 
         _html = Util.GetSelect(_idCombobox, "กรุณาเลือก : Please Select", _optionValue, _optionText);
@@ -1458,9 +1374,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลสถานะการอนุมัติ แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxApprovalStatus(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1471,8 +1384,8 @@ public class UDSStaffUI
 
         for (_i = 0; _i < UDSStaffUtil._approvalStatus.GetLength(0); _i++)
         {
-            _optionValue[_i]    = UDSStaffUtil._approvalStatus[_i, 2];
-            _optionText[_i]     = (UDSStaffUtil._approvalStatus[_i, 0] + " : " + UDSStaffUtil._approvalStatus[_i, 1]);
+            _optionValue[_i] = UDSStaffUtil._approvalStatus[_i, 2];
+            _optionText[_i] = (UDSStaffUtil._approvalStatus[_i, 0] + " : " + UDSStaffUtil._approvalStatus[_i, 1]);
         }
 
         _html = Util.GetSelect(_idCombobox, "กรุณาเลือก : Please Select", _optionValue, _optionText);
@@ -1480,9 +1393,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลสถานะการตรวจสอบ แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxAuditedStatus(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1493,8 +1403,8 @@ public class UDSStaffUI
 
         for (_i = 0; _i < UDSStaffUtil._auditedStatus.GetLength(0); _i++)
         {
-            _optionValue[_i]    = UDSStaffUtil._auditedStatus[_i, 2];
-            _optionText[_i]     = (UDSStaffUtil._auditedStatus[_i, 0] + " : " + UDSStaffUtil._auditedStatus[_i, 1]);
+            _optionValue[_i] = UDSStaffUtil._auditedStatus[_i, 2];
+            _optionText[_i] = (UDSStaffUtil._auditedStatus[_i, 0] + " : " + UDSStaffUtil._auditedStatus[_i, 1]);
         }
 
         _html = Util.GetSelect(_idCombobox, "กรุณาเลือก : Please Select", _optionValue, _optionText);
@@ -1502,9 +1412,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลสถานะการส่งออก แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxExportStatus(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1515,8 +1422,8 @@ public class UDSStaffUI
 
         for (_i = 0; _i < UDSStaffUtil._exportStatus.GetLength(0); _i++)
         {
-            _optionValue[_i]    = UDSStaffUtil._exportStatus[_i, 2];
-            _optionText[_i]     = (UDSStaffUtil._exportStatus[_i, 0] + " : " + UDSStaffUtil._exportStatus[_i, 1]);
+            _optionValue[_i] = UDSStaffUtil._exportStatus[_i, 2];
+            _optionText[_i] = (UDSStaffUtil._exportStatus[_i, 0] + " : " + UDSStaffUtil._exportStatus[_i, 1]);
         }
 
         _html = Util.GetSelect(_idCombobox, "กรุณาเลือก : Please Select", _optionValue, _optionText);
@@ -1524,9 +1431,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลประเทศ แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxCountry(string _idCombobox)
     {
         Dictionary<string, object> _paramSearch = new Dictionary<string, object>();
@@ -1535,7 +1439,7 @@ public class UDSStaffUI
 
         _paramSearch.Clear();
         _paramSearch.Add("CancelledStatus", "N");
-        _paramSearch.Add("SortOrderBy",     "Full Name ( TH )");
+        _paramSearch.Add("SortOrderBy", "Full Name ( TH )");
 
         DataSet _ds = Util.DBUtil.GetListCountry(_paramSearch);
         string[] _optionValue = new string[_ds.Tables[0].Rows.Count];
@@ -1543,8 +1447,8 @@ public class UDSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["id"].ToString();
-            _optionText[_i]     = (_dr["countryNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["countryNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["countryNameTH"].ToString()) ? " : " : String.Empty) + _dr["countryNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["id"].ToString();
+            _optionText[_i] = (_dr["countryNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["countryNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["countryNameTH"].ToString()) ? " : " : String.Empty) + _dr["countryNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -1556,9 +1460,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลประเทศเฉพาะที่มีการส่งระเบียนแสดงผลการเรียน แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxUDSCountry(string _idCombobox)
     {
         Dictionary<string, object> _paramSearch = new Dictionary<string, object>();
@@ -1567,7 +1468,7 @@ public class UDSStaffUI
 
         _paramSearch.Clear();
         _paramSearch.Add("CancelledStatus", "N");
-        _paramSearch.Add("SortOrderBy",     "Full Name ( TH )");
+        _paramSearch.Add("SortOrderBy", "Full Name ( TH )");
 
         DataSet _ds = UDSStaffDB.GetListUDSCountry(_paramSearch);
         string[] _optionValue = new string[_ds.Tables[0].Rows.Count];
@@ -1575,8 +1476,8 @@ public class UDSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["id"].ToString();
-            _optionText[_i]     = (_dr["countryNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["countryNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["countryNameTH"].ToString()) ? " : " : String.Empty) + _dr["countryNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["id"].ToString();
+            _optionText[_i] = (_dr["countryNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["countryNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["countryNameTH"].ToString()) ? " : " : String.Empty) + _dr["countryNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -1588,10 +1489,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลสถานที่หรือจังหวัด แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
-    //2. _countryId     เป็น string รับค่ารหัสประเทศ
     public static StringBuilder GetComboboxProvince(string _idCombobox, string _countryId)
     {
         Dictionary<string, object> _paramSearch = new Dictionary<string, object>();
@@ -1599,9 +1496,9 @@ public class UDSStaffUI
         int _i = 0;
 
         _paramSearch.Clear();
-        _paramSearch.Add("Country",         _countryId);
+        _paramSearch.Add("Country", _countryId);
         _paramSearch.Add("CancelledStatus", "N");
-        _paramSearch.Add("SortOrderBy",     "Full Name ( TH )");
+        _paramSearch.Add("SortOrderBy", "Full Name ( TH )");
 
         DataSet _ds = Util.DBUtil.GetListProvince(_paramSearch);
         string[] _optionValue = new string[_ds.Tables[0].Rows.Count];
@@ -1609,8 +1506,8 @@ public class UDSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["id"].ToString();
-            _optionText[_i]     = (_dr["provinceNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["provinceNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["provinceNameTH"].ToString()) ? " : " : String.Empty) + _dr["provinceNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["id"].ToString();
+            _optionText[_i] = (_dr["provinceNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["provinceNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["provinceNameTH"].ToString()) ? " : " : String.Empty) + _dr["provinceNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -1622,10 +1519,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลสถานที่หรือจังหวัดเฉพาะที่มีการส่งระเบียนแสดงผลการเรียน แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
-    //2. _countryId     เป็น string รับค่ารหัสประเทศ
     public static StringBuilder GetComboboxUDSProvince(string _idCombobox, string _countryId)
     {
         Dictionary<string, object> _paramSearch = new Dictionary<string, object>();
@@ -1633,9 +1526,9 @@ public class UDSStaffUI
         int _i = 0;
 
         _paramSearch.Clear();
-        _paramSearch.Add("Country",         _countryId);
+        _paramSearch.Add("Country",  _countryId);
         _paramSearch.Add("CancelledStatus", "N");
-        _paramSearch.Add("SortOrderBy",     "Full Name ( TH )");
+        _paramSearch.Add("SortOrderBy", "Full Name ( TH )");
 
         DataSet _ds = UDSStaffDB.GetListUDSProvince(_paramSearch);
         string[] _optionValue = new string[_ds.Tables[0].Rows.Count];
@@ -1643,8 +1536,8 @@ public class UDSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["id"].ToString();
-            _optionText[_i]     = (_dr["provinceNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["provinceNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["provinceNameTH"].ToString()) ? " : " : String.Empty) + _dr["provinceNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["id"].ToString();
+            _optionText[_i] = (_dr["provinceNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["provinceNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["provinceNameTH"].ToString()) ? " : " : String.Empty) + _dr["provinceNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -1656,10 +1549,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลสถานที่หรือจังหวัด แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
-    //2. _provinceId    เป็น string รับค่ารหัสจังหวัด
     public static StringBuilder GetComboboxInsititue(string _idCombobox, string _provinceId)
     {
         Dictionary<string, object> _paramSearch = new Dictionary<string, object>();
@@ -1667,9 +1556,9 @@ public class UDSStaffUI
         int _i = 0;
 
         _paramSearch.Clear();
-        _paramSearch.Add("Province",        _provinceId);
+        _paramSearch.Add("Province",  _provinceId);
         _paramSearch.Add("CancelledStatus", "N");
-        _paramSearch.Add("SortOrderBy",     "Full Name ( TH )");
+        _paramSearch.Add("SortOrderBy", "Full Name ( TH )");
 
         DataSet _ds = Util.DBUtil.GetListInstitute(_paramSearch);
         string[] _optionValue = new string[_ds.Tables[0].Rows.Count];
@@ -1677,8 +1566,8 @@ public class UDSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["id"].ToString();
-            _optionText[_i]     = (_dr["institutelNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["institutelNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["institutelNameTH"].ToString()) ? " : " : String.Empty) + _dr["institutelNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["id"].ToString();
+            _optionText[_i] = (_dr["institutelNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["institutelNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["institutelNameTH"].ToString()) ? " : " : String.Empty) + _dr["institutelNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -1690,10 +1579,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลสถานที่หรือจังหวัดเฉพาะที่มีการส่งระเบียนแสดงผลการเรียน แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
-    //2. _provinceId    เป็น string รับค่ารหัสจังหวัด
     public static StringBuilder GetComboboxUDSInsititue(string _idCombobox, string _provinceId)
     {
         Dictionary<string, object> _paramSearch = new Dictionary<string, object>();
@@ -1701,9 +1586,9 @@ public class UDSStaffUI
         int _i = 0;
 
         _paramSearch.Clear();
-        _paramSearch.Add("Province",        _provinceId);
+        _paramSearch.Add("Province", _provinceId);
         _paramSearch.Add("CancelledStatus", "N");
-        _paramSearch.Add("SortOrderBy",     "Full Name ( TH )");
+        _paramSearch.Add("SortOrderBy", "Full Name ( TH )");
 
         DataSet _ds = UDSStaffDB.GetListUDSInstitute(_paramSearch);
         string[] _optionValue = new string[_ds.Tables[0].Rows.Count];
@@ -1711,8 +1596,8 @@ public class UDSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["id"].ToString();
-            _optionText[_i]     = (_dr["institutelNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["institutelNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["institutelNameTH"].ToString()) ? " : " : String.Empty) + _dr["institutelNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["id"].ToString();
+            _optionText[_i] = (_dr["institutelNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["institutelNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["institutelNameTH"].ToString()) ? " : " : String.Empty) + _dr["institutelNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -1724,10 +1609,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ตามรายการข้อมูล แล้วค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
-    //2. _listCombobox  เป็น string[] รับค่ารายการที่ต้องการเรียง
     public static StringBuilder GetComboboxOrder(string _idCombobox, string[] _listCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1738,8 +1619,8 @@ public class UDSStaffUI
 
         for (_i = 0; _i < _listCombobox.GetLength(0); _i++)
         {
-            _optionValue[_i]    = _listCombobox[_i];
-            _optionText[_i]     = _listCombobox[_i];
+            _optionValue[_i] = _listCombobox[_i];
+            _optionText[_i] = _listCombobox[_i];
         }
 
         _html = Util.GetSelect(_idCombobox, "กรุณาเลือก : Please Select", _optionValue, _optionText);
@@ -1747,118 +1628,114 @@ public class UDSStaffUI
         return _html;
     }
     
-    //ฟังก์ชั่นสำหรับกำหนดค่าที่ใช้ค้นหาข้อมูล แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _page  เป็น string รับค่าชื่อหน้า
     public static StringBuilder GetValueSearch(string _page)
     {
         StringBuilder _html = new StringBuilder();
         Dictionary<string, object> _valueSearch = UDSStaffUtil.SetValueSearch(_page);
-        string _keyword             = (string)Util.GetValueDataDictionary(_valueSearch, "Keyword", _valueSearch["Keyword"], String.Empty);
-        string _degreeLevel         = (string)Util.GetValueDataDictionary(_valueSearch, "DegreeLevel", _valueSearch["DegreeLevel"], String.Empty);
-        string _faculty             = (string)Util.GetValueDataDictionary(_valueSearch, "Faculty", _valueSearch["Faculty"], String.Empty);
-        string _program             = (string)Util.GetValueDataDictionary(_valueSearch, "Program", _valueSearch["Program"], String.Empty);
-        string _yearEntry           = (string)Util.GetValueDataDictionary(_valueSearch, "YearEntry", _valueSearch["YearEntry"], String.Empty);
-        string _entranceType        = (string)Util.GetValueDataDictionary(_valueSearch, "EntranceType", _valueSearch["EntranceType"], String.Empty);
-        string _studentStatus       = (string)Util.GetValueDataDictionary(_valueSearch, "StudentStatus", _valueSearch["StudentStatus"], String.Empty);
-        string _documentUpload      = (string)Util.GetValueDataDictionary(_valueSearch, "DocumentUpload", _valueSearch["DocumentUpload"], String.Empty);
-        string _submittedStatus     = (string)Util.GetValueDataDictionary(_valueSearch, "SubmittedStatus", _valueSearch["SubmittedStatus"], String.Empty);
-        string _approvalStatus      = (string)Util.GetValueDataDictionary(_valueSearch, "ApprovalStatus", _valueSearch["ApprovalStatus"], String.Empty);
-        string _instituteCountry    = (string)Util.GetValueDataDictionary(_valueSearch, "InstituteCountry", _valueSearch["InstituteCountry"], String.Empty);
-        string _instituteProvince   = (string)Util.GetValueDataDictionary(_valueSearch, "InstituteProvince", _valueSearch["InstituteProvince"], String.Empty);
-        string _institute           = (string)Util.GetValueDataDictionary(_valueSearch, "Institute", _valueSearch["Institute"], String.Empty);
-        string _sentDateStartAudit  = (string)Util.GetValueDataDictionary(_valueSearch, "SentDateStartAudit", _valueSearch["SentDateStartAudit"], String.Empty);
-        string _sentDateEndAudit    = (string)Util.GetValueDataDictionary(_valueSearch, "SentDateEndAudit", _valueSearch["SentDateEndAudit"], String.Empty);
-        string _auditedStatus       = (string)Util.GetValueDataDictionary(_valueSearch, "AuditedStatus", _valueSearch["AuditedStatus"], String.Empty);
-        string _exportStatus        = (string)Util.GetValueDataDictionary(_valueSearch, "ExportStatus", _valueSearch["ExportStatus"], String.Empty);        
-        string _sortOrderBy         = (string)Util.GetValueDataDictionary(_valueSearch, "SortOrderBy", _valueSearch["SortOrderBy"], String.Empty);
-        string _sortExpression      = (string)Util.GetValueDataDictionary(_valueSearch, "SortExpression", _valueSearch["SortExpression"], String.Empty);
-        string _rowPerPage          = (string)Util.GetValueDataDictionary(_valueSearch, "RowPerPage", _valueSearch["RowPerPage"].ToString(), String.Empty);
-        string _idSectionMain       = String.Empty;
-        string _idSectionSearch     = String.Empty;
-        string _sortOrderByDefault  = String.Empty;
+        string _keyword = (string)Util.GetValueDataDictionary(_valueSearch, "Keyword", _valueSearch["Keyword"], String.Empty);
+        string _degreeLevel = (string)Util.GetValueDataDictionary(_valueSearch, "DegreeLevel", _valueSearch["DegreeLevel"], String.Empty);
+        string _faculty = (string)Util.GetValueDataDictionary(_valueSearch, "Faculty", _valueSearch["Faculty"], String.Empty);
+        string _program = (string)Util.GetValueDataDictionary(_valueSearch, "Program", _valueSearch["Program"], String.Empty);
+        string _yearEntry = (string)Util.GetValueDataDictionary(_valueSearch, "YearEntry", _valueSearch["YearEntry"], String.Empty);
+        string _entranceType = (string)Util.GetValueDataDictionary(_valueSearch, "EntranceType", _valueSearch["EntranceType"], String.Empty);
+        string _studentStatus = (string)Util.GetValueDataDictionary(_valueSearch, "StudentStatus", _valueSearch["StudentStatus"], String.Empty);
+        string _documentUpload = (string)Util.GetValueDataDictionary(_valueSearch, "DocumentUpload", _valueSearch["DocumentUpload"], String.Empty);
+        string _submittedStatus = (string)Util.GetValueDataDictionary(_valueSearch, "SubmittedStatus", _valueSearch["SubmittedStatus"], String.Empty);
+        string _approvalStatus = (string)Util.GetValueDataDictionary(_valueSearch, "ApprovalStatus", _valueSearch["ApprovalStatus"], String.Empty);
+        string _instituteCountry = (string)Util.GetValueDataDictionary(_valueSearch, "InstituteCountry", _valueSearch["InstituteCountry"], String.Empty);
+        string _instituteProvince = (string)Util.GetValueDataDictionary(_valueSearch, "InstituteProvince", _valueSearch["InstituteProvince"], String.Empty);
+        string _institute = (string)Util.GetValueDataDictionary(_valueSearch, "Institute", _valueSearch["Institute"], String.Empty);
+        string _sentDateStartAudit = (string)Util.GetValueDataDictionary(_valueSearch, "SentDateStartAudit", _valueSearch["SentDateStartAudit"], String.Empty);
+        string _sentDateEndAudit = (string)Util.GetValueDataDictionary(_valueSearch, "SentDateEndAudit", _valueSearch["SentDateEndAudit"], String.Empty);
+        string _auditedStatus = (string)Util.GetValueDataDictionary(_valueSearch, "AuditedStatus", _valueSearch["AuditedStatus"], String.Empty);
+        string _exportStatus = (string)Util.GetValueDataDictionary(_valueSearch, "ExportStatus", _valueSearch["ExportStatus"], String.Empty);        
+        string _sortOrderBy = (string)Util.GetValueDataDictionary(_valueSearch, "SortOrderBy", _valueSearch["SortOrderBy"], String.Empty);
+        string _sortExpression = (string)Util.GetValueDataDictionary(_valueSearch, "SortExpression", _valueSearch["SortExpression"], String.Empty);
+        string _rowPerPage = (string)Util.GetValueDataDictionary(_valueSearch, "RowPerPage", _valueSearch["RowPerPage"].ToString(), String.Empty);
+        string _idSectionMain = String.Empty;
+        string _idSectionSearch = String.Empty;
+        string _sortOrderByDefault = String.Empty;
                         
         if (_page.Equals(UDSStaffUtil.PAGE_UPLOADSUBMITDOCUMENT_MAIN))
         { 
-            _idSectionMain      = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENT_MAIN.ToLower();
-            _idSectionSearch    = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENT_SEARCH.ToLower();
+            _idSectionMain = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENT_MAIN.ToLower();
+            _idSectionSearch = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENT_SEARCH.ToLower();
             _sortOrderByDefault = "Student ID";
         }
         
         if (_page.Equals(UDSStaffUtil.PAGE_APPROVEDOCUMENT_MAIN))
         {
-            _idSectionMain      = UDSStaffUtil.ID_SECTION_APPROVEDOCUMENT_MAIN.ToLower();
-            _idSectionSearch    = UDSStaffUtil.ID_SECTION_APPROVEDOCUMENT_SEARCH.ToLower();
+            _idSectionMain = UDSStaffUtil.ID_SECTION_APPROVEDOCUMENT_MAIN.ToLower();
+            _idSectionSearch = UDSStaffUtil.ID_SECTION_APPROVEDOCUMENT_SEARCH.ToLower();
             _sortOrderByDefault = "Student ID";
         }
         
         if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENT_MAIN))
         {
-            _idSectionMain      = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENT_MAIN.ToLower();
-            _idSectionSearch    = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENT_SEARCH.ToLower();
+            _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENT_MAIN.ToLower();
+            _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENT_SEARCH.ToLower();
             _sortOrderByDefault = "Student ID";
         }
         
         if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_MAIN))
         {
-            _idSectionMain      = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_MAIN.ToLower();
-            _idSectionSearch    = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_SEARCH.ToLower();
+            _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_MAIN.ToLower();
+            _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_SEARCH.ToLower();
             _sortOrderByDefault = "Student ID";
         }
         
         if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_MAIN))
         {
-            _idSectionMain      = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_MAIN.ToLower();
-            _idSectionSearch    = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_SEARCH.ToLower();
+            _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_MAIN.ToLower();
+            _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_SEARCH.ToLower();
             _sortOrderByDefault = "Student ID";
         }
 
         if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_MAIN))
         {
-            _idSectionMain      = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_MAIN.ToLower();
-            _idSectionSearch    = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_SEARCH.ToLower();
+            _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_MAIN.ToLower();
+            _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_SEARCH.ToLower();
             _sortOrderByDefault = "Student ID";
         }
 
         if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVED_MAIN))
         {
-            _idSectionMain      = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVED_MAIN.ToLower();
-            _idSectionSearch    = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVED_SEARCH.ToLower();
+            _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVED_MAIN.ToLower();
+            _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVED_SEARCH.ToLower();
             _sortOrderByDefault = "Student ID";
         }
         
         if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_MAIN))
         {
-            _idSectionMain      = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_MAIN.ToLower();
-            _idSectionSearch    = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_SEARCH.ToLower();
+            _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_MAIN.ToLower();
+            _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_SEARCH.ToLower();
             _sortOrderByDefault = "Student ID";
         }
 
-        _html.AppendFormat("<input type='hidden' id='{0}-keyword-hidden' value='{1}' />",               _idSectionSearch, (!String.IsNullOrEmpty(_keyword) ? _keyword : Util._valueTextDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-degreelevel-hidden' value='{1}' />",           _idSectionSearch, (!String.IsNullOrEmpty(_degreeLevel) ? _degreeLevel : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-faculty-hidden' value='{1}' />",               _idSectionSearch, (!String.IsNullOrEmpty(_faculty) ? _faculty : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-program-hidden' value='{1}' />",               _idSectionSearch, (!String.IsNullOrEmpty(_program) ? _program : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-yearattended-hidden' value='{1}' />",          _idSectionSearch, (!String.IsNullOrEmpty(_yearEntry) ? _yearEntry : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-entrancetype-hidden' value='{1}' />",          _idSectionSearch, (!String.IsNullOrEmpty(_entranceType) ? _entranceType : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-studentstatus-hidden' value='{1}' />",         _idSectionSearch, (!String.IsNullOrEmpty(_studentStatus) ? _studentStatus : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-documentupload-hidden' value='{1}' />",        _idSectionSearch, (!String.IsNullOrEmpty(_documentUpload) ? _documentUpload : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />",       _idSectionSearch, (!String.IsNullOrEmpty(_submittedStatus) ? _submittedStatus : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />",        _idSectionSearch, (!String.IsNullOrEmpty(_approvalStatus) ? _approvalStatus : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-institutecountry-hidden' value='{1}' />",      _idSectionSearch, (!String.IsNullOrEmpty(_instituteCountry) ? _instituteCountry : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-instituteprovince-hidden' value='{1}' />",     _idSectionSearch, (!String.IsNullOrEmpty(_instituteProvince) ? _instituteProvince : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-institute-hidden' value='{1}' />",             _idSectionSearch, (!String.IsNullOrEmpty(_institute) ? _institute : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-sentdatestartaudit-hidden' value='{1}' />",    _idSectionSearch, (!String.IsNullOrEmpty(_sentDateStartAudit) ? _sentDateStartAudit : Util._valueTextDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-sentdateendaudit-hidden' value='{1}' />",      _idSectionSearch, (!String.IsNullOrEmpty(_sentDateEndAudit) ? _sentDateEndAudit : Util._valueTextDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-auditedstatus-hidden' value='{1}' />",         _idSectionSearch, (!String.IsNullOrEmpty(_auditedStatus) ? _auditedStatus : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-exportstatus-hidden' value='{1}' />",          _idSectionSearch, (!String.IsNullOrEmpty(_exportStatus) ? _exportStatus : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-sortorderby-hidden' value='{1}' />",           _idSectionSearch, (!String.IsNullOrEmpty(_sortOrderBy) ? _sortOrderBy : _sortOrderByDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-sortexpression-hidden' value='{1}' />",        _idSectionSearch, (!String.IsNullOrEmpty(_sortExpression) ? _sortExpression : "Ascending"));
-        _html.AppendFormat("<input type='hidden' id='{0}-rowperpage-hidden' value='{1}' />",            _idSectionMain, (!String.IsNullOrEmpty(_rowPerPage) ? _rowPerPage : UDSStaffUtil._myRowPerPageDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-keyword-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_keyword) ? _keyword : Util._valueTextDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-degreelevel-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_degreeLevel) ? _degreeLevel : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-faculty-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_faculty) ? _faculty : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-program-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_program) ? _program : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-yearattended-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_yearEntry) ? _yearEntry : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-entrancetype-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_entranceType) ? _entranceType : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-studentstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_studentStatus) ? _studentStatus : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-documentupload-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_documentUpload) ? _documentUpload : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_submittedStatus) ? _submittedStatus : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_approvalStatus) ? _approvalStatus : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-institutecountry-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_instituteCountry) ? _instituteCountry : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-instituteprovince-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_instituteProvince) ? _instituteProvince : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-institute-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_institute) ? _institute : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-sentdatestartaudit-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_sentDateStartAudit) ? _sentDateStartAudit : Util._valueTextDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-sentdateendaudit-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_sentDateEndAudit) ? _sentDateEndAudit : Util._valueTextDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-auditedstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_auditedStatus) ? _auditedStatus : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-exportstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_exportStatus) ? _exportStatus : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-sortorderby-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_sortOrderBy) ? _sortOrderBy : _sortOrderByDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-sortexpression-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_sortExpression) ? _sortExpression : "Ascending"));
+        _html.AppendFormat("<input type='hidden' id='{0}-rowperpage-hidden' value='{1}' />", _idSectionMain, (!String.IsNullOrEmpty(_rowPerPage) ? _rowPerPage : UDSStaffUtil._myRowPerPageDefault));
 
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับดึงข้อความสำหรับคำแนะนำการอัพโหลดเอกสารของนักศึกษาในส่วนของการอัพโหลดรูปภาพประจำตัว แล้วส่งค่ากลับเป็น StringBuilder
     public static StringBuilder GetFrmRecommendUploadProfilePicture()
     {
         StringBuilder _html = new StringBuilder();
@@ -1878,7 +1755,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับดึงข้อความสำหรับคำแนะนำการอัพโหลดเอกสารของนักศึกษาในส่วนของการอัพโหลดบัตรประจำตัวประชาชน แล้วส่งค่ากลับเป็น StringBuilder
     public static StringBuilder GetFrmRecommendUploadIdentityCard()
     {
         StringBuilder _html = new StringBuilder();
@@ -1898,7 +1774,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับดึงข้อความสำหรับคำแนะนำการอัพโหลดเอกสารของนักศึกษาในส่วนของการอัพโหลดระเบียนแสดงผลการเรียน แล้วส่งค่ากลับเป็น StringBuilder
     public static StringBuilder GetFrmRecommendUploadTranscript()
     {
         StringBuilder _html = new StringBuilder();
@@ -1918,7 +1793,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับดึงข้อความสำหรับคำแนะนำการอัพโหลดเอกสารของนักศึกษาในส่วนของการอัพโหลดระเบียนแสดงผลการเรียนด้านหน้ัา แล้วส่งค่ากลับเป็น StringBuilder
     public static StringBuilder GetFrmRecommendUploadTranscriptFrontside()
     {
         StringBuilder _html = new StringBuilder();
@@ -1938,7 +1812,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับดึงข้อความสำหรับคำแนะนำการอัพโหลดเอกสารของนักศึกษาในส่วนของการอัพโหลดระเบียนแสดงผลการเรียนด้านหลัง แล้วส่งค่ากลับเป็น StringBuilder
     public static StringBuilder GetFrmRecommendUploadTranscriptBackside()
     {
         StringBuilder _html = new StringBuilder();
@@ -1958,7 +1831,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับดึงข้อความสำหรับคำแนะนำการอัพโหลดเอกสารของนักศึกษาในส่วนของส่งเอกสารที่บันทึกไฟล์แล้ว แล้วส่งค่ากลับเป็น StringBuilder
     public static StringBuilder GetFrmRecommendSubmit()
     {
         StringBuilder _html = new StringBuilder();
@@ -1983,9 +1855,6 @@ public class UDSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าตัวอย่างเอกสาร แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _section   เป็น string รับค่าส่วนที่ต้องการแสดง
     public static StringBuilder GetFrmPreviewDocument(string _section)
     {
         StringBuilder _html = new StringBuilder();
@@ -2001,11 +1870,6 @@ public class UDSStaffUI
 
     public class PreviewDocumentUI
     {
-        //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าตัวอย่างเอกสาร แล้วส่งค่ากลับเป็น StringBuilder
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _section   เป็น string รับค่าส่วนที่ต้องการแสดง
-        //2. _upload    เป็น bool รับค่าต้องการให้ฟอร์มอัพโหลดหรือไม่
-        //3. _approve   เป็น bool รับค่าต้องการให้ฟอร์มอนุมัตืหรือไม่
         private static StringBuilder GetFrmPreviewDocument(string _section, bool _upload, bool _approve)
         {
             StringBuilder _html = new StringBuilder();
@@ -2052,9 +1916,6 @@ public class UDSStaffUI
             public static string _idSectionIdentityCardPreview;
             public static string _pageProfilePictureIdentityCardPreview;
            
-            //ฟังก์ชั่นสำหรับแสดงค่าต่าง ๆ ของข้อมูลที่บันทึกไว้ในส่วนของรูปภาพประจำตัวและบัตรประจำตัวประชาชน แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _valueDataRecorded เป็น Dictionary<string, object> รับค่าต่าง ๆ ของข้อมูลที่บันทึกไว้
             public static StringBuilder GetValueDataRecorded(Dictionary<string, object> _valueDataRecorded)
             {
                 StringBuilder _html = new StringBuilder();
@@ -2062,38 +1923,33 @@ public class UDSStaffUI
 
                 if (!String.IsNullOrEmpty(_idSectionProfilePictureIdentityCardPreview) || !String.IsNullOrEmpty(_idSectionProfilePicturePreview))
                 {
-                    _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />",           _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureFileDir", _dataRecorded["ProfilePictureFileDir"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />",          _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureFileName", _dataRecorded["ProfilePictureFileName"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-filefullpath-hidden' value='{1}' />",      _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureFileFullPath", _dataRecorded["ProfilePictureFileFullPath"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />",             _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureWidth", _dataRecorded["ProfilePictureWidth"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />",            _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureHeight", _dataRecorded["ProfilePictureHeight"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />",       _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureSavedStatus", _dataRecorded["ProfilePictureSavedStatus"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />",   _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureSubmittedStatus", _dataRecorded["ProfilePictureSubmittedStatus"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />",    _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureApprovalStatus", _dataRecorded["ProfilePictureApprovalStatus"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-message-hidden' value='{1}' />",           _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureMessage", _dataRecorded["ProfilePictureMessage"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />", _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureFileDir", _dataRecorded["ProfilePictureFileDir"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />", _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureFileName", _dataRecorded["ProfilePictureFileName"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-filefullpath-hidden' value='{1}' />", _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureFileFullPath", _dataRecorded["ProfilePictureFileFullPath"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />", _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureWidth", _dataRecorded["ProfilePictureWidth"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />", _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureHeight", _dataRecorded["ProfilePictureHeight"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />", _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureSavedStatus", _dataRecorded["ProfilePictureSavedStatus"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />", _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureSubmittedStatus", _dataRecorded["ProfilePictureSubmittedStatus"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />", _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureApprovalStatus", _dataRecorded["ProfilePictureApprovalStatus"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-message-hidden' value='{1}' />", _idSectionProfilePicturePreview, Util.GetValueDataDictionary(_dataRecorded, "ProfilePictureMessage", _dataRecorded["ProfilePictureMessage"], Util._valueTextDefault));
                 }
 
                 if (!String.IsNullOrEmpty(_idSectionProfilePictureIdentityCardPreview) || !String.IsNullOrEmpty(_idSectionIdentityCardPreview))
                 {
-                    _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />",           _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardFileDir", _dataRecorded["IdentityCardFileDir"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />",          _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardFileName", _dataRecorded["IdentityCardFileName"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-filefullpath-hidden' value='{1}' />",      _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardFileFullPath", _dataRecorded["IdentityCardFileFullPath"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />",             _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardWidth", _dataRecorded["IdentityCardWidth"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />",            _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardHeight", _dataRecorded["IdentityCardHeight"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />",       _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardSavedStatus", _dataRecorded["IdentityCardSavedStatus"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />",   _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardSubmittedStatus", _dataRecorded["IdentityCardSubmittedStatus"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />",    _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardApprovalStatus", _dataRecorded["IdentityCardApprovalStatus"], Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-message-hidden' value='{1}' />",           _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardMessage", _dataRecorded["IdentityCardMessage"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />", _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardFileDir", _dataRecorded["IdentityCardFileDir"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />", _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardFileName", _dataRecorded["IdentityCardFileName"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-filefullpath-hidden' value='{1}' />", _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardFileFullPath", _dataRecorded["IdentityCardFileFullPath"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />", _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardWidth", _dataRecorded["IdentityCardWidth"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />", _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardHeight", _dataRecorded["IdentityCardHeight"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />", _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardSavedStatus", _dataRecorded["IdentityCardSavedStatus"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />", _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardSubmittedStatus", _dataRecorded["IdentityCardSubmittedStatus"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />", _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardApprovalStatus", _dataRecorded["IdentityCardApprovalStatus"], Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-message-hidden' value='{1}' />", _idSectionIdentityCardPreview, Util.GetValueDataDictionary(_dataRecorded, "IdentityCardMessage", _dataRecorded["IdentityCardMessage"], Util._valueTextDefault));
                 }
 
                 return _html;
             }
 
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าตัวอย่างเอกสารในส่วนของรูปภาพประจำตัวและบัตรประจำตัวประชาชน แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _id        เป็น string รับค่ารหัสที่ตั้องการ
-            //2. _upload    เป็น bool รับค่าต้องการให้ฟอร์มหรือไม่
-            //3. _approve   เป็น bool รับค่าต้องการให้ฟอร์มอนุมัตืหรือไม่
             public static StringBuilder GetMain(string _id, bool _upload, bool _approve)
             {
                 StringBuilder _html = new StringBuilder();
@@ -2132,42 +1988,34 @@ public class UDSStaffUI
             public static string _idSectionTranscriptBacksidePreview;
             public static string _pageTranscriptPreview;
 
-            //ฟังก์ชั่นสำหรับแสดงค่าต่าง ๆ ของข้อมูลที่บันทึกไว้ในส่วนของระเบียนแสดงผลการเรียน แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _valueDataRecorded เป็น Dictionary<string, object> รับค่าต่าง ๆ ของข้อมูลที่บันทึกไว้
             public static StringBuilder GetValueDataRecorded(Dictionary<string, object> _valueDataRecorded)
             {
                 StringBuilder _html = new StringBuilder();
                 Dictionary<string, object> _dataRecorded = (Dictionary<string, object>)_valueDataRecorded["DataRecorded" + _subjectSectionTranscript];
 
-                _html.AppendFormat("<input type='hidden' id='{0}-institute-hidden' value='{1}' />",         _idSectionTranscriptInstitutePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptInstitute", _dataRecorded["TranscriptInstitute"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />",           _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideFileDir", _dataRecorded["TranscriptFrontsideFileDir"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />",          _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideFileName", _dataRecorded["TranscriptFrontsideFileName"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-filefullpath-hidden' value='{1}' />",      _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideFileFullPath", _dataRecorded["TranscriptFrontsideFileFullPath"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />",             _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideWidth", _dataRecorded["TranscriptFrontsideWidth"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />",            _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideHeight", _dataRecorded["TranscriptFrontsideHeight"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />",       _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideSavedStatus", _dataRecorded["TranscriptFrontsideSavedStatus"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />",   _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideSubmittedStatus", _dataRecorded["TranscriptFrontsideSubmittedStatus"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />",    _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideApprovalStatus", _dataRecorded["TranscriptFrontsideApprovalStatus"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-message-hidden' value='{1}' />",           _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideMessage", _dataRecorded["TranscriptFrontsideMessage"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />",           _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideFileDir", _dataRecorded["TranscriptBacksideFileDir"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />",          _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideFileName", _dataRecorded["TranscriptBacksideFileName"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-filefullpath-hidden' value='{1}' />",      _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideFileFullPath", _dataRecorded["TranscriptBacksideFileFullPath"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />",             _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideWidth", _dataRecorded["TranscriptBacksideWidth"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />",            _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideHeight", _dataRecorded["TranscriptBacksideHeight"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />",       _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideSavedStatus", _dataRecorded["TranscriptBacksideSavedStatus"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />",   _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideSubmittedStatus", _dataRecorded["TranscriptBacksideSubmittedStatus"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />",    _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideApprovalStatus", _dataRecorded["TranscriptBacksideApprovalStatus"], Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-message-hidden' value='{1}' />",           _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideMessage", _dataRecorded["TranscriptBacksideMessage"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-institute-hidden' value='{1}' />", _idSectionTranscriptInstitutePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptInstitute", _dataRecorded["TranscriptInstitute"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />", _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideFileDir", _dataRecorded["TranscriptFrontsideFileDir"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />", _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideFileName", _dataRecorded["TranscriptFrontsideFileName"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-filefullpath-hidden' value='{1}' />", _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideFileFullPath", _dataRecorded["TranscriptFrontsideFileFullPath"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />", _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideWidth", _dataRecorded["TranscriptFrontsideWidth"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />", _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideHeight", _dataRecorded["TranscriptFrontsideHeight"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />", _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideSavedStatus", _dataRecorded["TranscriptFrontsideSavedStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />", _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideSubmittedStatus", _dataRecorded["TranscriptFrontsideSubmittedStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />", _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideApprovalStatus", _dataRecorded["TranscriptFrontsideApprovalStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-message-hidden' value='{1}' />", _idSectionTranscriptFrontsidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptFrontsideMessage", _dataRecorded["TranscriptFrontsideMessage"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-filedir-hidden' value='{1}' />", _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideFileDir", _dataRecorded["TranscriptBacksideFileDir"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-filename-hidden' value='{1}' />", _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideFileName", _dataRecorded["TranscriptBacksideFileName"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-filefullpath-hidden' value='{1}' />", _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideFileFullPath", _dataRecorded["TranscriptBacksideFileFullPath"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-width-hidden' value='{1}' />", _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideWidth", _dataRecorded["TranscriptBacksideWidth"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-height-hidden' value='{1}' />", _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideHeight", _dataRecorded["TranscriptBacksideHeight"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-savedstatus-hidden' value='{1}' />", _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideSavedStatus", _dataRecorded["TranscriptBacksideSavedStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />", _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideSubmittedStatus", _dataRecorded["TranscriptBacksideSubmittedStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />", _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideApprovalStatus", _dataRecorded["TranscriptBacksideApprovalStatus"], Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-message-hidden' value='{1}' />", _idSectionTranscriptBacksidePreview, Util.GetValueDataDictionary(_dataRecorded, "TranscriptBacksideMessage", _dataRecorded["TranscriptBacksideMessage"], Util._valueTextDefault));
 
                 return _html;
             }
 
-            //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าตัวอย่างเอกสารในส่วนของการอัพโหลดและส่งเอกสารระเบียนแสดงผลการเรียนให้กับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _id        เป็น string รับค่ารหัสที่ตั้องการ
-            //2. _upload    เป็น bool รับค่าต้องการให้ฟอร์มหรือไม่
-            //3. _approve   เป็น bool รับค่าต้องการให้ฟอร์มอนุมัตืหรือไม่
             public static StringBuilder GetMain(string _id, bool _upload, bool _approve)
             {
                 StringBuilder _html = new StringBuilder();

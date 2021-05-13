@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๔/๑๒/๒๕๕๗>
-Modify date : <๐๔/๐๓/๒๕๖๔>
+Modify date : <๑๒/๐๕/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผล>
 =============================================
 */
@@ -1074,14 +1074,14 @@ public class ePFStaffUI
         return _html;
     }
     
-    public static StringBuilder GetComboboxFacultyByDistinction(string _idCombobox)
+    public static StringBuilder GetComboboxFacultyByJoinProgram(string _idCombobox, string _joinProgram)
     {
         Dictionary<string, object> _paramSearch = new Dictionary<string, object>();
         StringBuilder _html = new StringBuilder();
         int _i = 0;
 
         _paramSearch.Clear();
-        _paramSearch.Add("Distinction", "Y");
+        _paramSearch.Add("JoinProgram", _joinProgram);
 
         _html = GetSelectFaculty(_idCombobox, _paramSearch);
 
@@ -1132,13 +1132,13 @@ public class ePFStaffUI
         return _html;
     }
 
-    public static StringBuilder GetComboboxProgramByDistinction(string _idCombobox, string _degreeLevel, string _faculty)
+    public static StringBuilder GetComboboxProgramByJoinProgram(string _idCombobox, string _degreeLevel, string _faculty, string _joinProgram)
     {
         Dictionary<string, object> _paramSearch = new Dictionary<string, object>();
         StringBuilder _html = new StringBuilder();
 
         _paramSearch.Clear();
-        _paramSearch.Add("Distinction", "Y");
+        _paramSearch.Add("JoinProgram", _joinProgram);
 
         _html = GetSelectProgram(_idCombobox, _degreeLevel, _faculty, _paramSearch);
 
@@ -1298,7 +1298,7 @@ public class ePFStaffUI
 
         _paramSearch.Clear();
         _paramSearch.Add("CancelledStatus", "N");
-        _paramSearch.Add("SortOrderBy", "Full Name ( TH )");        
+        _paramSearch.Add("SortOrderBy", "Full Name ( TH )");
 
         DataSet _ds = Util.DBUtil.GetListCountry(_paramSearch);
         string[] _optionValue = new string[_ds.Tables[0].Rows.Count];
@@ -1610,10 +1610,10 @@ public class ePFStaffUI
         return _html;
     }
 
-    public static StringBuilder GetComboboxDistinctionStatus(string _idCombobox)
+    public static StringBuilder GetComboboxJoinProgramStatus(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
-        string[,] _optionList = ePFStaffUtil._distinctionStatus;
+        string[,] _optionList = ePFStaffUtil._joinProgramStatus;
         int _i = 0;
 
         string[] _optionValue = new string[_optionList.GetLength(0)];
@@ -1712,7 +1712,7 @@ public class ePFStaffUI
         string _entranceType = (string)Util.GetValueDataDictionary(_valueSearch, "EntranceType", _valueSearch["EntranceType"], String.Empty);
         string _studentStatus = (string)Util.GetValueDataDictionary(_valueSearch, "StudentStatus", _valueSearch["StudentStatus"], String.Empty);
         string _studentRecordsStatus = (string)Util.GetValueDataDictionary(_valueSearch, "StudentRecordsStatus", _valueSearch["StudentRecordsStatus"], String.Empty);
-        string _distinctionStatus = (string)Util.GetValueDataDictionary(_valueSearch, "DistinctionStatus", _valueSearch["DistinctionStatus"], String.Empty);
+        string _joinProgramStatus = (string)Util.GetValueDataDictionary(_valueSearch, "JoinProgramStatus", _valueSearch["JoinProgramStatus"], String.Empty);
         string _startAcademicYear = (string)Util.GetValueDataDictionary(_valueSearch, "StartAcademicYear", _valueSearch["StartAcademicYear"], String.Empty);
         string _endAcademicYear = (string)Util.GetValueDataDictionary(_valueSearch, "EndAcademicYear", _valueSearch["EndAcademicYear"], String.Empty);
         string _sortOrderBy  = (string)Util.GetValueDataDictionary(_valueSearch, "SortOrderBy", _valueSearch["SortOrderBy"], String.Empty);
@@ -1876,10 +1876,10 @@ public class ePFStaffUI
             _sortOrderByDefault = "Student ID";
         }
 
-        if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_MAIN))
+        if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_MAIN))
         { 
-            _idSectionMain = ePFStaffUtil.ID_SECTION_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_MAIN.ToLower();
-            _idSectionSearch = ePFStaffUtil.ID_SECTION_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_SEARCH.ToLower();
+            _idSectionMain = ePFStaffUtil.ID_SECTION_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_MAIN.ToLower();
+            _idSectionSearch = ePFStaffUtil.ID_SECTION_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_SEARCH.ToLower();
             _sortOrderByDefault = "Student ID";
         }
 
@@ -1913,7 +1913,7 @@ public class ePFStaffUI
         _html.AppendFormat("<input type='hidden' id='{0}-entrancetype-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_entranceType) ? _entranceType : Util._valueComboboxDefault));
         _html.AppendFormat("<input type='hidden' id='{0}-studentstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_studentStatus) ? _studentStatus : Util._valueComboboxDefault));
         _html.AppendFormat("<input type='hidden' id='{0}-studentrecordsstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_studentRecordsStatus) ? _studentRecordsStatus : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-distinctionstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_distinctionStatus) ? _distinctionStatus : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-joinprogramstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_joinProgramStatus) ? _joinProgramStatus : Util._valueComboboxDefault));
         _html.AppendFormat("<input type='hidden' id='{0}-startacademicyear-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_startAcademicYear) ? _startAcademicYear : Util._valueComboboxDefault));
         _html.AppendFormat("<input type='hidden' id='{0}-endacademicyear-hidden' value='{1}' />",  _idSectionSearch, (!String.IsNullOrEmpty(_endAcademicYear) ? _endAcademicYear : Util._valueComboboxDefault));
         _html.AppendFormat("<input type='hidden' id='{0}-sortorderby-hidden' value='{1}' />",  _idSectionSearch, (!String.IsNullOrEmpty(_sortOrderBy) ? _sortOrderBy : _sortOrderByDefault));

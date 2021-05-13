@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๔/๑๒/๒๕๕๖>
-Modify date : <๑๐/๐๓/๒๕๖๔>
+Modify date : <๑๒/๐๕/๒๕๖๔>
 Description : <Style Sheet จัดรูปการแสดงผล>
 =============================================
 */
@@ -1396,7 +1396,7 @@ a {
     background: #F3781B;
 }
 #search-ourservicesexportstudentrecordsinformation-form,
-#search-ourservicesupdatestudentdistinctionprogram-form,
+#search-ourservicesupdatestudentmedicalscholarsprogram-form,
 #search-ourservicessummarynumberofstudent-form,
 #search-ourservicestransactionlogstudentrecords-form {
     background: #E08283;
@@ -1452,7 +1452,7 @@ a {
 #progress-administrationstudentrecordsupdateadmissiondate-form .form-content .form-labelcol,
 #progress-administrationstudentrecordsupdatedatatoolddb-form .form-content .form-labelcol,
 #progress-ourservicesexportstudentrecordsinformation-form .form-content .form-labelcol,
-#progress-ourservicesupdatestudentdistinctionprogram-form .form-content .form-labelcol,
+#progress-ourservicesupdatestudentmedicalscholarsprogram-form .form-content .form-labelcol,
 #progress-ourservicessummarynumberofstudentlevel1viewtable-form .form-content .form-labelcol,
 #progress-ourservicessummarynumberofstudentlevel2viewtable-form .form-content .form-labelcol {
     width: 315px;
@@ -1464,7 +1464,7 @@ a {
 #progress-administrationstudentrecordsupdateadmissiondate-form .form-content .form-inputcol,
 #progress-administrationstudentrecordsupdatedatatoolddb-form .form-content .form-inputcol,
 #progress-ourservicesexportstudentrecordsinformation-form .form-content .form-inputcol,
-#progress-ourservicesupdatestudentdistinctionprogram-form .form-content .form-inputcol,
+#progress-ourservicesupdatestudentmedicalscholarsprogram-form .form-content .form-inputcol,
 #progress-ourservicessummarynumberofstudentlevel1viewtable-form .form-content .form-inputcol {
     width: auto;
 }
@@ -2955,99 +2955,99 @@ a {
     line-height: 45px;
 }
 
-#main-ourservicesupdatestudentdistinctionprogram-table .table-title .button ul li div {
+#main-ourservicesupdatestudentmedicalscholarsprogram-table .table-title .button ul li div {
     width: 101px;
 }
-#main-ourservicesupdatestudentdistinctionprogram-table .table-col1 {
+#main-ourservicesupdatestudentmedicalscholarsprogram-table .table-col1 {
     width: 67px;
 }
-#main-ourservicesupdatestudentdistinctionprogram-table .table-col2 {
+#main-ourservicesupdatestudentmedicalscholarsprogram-table .table-col2 {
     width: 65px;
 }
-#main-ourservicesupdatestudentdistinctionprogram-table .table-col3 {
+#main-ourservicesupdatestudentmedicalscholarsprogram-table .table-col3 {
     width: 65px;
 }
-#main-ourservicesupdatestudentdistinctionprogram-table .table-col5 {
+#main-ourservicesupdatestudentmedicalscholarsprogram-table .table-col5 {
     width: 120px;
 }
-#main-ourservicesupdatestudentdistinctionprogram-table .table-col6 {
+#main-ourservicesupdatestudentmedicalscholarsprogram-table .table-col6 {
     width: 63px;
 }
-#main-ourservicesupdatestudentdistinctionprogram-table .table-col7 {
+#main-ourservicesupdatestudentmedicalscholarsprogram-table .table-col7 {
     width: 40px;
 }
-#main-ourservicesupdatestudentdistinctionprogram-table .table-col8 {
+#main-ourservicesupdatestudentmedicalscholarsprogram-table .table-col8 {
     width: 85px;
 }
-#main-ourservicesupdatestudentdistinctionprogram-table .table-col9 {
+#main-ourservicesupdatestudentmedicalscholarsprogram-table .table-col9 {
     width: 60px;
 }
-#main-ourservicesupdatestudentdistinctionprogram-table .table-col10 {
-    width: 117px;
+#main-ourservicesupdatestudentmedicalscholarsprogram-table .table-col10 {
+    width: 85px;
 }
-#main-ourservicesupdatestudentdistinctionprogram-table .table-col11 {
+#main-ourservicesupdatestudentmedicalscholarsprogram-table .table-col11 {
     width: 96px;
 }
-#main-ourservicesupdatestudentdistinctionprogram-table .table-col12 {
+#main-ourservicesupdatestudentmedicalscholarsprogram-table .table-col12 {
     width: 96px;
 }
-#main-ourservicesupdatestudentdistinctionprogram-table .table-col13 {
+#main-ourservicesupdatestudentmedicalscholarsprogram-table .table-col13 {
     width: 82px;
 }
-#main-ourservicesupdatestudentdistinctionprogram-table .table-col14 {
+#main-ourservicesupdatestudentmedicalscholarsprogram-table .table-col14 {
     width: 103px;
 }
-#main-ourservicesupdatestudentdistinctionprogram-table .table-grid .table-col4 .table-col-msg div {
+#main-ourservicesupdatestudentmedicalscholarsprogram-table .table-grid .table-col4 .table-col-msg div {
     text-align: left;
 }
 
-#progress-ourservicesupdatestudentdistinctionprogram-form .list {
+#progress-ourservicesupdatestudentmedicalscholarsprogram-form .list {
     width: 496px;
     height: 67px;
 }
-#progress-ourservicesupdatestudentdistinctionprogram-form .list .list-content .list-row {
+#progress-ourservicesupdatestudentmedicalscholarsprogram-form .list .list-content .list-row {
     padding: 1px 6px 3px 6px;
 }
-#progress-ourservicesupdatestudentdistinctionprogram-form .list .list-content .list-col {
+#progress-ourservicesupdatestudentmedicalscholarsprogram-form .list .list-content .list-col {
     padding: 0;
 }
-#progress-ourservicesupdatestudentdistinctionprogram-form .list .list-content .list-col div {
+#progress-ourservicesupdatestudentmedicalscholarsprogram-form .list .list-content .list-col div {
     line-height: 21px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-#progress-ourservicesupdatestudentdistinctionprogram-form #progress-ourservicesupdatestudentdistinctionprogram-distinctionstatus-content .form-inputcol {
+#progress-ourservicesupdatestudentmedicalscholarsprogram-form #progress-ourservicesupdatestudentmedicalscholarsprogram-joinprogramstatus-content .form-inputcol {
     padding-top: 13px;
 }
-#progress-ourservicesupdatestudentdistinctionprogram-form .semesteryear .contentbody-left:nth-child(2).th-label {
+#progress-ourservicesupdatestudentmedicalscholarsprogram-form .semesteryear .contentbody-left:nth-child(2).th-label {
     font-size: 23px;
     width: 20px;
     text-align: center;
 }
 
-#preview-ourservicesupdatestudentdistinctionprogram-table .table-col1 {
+#preview-ourservicesupdatestudentmedicalscholarsprogram-table .table-col1 {
     width: 67px;
 }
-#preview-ourservicesupdatestudentdistinctionprogram-table .table-col2 {
+#preview-ourservicesupdatestudentmedicalscholarsprogram-table .table-col2 {
     width: 65px;
 }
-#preview-ourservicesupdatestudentdistinctionprogram-table .table-col4 {
+#preview-ourservicesupdatestudentmedicalscholarsprogram-table .table-col4 {
     width: 117px;
 }
-#preview-ourservicesupdatestudentdistinctionprogram-table .table-col5 {
+#preview-ourservicesupdatestudentmedicalscholarsprogram-table .table-col5 {
     width: 135px;
 }
-#preview-ourservicesupdatestudentdistinctionprogram-table .table-col6 {
+#preview-ourservicesupdatestudentmedicalscholarsprogram-table .table-col6 {
     width: 135px;
 }
-#preview-ourservicesupdatestudentdistinctionprogram-table .table-col7 {
+#preview-ourservicesupdatestudentmedicalscholarsprogram-table .table-col7 {
     width: 173px;
 }
-#preview-ourservicesupdatestudentdistinctionprogram-table .table-grid .table-col3 .table-col-msg div {
+#preview-ourservicesupdatestudentmedicalscholarsprogram-table .table-grid .table-col3 .table-col-msg div {
     text-align: left;
 }
-#preview-ourservicesupdatestudentdistinctionprogram-table .button {
+#preview-ourservicesupdatestudentmedicalscholarsprogram-table .button {
     left: 419px;
 }
 

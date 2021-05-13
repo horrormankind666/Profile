@@ -128,8 +128,8 @@ public class ePFStaffHandler : IHttpHandler, IRequiresSessionState
             case "getprogram": 
                 _content = ePFStaffUI.GetComboboxProgram(_c.Request["id"], _c.Request["degreelevel"], _c.Request["faculty"]);
                 break;
-            case "getprogrambydistinction": 
-                _content = ePFStaffUI.GetComboboxProgramByDistinction(_c.Request["id"], _c.Request["degreelevel"], _c.Request["faculty"]);
+            case "getprogrambyjoinprogram": 
+                _content = ePFStaffUI.GetComboboxProgramByJoinProgram(_c.Request["id"], _c.Request["degreelevel"], _c.Request["faculty"], _c.Request["joinprogram"]);
                 break;
             case "gettitleprefix": 
                 _content = ePFStaffUI.GetComboboxTitlePrefix(_c.Request["id"], _c.Request["gender"]);

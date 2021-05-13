@@ -108,7 +108,6 @@ public partial class UDSUploadFile : Page
         }
 
         Response.Write("<script language='javascript' type='text/javascript'>window.parent.Util.tut.tus.sectionAddUpdate.stopUploadFile({" + _uploadfileResult.ToString() + "})</script>");
-
     }
 
     private static Dictionary<string, object> GetWidthHeightImage(int _width, int _height, int _maxWidth, int _maxHeight)

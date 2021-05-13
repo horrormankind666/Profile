@@ -1,9 +1,11 @@
-﻿// =============================================
-// Author       : <ยุทธภูมิ ตวันนา>
-// Create date  : <๒๔/๐๖/๒๕๕๘>
-// Modify date  : <๒๙/๐๕/๒๕๖๒>
-// Description  : <รวมรวบฟังก์ชั่นใช้งานทั่วไปในส่วนของการอนุมัติเอกสาร>
-// =============================================
+﻿/*
+=============================================
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๒๔/๐๖/๒๕๕๘>
+Modify date : <๒๙/๐๕/๒๕๖๒>
+Description : <รวมรวบฟังก์ชั่นใช้งานทั่วไปในส่วนของการอนุมัติเอกสาร>
+=============================================
+*/
 
 var UDSStaffApproveDocument = {
     idSectionMain: UDSStaffUtil.idSectionApproveDocumentMain.toLowerCase(),
@@ -17,7 +19,6 @@ var UDSStaffApproveDocument = {
     idSectionTranscriptBacksideEdit: UDSStaffUtil.idSectionApproveDocumentTranscriptBacksideEdit.toLowerCase(),
     
     sectionMain: {
-        //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับหน้าหลักในส่วนของการอนุมัติเอกสาร
         initMain: function () {
             var _this = Util.tut.tap;
 
@@ -29,8 +30,6 @@ var UDSStaffApproveDocument = {
 
             this.resetMain();
         },
-
-        //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับหน้าหลักในส่วนของการอนุมัติเอกสาร
         resetMain: function () {
             var _this = Util.tut.tap;
 
@@ -39,21 +38,13 @@ var UDSStaffApproveDocument = {
                 value: $("#" + _this.idSectionMain + "-rowperpage-hidden").val()
             });
         },
-
-        //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการแสดงข้อมูลนักศึกษาในส่วนของการอนุมัติเอกสาร
         initTable: function () {
             Util.tut.getDialogFormOnClick();
         },
-    },
-    
+    },   
     sectionAddUpdate: {
         idSectionAddUpdate: "",
-
         sectionEdit: {
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการแก้ไขในส่วนของการอนุมัติเอกสาร
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //section   รับค่าชื่อหัวข้อที่ต้องการ
             initMain: function (_param) {
                 _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -65,23 +56,13 @@ var UDSStaffApproveDocument = {
                     section: _param["section"]
                 });
             },
-                
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานของการแก้ไขในส่วนของการอนุมัติเอกสาร
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //section   รับค่าชื่อหัวข้อที่ต้องการ
             resetMain: function (_param) {
                 _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
                 
                 var _this1 = Util.tut.tap;
                 var _this2 = _this1.sectionAddUpdate;
-            }                
+            }
         },
-
-        //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการเพิ่มหรือแก้ไขในส่วนของการอนุมัติเอกสาร
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section   รับค่าชื่อหัวข้อที่ต้องการ
         initMain: function (_param) {
             _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -91,7 +72,7 @@ var UDSStaffApproveDocument = {
             var _idApprovalStatus = (_idContent + "-approvalstatus");
             var _valueApprovalStatus;
 
-            $("#" + _idContent + "-form .uploaddocument-approvalstatus").click(function () {                                    
+            $("#" + _idContent + "-form .uploaddocument-approvalstatus").click(function () {
                 $("#" + _idContent + "-form .check-mark").hide();
 
                 _valueApprovalStatus = ($(this).hasClass("uploaddocument-approvalstatus-y") == true ? "Y" : _valueApprovalStatus);
@@ -99,14 +80,12 @@ var UDSStaffApproveDocument = {
 
                 if ($("input[name=" + _idApprovalStatus + "]:checked").val() == _valueApprovalStatus)
                     $("input[name=" + _idApprovalStatus + "]:radio").filter("[value=" + _valueApprovalStatus + "]").prop("checked", false);
-                else
-                {
+                else {
                     $("#" + _idContent + "-form .uploaddocument-approvalstatus-" + _valueApprovalStatus.toLowerCase() + " .check-mark").show();
                     $("input[name=" + _idApprovalStatus + "]:radio").filter("[value=" + _valueApprovalStatus + "]").prop("checked", true);
                 }
             
-                if ($("input[name=" + _idApprovalStatus + "]:checked").val() == "N")
-                {                    
+                if ($("input[name=" + _idApprovalStatus + "]:checked").val() == "N") {
                     Util.getFrmAddUpdateMessage({
                         page: Util.tut.pageApproveDocumentMessageAddUpdate,
                         id: Util.tut.idSectionApproveDocumentMessageAddUpdate.toLowerCase(),
@@ -125,13 +104,8 @@ var UDSStaffApproveDocument = {
                     _this2.resetMain({
                         section: _param["section"]
                     });
-            });        
+            });
         },
-
-        //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานของการเพิ่มหรือแก้ไขในส่วนของการอนุมัติเอกสาร
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section   รับค่าชื่อหัวข้อที่ต้องการ
         resetMain: function (_param) {
             _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
                 
@@ -154,60 +128,50 @@ var UDSStaffApproveDocument = {
             $("#" + _idContent + "-form .check-mark").hide();
             $("#" + _idContent + "-form ." + Util.tut.subjectSectionApproveDocument.toLowerCase() + "-preview-content").hide();
 
-            if ($("#" + _idTableRowActive + " .table-col-approvalstatus .uploaddocument-approvalstatus").hasClass(_param["section"].toLowerCase() + "-approvalstatus"))
-            {
+            if ($("#" + _idTableRowActive + " .table-col-approvalstatus .uploaddocument-approvalstatus").hasClass(_param["section"].toLowerCase() + "-approvalstatus")) {
                 if ($("#" + _idTableRowActive + " .table-col-approvalstatus ." + _param["section"].toLowerCase() + "-approvalstatus").hasClass("uploaddocument-approvalstatus-" + _valueApprovalStatus.toLowerCase()))
                     _show = true;
-                else
-                    {
-                        _valueSubject = Util.tut.getSubjectDocumentUpload({
-                            section: _param["section"]
-                        });
-                        Util.dialogMessageError({
-                            content: ("<div class='th-label'>สถานะการอนุมัติ" + _valueSubject["subjectth"] + "มีการเปลี่ยนแปลง กรุณารีเฟรชหน้าจอ</div><div class='en-label'>Approval status " + $.trim(_valueSubject["subjecten"]) + " is not valid, Please refresh this page.</div>")
-                        });
-                    }
+                else {
+                    _valueSubject = Util.tut.getSubjectDocumentUpload({
+                        section: _param["section"]
+                    });
+                    Util.dialogMessageError({
+                        content: ("<div class='th-label'>สถานะการอนุมัติ" + _valueSubject["subjectth"] + "มีการเปลี่ยนแปลง กรุณารีเฟรชหน้าจอ</div><div class='en-label'>Approval status " + $.trim(_valueSubject["subjecten"]) + " is not valid, Please refresh this page.</div>")
+                    });
+                }
             }
             else
                 _show = true;
 
-            if (_show == true)
-            {
-                if (_valueDocumentStatus == "YNS" || _valueDocumentStatus == "YYS" || _valueDocumentStatus == "YYW" || _valueDocumentStatus == "YYY" || _valueDocumentStatus == "YYN")
-                {
-                    if (_objImage.is("[src]") == false)
-                    {
+            if (_show == true) {
+                if (_valueDocumentStatus == "YNS" || _valueDocumentStatus == "YYS" || _valueDocumentStatus == "YYW" || _valueDocumentStatus == "YYY" || _valueDocumentStatus == "YYN") {
+                    if (_objImage.is("[src]") == false) {
                         _objWatermark.hide();
                         _objImage.removeAttr("src").hide();
 
-                        if (_valueFileFullPath.length > 0)
-                        {
+                        if (_valueFileFullPath.length > 0) {
                             _objWatermark.show();
-                            _objImage.attr({ "src": _valueFileFullPath }).show();
+                            _objImage.attr({
+                                "src": _valueFileFullPath
+                            }).show();
                         }
                     }
                 }
                 
-                if (_valueDocumentStatus == "YYS" || _valueDocumentStatus == "YYW" || _valueDocumentStatus == "YYY" || _valueDocumentStatus == "YYN")
-                {
+                if (_valueDocumentStatus == "YYS" || _valueDocumentStatus == "YYW" || _valueDocumentStatus == "YYY" || _valueDocumentStatus == "YYN") {
                     $("#" + _idContent + "-form ." + Util.tut.subjectSectionApproveDocument.toLowerCase() + "-preview-content").show();
                     $("input[name=" + _idApprovalStatus + "]:radio").filter("[value=" + _valueApprovalStatus + "]").prop("checked", true);
                     $("#" + _idContent + "-form .uploaddocument-approvalstatus-" + _valueApprovalStatus.toLowerCase() + " .check-mark").show();
                 }
             }
         },
-    
-        //ฟังก์ชั่นสำหรับแสดงไดอะล็อกยืนยันการบันทึกข้อมูลในส่วนของการอนุมัติเอกสาร
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section   รับค่าชื่อหัวข้อที่ต้องการ
         confirmSave: function (_param) {
             _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
             var _this = this;
             var _valueSubject = Util.tut.getSubjectDocumentUpload({
-                                    section: _param["section"]
-                                });
+                section: _param["section"]
+            });
 
             Util.dialogMessageConfirm({
                 content: ("<div class='th-label'>ต้องการบันทึกผลการอนุมัติ" + _valueSubject["subjectth"] + "นี้หรือไม่</div><div class='en-label'>Do you want to save " + _valueSubject["subjecten"].toLowerCase() + " approval result ?</div>"),
@@ -216,8 +180,7 @@ var UDSStaffApproveDocument = {
                     msgNo: "CANCEL"
                 }
             }, function (_result) {
-                if (_result == "Y")
-                {                                           
+                if (_result == "Y") {
                     if (_this.validateSave({
                             section: _param["section"]
                         }))
@@ -228,11 +191,6 @@ var UDSStaffApproveDocument = {
                 }
             });
         },
-                    
-        //ฟังก์ชั่นสำหรับตรวจสอบความถูกต้องในการอนุมัติเอกสาร
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section   รับค่าชื่อหัวข้อที่ต้องการ
         validateSave: function (_param) {
             _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -244,34 +202,32 @@ var UDSStaffApproveDocument = {
             var _idContent = (_this2.idSectionAddUpdate + _param["section"].toLowerCase());
             var _idApprovalStatus = (_idContent + "-approvalstatus");
             var _valueApprovalStatus = Util.getSelectionIsSelect({
-                                            id: _idApprovalStatus,
-                                            type: "radio",
-                                            valueTrue: $("input[name=" + _idApprovalStatus + "]:checked").val()
-                                       });
+                id: _idApprovalStatus,
+                type: "radio",
+                valueTrue: $("input[name=" + _idApprovalStatus + "]:checked").val()
+            });
             var _valueSubject = Util.tut.getSubjectDocumentUpload({
-                                    section: _param["section"]
-                                });
+                section: _param["section"]
+            });
 
-            if (_error == false && _valueApprovalStatus == "N" && $("#" + _idContent + "-message-hidden").val().length == 0) { _error = true; _msgTH = ("กรุณาระบุเหตุผลที่ไม่อนุมัติ" + _valueSubject["subjectth"]); _msgEN = ("Please enter a reason not approve " + $.trim(_valueSubject["subjecten"].toLowerCase()) + "."); }
+            if (_error == false && _valueApprovalStatus == "N" && $("#" + _idContent + "-message-hidden").val().length == 0) {
+                _error = true;
+                _msgTH = ("กรุณาระบุเหตุผลที่ไม่อนุมัติ" + _valueSubject["subjectth"]);
+                _msgEN = ("Please enter a reason not approve " + $.trim(_valueSubject["subjecten"].toLowerCase()) + ".");
+            }
 
-            if (_error == true)
-            {
+            if (_error == true) {
                 Util.dialogMessageError({
                     content: ("<div class='th-label'>" + _msgTH + "</div><div class='en-label'>" + _msgEN + "</div>")
                 });
+
                 return false;
             }
 
             return true;
         },
-        
-        //ฟังก์ชั่นสำหรับนำข้อมูลในฟอร์มข้อมูลในส่วนของการอนุมัติเอกสารมาเตรียมสำหรับบันทึกข้อมูลลงฐานข้อมูล
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param     รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section       รับค่าชื่อหัวข้อที่ต้องการ
-        //sectionAction รับค่าการกระทำที่เกิดขึ้นกับหัวข้อที่อัพโหลด
         getSave: function (_param) {
-            _param["section"]       = (_param["section"] == undefined ? "" : _param["section"]);
+            _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
             _param["sectionAction"] = (_param["sectionAction"] == undefined ? "" : _param["sectionAction"]);
 
             var _this1 = Util.tut.tap;
@@ -290,11 +246,11 @@ var UDSStaffApproveDocument = {
             var _valueSave = {};
             
             _valueApprovalStatus = Util.getSelectionIsSelect({
-                                        id: _idApprovalStatus,
-                                        type: "radio",
-                                        valueTrue: $("input[name=" + _idApprovalStatus + "]:checked").val(),
-                                        valueFalse: "S"
-                                   });
+                id: _idApprovalStatus,
+                type: "radio",
+                valueTrue: $("input[name=" + _idApprovalStatus + "]:checked").val(),
+                valueFalse: "S"
+            });
             _valueSubmittedStatus = (_valueApprovalStatus == "S" ? "N" : _valueSubmittedStatus);
             _valueMessage = (_valueApprovalStatus != "N" ? "" : _valueMessage);
 
@@ -302,15 +258,15 @@ var UDSStaffApproveDocument = {
             $("#" + _idContent + "-approvalstatus-hidden").val(_valueApprovalStatus);
             $("#" + _idContent + "-message-hidden").val(_valueMessage);
 
-            _valueSave["section"]               = _param["section"];
-            _valueSave["sectionaction"]         = _param["sectionAction"];
-            _valueSave["personid"]              = $("#" + _this2.idSectionAddUpdate + "-personid-hidden").val();
-            _valueSave["transcriptinstitute"]   = _transcriptInstitute;
-            _valueSave["filename"]              = _fileName;
-            _valueSave["savedstatus"]           = _valueSavedStatus;
-            _valueSave["submittedstatus"]       = _valueSubmittedStatus;
-            _valueSave["approvalstatus"]        = _valueApprovalStatus;
-            _valueSave["message"]               = _valueMessage;
+            _valueSave["section"] = _param["section"];
+            _valueSave["sectionaction"] = _param["sectionAction"];
+            _valueSave["personid"] = $("#" + _this2.idSectionAddUpdate + "-personid-hidden").val();
+            _valueSave["transcriptinstitute"] = _transcriptInstitute;
+            _valueSave["filename"] = _fileName;
+            _valueSave["savedstatus"] = _valueSavedStatus;
+            _valueSave["submittedstatus"] = _valueSubmittedStatus;
+            _valueSave["approvalstatus"] = _valueApprovalStatus;
+            _valueSave["message"] = _valueMessage;
 
             Util.msgPreloading = "Saving...";
 
@@ -318,15 +274,13 @@ var UDSStaffApproveDocument = {
                 page: Util.tut.pageApproveDocumentEdit,
                 data: _valueSave
             }, function (_resultSave, _resultValueSave) {
-                if (_resultSave == true)
-                {                               
-                    if ($("#" + _idTableRowActive + " .table-col-approvalstatus .uploaddocument-approvalstatus").hasClass(_param["section"].toLowerCase() + "-approvalstatus"))
-                    {
-                        _valueApprovalDate  = (_param["section"] == Util.tut.subjectSectionProfilePicture ? _resultValueSave.ProfilePictureApprovalDate : _valueApprovalDate);
-                        _valueApprovalDate  = (_param["section"] == Util.tut.subjectSectionIdentityCard ? _resultValueSave.IdentityCardApprovalDate : _valueApprovalDate);
-                        _valueApprovalDate  = (_param["section"] == Util.tut.subjectSectionTranscriptFrontside ? _resultValueSave.TranscriptFrontsideApprovalDate : _valueApprovalDate);
-                        _valueApprovalDate  = (_param["section"] == Util.tut.subjectSectionTranscriptBackside ? _resultValueSave.TranscriptBacksideApprovalDate : _valueApprovalDate);
-                        _valueApprovalDate  = (_valueApprovalDate.length > 0 ? _valueApprovalDate : "&nbsp;");
+                if (_resultSave == true) {
+                    if ($("#" + _idTableRowActive + " .table-col-approvalstatus .uploaddocument-approvalstatus").hasClass(_param["section"].toLowerCase() + "-approvalstatus")) {
+                        _valueApprovalDate = (_param["section"] == Util.tut.subjectSectionProfilePicture ? _resultValueSave.ProfilePictureApprovalDate : _valueApprovalDate);
+                        _valueApprovalDate = (_param["section"] == Util.tut.subjectSectionIdentityCard ? _resultValueSave.IdentityCardApprovalDate : _valueApprovalDate);
+                        _valueApprovalDate = (_param["section"] == Util.tut.subjectSectionTranscriptFrontside ? _resultValueSave.TranscriptFrontsideApprovalDate : _valueApprovalDate);
+                        _valueApprovalDate = (_param["section"] == Util.tut.subjectSectionTranscriptBackside ? _resultValueSave.TranscriptBacksideApprovalDate : _valueApprovalDate);
+                        _valueApprovalDate = (_valueApprovalDate.length > 0 ? _valueApprovalDate : "&nbsp;");
 
                         $("#" + _idTableRowActive + " .table-col-approvalstatus ." + _param["section"].toLowerCase() + "-approvalstatus").removeClass("uploaddocument-approvalstatus-" + _valueApprovalStatusOld.toLowerCase()).addClass("uploaddocument-approvalstatus-" + _valueApprovalStatus.toLowerCase());
                         $("#" + _idTableRowActive + " .table-col-approvaldate ." + _param["section"].toLowerCase() + "-approvaldate").html(_valueApprovalDate);
@@ -342,13 +296,6 @@ var UDSStaffApproveDocument = {
                 }
             });
         },
-
-        //ฟังก์ชั่นสำหรับบันทึกข้อมูลการอนุมัติเอกสาร
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param         รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //page              รับค่าชื่อหน้าหลัก
-        //data              รับค่าข้อมูลที่ต้องการส่ง
-        //2. _callBackFunc  รับค่าสำหรับให้ส่งค่าที่ต้องการในฟังก์ชั่นกลับ
         actionSave: function (_param, _callBackFunc) {        
             _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
             _param["data"] = (_param["data"] == undefined || _param["data"] == "" ? {} : _param["data"]);
@@ -364,12 +311,12 @@ var UDSStaffApproveDocument = {
                 data: _send
             }, function (_result) {
                 _error = Util.tut.getErrorMsg({
-                            signinYN: _signinYN,
-                            pageError: 0,
-                            cookieError: _result.CookieError,
-                            userError: _result.UserError,
-                            saveError: _result.SaveError
-                         });
+                    signinYN: _signinYN,
+                    pageError: 0,
+                    cookieError: _result.CookieError,
+                    userError: _result.UserError,
+                    saveError: _result.SaveError
+                });
 
                 _callBackFunc((_error == false ? true : false), _result);
             });

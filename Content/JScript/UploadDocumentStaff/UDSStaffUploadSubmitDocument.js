@@ -1,17 +1,17 @@
-﻿// =============================================
-// Author       : <ยุทธภูมิ ตวันนา>
-// Create date  : <๒๕/๐๘/๒๕๕๘>
-// Modify date  : <๒๙/๐๕/๒๕๖๒>
-// Description  : <รวมรวบฟังก์ชั่นใช้งานทั่วไปในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา>
-// =============================================
+﻿/*
+=============================================
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๒๕/๐๘/๒๕๕๘>
+Modify date : <๒๙/๐๕/๒๕๖๒>
+Description : <รวมรวบฟังก์ชั่นใช้งานทั่วไปในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา>
+=============================================
+*/
 
 var UDSStaffUploadSubmitDocument = {
     idSectionMain: UDSStaffUtil.idSectionUploadSubmitDocumentMain.toLowerCase(),
     idSectionPreview: UDSStaffUtil.idSectionUploadSubmitDocumentPreview.toLowerCase(),
-    idSectionAddUpdate: UDSStaffUtil.idSectionUploadSubmitDocumentAddUpdate.toLowerCase(),
-    
+    idSectionAddUpdate: UDSStaffUtil.idSectionUploadSubmitDocumentAddUpdate.toLowerCase(),    
     sectionMain: {
-        //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับหน้าหลักในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
         initMain: function () {
             var _this = Util.tut.tus;
 
@@ -23,8 +23,6 @@ var UDSStaffUploadSubmitDocument = {
 
             this.resetMain();
         },
-
-        //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับหน้าหลักในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
         resetMain: function () {
             var _this = Util.tut.tus;
 
@@ -33,18 +31,11 @@ var UDSStaffUploadSubmitDocument = {
                 value: $("#" + _this.idSectionMain + "-rowperpage-hidden").val()
             });
         },
-
-        //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการแสดงข้อมูลนักศึกษาในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
         initTable: function () {
             Util.tut.getDialogFormOnClick();
         },
-    },
-    
+    },   
     sectionPreview: {
-        //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการแสดงตัวอย่างเอกสารในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section   รับค่าชื่อหัวข้อที่ต้องการ
         resetMain: function (_param) {
             _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -63,36 +54,32 @@ var UDSStaffUploadSubmitDocument = {
         
             $("#" + _idContent + "-form ." + Util.tut.subjectSectionUploadSubmitDocument.toLowerCase() + "-preview-content").hide();
             
-            if ($("#" + _idTableRowActive + " .table-col-submittedstatus .uploaddocument-submittedstatus").hasClass(_param["section"].toLowerCase() + "-submittedstatus"))
-            {
+            if ($("#" + _idTableRowActive + " .table-col-submittedstatus .uploaddocument-submittedstatus").hasClass(_param["section"].toLowerCase() + "-submittedstatus")) {
                 if ($("#" + _idTableRowActive + " .table-col-submittedstatus ." + _param["section"].toLowerCase() + "-submittedstatus").hasClass("uploaddocument-submittedstatus-" + _valueSubmittedStatus.toLowerCase()))
                     _show = true;
-                else
-                    {
-                        _valueSubject = Util.tut.getSubjectDocumentUpload({
-                                            section: _param["section"]
-                                        });
-                        Util.dialogMessageError({
-                            content: ("<div class='th-label'>สถานะการส่ง" + _valueSubject["subjectth"] + "มีการเปลี่ยนแปลง กรุณารีเฟรชหน้าจอ</div><div class='en-label'>Submitted status " + $.trim(_valueSubject["subjecten"]) + " is not valid, Please refresh this page.</div>")
-                        });
-                    }
+                else {
+                    _valueSubject = Util.tut.getSubjectDocumentUpload({
+                        section: _param["section"]
+                    });
+                    Util.dialogMessageError({
+                        content: ("<div class='th-label'>สถานะการส่ง" + _valueSubject["subjectth"] + "มีการเปลี่ยนแปลง กรุณารีเฟรชหน้าจอ</div><div class='en-label'>Submitted status " + $.trim(_valueSubject["subjecten"]) + " is not valid, Please refresh this page.</div>")
+                    });
+                }
             }
             else
                 _show = true;
 
-            if (_show == true)
-            {
-                if (_valueDocumentStatus == "NNS" || _valueDocumentStatus == "YNS" || _valueDocumentStatus == "YYS" || _valueDocumentStatus == "YYW" || _valueDocumentStatus == "YYY" || _valueDocumentStatus == "YYN")
-                {
-                    if (_objImage.is("[src]") == false)
-                    {
+            if (_show == true) {
+                if (_valueDocumentStatus == "NNS" || _valueDocumentStatus == "YNS" || _valueDocumentStatus == "YYS" || _valueDocumentStatus == "YYW" || _valueDocumentStatus == "YYY" || _valueDocumentStatus == "YYN") {
+                    if (_objImage.is("[src]") == false) {
                         _objWatermark.hide();
                         _objImage.removeAttr("src").hide();
 
-                        if (_valueFileFullPath.length > 0)
-                        {                            
+                        if (_valueFileFullPath.length > 0) {                            
                             _objWatermark.show();
-                            _objImage.attr({ "src": _valueFileFullPath }).show();
+                            _objImage.attr({
+                                "src": _valueFileFullPath
+                            }).show();
                         }
                     }
 
@@ -100,11 +87,9 @@ var UDSStaffUploadSubmitDocument = {
                     $("#" + _idContent + "-form .uploaddocument-submittedstatus").addClass("uploaddocument-submittedstatus-" + _valueSubmittedStatus.toLowerCase());
                 }
             }
-        },        
-    },
-    
+        },
+    },    
     sectionAddUpdate: {
-        //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานใหักับการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
         initMain: function () {
             this.setMenuLayout();
             this.initMenu();
@@ -112,16 +97,12 @@ var UDSStaffUploadSubmitDocument = {
                 section: Util.tut.subjectSectionStudentRecords
             });
         },
-        
-        //ฟังก์ชั่นสำหรับกำหนดการแสดงผลให้กับเมนูการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
         setMenuLayout: function () {
             var _this = Util.tut.tus;
 
             if ($("#" + _this.idSectionAddUpdate + "-menu").length > 0)
                 $("#" + _this.idSectionAddUpdate + "-menu").height($(window).height() - Util.offsetTop);
         },
-        
-        //ฟังก์ชั่นสำหรับกำหนดให้ทำงานตามเหตุการณ์ต่าง ๆ ที่เกิดขึ้นบนเมนูการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
         initMenu: function () {
             var _this1 = Util.tut.tus;
             var _this2 = this;            
@@ -140,43 +121,53 @@ var UDSStaffUploadSubmitDocument = {
                     data: $("#" + _this2.studentrecords.idSectionAddUpdate + "-personid-hidden").val(),
                     loadFormRepeat: true
                 }, function (_result) {
-                    if (_result == true)
-                    {                    
+                    if (_result == true) {
                         _this2.initMainSection({
                             page: _page
                         });
                         
                         Util.tut.getDialogFormOnClick();
 
-                        if (_page == Util.tut.pageUploadSubmitDocumentProfilePictureAddUpdate)  _this2.getFrmRecommend({ page: Util.tut.pageRecommendUploadProfilePictureMain }, function () { });
-                        if (_page == Util.tut.pageUploadSubmitDocumentIdentityCardAddUpdate)    _this2.getFrmRecommend({ page: Util.tut.pageRecommendUploadIdentityCardMain }, function () { });
-                        if (_page == Util.tut.pageUploadSubmitDocumentTranscriptAddUpdate)      _this2.getFrmRecommend({ page: Util.tut.pageRecommendUploadTranscriptMain }, function () { });
+                        if (_page == Util.tut.pageUploadSubmitDocumentProfilePictureAddUpdate)
+                            _this2.getFrmRecommend({
+                                page: Util.tut.pageRecommendUploadProfilePictureMain
+                            }, function () {
+                            });
+
+                        if (_page == Util.tut.pageUploadSubmitDocumentIdentityCardAddUpdate)
+                            _this2.getFrmRecommend({
+                                page: Util.tut.pageRecommendUploadIdentityCardMain
+                            }, function () {
+                            });
+
+                        if (_page == Util.tut.pageUploadSubmitDocumentTranscriptAddUpdate)
+                            _this2.getFrmRecommend({
+                                page: Util.tut.pageRecommendUploadTranscriptMain
+                            }, function () {
+                            });
                     }
                 });
             });
         },
-        
-        //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษาตามหัวข้อต่าง ๆ
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //page      รับค่าชื่อหน้า
-        //section   รับค่าชื่อหัวข้อที่ต้องการ
         initMainSection: function (_param) {
-            _param["page"]      = (_param["page"] == undefined ? "" : _param["page"]);
-            _param["section"]   = (_param["section"] == undefined ? "" : _param["section"]);
+            _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
+            _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
             
-            if (_param["page"] == Util.tut.pageUploadSubmitDocumentStudentRecordsAddUpdate || _param["section"] == Util.tut.subjectSectionStudentRecords)   this.studentrecords.initMain();
-            if (_param["page"] == Util.tut.pageUploadSubmitDocumentOverviewAddUpdate || _param["section"] == Util.tut.subjectSectionOverview)               this.overview.initMain();
-            if (_param["page"] == Util.tut.pageUploadSubmitDocumentProfilePictureAddUpdate || _param["section"] == Util.tut.subjectSectionProfilePicture)   this.profilepicture.initMain();
-            if (_param["page"] == Util.tut.pageUploadSubmitDocumentIdentityCardAddUpdate || _param["section"] == Util.tut.subjectSectionIdentityCard)       this.identitycard.initMain();
-            if (_param["page"] == Util.tut.pageUploadSubmitDocumentTranscriptAddUpdate ||_param["section"] == Util.tut.subjectSectionTranscript)            this.transcript.initMain();
+            if (_param["page"] == Util.tut.pageUploadSubmitDocumentStudentRecordsAddUpdate || _param["section"] == Util.tut.subjectSectionStudentRecords)
+                this.studentrecords.initMain();
+
+            if (_param["page"] == Util.tut.pageUploadSubmitDocumentOverviewAddUpdate || _param["section"] == Util.tut.subjectSectionOverview)
+                this.overview.initMain();
+
+            if (_param["page"] == Util.tut.pageUploadSubmitDocumentProfilePictureAddUpdate || _param["section"] == Util.tut.subjectSectionProfilePicture)
+                this.profilepicture.initMain();
+
+            if (_param["page"] == Util.tut.pageUploadSubmitDocumentIdentityCardAddUpdate || _param["section"] == Util.tut.subjectSectionIdentityCard)
+                this.identitycard.initMain();
+
+            if (_param["page"] == Util.tut.pageUploadSubmitDocumentTranscriptAddUpdate || _param["section"] == Util.tut.subjectSectionTranscript)
+                this.transcript.initMain();
         },
-        
-        //ฟังก์ชั่นสำหรับแสดงหน้าข้อความสำหรับคำแนะนำการอัพโหลดเอกสารของนักศึกษาตามหัวข้อ
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param         รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //page              รับค่าชื่อหน้า
-        //2. _callBackFunc  รับค่าสำหรับให้ส่งค่าที่ต้องการในฟังก์ชั่นกลับ
         getFrmRecommend: function (_param, _callBackFunc) {
             _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
@@ -189,11 +180,6 @@ var UDSStaffUploadSubmitDocument = {
                 _callBackFunc(_result, _e);
             });
         },
-
-        //ฟังก์ชั่นสำหรับแสดงข้อความแนะนำการอัพโหลดเอกสารของนักศึกษา
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //action    รับค่าการกระทำ
         getMsgRecommend: function (_param) {
             _param["action"] = (_param["action"] == undefined ? "" : _param["action"]);
 
@@ -201,20 +187,17 @@ var UDSStaffUploadSubmitDocument = {
             var _msgEN;
             var _valueMsg = {};
 
-            if (_param["action"] == "browse")
-            {        
+            if (_param["action"] == "browse") {
                 _msgTH = "คลิก \"BROWSE\" เพื่อเลือกไฟล์";
                 _msgEN = " : Click \"BROWSE\" to select a file";
             }
 
-            if (_param["action"] == "save")
-            {
+            if (_param["action"] == "save") {
                 _msgTH = "คลิกลากรูปเพื่อปรับตำแหน่ง";
                 _msgEN = " : Drag the image to adjust position";
             }
 
-            if (_param["action"] == "submit")
-            {
+            if (_param["action"] == "submit") {
                 _msgTH = "คลิก \"SUBMIT\" เพื่อส่งเอกสารให้เจ้าหน้าที่พิจารณาอนุมัติ";
                 _msgEN = " : Click \"SUBMIT\" to send document to the authorities for approval";
             }
@@ -224,19 +207,11 @@ var UDSStaffUploadSubmitDocument = {
 
             return _valueMsg;
         },
-        
-        //ฟังก์ชั่นสำหรับกำหนดสถานะการอัพโหลดเอกสารของนักศึกษา
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section           รับค่าชื่อหัวข้อที่ต้องการ
-        //savedStatus       รับค่าสถานะการบันทึกการอัพโหลดเอกสารของนักศึกษา
-        //submittedStatus   รับค่าสถานะการยืนยันการส่งเอกสารที่นักศึกษาอัพโหลด
-        //approvalStatus    รับค่าสถานะการอนุมัตืเอกสารที่นักศึกษาอัพโหลด
         setStatusUploadDocument: function (_param) {
-            _param["section"]           = (_param["section"] == undefined ? "" : _param["section"]);
-            _param["savedStatus"]       = (_param["savedStatus"] == undefined ? "" : _param["savedStatus"]);
-            _param["submittedStatus"]   = (_param["submittedStatus"] == undefined ? "" : _param["submittedStatus"]);
-            _param["approvalStatus"]    = (_param["approvalStatus"] == undefined ? "" : _param["approvalStatus"]);
+            _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
+            _param["savedStatus"] = (_param["savedStatus"] == undefined ? "" : _param["savedStatus"]);
+            _param["submittedStatus"] = (_param["submittedStatus"] == undefined ? "" : _param["submittedStatus"]);
+            _param["approvalStatus"] = (_param["approvalStatus"] == undefined ? "" : _param["approvalStatus"]);
 
             var _this = Util.tut.tus;
             var _idContent = (_this.idSectionAddUpdate + _param["section"].toLowerCase());
@@ -245,8 +220,6 @@ var UDSStaffUploadSubmitDocument = {
             $("#" + _idContent + "-submittedstatus-hidden").val(_param["submittedStatus"]);
             $("#" + _idContent + "-approvalstatus-hidden").val(_param["approvalStatus"]);
         },
-        
-        //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการอัพโหลดเอกสารในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
         initUploadFile: function () {
             var _this1 = Util.tut.tus;
             var _this2 = this;
@@ -258,24 +231,39 @@ var UDSStaffUploadSubmitDocument = {
                 var _section = $(this).attr("alt");
                 var _page;
 
-                if ($("#" + _idUploadFileButton).hasClass("disable") == false)
-                {   
+                if ($("#" + _idUploadFileButton).hasClass("disable") == false) {   
                     Util.dialogMessageClose();
 
-                    if (_idUploadFileButton == ("clear-uploadfile-" + _section.toLowerCase()))
-                    {
-                        if (_section == Util.tut.subjectSectionProfilePicture)      _this2.profilepicture.resetMain();
-                        if (_section == Util.tut.subjectSectionIdentityCard)        _this2.identitycard.resetMain();
-                        if (_section == Util.tut.subjectSectionTranscriptFrontside) _this2.transcript.resetMainSection({ section: _section });
-                        if (_section == Util.tut.subjectSectionTranscriptBackside)  _this2.transcript.resetMainSection({ section: _section });
+                    if (_idUploadFileButton == ("clear-uploadfile-" + _section.toLowerCase())) {
+                        if (_section == Util.tut.subjectSectionProfilePicture)
+                            _this2.profilepicture.resetMain();
+
+                        if (_section == Util.tut.subjectSectionIdentityCard)
+                            _this2.identitycard.resetMain();
+
+                        if (_section == Util.tut.subjectSectionTranscriptFrontside)
+                            _this2.transcript.resetMainSection({
+                                section: _section
+                            });
+
+                        if (_section == Util.tut.subjectSectionTranscriptBackside)
+                            _this2.transcript.resetMainSection({
+                                section: _section
+                            });
                     }
 
-                    if (_idUploadFileButton == ("upload-uploadfile-" + _section.toLowerCase()))
-                    {
-                        if (_section == Util.tut.subjectSectionProfilePicture)      _page = Util.tut.pageRecommendUploadProfilePictureMain;
-                        if (_section == Util.tut.subjectSectionIdentityCard)        _page = Util.tut.pageRecommendUploadIdentityCardMain;
-                        if (_section == Util.tut.subjectSectionTranscriptFrontside) _page = Util.tut.pageRecommendUploadTranscriptFrontsideMain;
-                        if (_section == Util.tut.subjectSectionTranscriptBackside)  _page = Util.tut.pageRecommendUploadTranscriptBacksideMain;
+                    if (_idUploadFileButton == ("upload-uploadfile-" + _section.toLowerCase())) {
+                        if (_section == Util.tut.subjectSectionProfilePicture)
+                            _page = Util.tut.pageRecommendUploadProfilePictureMain;
+
+                        if (_section == Util.tut.subjectSectionIdentityCard)
+                            _page = Util.tut.pageRecommendUploadIdentityCardMain;
+
+                        if (_section == Util.tut.subjectSectionTranscriptFrontside)
+                            _page = Util.tut.pageRecommendUploadTranscriptFrontsideMain;
+
+                        if (_section == Util.tut.subjectSectionTranscriptBackside)
+                            _page = Util.tut.pageRecommendUploadTranscriptBacksideMain;
 
                         _this2.getFrmRecommend({
                             page: _page
@@ -297,8 +285,7 @@ var UDSStaffUploadSubmitDocument = {
                             section: _section
                         });
 
-                    if (_idUploadFileButton == ("submit-uploadfile-" + _section.toLowerCase()))                
-                    {
+                    if (_idUploadFileButton == ("submit-uploadfile-" + _section.toLowerCase())) {
                         _this2.getFrmRecommend({
                             page: Util.tut.pageRecommendSubmitMain
                         }, function (_result, _e) {
@@ -311,15 +298,9 @@ var UDSStaffUploadSubmitDocument = {
                 }
             })
         },
-        
-        //ฟังก์ชั่นสำหรับกำหนดการแสดงผลหน้าการอัพโหลดเอกสารของนักศึกษา
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param         รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section           รับค่าชื่อหัวข้อที่ต้องการ
-        //uploadedStatus    รับค่าสถานะการอัพโหลดเอกสารของนักศึกษา
         setFrmUploadFile: function (_param) {
-            _param["section"]           = (_param["section"] == undefined ? "" : _param["section"]);
-            _param["uploadedStatus"]    = (_param["uploadedStatus"] == undefined ? "" : _param["uploadedStatus"]);
+            _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
+            _param["uploadedStatus"] = (_param["uploadedStatus"] == undefined ? "" : _param["uploadedStatus"]);
 
             var _this = Util.tut.tus;
             var _idContent = (_this.idSectionAddUpdate + _param["section"].toLowerCase());
@@ -357,11 +338,10 @@ var UDSStaffUploadSubmitDocument = {
             _objDeleteUploadFile.addClass("disable");
             _objSubmitUploadFile.addClass("disable");
 
-            if ((_param["uploadedStatus"].length == 0 || _param["uploadedStatus"] == "N") && (_valueDocumentStatus.length == 0 || _valueDocumentStatus == "NNS"))
-            {
+            if ((_param["uploadedStatus"].length == 0 || _param["uploadedStatus"] == "N") && (_valueDocumentStatus.length == 0 || _valueDocumentStatus == "NNS")) {
                 _valueMsg = this.getMsgRecommend({
-                                action: "browse"
-                            });
+                    action: "browse"
+                });
 
                 _objRecommend.show();
                 _objUploadFileLabel.html(_valueMsg["msgth"] + _valueMsg["msgen"]).show();
@@ -371,11 +351,10 @@ var UDSStaffUploadSubmitDocument = {
                 _objUploadUploadFile.removeClass("disable");
             }
         
-            if (_param["uploadedStatus"] == "Y" && _valueDocumentStatus == "NNS")
-            {            
+            if (_param["uploadedStatus"] == "Y" && _valueDocumentStatus == "NNS") {
                 _valueMsg = this.getMsgRecommend({
-                                action: "save"
-                            });
+                    action: "save"
+                });
 
                 if (_valueFileDir.length > 0 && _valueFileName.length > 0)
                     _objImage.attr({
@@ -383,6 +362,7 @@ var UDSStaffUploadSubmitDocument = {
                         "width": (_valueWidth + "px"),
                         "height": (_valueHeight + "px")
                     }).show();
+
                 $(".jwc_image").css({
                     "cursor": "move"
                 });
@@ -391,11 +371,10 @@ var UDSStaffUploadSubmitDocument = {
                 _objDeleteUploadFile.removeClass("disable");
             }
 
-            if (_param["uploadedStatus"] == "Y" && _valueDocumentStatus == "YNS")
-            {
+            if (_param["uploadedStatus"] == "Y" && _valueDocumentStatus == "YNS") {
                 _valueMsg = this.getMsgRecommend({
-                                action: "submit"
-                            });
+                    action: "submit"
+                });
 
                 if (_valueFileDir.length > 0 && _valueFileName.length > 0)
                     _objImage.attr({
@@ -403,27 +382,26 @@ var UDSStaffUploadSubmitDocument = {
                         "width": (_valueWidth + "px"),
                         "height": (_valueHeight + "px")
                     }).show();
+
                 _objUploadFileLabel.html(_valueMsg["msgth"] + _valueMsg["msgen"]).show();
                 _objDeleteUploadFile.removeClass("disable");
                 _objSubmitUploadFile.removeClass("disable");
             }
         
-            if (_param["uploadedStatus"] == "Y" && (_valueDocumentStatus == "YYS" || _valueDocumentStatus == "YYW" || _valueDocumentStatus == "YYY" || _valueDocumentStatus == "YYN"))
-            {
+            if (_param["uploadedStatus"] == "Y" && (_valueDocumentStatus == "YYS" || _valueDocumentStatus == "YYW" || _valueDocumentStatus == "YYY" || _valueDocumentStatus == "YYN")) {
                 if (_valueFileDir.length > 0 && _valueFileName.length > 0)
                     _objImage.attr({
                         "src": (_valueFileDir + "/" + _valueFileName),
                         "width": (_valueWidth + "px"),
                         "height": (_valueHeight + "px")
                     }).show();
-                if (_valueApprovalStatus == "N") _objDeleteUploadFile.removeClass("disable");
+
+                if (_valueApprovalStatus == "N")
+                    _objDeleteUploadFile.removeClass("disable");
             }
-        },
-        
+        },        
         studentrecords: {
             idSectionAddUpdate: UDSStaffUtil.idSectionUploadSubmitDocumentStudentRecordsAddUpdate.toLowerCase(),
-            
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการเพิ่มหรือแก้ไขในส่วนของข้อมูลการเป็นนักศึกษาในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
             initMain: function () {
                 var _this = Util.tut.tus;
 
@@ -431,29 +409,24 @@ var UDSStaffUploadSubmitDocument = {
 
                 this.resetMain();
             },
-            
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการแสดงข้อมูลการเป็นนักศึกษาในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
             resetMain: function () {
                 Util.dialogMessageClose();
                 Util.gotoTopElement();
                 
-                if ($("#" + this.idSectionAddUpdate + "-studentpicture-hidden").val().length > 0)
-                {
+                if ($("#" + this.idSectionAddUpdate + "-studentpicture-hidden").val().length > 0) {
                     $("#" + this.idSectionAddUpdate + "-studentpicture-content .picture-content .picture-watermark").show();
-                    $("#" + this.idSectionAddUpdate + "-studentpicture-content .picture-content img").prop({ "src": $("#" + this.idSectionAddUpdate + "-studentpicture-hidden").val() }).show();
+                    $("#" + this.idSectionAddUpdate + "-studentpicture-content .picture-content img").prop({
+                        "src": $("#" + this.idSectionAddUpdate + "-studentpicture-hidden").val()
+                    }).show();
                 }
-                else
-                    {
-                        $("#" + this.idSectionAddUpdate + "-studentpicture-content .picture-content .picture-watermark").hide();
-                        $("#" + this.idSectionAddUpdate + "-studentpicture-content .picture-content img").hide();
-                    }
+                else {
+                    $("#" + this.idSectionAddUpdate + "-studentpicture-content .picture-content .picture-watermark").hide();
+                    $("#" + this.idSectionAddUpdate + "-studentpicture-content .picture-content img").hide();
+                }
             }
-        },
-        
+        },        
         overview: {
             idSectionAddUpdate: UDSStaffUtil.idSectionUploadSubmitDocumentOverviewAddUpdate.toLowerCase(),
-            
-            //ฟังก์ชั่นสำหรับกำหนดการแสดงผลให้กับผลการอัพโหลดเอกสารในส่วนของการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
             setMainLayout: function () {
                 var _idContentLayout = $("#" + this.idSectionAddUpdate + "-form .form .form-layout");
                 var _idContentPicture = $("#" + this.idSectionAddUpdate + "-form .picture-content");            
@@ -462,8 +435,6 @@ var UDSStaffUploadSubmitDocument = {
 
                 _idContentInputCol.width(_idContentLayout.width() - _idContentPicture.width() - _idContentLabelCol.width() - 55);
             },
-            
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับผลการอัพโหลดเอกสารในส่วนของการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
             initMain: function () {
                 var _this = this;
                 var _idContentProfilePicture = (this.idSectionAddUpdate + "-form ." + Util.tut.subjectSectionProfilePicture.toLowerCase() + "-content");
@@ -473,16 +444,38 @@ var UDSStaffUploadSubmitDocument = {
 
                 $("#" + this.idSectionAddUpdate + "-form .picture-content").hover(
                     function () {                
-                        if ($(this).hasClass(Util.tut.subjectSectionProfilePicture.toLowerCase() + "-content") && $("#" + _idContentProfilePicture + " img").is(":visible")) $("#" + _idContentProfilePicture + " .picture-zoom").show();
-                        if ($(this).hasClass(Util.tut.subjectSectionIdentityCard.toLowerCase() + "-content") && $("#" + _idContentIdentityCard + " img").is(":visible")) $("#" + _idContentIdentityCard + " .picture-zoom").show();
-                        if ($(this).hasClass(Util.tut.subjectSectionTranscriptFrontside.toLowerCase() + "-content") && $("#" + _idContentTranscriptFrontside + " img").is(":visible")) $("#" + _idContentTranscriptFrontside + " .picture-zoom").show();
-                        if ($(this).hasClass(Util.tut.subjectSectionTranscriptBackside.toLowerCase() + "-content") && $("#" + _idContentTranscriptBackside + " img").is(":visible")) $("#" + _idContentTranscriptBackside + " .picture-zoom").show();
+                        if ($(this).hasClass(Util.tut.subjectSectionProfilePicture.toLowerCase() + "-content") &&
+                            $("#" + _idContentProfilePicture + " img").is(":visible"))
+                            $("#" + _idContentProfilePicture + " .picture-zoom").show();
+
+                        if ($(this).hasClass(Util.tut.subjectSectionIdentityCard.toLowerCase() + "-content") &&
+                            $("#" + _idContentIdentityCard + " img").is(":visible"))
+                            $("#" + _idContentIdentityCard + " .picture-zoom").show();
+
+                        if ($(this).hasClass(Util.tut.subjectSectionTranscriptFrontside.toLowerCase() + "-content") &&
+                            $("#" + _idContentTranscriptFrontside + " img").is(":visible"))
+                            $("#" + _idContentTranscriptFrontside + " .picture-zoom").show();
+
+                        if ($(this).hasClass(Util.tut.subjectSectionTranscriptBackside.toLowerCase() + "-content") &&
+                            $("#" + _idContentTranscriptBackside + " img").is(":visible"))
+                            $("#" + _idContentTranscriptBackside + " .picture-zoom").show();
                     },
-                    function () {                
-                        if ($(this).hasClass(Util.tut.subjectSectionProfilePicture.toLowerCase() + "-content") && $("#" + _idContentProfilePicture + " img").is(":visible")) $("#" + _idContentProfilePicture + " .picture-zoom").hide();
-                        if ($(this).hasClass(Util.tut.subjectSectionIdentityCard.toLowerCase() + "-content") && $("#" + _idContentIdentityCard + " img").is(":visible")) $("#" + _idContentIdentityCard + " .picture-zoom").hide();
-                        if ($(this).hasClass(Util.tut.subjectSectionTranscriptFrontside.toLowerCase() + "-content") && $("#" + _idContentTranscriptFrontside + " img").is(":visible")) $("#" + _idContentTranscriptFrontside + " .picture-zoom").hide();
-                        if ($(this).hasClass(Util.tut.subjectSectionTranscriptBackside.toLowerCase() + "-content") && $("#" + _idContentTranscriptBackside + " img").is(":visible")) $("#" + _idContentTranscriptBackside + " .picture-zoom").hide();
+                    function () {
+                        if ($(this).hasClass(Util.tut.subjectSectionProfilePicture.toLowerCase() + "-content") &&
+                            $("#" + _idContentProfilePicture + " img").is(":visible"))
+                            $("#" + _idContentProfilePicture + " .picture-zoom").hide();
+
+                        if ($(this).hasClass(Util.tut.subjectSectionIdentityCard.toLowerCase() + "-content") &&
+                            $("#" + _idContentIdentityCard + " img").is(":visible"))
+                            $("#" + _idContentIdentityCard + " .picture-zoom").hide();
+
+                        if ($(this).hasClass(Util.tut.subjectSectionTranscriptFrontside.toLowerCase() + "-content") &&
+                            $("#" + _idContentTranscriptFrontside + " img").is(":visible"))
+                            $("#" + _idContentTranscriptFrontside + " .picture-zoom").hide();
+
+                        if ($(this).hasClass(Util.tut.subjectSectionTranscriptBackside.toLowerCase() + "-content") &&
+                            $("#" + _idContentTranscriptBackside + " img").is(":visible"))
+                            $("#" + _idContentTranscriptBackside + " .picture-zoom").hide();
                     }
                 );
             
@@ -501,8 +494,6 @@ var UDSStaffUploadSubmitDocument = {
                 this.setMainLayout();
                 this.resetMain();
             },
-            
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับผลการอัพโหลดเอกสารในส่วนของการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
             resetMain: function () {                
                 var _this = Util.tut.tus;
                 var _fileArray;
@@ -525,33 +516,32 @@ var UDSStaffUploadSubmitDocument = {
                     id: (this.idSectionAddUpdate + "-form")
                 });
 
-                for (_i = 0; _i < _documentUpload.length; _i++)
-                {
+                for (_i = 0; _i < _documentUpload.length; _i++) {
                     _section = _documentUpload[_i];
-                    _documentUploadDetail[0]  = (_section + "InstituteNameTH");
-                    _documentUploadDetail[1]  = (_section + "InstituteNameEN");
-                    _documentUploadDetail[2]  = (_section + "InstituteCountryNameTH");
-                    _documentUploadDetail[3]  = (_section + "InstituteCountryNameEN");
-                    _documentUploadDetail[4]  = (_section + "InstituteProvinceNameTH");
-                    _documentUploadDetail[5]  = (_section + "InstituteProvinceNameEN");
-                    _documentUploadDetail[6]  = (_section + "FileName");
-                    _documentUploadDetail[7]  = (_section + "FullPath");
-                    _documentUploadDetail[8]  = (_section + "FileType");
-                    _documentUploadDetail[9]  = (_section + "FileSize");
+                    _documentUploadDetail[0] = (_section + "InstituteNameTH");
+                    _documentUploadDetail[1] = (_section + "InstituteNameEN");
+                    _documentUploadDetail[2] = (_section + "InstituteCountryNameTH");
+                    _documentUploadDetail[3] = (_section + "InstituteCountryNameEN");
+                    _documentUploadDetail[4] = (_section + "InstituteProvinceNameTH");
+                    _documentUploadDetail[5] = (_section + "InstituteProvinceNameEN");
+                    _documentUploadDetail[6] = (_section + "FileName");
+                    _documentUploadDetail[7] = (_section + "FullPath");
+                    _documentUploadDetail[8] = (_section + "FileType");
+                    _documentUploadDetail[9] = (_section + "FileSize");
                     _documentUploadDetail[10] = (_section + "SavedDate");
                     _documentUploadDetail[11] = (_section + "SubmittedStatus");
                     _documentUploadDetail[12] = (_section + "ApprovalStatus");
                     _documentUploadDetail[13] = (_section + "ApprovalDate");
                     _documentUploadDetail[14] = (_section + "Message");
 
-                    if ($("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[7].toLowerCase() + "-hidden").val().length > 0)
-                    {
+                    if ($("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[7].toLowerCase() + "-hidden").val().length > 0) {
                         $("#" + this.idSectionAddUpdate + "-" + _section.toLowerCase() + "-form ." + _section.toLowerCase() + "-content .picture-watermark").show();
-                        $("#" + this.idSectionAddUpdate + "-" + _section.toLowerCase() + "-form ." + _section.toLowerCase() + "-content img").prop({ "src": $("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[7].toLowerCase() + "-hidden").val() }).show();
+                        $("#" + this.idSectionAddUpdate + "-" + _section.toLowerCase() + "-form ." + _section.toLowerCase() + "-content img").prop({
+                            "src": $("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[7].toLowerCase() + "-hidden").val()
+                        }).show();
                     }
 
-                    if (_section == Util.tut.subjectSectionTranscriptFrontside || _section == Util.tut.subjectSectionTranscriptBackside)
-                    {
+                    if (_section == Util.tut.subjectSectionTranscriptFrontside || _section == Util.tut.subjectSectionTranscriptBackside) {
                         $("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[0].toLowerCase()).html($("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[0].toLowerCase() + "-hidden").val());
                         $("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[1].toLowerCase()).html($("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[1].toLowerCase() + "-hidden").val());
                         $("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[2].toLowerCase()).html($("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[2].toLowerCase() + "-hidden").val());
@@ -565,11 +555,13 @@ var UDSStaffUploadSubmitDocument = {
                     $("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[9].toLowerCase()).html($("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[9].toLowerCase() + "-hidden").val());
                     $("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[10].toLowerCase()).html($("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[10].toLowerCase() + "-hidden").val());
                     $("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[11].toLowerCase()).html($("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[11].toLowerCase() + "-hidden").val());
-                    $("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[12].toLowerCase()).addClass(Util.tut.getIconApprovalStatus({ status: $("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[12].toLowerCase() + "-hidden").val() }));
+                    $("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[12].toLowerCase())
+                        .addClass(Util.tut.getIconApprovalStatus({
+                            status: $("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[12].toLowerCase() + "-hidden").val()
+                        }));
                     $("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[13].toLowerCase()).html($("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[13].toLowerCase() + "-hidden").val());
 
-                    if ($("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[14].toLowerCase() + "-hidden").val().length > 0)
-                    {                    
+                    if ($("#" + this.idSectionAddUpdate + "-" + _documentUploadDetail[14].toLowerCase() + "-hidden").val().length > 0) {
                         _callFunc = "Util.getFrmViewMessage({" +
                                     "page:'" + Util.tut.pageViewMessageMain + "'," +
                                     "id:'" + Util.tut.idSectionViewMessageMain.toLowerCase() + "'," +
@@ -581,11 +573,8 @@ var UDSStaffUploadSubmitDocument = {
                 }
             },
         },
-        
         profilepicture: {
             idSectionAddUpdate: UDSStaffUtil.idSectionUploadSubmitDocumentProfilePictureAddUpdate.toLowerCase(),
-            
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการอัพโหลดรูปภาพประจำตัวในส่วนของการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
             initMain: function () {
                 var _this1 = Util.tut.tus;
                 var _this2 = _this1.sectionAddUpdate;
@@ -595,13 +584,12 @@ var UDSStaffUploadSubmitDocument = {
                 $("." + Util.tut.subjectSectionProfilePicture.toLowerCase() + "-content .uploaddocument-recommend").click(function () {
                     _this2.getFrmRecommend({
                         page: Util.tut.pageRecommendUploadProfilePictureMain
-                    }, function () { });
+                    }, function () {
+                    });
                 });
                 
                 this.resetMain();
             },
-            
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการอัพโหลดรูปภาพประจำตัวในส่วนของการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
             resetMain: function () {
                 var _this1 = Util.tut.tus;
                 var _this2 = _this1.sectionAddUpdate;
@@ -613,22 +601,24 @@ var UDSStaffUploadSubmitDocument = {
                 Util.gotoTopElement();
                 Util.resetForm({
                     id: (this.idSectionAddUpdate + "-form")
-                });                
+                });
                 
-                if (_valueGender == "M") _idProfilePictureExample.css({ "background-position": "0px -501px" });
-                if (_valueGender == "F") _idProfilePictureExample.css({ "background-position": "-230px -501px" });
+                if (_valueGender == "M") _idProfilePictureExample.css({
+                    "background-position": "0px -501px"
+                });
+
+                if (_valueGender == "F") _idProfilePictureExample.css({
+                    "background-position": "-230px -501px"
+                });
               
                 _this2.setFrmUploadFile({
                     section: Util.tut.subjectSectionProfilePicture,
                     uploadedStatus: _valueUpload
                 });
             },
-        },
-        
+        },        
         identitycard: {
             idSectionAddUpdate: UDSStaffUtil.idSectionUploadSubmitDocumentIdentityCardAddUpdate.toLowerCase(),
-
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการอัพโหลดบัตรประจำตัวประชาชนในส่วนของการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
             initMain: function () {
                 var _this1 = Util.tut.tus;
                 var _this2 = _this1.sectionAddUpdate;
@@ -643,8 +633,6 @@ var UDSStaffUploadSubmitDocument = {
 
                 this.resetMain();
             },
-            
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการอัพโหลดบัตรประจำตัวประชาชนในส่วนของการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
             resetMain: function () {
                 var _this1 = Util.tut.tus;
                 var _this2 = _this1.sectionAddUpdate;
@@ -661,15 +649,12 @@ var UDSStaffUploadSubmitDocument = {
                     uploadedStatus: _valueUpload
                 });
             },
-        },
-        
+        },        
         transcript: {
             idSectionAddUpdate: UDSStaffUtil.idSectionUploadSubmitDocumentTranscriptAddUpdate.toLowerCase(),
             idSectionTranscriptInstituteAddUpdate: UDSStaffUtil.idSectionUploadSubmitDocumentTranscriptInstituteAddUpdate.toLowerCase(),
             idSectionTranscriptFrontsideAddUpdate: UDSStaffUtil.idSectionUploadSubmitDocumentTranscriptFrontsideAddUpdate.toLowerCase(),
             idSectionTranscriptBacksideAddUpdate: UDSStaffUtil.idSectionUploadSubmitDocumentTranscriptBacksideAddUpdate.toLowerCase(),
-
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการอัพโหลดระเบียนแสดงผลการเรียนในส่วนของการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
             initMain: function () {
                 var _this1 = Util.tut.tus;
                 var _this2 = _this1.sectionAddUpdate;
@@ -678,25 +663,25 @@ var UDSStaffUploadSubmitDocument = {
                     id: ("#" + this.idSectionTranscriptInstituteAddUpdate + "-institutecountry"),
                     width: 463,
                     height: 29
-                });                                                       
+                });
                 _this2.initUploadFile();
 
                 $("." + Util.tut.subjectSectionTranscriptFrontside.toLowerCase() + "-content .uploaddocument-recommend").click(function () {
                     _this2.getFrmRecommend({
                         page: Util.tut.pageRecommendUploadTranscriptFrontsideMain
-                    }, function () { });
+                    }, function () {
+                    });
                 });
 
                 $("." + Util.tut.subjectSectionTranscriptBackside.toLowerCase() + "-content .uploaddocument-recommend").click(function () {
                     _this2.getFrmRecommend({
                         page: Util.tut.pageRecommendUploadTranscriptBacksideMain
-                    }, function () { });
+                    }, function () {
+                    });
                 });
             
                 this.resetMain();
             },
-            
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการอัพโหลดระเบียนแสดงผลการเรียนในส่วนของการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
             resetMain: function () {
                 var _this1 = Util.tut.tus;
                 var _this2 = _this1.sectionAddUpdate;
@@ -713,7 +698,7 @@ var UDSStaffUploadSubmitDocument = {
                 Util.comboboxSetValue({
                     id: ("#" + this.idSectionTranscriptInstituteAddUpdate + "-institutecountry"),
                     value: $("#" + this.idSectionTranscriptInstituteAddUpdate + "-institutecountry-hidden").val()
-                });                    
+                });
                 Util.tut.setSelectDefaultCombobox({
                     id: ("#" + this.idSectionTranscriptInstituteAddUpdate + "-instituteprovince"),
                     value: $("#" + this.idSectionTranscriptInstituteAddUpdate + "-instituteprovince-hidden").val()
@@ -721,7 +706,8 @@ var UDSStaffUploadSubmitDocument = {
                     Util.tut.setSelectDefaultCombobox({
                         id: ("#" + _this3.idSectionTranscriptInstituteAddUpdate + "-institute"),
                         value: $("#" + _this3.idSectionTranscriptInstituteAddUpdate + "-institute-hidden").val()
-                    }, function () { });
+                    }, function () {
+                    });
                 });
 
                 _this2.setFrmUploadFile({
@@ -733,11 +719,6 @@ var UDSStaffUploadSubmitDocument = {
                     uploadedStatus: _valueUploadTranscriptBackside
                 });
             },
-
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการอัพโหลดระเบียนแสดงผลการเรียนในแต่ละด้านในส่วนของการเพิ่มหรือแก้ไขในส่วนของการอัพโหลดและส่งเอกสารให้กับนักศึกษา
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //section   รับค่าชื่อหัวข้อที่ต้องการ
             resetMainSection: function (_param) {
                 _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -748,20 +729,22 @@ var UDSStaffUploadSubmitDocument = {
                 var _valueUpload = $("#" + _idContent + "-savedstatus-hidden").val();
 
                 Util.dialogMessageClose();
-                if (_param["section"] == Util.tut.subjectSectionTranscriptFrontside)
-                {                
+
+                if (_param["section"] == Util.tut.subjectSectionTranscriptFrontside) {
                     _idSection = this.idSectionTranscriptFrontsideAddUpdate;
                     Util.gotoTopElement();                
                 }
-                if (_param["section"] == Util.tut.subjectSectionTranscriptBackside)
-                {
+
+                if (_param["section"] == Util.tut.subjectSectionTranscriptBackside) {
                     _idSection = this.idSectionTranscriptBacksideAddUpdate;
+
                     Util.gotoElement({
                         anchorName: ("#" + _idSection + "-form"),
                         top: (Util.offsetTop + 10)
                     });
 
                 }
+
                 Util.resetForm({
                     id: (_idSection + "-form")
                 });
@@ -772,11 +755,6 @@ var UDSStaffUploadSubmitDocument = {
                 });
             },
         },
-        
-        //ฟังก์ชั่นสำหรับแสดงไดอะล็อกยืนยันการอัพโหลดเอกสารของนักศึกษาตามหัวข้อ
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section   รับค่าชื่อหัวข้อที่ต้องการ
         confirmUploadFile: function (_param) {
             _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -790,12 +768,10 @@ var UDSStaffUploadSubmitDocument = {
                     msgNo: "CANCEL"
                 }
             }, function (_result) {
-                if (_result == "Y")
-                {
+                if (_result == "Y") {
                     if (_this2.validateUploadFile({ 
                             section: _param["section"]
-                        }))
-                    {
+                        })) {
                         $("#uploadfile-" + _param["section"].toLowerCase() + "-form #uploadfile-personid").val($("#" + _this2.studentrecords.idSectionAddUpdate + "-personid-hidden").val());
                         $("#uploadfile-" + _param["section"].toLowerCase() + "-form").attr("method", "POST");
                         $("#uploadfile-" + _param["section"].toLowerCase() + "-form").submit();
@@ -803,11 +779,6 @@ var UDSStaffUploadSubmitDocument = {
                 }
             });
         },
-        
-        //ฟังก์ชั่นสำหรับตรวจสอบความถูกต้องในการอัพโหลดเอกสารของนักศึกษาตามหัวข้อ
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section   รับค่าชื่อหัวข้อที่ต้องการ
         validateUploadFile: function (_param) {
             _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -817,40 +788,37 @@ var UDSStaffUploadSubmitDocument = {
             var _valueBrowseUploadFile = $("#uploadfile-" + _param["section"].toLowerCase() + "-label").html();
             var _value = _valueBrowseUploadFile.split(".");
             
-            if (_error == false && _value.length < 2) { _error = true; _msgTH = "กรุณาเลือกไฟล์"; _msgEN = "Please browse to select a file."; }
-            if (_error == false && Util.tut.supportFileType.indexOf(_value[_value.length - 1]) < 0) { _error = true; _msgTH = "นามสกุลของไฟล์ไม่ถูกต้อง"; _msgEN = "Invalid file type."; }
+            if (_error == false && _value.length < 2) {
+                _error = true;
+                _msgTH = "กรุณาเลือกไฟล์";
+                _msgEN = "Please browse to select a file.";
+            }
 
-            if (_error == true)
-            {
+            if (_error == false && Util.tut.supportFileType.indexOf(_value[_value.length - 1]) < 0) {
+                _error = true;
+                _msgTH = "นามสกุลของไฟล์ไม่ถูกต้อง";
+                _msgEN = "Invalid file type.";
+            }
+
+            if (_error == true) {
                 Util.dialogMessageError({
                     content: ("<div class='th-label'>" + _msgTH + "</div><div class='en-label'>" + _msgEN + "</div>")
                 });
+
                 return false;
             }
 
             return true;
         },
-        
-        //ฟังก์ชั่นสำหรับหยุดการอัพโหลดเอกสารของนักศึกษา แล้วรับค่าจากการอัพโหลดใน C# มาทำงาน
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param     รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //result        รับค่าผลการอัพโหลดเอกสารของนักศึกษา
-        //section       รับค่าชื่อหัวข้อที่ต้องการ
-        //fileDir       รับค่าชื่อ Directory ที่เก็บไฟล์ที่ได้อัพโหลดเอกสารของนักศึกษา
-        //fileName      รับค่าชื่อ File ที่ได้จากการอัพโหลดเอกสารของนักศึกษา
-        //width         รับค่าชื่อความกว้างของเอกสารที่นักศึกษาอัพโหลด
-        //height        รับค่าชื่อความสูงของเอกสารที่นักศึกษาอัพโหลด
-        //widthShow     รับค่าชื่อความกว้างของเอกสารที่นักศึกษาอัพโหลดสำหรับแสดง
-        //heightShow    รับค่าชื่อความสูงของเอกสารที่นักศึกษาอัพโหลดสำหรับแสดง
         stopUploadFile: function (_param) {
-            _param["result"]        = (_param["result"] == undefined ? "" : _param["result"]);
-            _param["section"]       = (_param["section"] == undefined ? "" : _param["section"]);
-            _param["fileDir"]       = (_param["fileDir"] == undefined ? "" : _param["fileDir"]);
-            _param["fileName"]      = (_param["fileName"] == undefined ? "" : _param["fileName"]);
-            _param["width"]         = (_param["width"] == undefined ? "" : _param["width"]);
-            _param["height"]        = (_param["height"] == undefined ? "" : _param["height"]);
-            _param["widthShow"]     = (_param["widthShow"] == undefined ? "" : _param["widthShow"]);
-            _param["heightShow"]    = (_param["heightShow"] == undefined ? "" : _param["heightShow"]);
+            _param["result"] = (_param["result"] == undefined ? "" : _param["result"]);
+            _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
+            _param["fileDir"] = (_param["fileDir"] == undefined ? "" : _param["fileDir"]);
+            _param["fileName"] = (_param["fileName"] == undefined ? "" : _param["fileName"]);
+            _param["width"] = (_param["width"] == undefined ? "" : _param["width"]);
+            _param["height"] = (_param["height"] == undefined ? "" : _param["height"]);
+            _param["widthShow"] = (_param["widthShow"] == undefined ? "" : _param["widthShow"]);
+            _param["heightShow"] = (_param["heightShow"] == undefined ? "" : _param["heightShow"]);
                         
             var _this = Util.tut.tus;
             var _idContent = (_this.idSectionAddUpdate + _param["section"].toLowerCase());
@@ -871,7 +839,7 @@ var UDSStaffUploadSubmitDocument = {
                 }, function (_result) {
                     $("#" + _idContent + "-cropx-hidden").val(_result.CropX);
                     $("#" + _idContent + "-cropy-hidden").val(_result.CropY);
-                });            
+                });
 
                 $("#" + _idContent + "-filedir-hidden").val(_param["fileDir"]);
                 $("#" + _idContent + "-filename-hidden").val(_param["fileName"]);
@@ -888,26 +856,29 @@ var UDSStaffUploadSubmitDocument = {
                     uploadedStatus: "Y"
                 });
             }
-            else
-                {
-                    var _error = false;
-                    var _msgTH;
-                    var _msgEN;
+            else {
+                var _error = false;
+                var _msgTH;
+                var _msgEN;
                     
-                    if (_error == false && _param["result"] == 1) { _error = true; _msgTH = "อัพโหลดไฟล์ไม่สำเร็จ"; _msgEN = "Upload file was not successful."; }
-                    if (_error == false && _param["result"] == 2) { _error = true; _msgTH = "ขนาดของไฟล์ไม่ถูกต้อง"; _msgEN = "Invalid file size."; }
-
-                    if (_error == true)
-                        Util.dialogMessageError({
-                            content: ("<div class='th-label'>" + _msgTH + "</div><div class='en-label'>" + _msgEN + "</div>")
-                        });
+                if (_error == false && _param["result"] == 1) {
+                    _error = true;
+                    _msgTH = "อัพโหลดไฟล์ไม่สำเร็จ";
+                    _msgEN = "Upload file was not successful.";
                 }
+
+                if (_error == false && _param["result"] == 2) {
+                    _error = true;
+                    _msgTH = "ขนาดของไฟล์ไม่ถูกต้อง";
+                    _msgEN = "Invalid file size.";
+                }
+
+                if (_error == true)
+                    Util.dialogMessageError({
+                        content: ("<div class='th-label'>" + _msgTH + "</div><div class='en-label'>" + _msgEN + "</div>")
+                    });
+            }
         },
-        
-        //ฟังก์ชั่นสำหรับแสดงไดอะล็อกยืนยันการบันทึกเอกสารที่นักศึกษาอัพโหลดตามหัวข้อ
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section   รับค่าชื่อหัวข้อที่ต้องการ
         confirmSaveFile: function (_param) {
             _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -927,11 +898,6 @@ var UDSStaffUploadSubmitDocument = {
                     });
             });
         },
-        
-        //ฟังก์ชั่นสำหรับบันทึกเอกสารที่นักศึกษาอัพโหลดตามหัวข้อ
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section   รับค่าชื่อหัวข้อที่ต้องการ
         getSaveFile: function (_param) {
             _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -939,19 +905,18 @@ var UDSStaffUploadSubmitDocument = {
             var _this2 = this;
             var _idContent = (_this1.idSectionAddUpdate + _param["section"].toLowerCase());
             var _valueSaveFile = {};
-            _valueSaveFile["personid"]  = $("#" + this.studentrecords.idSectionAddUpdate + "-personid-hidden").val();
-            _valueSaveFile["section"]   = _param["section"];
-            _valueSaveFile["filedir"]   = $("#" + _idContent + "-filedir-hidden").val();
-            _valueSaveFile["filename"]  = $("#" + _idContent + "-filename-hidden").val();
-            _valueSaveFile["cropx"]     = $("#" + _idContent + "-cropx-hidden").val();
-            _valueSaveFile["cropy"]     = $("#" + _idContent + "-cropy-hidden").val();
+            _valueSaveFile["personid"] = $("#" + this.studentrecords.idSectionAddUpdate + "-personid-hidden").val();
+            _valueSaveFile["section"] = _param["section"];
+            _valueSaveFile["filedir"] = $("#" + _idContent + "-filedir-hidden").val();
+            _valueSaveFile["filename"] = $("#" + _idContent + "-filename-hidden").val();
+            _valueSaveFile["cropx"] = $("#" + _idContent + "-cropx-hidden").val();
+            _valueSaveFile["cropy"] = $("#" + _idContent + "-cropy-hidden").val();
 
             this.actionSaveFile({
                 section: _param["section"],
                 data: _valueSaveFile
             }, function (_resultSaveFile, _resultValueSaveFile) {
-                if (_resultSaveFile == false)
-                {
+                if (_resultSaveFile == false) {
                     Util.dialogMessageError({
                         content: ("<div class='th-label'>บันทึกไฟล์ไม่สำเร็จ</div><div class='en-label'>Save file was not successful.</div>")
                     });
@@ -971,29 +936,21 @@ var UDSStaffUploadSubmitDocument = {
                         uploadedStatus: "N"
                     });
                 }
-                else
-                    {
-                        Util.dialogMessageBox({
-                            content: "<div class='th-label'>บันทึกไฟล์เรียบร้อย</div><div class='en-label'>Save file complete.</div>"
-                        });
+                else {
+                    Util.dialogMessageBox({
+                        content: "<div class='th-label'>บันทึกไฟล์เรียบร้อย</div><div class='en-label'>Save file complete.</div>"
+                    });
 
-                        _this2.setFrmUploadFile({
-                            section: _param["section"],
-                            uploadedStatus: "Y"
-                        });
-                    }
+                    _this2.setFrmUploadFile({
+                        section: _param["section"],
+                        uploadedStatus: "Y"
+                    });
+                }
             });
         },
-        
-        //ฟังก์ชั่นสำหรับบันทึกเอกสารที่นักศึกษาอัพโหลด
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param         รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section           รับค่าชื่อหัวข้อที่ต้องการ
-        //data              รับค่าข้อมูลที่ต้องการส่ง
-        //2. _callBackFunc  รับค่าสำหรับให้ส่งค่าที่ต้องการในฟังก์ชั่นกลับ
         actionSaveFile: function (_param, _callBackFunc) {
-            _param["section"]   = (_param["section"] == undefined ? "" : _param["section"]);
-            _param["data"]      = (_param["data"] == undefined || _param["data"] == "" ? {} : _param["data"]);
+            _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
+            _param["data"] = (_param["data"] == undefined || _param["data"] == "" ? {} : _param["data"]);
 
             var _this1 = Util.tut.tus;
             var _this2 = this;
@@ -1006,8 +963,7 @@ var UDSStaffUploadSubmitDocument = {
             Util.actionSaveFile({
                 data: _send
             }, function (_result) {
-                if (_result.Error == 0)
-                {
+                if (_result.Error == 0) {
                     $("#" + _idContent + "-filedir-hidden").val(_result.FileDir);
                     $("#" + _idContent + "-filename-hidden").val(_result.FileName);
                     $("#" + _idContent + "-width-hidden").val(_result.WidthShow);
@@ -1023,9 +979,9 @@ var UDSStaffUploadSubmitDocument = {
                         section: _param["section"],
                         sectionAction: "save"
                     }, function (_resultSave, _resultValueSave) {
-                        if (_resultSave == true)
-                        {
-                            if (_resultValueSave.SaveError != 0) _error = true;
+                        if (_resultSave == true) {
+                            if (_resultValueSave.SaveError != 0)
+                                _error = true;
                         }
                         else
                             _error = true;
@@ -1037,11 +993,6 @@ var UDSStaffUploadSubmitDocument = {
                     _callBackFunc(false, _result);
             });
         },
-        
-        //ฟังก์ชั่นสำหรับแสดงไดอะล็อกยืนยันการลบเอกสารที่นักศึกษาอัพโหลดตามหัวข้อ
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section   รับค่าชื่อหัวข้อที่ต้องการ
         confirmRemoveFile: function (_param) {
             _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -1061,11 +1012,6 @@ var UDSStaffUploadSubmitDocument = {
                     });
             });
         },
-        
-        //ฟังก์ชั่นสำหรับลบเอกสารที่นักศึกษาอัพโหลดตามหัวข้อ
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section   รับค่าชื่อหัวข้อที่ต้องการ
         getRemoveFile: function (_param) {
             _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -1074,17 +1020,25 @@ var UDSStaffUploadSubmitDocument = {
             var _idContent = (_this1.idSectionAddUpdate + _param["section"].toLowerCase());
             var _error = false;
             var _valueRemoveFile = {};
-            _valueRemoveFile["filedir"]     = $("#" + _idContent + "-filedir-hidden").val();
-            _valueRemoveFile["filename"]    = $("#" + _idContent + "-filename-hidden").val();
+            _valueRemoveFile["filedir"] = $("#" + _idContent + "-filedir-hidden").val();
+            _valueRemoveFile["filename"] = $("#" + _idContent + "-filename-hidden").val();
             
             this.actionRemoveFile({
                 section: _param["section"],
                 data: _valueRemoveFile
             }, function (_resultRemoveFile, _resultValueRemoveFile) {
-                if (_resultRemoveFile == false)
-                {
-                    if (_error == false && _resultValueRemoveFile.Error == 1) { _error = true; _msgTH = "ลบไฟล์ไม่สำเร็จ"; _msgEN = "Remove file was not successful."; }
-                    if (_error == false && _resultValueRemoveFile.Error == 2) { _error = true; _msgTH = "ไม่พบไฟล์ที่ต้องการลบ"; _msgEN = "File not found."; }
+                if (_resultRemoveFile == false) {
+                    if (_error == false && _resultValueRemoveFile.Error == 1) {
+                        _error = true;
+                        _msgTH = "ลบไฟล์ไม่สำเร็จ";
+                        _msgEN = "Remove file was not successful.";
+                    }
+
+                    if (_error == false && _resultValueRemoveFile.Error == 2) {
+                        _error = true;
+                        _msgTH = "ไม่พบไฟล์ที่ต้องการลบ";
+                        _msgEN = "File not found.";
+                    }
 
                     if (_error == true)
                         Util.dialogMessageError({
@@ -1106,29 +1060,21 @@ var UDSStaffUploadSubmitDocument = {
                         uploadedStatus: "N"
                     });
                 }
-                else
-                    {
-                        Util.dialogMessageBox({
-                            content: "<div class='th-label'>ลบไฟล์เรียบร้อย</div><div class='en-label'>Remove file complete.</div>"
-                        });
+                else {
+                    Util.dialogMessageBox({
+                        content: "<div class='th-label'>ลบไฟล์เรียบร้อย</div><div class='en-label'>Remove file complete.</div>"
+                    });
 
-                        _this2.setFrmUploadFile({
-                            section: _param["section"],
-                            uploadedStatus: "N"
-                        });
-                    }
+                    _this2.setFrmUploadFile({
+                        section: _param["section"],
+                        uploadedStatus: "N"
+                    });
+                }
             });
         },
-        
-        //ฟังก์ชั่นสำหรับลบเอกสารที่นักศึกษาอัพโหลด
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param         รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section           รับค่าชื่อหัวข้อที่ต้องการ
-        //data              รับค่าข้อมูลที่ต้องการส่ง
-        //2. _callBackFunc  รับค่าสำหรับให้ส่งค่าที่ต้องการในฟังก์ชั่นกลับ
         actionRemoveFile: function (_param, _callBackFunc) {
-            _param["section"]   = (_param["section"] == undefined ? "" : _param["section"]);
-            _param["data"]      = (_param["data"] == undefined || _param["data"] == "" ? {} : _param["data"]);
+            _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
+            _param["data"] = (_param["data"] == undefined || _param["data"] == "" ? {} : _param["data"]);
 
             var _this1 = Util.tut.tus;
             var _this2 = this;
@@ -1141,8 +1087,7 @@ var UDSStaffUploadSubmitDocument = {
             Util.actionRemoveFile({
                 data: _send
             }, function (_result) {
-                if (_result.Error == 0)
-                {
+                if (_result.Error == 0) {
                     $("#" + _idContent + "-filedir-hidden").val("");
                     $("#" + _idContent + "-filename-hidden").val("");
                     $("#" + _idContent + "-width-hidden").val("");
@@ -1158,9 +1103,9 @@ var UDSStaffUploadSubmitDocument = {
                         section: _param["section"],
                         sectionAction: "save"
                     }, function (_resultSave, _resultValueSave) {
-                        if (_resultSave == true)
-                        {
-                            if (_resultValueSave.SaveError != 0) _error = true;
+                        if (_resultSave == true) {
+                            if (_resultValueSave.SaveError != 0)
+                                _error = true;
                         }
                         else
                             _error = true;
@@ -1169,14 +1114,9 @@ var UDSStaffUploadSubmitDocument = {
                     });
                 }
                 else
-                    _callBackFunc(false, _result);                
+                    _callBackFunc(false, _result);
             });
         },
-        
-        //ฟังก์ชั่นสำหรับแสดงไดอะล็อกยืนยันการส่งเอกสารที่นักศึกษาอัพโหลดให้เจ้าหน้าที่ตรวจสอบตามหัวข้อ
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section   รับค่าชื่อหัวข้อที่ต้องการ
         confirmSubmitFile: function (_param) {
             _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -1190,8 +1130,7 @@ var UDSStaffUploadSubmitDocument = {
                     msgNo: "CANCEL"
                 }
             }, function (_result) {
-                if (_result == "Y")
-                {
+                if (_result == "Y") {
                     if (_this2.validateSubmitFile({ 
                             section: _param["section"]
                         }))
@@ -1201,11 +1140,6 @@ var UDSStaffUploadSubmitDocument = {
                 }
             });
         },
-       
-        //ฟังก์ชั่นสำหรับตรวจสอบความถูกต้องในการส่งเอกสารที่นักศึกษาอัพโหลดให้เจ้าหน้าที่ตรวจสอบตามหัวข้อ
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section   รับค่าชื่อหัวข้อที่ต้องการ
         validateSubmitFile: function (_param) {
             _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -1215,24 +1149,28 @@ var UDSStaffUploadSubmitDocument = {
             var _valueSavedStatus = ($("#" + _idContent + "-savedstatus-hidden").val());
             var _i = 0;
 
-            if (_error == false && _valueSavedStatus == "N") { _error = true; _msgTH = "กรุณาบันทึกไฟล์"; _msgEN = "Please save file."; }
-            if (_error == false && _valueSavedStatus == "Y" && (_param["section"] == Util.tut.subjectSectionTranscriptFrontside || _param["section"] == Util.tut.subjectSectionTranscriptBackside) && Util.comboboxGetValue("#" + this.transcript.idSectionTranscriptInstituteAddUpdate + "-institute") == "0") { _error = true; _msgTH = "กรุณาเลือกโรงเรียน / สถาบัน"; _msgEN = "Please select institute."; }
+            if (_error == false && _valueSavedStatus == "N") {
+                _error = true;
+                _msgTH = "กรุณาบันทึกไฟล์";
+                _msgEN = "Please save file.";
+            }
 
-            if (_error == true)
-            {
+            if (_error == false && _valueSavedStatus == "Y" && (_param["section"] == Util.tut.subjectSectionTranscriptFrontside || _param["section"] == Util.tut.subjectSectionTranscriptBackside) && Util.comboboxGetValue("#" + this.transcript.idSectionTranscriptInstituteAddUpdate + "-institute") == "0") {
+                _error = true;
+                _msgTH = "กรุณาเลือกโรงเรียน / สถาบัน";
+                _msgEN = "Please select institute.";
+            }
+
+            if (_error == true) {
                 Util.dialogMessageError({
                     content: ("<div class='th-label'>" + _msgTH + "</div><div class='en-label'>" + _msgEN + "</div>")
                 });
+
                 return false;
             }
 
             return true;
         },
-        
-        //ฟังก์ชั่นสำหรับส่งเอกสารที่นักศึกษาอัพโหลดให้เจ้าหน้าที่ตรวจสอบตามหัวข้อ
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section   รับค่าชื่อหัวข้อที่ต้องการ
         getSubmitFile: function (_param) {
             _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -1249,8 +1187,7 @@ var UDSStaffUploadSubmitDocument = {
             this.actionSubmitfile({
                 section: _param["section"]
             }, function (_resultSubmitfile) {
-                if (_resultSubmitfile == false)
-                {
+                if (_resultSubmitfile == false) {
                     Util.dialogMessageError({
                         content: "<div class='th-label'>ส่งไฟล์ไม่สำเร็จ</div><div class='en-label'>Submit these files was not successful.</div>"
                     });                    
@@ -1258,32 +1195,25 @@ var UDSStaffUploadSubmitDocument = {
                         section: _param["section"], 
                         savedStatus: "Y",
                         submittedStatus: "N",
-                        approvalStatus: "S"                        
-                    });                        
+                        approvalStatus: "S"
+                    });
                     _this2.setFrmUploadFile({
                         section: _param["section"],
                         uploadedStatus: "Y"
                     });
                 }
-                else
-                    {
-                        Util.dialogMessageBox({
-                            content: "<div class='th-label'>ส่งไฟล์เรียบร้อย</div><div class='en-label'>Submit file complete.</div>"
-                        });
+                else {
+                    Util.dialogMessageBox({
+                        content: "<div class='th-label'>ส่งไฟล์เรียบร้อย</div><div class='en-label'>Submit file complete.</div>"
+                    });
 
-                        _this2.setFrmUploadFile({
-                            section: _param["section"],
-                            uploadedStatus: "Y"
-                        });
-                    }
+                    _this2.setFrmUploadFile({
+                        section: _param["section"],
+                        uploadedStatus: "Y"
+                    });
+                }
             });
         },
-        
-        //ฟังก์ชั่นสำหรับส่งเอกสารที่นักศึกษาอัพโหลดให้เจ้าหน้าที่ตรวจสอบ
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param         รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section           รับค่าชื่อหัวข้อที่ต้องการ
-        //2. _callBackFunc  รับค่าสำหรับให้ส่งค่าที่ต้องการในฟังก์ชั่นกลับ
         actionSubmitfile: function (_param, _callBackFunc) {
             _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
 
@@ -1295,9 +1225,9 @@ var UDSStaffUploadSubmitDocument = {
                 section: _param["section"],
                 sectionAction: "submit"
             }, function (_resultSave, _resultValueSave) {
-                if (_resultSave == true)
-                {
-                    if (_resultValueSave.SaveError != 0) _error = true;
+                if (_resultSave == true) {
+                    if (_resultValueSave.SaveError != 0)
+                        _error = true;
                 }
                 else
                     _error = true;
@@ -1305,15 +1235,8 @@ var UDSStaffUploadSubmitDocument = {
                 _callBackFunc(_error == false ? true : false);
             });
         },
-        
-        //ฟังก์ชั่นสำหรับนำข้อมูลในฟอร์มข้อมูลในส่วนของการอัพโหลดเอกสารของนักศึกษามาเตรียมสำหรับบันทึกข้อมูลลงฐานข้อมูล
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param         รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //section           รับค่าชื่อหัวข้อที่ต้องการ
-        //sectionAction     รับค่าการกระทำที่เกิดขึ้นกับหัวข้อที่อัพโหลด
-        //2. _callBackFunc  รับค่าสำหรับให้ส่งค่าที่ต้องการในฟังก์ชั่นกลับ
         getSave: function (_param, _callBackFunc) {
-            _param["section"]       = (_param["section"] == undefined ? "" : _param["section"]);
+            _param["section"] = (_param["section"] == undefined ? "" : _param["section"]);
             _param["sectionAction"] = (_param["sectionAction"] == undefined ? "" : _param["sectionAction"]);
 
             var _this = Util.tut.tus;
@@ -1328,19 +1251,19 @@ var UDSStaffUploadSubmitDocument = {
 
             if (_param["section"] == Util.tut.subjectSectionTranscriptFrontside || _param["section"] == Util.tut.subjectSectionTranscriptBackside)
                 _transcriptInstitute = Util.getSelectionIsSelect({
-                                            id: ("#" + this.transcript.idSectionTranscriptInstituteAddUpdate + "-institute"),
-                                            type: "select",
-                                            valueTrue: Util.comboboxGetValue("#" + this.transcript.idSectionTranscriptInstituteAddUpdate + "-institute")
-                                       });
+                    id: ("#" + this.transcript.idSectionTranscriptInstituteAddUpdate + "-institute"),
+                    type: "select",
+                    valueTrue: Util.comboboxGetValue("#" + this.transcript.idSectionTranscriptInstituteAddUpdate + "-institute")
+                });
 
-            _valueSave["section"]               = _param["section"];
-            _valueSave["sectionaction"]         = _param["sectionAction"];
-            _valueSave["personid"]              = $("#" + this.studentrecords.idSectionAddUpdate + "-personid-hidden").val();
-            _valueSave["transcriptinstitute"]   = _transcriptInstitute;
-            _valueSave["filename"]              = _fileName;
-            _valueSave["savedstatus"]           = _valueSavedStatus;
-            _valueSave["submittedstatus"]       = _valueSubmittedStatus;
-            _valueSave["approvalstatus"]        = _valueApprovalStatus;
+            _valueSave["section"] = _param["section"];
+            _valueSave["sectionaction"] = _param["sectionAction"];
+            _valueSave["personid"] = $("#" + this.studentrecords.idSectionAddUpdate + "-personid-hidden").val();
+            _valueSave["transcriptinstitute"] = _transcriptInstitute;
+            _valueSave["filename"] = _fileName;
+            _valueSave["savedstatus"] = _valueSavedStatus;
+            _valueSave["submittedstatus"] = _valueSubmittedStatus;
+            _valueSave["approvalstatus"] = _valueApprovalStatus;
 
             this.actionSave({
                 page: Util.tut.pageUploadSubmitDocumentAddUpdate,
@@ -1349,13 +1272,6 @@ var UDSStaffUploadSubmitDocument = {
                 _callBackFunc(_resultSave, _resultValueSave)
             });
         },
-
-        //ฟังก์ชั่นสำหรับบันทึกข้อมูลการอัพโหลดเอกสารของนักศึกษา
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param         รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //page              รับค่าชื่อหน้าหลัก
-        //data              รับค่าข้อมูลที่ต้องการส่ง
-        //2. _callBackFunc  รับค่าสำหรับให้ส่งค่าที่ต้องการในฟังก์ชั่นกลับ
         actionSave: function (_param, _callBackFunc) {        
             _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
             _param["data"] = (_param["data"] == undefined || _param["data"] == "" ? {} : _param["data"]);
@@ -1371,12 +1287,12 @@ var UDSStaffUploadSubmitDocument = {
                 data: _send
             }, function (_result) {
                 _error = Util.tut.getErrorMsg({
-                            signinYN: _signinYN,
-                            pageError: 0,
-                            cookieError: _result.CookieError,
-                            userError: _result.UserError,
-                            saveError: _result.SaveError
-                         });
+                    signinYN: _signinYN,
+                    pageError: 0,
+                    cookieError: _result.CookieError,
+                    userError: _result.UserError,
+                    saveError: _result.SaveError
+                });
 
                 _callBackFunc((_error == false ? true : false), _result);
             });

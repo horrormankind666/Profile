@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๒/๑๑/๒๕๕๘>
-Modify date : <๒๖/๐๓/๒๕๖๔>
+Modify date : <๑๒/๐๕/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นการประมวลผลข้อมูล>
 =============================================
 */
@@ -36,7 +36,7 @@ public class ePFStaffProgressDataUtil
         _valueProcessResult.Add("YearAttended", _c.Request["yearattended"]);
         _valueProcessResult.Add("AdmissionDate", _c.Request["admissiondate"]);
         _valueProcessResult.Add("GraduationDate", _c.Request["graduationdate"]);
-        _valueProcessResult.Add("DistinctionStatus", _c.Request["distinctionstatus"]);
+        _valueProcessResult.Add("JoinProgramStatus", _c.Request["joinprogramstatus"]);
         _valueProcessResult.Add("StartSemester", _c.Request["startsemester"]);
         _valueProcessResult.Add("StartYear", _c.Request["startyear"]);
         _valueProcessResult.Add("EndSemester", _c.Request["endsemester"]);
@@ -61,7 +61,7 @@ public class ePFStaffProgressDataUtil
         string _province = String.Empty;
         string _district = String.Empty;
         string _postalCode = String.Empty;
-        string _cancelledStatus = String.Empty;   
+        string _cancelledStatus = String.Empty;
         string _faculty = String.Empty;
         string _program = String.Empty;
         string _yearEntry = String.Empty;
@@ -71,9 +71,9 @@ public class ePFStaffProgressDataUtil
         string _studentStatus = String.Empty;
         string _studentRecordsStatus = String.Empty;
         string _distinction = String.Empty;
-        string _distinctionStatus = String.Empty;
+        string _joinProgramStatus = String.Empty;
         string _startAcademicYear = String.Empty;
-        string _endAcademicYear = String.Empty;        
+        string _endAcademicYear = String.Empty;
         string _studentStatusGroup = String.Empty;
         string _nationality = String.Empty;
         string _sortOrderBy = String.Empty;
@@ -106,7 +106,7 @@ public class ePFStaffProgressDataUtil
                     _page.Equals(ePFStaffUtil.PAGE_ADMINISTRATIONSTUDENTRECORDSUPDATEADMISSIONDATE_PROGRESS) ||
                     _page.Equals(ePFStaffUtil.PAGE_ADMINISTRATIONSTUDENTRECORDSUPDATEDATATOOLDDB_PROGRESS) ||
                     _page.Equals(ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_PROGRESS) ||
-                    _page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_PROGRESS) ||
+                    _page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_PROGRESS) ||
                     _page.Equals(ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENTLEVEL1VIEWTABLE_PROGRESS) ||
                     _page.Equals(ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENTLEVEL2VIEWTABLE_PROGRESS))
                 {
@@ -121,7 +121,7 @@ public class ePFStaffProgressDataUtil
                     _studentStatus = _valueSearch[8];
                     _studentRecordsStatus = _valueSearch[9];
                     _distinction = _valueSearch[10];
-                    _distinctionStatus = _valueSearch[11];
+                    _joinProgramStatus = _valueSearch[11];
                     _startAcademicYear = _valueSearch[12];
                     _endAcademicYear = _valueSearch[13];
                     _gender = _valueSearch[14];
@@ -149,9 +149,9 @@ public class ePFStaffProgressDataUtil
             _paramSearch.Add("StudentStatus", _studentStatus);
             _paramSearch.Add("StudentRecordsStatus", _studentRecordsStatus);
             _paramSearch.Add("Distinction", _distinction);
-            _paramSearch.Add("DistinctionStatus", _distinctionStatus);
+            _paramSearch.Add("JoinProgramStatus", _joinProgramStatus);
             _paramSearch.Add("StartAcademicYear", _startAcademicYear);
-            _paramSearch.Add("EndAcademicYear", _endAcademicYear);            
+            _paramSearch.Add("EndAcademicYear", _endAcademicYear);
             _paramSearch.Add("StudentStatusGroup", _studentStatusGroup);
             _paramSearch.Add("Nationality", _nationality);
             _paramSearch.Add("SortOrderBy", _sortOrderBy);
@@ -165,7 +165,7 @@ public class ePFStaffProgressDataUtil
             _page.Equals(ePFStaffUtil.PAGE_ADMINISTRATIONSTUDENTRECORDSUPDATEADMISSIONDATE_PROGRESS) ||
             _page.Equals(ePFStaffUtil.PAGE_ADMINISTRATIONSTUDENTRECORDSUPDATEDATATOOLDDB_PROGRESS) ||
             _page.Equals(ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_PROGRESS) ||
-            _page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_PROGRESS) ||
+            _page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_PROGRESS) ||
             _page.Equals(ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENTLEVEL1VIEWTABLE_PROGRESS) ||
             _page.Equals(ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENTLEVEL2VIEWTABLE_PROGRESS))
             _processResult = GetProcessContent(_infoLogin, _page, _paramSearch, _dataProcess);
@@ -249,9 +249,9 @@ public class ePFStaffProgressDataUtil
             _tbIndex = 0;
         }
 
-        if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_PROGRESS))
+        if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_PROGRESS))
         {            
-            _fileName = (ePFStaffUtil.SUBJECT_SECTION_UPDATESTUDENTDISTINCTIONPROGRAM + _fileName);
+            _fileName = (ePFStaffUtil.SUBJECT_SECTION_UPDATESTUDENTMEDICALSCHOLARSPROGRAM + _fileName);
             _msgTH = "ปรับปรุงข้อมูล";
             _tbIndex = 0;
         }
@@ -294,7 +294,7 @@ public class ePFStaffProgressDataUtil
                 _ds1.Tables.Add(_dt1);
             }
 
-            if (_option.Equals("all"))                    
+            if (_option.Equals("all"))
             {
                 if (_page.Equals(ePFStaffUtil.PAGE_ADMINISTRATIONSTUDENTRECORDSUPDATEFACULTYPROGRAM_PROGRESS) ||
                     _page.Equals(ePFStaffUtil.PAGE_ADMINISTRATIONSTUDENTRECORDSUPDATECLASSYEAR_PROGRESS) ||
@@ -303,7 +303,7 @@ public class ePFStaffProgressDataUtil
                     _page.Equals(ePFStaffUtil.PAGE_ADMINISTRATIONSTUDENTRECORDSUPDATEADMISSIONDATE_PROGRESS) ||
                     _page.Equals(ePFStaffUtil.PAGE_ADMINISTRATIONSTUDENTRECORDSUPDATEDATATOOLDDB_PROGRESS) ||
                     _page.Equals(ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_PROGRESS) ||
-                    _page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_PROGRESS) ||
+                    _page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_PROGRESS) ||
                     _page.Equals(ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENTLEVEL1VIEWTABLE_PROGRESS) ||
                     _page.Equals(ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENTLEVEL2VIEWTABLE_PROGRESS))
                     _ds1 = Util.DBUtil.GetListStudentRecords(
@@ -331,22 +331,22 @@ public class ePFStaffProgressDataUtil
                     _page.Equals(ePFStaffUtil.PAGE_ADMINISTRATIONSTUDENTRECORDSUPDATEADMISSIONDATE_PROGRESS) ||
                     _page.Equals(ePFStaffUtil.PAGE_ADMINISTRATIONSTUDENTRECORDSUPDATEDATATOOLDDB_PROGRESS) ||
                     _page.Equals(ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_PROGRESS) ||
-                    _page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_PROGRESS) ||
+                    _page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_PROGRESS) ||
                     _page.Equals(ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENTLEVEL2VIEWTABLE_PROGRESS))
                 {
                     foreach (DataRow _dr1 in _ds1.Tables[_tbIndex].Rows)
-                    {                
+                    {
                         try
                         {
                             _error = false;
                             _export = false;
                             _saveError = 0;
                             _msgDetail = String.Empty;
-                                                    
+
                             DataSet _ds2 = Util.DBUtil.GetStudentRecords(_dr1["id"].ToString());
 
                             if (_ds2.Tables[0].Rows.Count > 0)
-                            {                                
+                            {
                                 DataRow _dr2 = _ds2.Tables[0].Rows[0];
                                 
                                 if (_page.Equals(ePFStaffUtil.PAGE_ADMINISTRATIONSTUDENTRECORDSUPDATEFACULTYPROGRAM_PROGRESS))
@@ -904,18 +904,18 @@ public class ePFStaffProgressDataUtil
                                     }
                                 }
 
-                                if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_PROGRESS))
+                                if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_PROGRESS))
                                 {
                                     DataSet _ds3 = Util.DBUtil.ExecuteCommandStoredProcedure("sp_stdSetStudent",
                                         new SqlParameter("@action", "UPDATE"),
                                         new SqlParameter("@personId", _dr1["id"].ToString()),
-                                        new SqlParameter("@distinctionStatus", (_dataProcess["DistinctionStatus"].Equals("Y") ? "1" : String.Empty)),
+                                        new SqlParameter("@mspJoin", _dataProcess["JoinProgramStatus"]),
                                         new SqlParameter("@startSemester", _dataProcess["StartSemester"]),
                                         new SqlParameter("@startYear", _dataProcess["StartYear"]),
                                         new SqlParameter("@endSemester", _dataProcess["EndSemester"]),
                                         new SqlParameter("@endYear", _dataProcess["EndYear"]),
                                         new SqlParameter("@resignDate", _dataProcess["ResignDate"]),
-                                        new SqlParameter("@updateWhat", ePFStaffUtil.SUBJECT_SECTION_UPDATESTUDENTDISTINCTIONPROGRAM),
+                                        new SqlParameter("@updateWhat", ePFStaffUtil.SUBJECT_SECTION_UPDATESTUDENTMEDICALSCHOLARSPROGRAM),
                                         new SqlParameter("@updateReason", _dataProcess["UpdateReason"]),
                                         new SqlParameter("@by", _username),
                                         new SqlParameter("@ip", Util.GetIP())
@@ -944,8 +944,8 @@ public class ePFStaffProgressDataUtil
                             _ds2.Dispose();
 
                             if (_error.Equals(false))
-                            {                            
-                                _valueDetailComplte.Add(_dr1["id"].ToString());                        
+                            {
+                                _valueDetailComplte.Add(_dr1["id"].ToString());
                                 _complete++;
                             }
                             else
@@ -1016,7 +1016,7 @@ public class ePFStaffProgressDataUtil
                         _tb1["DataId"] = "";
                         _tb1["Id"] = "";
                         _tb1["SeriesDataName1"] = "statusGroupNameTH";
-                        _tb1["SeriesDataName2"] = "statusGroupNameEN";                            
+                        _tb1["SeriesDataName2"] = "statusGroupNameEN";
                         _tb1["Value1"] = "countMalePeople";
                         _tb1["Value2"] = "countFemalePeople";
                         _tb1["DrillDownId"] = "drilldownId";
@@ -1143,7 +1143,7 @@ public class ePFStaffProgressDataUtil
                     _page.Equals(ePFStaffUtil.PAGE_ADMINISTRATIONSTUDENTRECORDSUPDATESTUDENTSTATUS_PROGRESS) ||
                     _page.Equals(ePFStaffUtil.PAGE_ADMINISTRATIONSTUDENTRECORDSUPDATEADMISSIONDATE_PROGRESS) ||
                     _page.Equals(ePFStaffUtil.PAGE_ADMINISTRATIONSTUDENTRECORDSUPDATEDATATOOLDDB_PROGRESS) ||
-                    _page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTDISTINCTIONPROGRAM_PROGRESS))
+                    _page.Equals(ePFStaffUtil.PAGE_OURSERVICESUPDATESTUDENTMEDICALSCHOLARSPROGRAM_PROGRESS))
                     _zip.AddEntry("UpdateLog.txt", (_msgTH + "สำเร็จจำนวน " + _complete.ToString("#,##0") + " รายการ" + Environment.NewLine + String.Join(Environment.NewLine, _studentId.ToArray())));
                 
                 if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_PROGRESS) ||
@@ -1425,7 +1425,7 @@ public class ePFStaffProgressDataUtil
 
                         _cellHeader = _ws.Cells[2, 1, _maxRowCellHeader, _maxColCellHeader];
                         _cellHeader.Style.Border.Top.Style = ExcelBorderStyle.None;
-                        _cellHeader.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;                        
+                        _cellHeader.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
                         _i = 1;
 
                         foreach (object _c in _cellContent)
@@ -1448,7 +1448,7 @@ public class ePFStaffProgressDataUtil
                         _ws.Cells[1, 1].Value = "รายการ";
                         _ws.Cells[1, 2].Value = "จำนวนนักศึกษาชาย ( คน )";
                         _ws.Cells[1, 3].Value = "จำนวนนักศึกษาหญิง ( คน )";
-                        _ws.Cells[1, 4].Value = "รวมจำนวนนักศึกษา ( คน )";                        
+                        _ws.Cells[1, 4].Value = "รวมจำนวนนักศึกษา ( คน )";
                         _ws.Cells[(_maxRowCellHeader + 1), 2, _maxRowCellRange, _maxColCellRange].Style.HorizontalAlignment  = ExcelHorizontalAlignment.Right;
 
                         _i = (_maxRowCellHeader + 1);
@@ -1539,7 +1539,7 @@ public class ePFStaffProgressDataUtil
 
                             _ws.Cells[1, _i].Value = _header;
                             _i++;
-                        }                        
+                        }
 
                         Util.GetListDataToExcel(_cellContent, _dt2, _ws, (_maxRowCellHeader + 1));
                     }
@@ -1555,7 +1555,7 @@ public class ePFStaffProgressDataUtil
             if (_incomplete > 0)
                 _zip.AddEntry("ErrorLog.txt", (_msgTH + "ไม่สำเร็จจำนวน " + _incomplete.ToString("#,##0") + " รายการ" + Environment.NewLine + String.Join(Environment.NewLine, _valueDetailIncomplte.ToArray())));
 
-            _zip.Save(_filePath + _fileName + ".zip");            
+            _zip.Save(_filePath + _fileName + ".zip");
             _zip.Dispose();
         }
 

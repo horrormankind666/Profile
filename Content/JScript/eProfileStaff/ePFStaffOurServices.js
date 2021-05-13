@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๐๙/๐๖/๒๕๕๙>
-Modify date : <๐๕/๐๓/๒๕๖๔>
+Modify date : <๑๒/๐๕/๒๕๖๔>
 Description : <รวมรวบฟังก์ชั่นใช้งานทั่วไปในส่วนของบริการอื่น>
 =============================================
 */
@@ -93,11 +93,11 @@ var ePFStaffOurServices = {
             }
         }
     },
-    updatestudentdistinctionprogram: {
-        idSectionMain: ePFStaffUtil.idSectionOurServicesUpdateStudentDistinctionProgramMain.toLowerCase(),
+    updatestudentmedicalscholarsprogram: {
+        idSectionMain: ePFStaffUtil.idSectionOurServicesUpdateStudentMedicalScholarsProgramMain.toLowerCase(),
         sectionMain: {
             initMain: function () {
-                var _this = Util.tut.tos.updatestudentdistinctionprogram;
+                var _this = Util.tut.tos.updatestudentmedicalscholarsprogram;
 
                 Util.initCombobox({
                     id: ("#" + _this.idSectionMain + "-rowperpage"),
@@ -112,8 +112,8 @@ var ePFStaffOurServices = {
                     if ($(this).hasClass("button-updateselected") == true)
                         Util.tut.tpd.getProgress({
                             action: Util.tut.subjectSectionUpdate,
-                            pageProgress: Util.tut.pageOurServicesUpdateStudentDistinctionProgramProgress,
-                            pagePreview: Util.tut.pageOurServicesUpdateStudentDistinctionProgramPreview,
+                            pageProgress: Util.tut.pageOurServicesUpdateStudentMedicalScholarsProgramProgress,
+                            pagePreview: Util.tut.pageOurServicesUpdateStudentMedicalScholarsProgramPreview,
                             thisProgress: _this.sectionProgress,
                             thisPreview: _this.sectionPreview,
                             idMain: _this.idSectionMain,
@@ -126,7 +126,7 @@ var ePFStaffOurServices = {
                 this.resetMain();
             },
             resetMain: function () {
-                var _this = Util.tut.tos.updatestudentdistinctionprogram;
+                var _this = Util.tut.tos.updatestudentmedicalscholarsprogram;
 
                 Util.comboboxSetValue({
                     id: ("#" + _this.idSectionMain + "-rowperpage"),
@@ -138,13 +138,13 @@ var ePFStaffOurServices = {
             }
         },
         sectionProgress: {
-            idSectionProgress: ePFStaffUtil.idSectionOurServicesUpdateStudentDistinctionProgramProgress.toLowerCase(),
+            idSectionProgress: ePFStaffUtil.idSectionOurServicesUpdateStudentMedicalScholarsProgramProgress.toLowerCase(),
             initMain: function () {
-                var _this1 = Util.tut.tos.updatestudentdistinctionprogram;
+                var _this1 = Util.tut.tos.updatestudentmedicalscholarsprogram;
                 var _this2 = this;
 
                 Util.initCheck({
-                    id: (_this2.idSectionProgress + "-distinctionstatus")
+                    id: (_this2.idSectionProgress + "-joinprogramstatus")
                 });
                 Util.initCombobox({
                     id: ("#" + _this2.idSectionProgress + "-startsemester"),
@@ -172,9 +172,9 @@ var ePFStaffOurServices = {
                 });
 
                 $(".checkbox").on("ifChecked ifUnchecked", function () {
-                    if ($(this).attr("name") == (_this2.idSectionProgress + "-distinctionstatus"))
+                    if ($(this).attr("name") == (_this2.idSectionProgress + "-joinprogramstatus"))
                         Util.setInputOtherOnCheck({
-                            id: (_this2.idSectionProgress + "-distinctionstatus"),
+                            id: (_this2.idSectionProgress + "-joinprogramstatus"),
                             value: "Y",
                             idComboboxOther: ("#" + _this2.idSectionProgress + "-startsemester, #" + _this2.idSectionProgress + "-startyear, #" + _this2.idSectionProgress + "-endsemester, #" + _this2.idSectionProgress + "-endyear"),
                             idTextboxOther: ("#" + _this2.idSectionProgress + "-resigndate")
@@ -182,7 +182,7 @@ var ePFStaffOurServices = {
                 });
             },
             resetMain: function () {
-                var _this1 = Util.tut.tos.updatestudentdistinctionprogram;
+                var _this1 = Util.tut.tos.updatestudentmedicalscholarsprogram;
                 var _this2 = this;
                 var _idTable = (_this1.idSectionMain + "-table");
                 var _valueSelected = "";
@@ -191,7 +191,7 @@ var ePFStaffOurServices = {
                 var _studentId;
                 var _fullNameTH;
                 var _program;
-                var _distinctionStatus;
+                var _joinProgramStatus;
                 var _startSemester;
                 var _startYear;
                 var _endSemester;
@@ -219,7 +219,7 @@ var ePFStaffOurServices = {
                     _studentId = $("#" + _idTable + " #table-row-id-" + _dr[_i] + " .table-col3 .table-col-msg div").html();
                     _fullNameTH = $("#" + _idTable + " #table-row-id-" + _dr[_i] + " .table-col4 .table-col-msg div").html();
                     _program = $("#" + _idTable + " #table-row-id-" + _dr[_i] + " .table-col5 .table-col-msg div").html();
-                    _distinctionStatus = $("#" + _idTable + " #table-row-id-" + _dr[_i] + " .table-col10 .table-col-msg div").html();
+                    _joinProgramStatus = $("#" + _idTable + " #table-row-id-" + _dr[_i] + " .table-col10 .table-col-msg div").html();
                     _startSemester = $("#" + _idTable + " #table-row-id-" + _dr[_i] + " .table-col11 .table-col-msg div").html().substring(0, 1);
                     _startYear = $("#" + _idTable + " #table-row-id-" + _dr[_i] + " .table-col11 .table-col-msg div").html().substring(4, 8);
                     _endSemester = $("#" + _idTable + " #table-row-id-" + _dr[_i] + " .table-col12 .table-col-msg div").html().substring(0, 1);
@@ -236,8 +236,8 @@ var ePFStaffOurServices = {
                 $("#" + _this2.idSectionProgress + "-student-content .list .list-content").html(_html);
 
                 Util.checkSetValue({
-                    id: (_this2.idSectionProgress + "-distinctionstatus"),
-                    value: (_reset == true ? "N" : _distinctionStatus)
+                    id: (_this2.idSectionProgress + "-joinprogramstatus"),
+                    value: (_reset == true ? "N" : _joinProgramStatus)
                 });
                 Util.comboboxSetValue({
                     id: ("#" + _this2.idSectionProgress + "-startsemester"),
@@ -258,21 +258,21 @@ var ePFStaffOurServices = {
                 $("#" + _this2.idSectionProgress + "-resigndate").val(_reset == true ? "" : _resignDate);
 
                 Util.setInputOtherOnCheck({
-                    id: (_this2.idSectionProgress + "-distinctionstatus"),
+                    id: (_this2.idSectionProgress + "-joinprogramstatus"),
                     value: "Y",
                     idComboboxOther: ("#" + _this2.idSectionProgress + "-startsemester, #" + _this2.idSectionProgress + "-startyear, #" + _this2.idSectionProgress + "-endsemester, #" + _this2.idSectionProgress + "-endyear"),
                     idTextboxOther: ("#" + _this2.idSectionProgress + "-resigndate")
                 });
             },
             validateProcess: function () {
-                var _this1 = Util.tut.tos.updatestudentdistinctionprogram;
+                var _this1 = Util.tut.tos.updatestudentmedicalscholarsprogram;
                 var _this2 = this;
                 var _error = new Array();
                 var _idTable = (_this1.idSectionMain + "-table");
                 var _valueSelected = "";
                 var _dr = "";
                 var _yearEntry;
-                var _valueDistinctionStatus;
+                var _valueJoinProgramStatus;
                 var _valueStartSemester;
                 var _valueStartYear;
                 var _valueEndSemester;
@@ -281,38 +281,38 @@ var ePFStaffOurServices = {
                 var _j = 0;
                 var _exit = false;
 
-                _valueDistinctionStatus = Util.checkGetValue(_this2.idSectionProgress + "-distinctionstatus");
+                _valueJoinProgramStatus = Util.checkGetValue(_this2.idSectionProgress + "-joinprogramstatus");
                 _valueStartSemester = Util.comboboxGetValue("#" + _this2.idSectionProgress + "-startsemester");
                 _valueStartYear = Util.comboboxGetValue("#" + _this2.idSectionProgress + "-startyear");
                 _valueEndSemester = Util.comboboxGetValue("#" + _this2.idSectionProgress + "-endsemester");
                 _valueEndYear = Util.comboboxGetValue("#" + _this2.idSectionProgress + "-endyear");
 
-                if (_valueDistinctionStatus == "Y" && _valueStartSemester == "0" && _valueStartYear != "0") {
+                if (_valueJoinProgramStatus == "Y" && _valueStartSemester == "0" && _valueStartYear != "0") {
                     _error[_i] = "กรุณาเลือกภาคเรียนที่ไป;Please select start semester.;";
                     _i++;
                 }
 
-                if (_valueDistinctionStatus == "Y" && _valueStartSemester != "0" && _valueStartYear == "0") {
+                if (_valueJoinProgramStatus == "Y" && _valueStartSemester != "0" && _valueStartYear == "0") {
                     _error[_i] = "กรุณาเลือกปีที่ไป;Please select start year.;";
                     _i++;
                 }
 
-                if (_valueDistinctionStatus == "Y" && _valueEndSemester == "0" && _valueEndYear != "0") {
+                if (_valueJoinProgramStatus == "Y" && _valueEndSemester == "0" && _valueEndYear != "0") {
                     _error[_i] = "กรุณาเลือกภาคเรียนที่กลับ;Please select end semester.;";
                     _i++;
                 }
 
-                if (_valueDistinctionStatus == "Y" && _valueEndSemester != "0" && _valueEndYear == "0") {
+                if (_valueJoinProgramStatus == "Y" && _valueEndSemester != "0" && _valueEndYear == "0") {
                     _error[_i] = "กรุณาเลือกปีที่กลับ;Please select end year.;";
                     _i++;
                 }
 
-                if (_valueDistinctionStatus == "Y" && _valueStartSemester == "0" && _valueStartYear == "0" && _valueEndSemester != "0" && _valueEndYear != "0") {
+                if (_valueJoinProgramStatus == "Y" && _valueStartSemester == "0" && _valueStartYear == "0" && _valueEndSemester != "0" && _valueEndYear != "0") {
                     _error[_i] = "กรุณาเลือกภาค / ปีที่ไป;Please select start semester / year.;";
                     _i++;
                 }
 
-                if (_valueDistinctionStatus == "Y" && _valueStartYear != "0") {
+                if (_valueJoinProgramStatus == "Y" && _valueStartYear != "0") {
                     _valueSelected = Util.getValueSelectCheck({
                         id: "select-child",
                         idParent: ("#" + _idTable)
@@ -334,12 +334,12 @@ var ePFStaffOurServices = {
                     }
                 }
 
-                if (_valueDistinctionStatus == "Y" && _valueStartYear != "0" && _valueEndYear != "0" && _valueStartYear > _valueEndYear) {
+                if (_valueJoinProgramStatus == "Y" && _valueStartYear != "0" && _valueEndYear != "0" && _valueStartYear > _valueEndYear) {
                     _error[_i] = "กรุณาเลือกปีที่ไปให้น้อยกว่าหรือเท่ากับปีที่กลับ;Please select start year less than or equal end year.;";
                     _i++;
                 }
 
-                if (_valueDistinctionStatus == "Y" && _valueStartSemester != "0" && _valueStartYear != "0" && _valueEndSemester != "0" && _valueEndYear != "0" && _valueStartYear == _valueEndYear && _valueStartSemester > _valueEndSemester) {
+                if (_valueJoinProgramStatus == "Y" && _valueStartSemester != "0" && _valueStartYear != "0" && _valueEndSemester != "0" && _valueEndYear != "0" && _valueStartYear == _valueEndYear && _valueStartSemester > _valueEndSemester) {
                     _error[_i] = "กรุณาเลือกภาคเรียนที่ไปให้น้อยกว่าหรือเท่ากับภาคเรียนที่กลับ;Please select start semester less than or equal end semester.;";
                     _i++;
                 }
@@ -351,10 +351,10 @@ var ePFStaffOurServices = {
                 return (_i > 0 ? false : true);
             },
             getValueProcess: function () {
-                var _this1 = Util.tut.tos.updatestudentdistinctionprogram;
+                var _this1 = Util.tut.tos.updatestudentmedicalscholarsprogram;
                 var _this2 = this;
                 var _valueParamSearch = {}
-                var _valueDistinctionStatus = "";
+                var _valueJoinProgramStatus = "";
                 var _valueStartSemester = "";
                 var _valueStartYear = "";
                 var _valueEndSemester = "";
@@ -362,11 +362,11 @@ var ePFStaffOurServices = {
                 var _valueResignDate = "";
                 var _valueProcessResult = {};
 
-                _valueParamSearch = JSON.stringify(Util.tut.tse.ourservices.updatestudentdistinctionprogram.valueSearch());
-                _valueDistinctionStatus = Util.getSelectionIsSelect({
-                    id: (_this2.idSectionProgress + "-distinctionstatus"),
+                _valueParamSearch = JSON.stringify(Util.tut.tse.ourservices.updatestudentmedicalscholarsprogram.valueSearch());
+                _valueJoinProgramStatus = Util.getSelectionIsSelect({
+                    id: (_this2.idSectionProgress + "-joinprogramstatus"),
                     type: "checkbox",
-                    valueTrue: Util.checkGetValue(_this2.idSectionProgress + "-distinctionstatus"),
+                    valueTrue: Util.checkGetValue(_this2.idSectionProgress + "-joinprogramstatus"),
                     valueFalse: "N"
                 });
                 _valueStartSemester = Util.getSelectionIsSelect({
@@ -390,10 +390,10 @@ var ePFStaffOurServices = {
                     valueTrue: Util.comboboxGetValue("#" + _this2.idSectionProgress + "-endyear")
                 });
                 _valueResignDate = $("#" + _this2.idSectionProgress + "-resigndate").val();
-                _valueUpdateReason = (_valueDistinctionStatus == "Y" ? "นักศึกษาเข้าโครงการผลิตอาจารย์แพทย์ หลักสูตรพิสิฐวิธาน" : "");
+                _valueUpdateReason = (_valueJoinProgramStatus == "Y" ? "นักศึกษาเข้าโครงการผลิตอาจารย์แพทย์" : "");
                 
                 _valueProcessResult["paramsearch"] = _valueParamSearch;
-                _valueProcessResult["valuedistinctionstatus"] = _valueDistinctionStatus;
+                _valueProcessResult["valuejoinprogramstatus"] = _valueJoinProgramStatus;
                 _valueProcessResult["valuestartsemester"] = _valueStartSemester;
                 _valueProcessResult["valuestartyear"] = _valueStartYear;
                 _valueProcessResult["valueendsemester"] = _valueEndSemester;
@@ -407,7 +407,7 @@ var ePFStaffOurServices = {
                 _param["resultValueProcess"] = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
                 _param["dataProcess"] = (_param["dataProcess"] == undefined || _param["dataProcess"] == "" ? null : _param["dataProcess"]);
 
-                var _this1 = Util.tut.tos.updatestudentdistinctionprogram;
+                var _this1 = Util.tut.tos.updatestudentmedicalscholarsprogram;
                 var _this2 = this;
                 var _detailComplete = _param["resultValueProcess"].DetailComplete;
                 var _idTable = (_this1.idSectionMain + "-table");
@@ -419,7 +419,7 @@ var ePFStaffOurServices = {
                     _idTableRow = (_idTable + " .table-grid #table-row-id-" + _valueArray[_i]);
 
                     if ($("#" + _idTableRow).length > 0) {
-                        $("#" + _idTableRow + " .table-col-distinctionstatus").html(_param["dataProcess"]["valuedistinctionstatus"]);
+                        $("#" + _idTableRow + " .table-col-joinprogramstatus").html(_param["dataProcess"]["valuejoinprogramstatus"]);
                         $("#" + _idTableRow + " .table-col-startsemesteryear").html(_param["dataProcess"]["valuestartsemester"].length > 0 && _param["dataProcess"]["valuestartyear"].length > 0 ? (_param["dataProcess"]["valuestartsemester"] + " / " + _param["dataProcess"]["valuestartyear"]) : "");
                         $("#" + _idTableRow + " .table-col-endsemesteryear").html(_param["dataProcess"]["valueendsemester"].length > 0 && _param["dataProcess"]["valueendyear"].length > 0 ? (_param["dataProcess"]["valueendsemester"] + " / " + _param["dataProcess"]["valueendyear"]) : "");
                         $("#" + _idTableRow + " .table-col-resigndate").html(_param["dataProcess"]["valueresigndate"]);
@@ -428,13 +428,13 @@ var ePFStaffOurServices = {
             }
         },
         sectionPreview: {
-            idSectionPreview: ePFStaffUtil.idSectionOurServicesUpdateStudentDistinctionProgramPreview.toLowerCase(),
+            idSectionPreview: ePFStaffUtil.idSectionOurServicesUpdateStudentMedicalScholarsProgramPreview.toLowerCase(),
             getList: function (_param) {
                 _param["idProgress"] = (_param["idProgress"] == undefined ? null : _param["idProgress"]);
                 _param["idPreview"] = (_param["idPreview"] == undefined ? null : _param["idPreview"]);
                 _param["valueSelected"] = (_param["valueSelected"] == undefined ? "" : _param["valueSelected"]);
 
-                var _this1 = Util.tut.tos.updatestudentdistinctionprogram;
+                var _this1 = Util.tut.tos.updatestudentmedicalscholarsprogram;
                 var _this2 = this;
                 var _idTable = (_this1.idSectionMain + "-table");
                 var _dr = _param["valueSelected"].split("|")
@@ -443,8 +443,8 @@ var ePFStaffOurServices = {
                 var _no;
                 var _studentId;
                 var _fullNameTH;
-                var _distinctionStatusOld;
-                var _distinctionStatusNew;
+                var _joinProgramStatusOld;
+                var _joinProgramStatusNew;
                 var _startSemesterOld;
                 var _startSemesterNew;
                 var _startYearOld;
@@ -457,10 +457,10 @@ var ePFStaffOurServices = {
                 var _resignDateNew;
                 var _i = 0;
 
-                _distinctionStatusNew = Util.getSelectionIsSelect({
-                    id: (_param["idProgress"] + "-distinctionstatus"),
+                _joinProgramStatusNew = Util.getSelectionIsSelect({
+                    id: (_param["idProgress"] + "-joinprogramstatus"),
                     type: "checkbox",
-                    valueTrue: Util.checkGetValue(_param["idProgress"] + "-distinctionstatus"),
+                    valueTrue: Util.checkGetValue(_param["idProgress"] + "-joinprogramstatus"),
                     valueFalse: "N"
                 });
                 _startSemesterNew = Util.getSelectionIsSelect({
@@ -492,7 +492,7 @@ var ePFStaffOurServices = {
                     _no = (_i + 1);
                     _studentId = $("#" + _idTable + " #table-row-id-" + _dr[_i] + " .table-col3 .table-col-msg div").html();
                     _fullNameTH = $("#" + _idTable + " #table-row-id-" + _dr[_i] + " .table-col4 .table-col-msg div").html();
-                    _distinctionStatusOld = $("#" + _idTable + " #table-row-id-" + _dr[_i] + " .table-col10 .table-col-msg div").html();
+                    _joinProgramStatusOld = $("#" + _idTable + " #table-row-id-" + _dr[_i] + " .table-col10 .table-col-msg div").html();
                     _startSemesterOld = $("#" + _idTable + " #table-row-id-" + _dr[_i] + " .table-col11 .table-col-msg div").html().substring(0, 1);
                     _startYearOld = $("#" + _idTable + " #table-row-id-" + _dr[_i] + " .table-col11 .table-col-msg div").html().substring(4, 8);
                     _endSemesterOld = $("#" + _idTable + " #table-row-id-" + _dr[_i] + " .table-col12 .table-col-msg div").html().substring(0, 1);
@@ -503,7 +503,7 @@ var ePFStaffOurServices = {
                              "  <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='th-label'>" + _no + "</div></div></div>" +
                              "  <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='th-label'>" + _studentId + "</div></div></div>" +
                              "  <div class='table-col table-col-width-dynamic table-col3'><div class='table-col-msg'><div class='th-label'>" + _fullNameTH + "</div></div></div>" +
-                             "  <div class='table-col table-col-width-fixed table-col4'><div class='table-col-msg'><div class='th-label'>" + _distinctionStatusNew + " ( " + _distinctionStatusOld + " )" + "</div></div></div>" +
+                             "  <div class='table-col table-col-width-fixed table-col4'><div class='table-col-msg'><div class='th-label'>" + _joinProgramStatusNew + " ( " + _joinProgramStatusOld + " )" + "</div></div></div>" +
                              "  <div class='table-col table-col-width-fixed table-col5'><div class='table-col-msg'><div class='th-label'>" + (_startSemesterNew.length > 0 && _startYearNew.length > 0 ? (_startSemesterNew + " / " + _startYearNew) : "") + " ( " + (_startSemesterOld.length > 0 && _startYearOld.length > 0 ? (_startSemesterOld + " / " + _startYearOld) : "") + " )" + "</div></div></div>" +
                              "  <div class='table-col table-col-width-fixed table-col6'><div class='table-col-msg'><div class='th-label'>" + (_endSemesterNew.length > 0 && _endYearNew.length > 0 ? (_endSemesterNew + " / " + _endYearNew) : "") + " ( " + (_endSemesterOld.length > 0 && _endYearOld.length > 0 ? (_endSemesterOld + " / " + _endYearOld) : "") + " )" + "</div></div></div>" +
                              "  <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='th-label'>" + _resignDateNew + " ( " + _resignDateOld + " )" + "</div></div></div>" +
