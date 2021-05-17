@@ -1,41 +1,40 @@
-﻿// =============================================
-// Author       : <ยุทธภูมิ ตวันนา>
-// Create date  : <๐๓/๐๘/๒๕๕๘>
-// Modify date  : <๐๘/๐๗/๒๕๕๙>
-// Description  : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผลในส่วนของการขึ้นทะเบียนสิทธิรักษาพยาบาล>
-// =============================================
+﻿/*
+=============================================
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๐๓/๐๘/๒๕๕๘>
+Modify date : <๐๘/๐๗/๒๕๕๙>
+Description : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผลในส่วนของการขึ้นทะเบียนสิทธิรักษาพยาบาล>
+=============================================
+*/
 
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
-using System.Linq;
 using System.Text;
 using System.Web;
 using NUtil;
-using NFinServiceLogin;
 
 public class HCSStaffDownloadRegistrationFormUI
 {
-    private static string _idSectionMain        = HCSStaffUtil.ID_SECTION_DOWNLOADREGISTRATIONFORM_MAIN.ToLower();
-    private static string _idSectionSearch      = HCSStaffUtil.ID_SECTION_DOWNLOADREGISTRATIONFORM_SEARCH.ToLower();
-    private static string _idSectionProgress    = HCSStaffUtil.ID_SECTION_DOWNLOADREGISTRATIONFORM_PROGRESS.ToLower();
+    private static string _idSectionMain = HCSStaffUtil.ID_SECTION_DOWNLOADREGISTRATIONFORM_MAIN.ToLower();
+    private static string _idSectionSearch = HCSStaffUtil.ID_SECTION_DOWNLOADREGISTRATIONFORM_SEARCH.ToLower();
+    private static string _idSectionProgress = HCSStaffUtil.ID_SECTION_DOWNLOADREGISTRATIONFORM_PROGRESS.ToLower();
 
-    //ฟังก์ชั่นสำหรับแสดงเนื้อหาตามส่วนที่ต้องการแสดงในส่วนของการขึ้นทะเบียนสิทธิรักษาพยาบาล แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _infoLogin     เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-    //2. _section       เป็น string รับค่าส่วนที่ต้องการแสดง
-    //3. _sectionAction เป็น string รับค่าการกระทำที่เกิดขึ้นกับส่วนที่ต้องการแสดง
-    //4. _id            เป็น string รับค่ารหัสที่ต้องการ
     public static StringBuilder GetSection(Dictionary<string, object> _infoLogin, string _section, string _sectionAction, string _id)
     {
         StringBuilder _html = new StringBuilder();
 
         switch (_section)
         {
-            case "MAIN"             : { _html = SectionMainUI.GetMain(_infoLogin); break; }
-            case "SEARCH"           : { _html = SectionSearchUI.GetMain(); break; }
-            case "PROGRESSDOWNLOAD" : { _html = HCSStaffUI.GetFrmProgressDownloadData(HCSStaffUtil.PAGE_DOWNLOADREGISTRATIONFORM_PROGRESS, _idSectionProgress); break; }   
+            case "MAIN":
+                _html = SectionMainUI.GetMain(_infoLogin);
+                break;
+            case "SEARCH":
+                _html = SectionSearchUI.GetMain();
+                break;
+            case "PROGRESSDOWNLOAD":
+                _html = HCSStaffUI.GetFrmProgressDownloadData(HCSStaffUtil.PAGE_DOWNLOADREGISTRATIONFORM_PROGRESS, _idSectionProgress);
+                break;
         }
 
         return _html;
@@ -43,9 +42,6 @@ public class HCSStaffDownloadRegistrationFormUI
 
     public class SectionMainUI
     {
-        //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าหลักในส่วนของการขึ้นทะเบียนสิทธิรักษาพยาบาล แล้วส่งค่ากลับเป็น StringBuilder
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _infoLogin เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
         public static StringBuilder GetMain(Dictionary<string, object> _infoLogin)
         {
             Dictionary<string, object> _infoData = new Dictionary<string, object>();
@@ -68,62 +64,58 @@ public class HCSStaffDownloadRegistrationFormUI
 
             _html.AppendLine(HCSStaffUI.GetInfoBar(_infoDataResult, true).ToString());
             _html.AppendLine("<div class='after-sticky main'>");
-            _html.AppendFormat("    <div class='table' id='{0}-table'>", _idSectionMain);
-            _html.AppendLine("          <div class='table-layout'>");
-            _html.AppendLine("              <div class='table-content'>");
-            _html.AppendLine("                  <div class='table-freeze sticky'>");
-            _html.AppendLine("                      <div class='table-title'>");
-            _html.AppendFormat("                        <div class='contentbody-left table-option table-rowperpage en-label'>{0}</div>", HCSStaffUI.GetComboboxRowPerPage(_idSectionMain + "-rowperpage"));
-            _html.AppendLine("                          <div class='contentbody-left button'>");
-            _html.AppendLine("                              <div class='button-layout'>");
-            _html.AppendLine("                                  <div class='button-content'>");
-            _html.AppendLine("                                      <ul class='button-style2'>");
-            _html.AppendFormat("                                        <li><div class='click-button en-label button-download{0}' alt='{0}'>Download {1}</div></li>", HCSStaffUtil._selectOption[1].ToLower(), HCSStaffUtil._selectOption[1]);
-            _html.AppendFormat("                                        <li><div class='click-button en-label button-download{0}' alt='{0}'>Download {1}</div></li>", HCSStaffUtil._selectOption[0].ToLower(), HCSStaffUtil._selectOption[0]);
-            _html.AppendFormat("                                    </ul>");
-            _html.AppendLine("                                  </div>");
+            _html.AppendFormat("<div class='table' id='{0}-table'>", _idSectionMain);
+            _html.AppendLine("      <div class='table-layout'>");
+            _html.AppendLine("          <div class='table-content'>");
+            _html.AppendLine("              <div class='table-freeze sticky'>");
+            _html.AppendLine("                  <div class='table-title'>");
+            _html.AppendFormat("                    <div class='contentbody-left table-option table-rowperpage en-label'>{0}</div>", HCSStaffUI.GetComboboxRowPerPage(_idSectionMain + "-rowperpage"));
+            _html.AppendLine("                      <div class='contentbody-left button'>");
+            _html.AppendLine("                          <div class='button-layout'>");
+            _html.AppendLine("                              <div class='button-content'>");
+            _html.AppendLine("                                  <ul class='button-style2'>");
+            _html.AppendFormat("                                    <li><div class='click-button en-label button-download{0}' alt='{0}'>Download {1}</div></li>", HCSStaffUtil._selectOption[1].ToLower(), HCSStaffUtil._selectOption[1]);
+            _html.AppendFormat("                                    <li><div class='click-button en-label button-download{0}' alt='{0}'>Download {1}</div></li>", HCSStaffUtil._selectOption[0].ToLower(), HCSStaffUtil._selectOption[0]);
+            _html.AppendFormat("                                </ul>");
             _html.AppendLine("                              </div>");
             _html.AppendLine("                          </div>");
-            _html.AppendFormat("                        <div class='contentbody-right table-recordcount en-label'>");
-            _html.AppendFormat("                            <span class='recordcount-search hidden'>{0}</span>",            (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
-            _html.AppendFormat("                            <span class='recordcountprimary-search th-label'>{0}</span>",   (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
-            _html.AppendLine("                          </div>");
             _html.AppendLine("                      </div>");
-            _html.AppendLine("                      <div class='clear'></div>");
-            _html.AppendLine("                      <div class='table-head'>");
-            _html.AppendLine("                          <div class='table-row'>");
-            _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='en-label'>No.</div></div></div>");
-            _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='en-label'>Select All</div><div class='input-root'><input class='checkbox select-root' type='checkbox' id='select-root' name='select-root' alt='select-child' /></div></div></div>");
-            _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col3'><div class='table-col-msg'><div class='en-label'>Student</div><div class='en-label'>ID</div></div></div>");
-            _html.AppendLine("                              <div class='table-col table-col-width-dynamic table-col4'><div class='table-col-msg'><div class='en-label'>Full Name</div><div class='en-label'>( TH )</div></div></div>");
-            _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col5'><div class='table-col-msg'><div class='en-label'>Faculty</div></div></div>");
-            _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col6'><div class='table-col-msg'><div class='en-label'>Program</div></div></div>");
-            _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='en-label'>Year</div><div class='en-label'>Attended</div></div></div>");
-            _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='en-label'>Admission</div><div class='en-label'>Type</div></div></div>");
-            _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'><div class='en-label'>Latest Date Download</div></div></div>");
-            _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col10'><div class='table-col-msg'><div class='en-label'>Download</div><div class='en-label'>Count</div></div></div>");
-            _html.AppendLine("                          </div>");
+            _html.AppendFormat("                    <div class='contentbody-right table-recordcount en-label'>");
+            _html.AppendFormat("                        <span class='recordcount-search hidden'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCount"].ToString()).ToString("#,##0") : String.Empty));
+            _html.AppendFormat("                        <span class='recordcountprimary-search th-label'>{0}</span>", (_show.Equals(true) ? double.Parse(_searchResult["RecordCountPrimary"].ToString()).ToString("#,##0") : String.Empty));
             _html.AppendLine("                      </div>");
             _html.AppendLine("                  </div>");
-            _html.AppendFormat("                <div class='table-list'>{0}</div>", (_show.Equals(true) ? _searchResult["List"] : String.Empty));
-            _html.AppendFormat("                <div class='table-navpage'>{0}</div>", (_show.Equals(true) ? _searchResult["NavPage"] : String.Empty));
+            _html.AppendLine("                  <div class='clear'></div>");
+            _html.AppendLine("                  <div class='table-head'>");
+            _html.AppendLine("                      <div class='table-row'>");
+            _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col1'><div class='table-col-msg'><div class='en-label'>No.</div></div></div>");
+            _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div class='en-label'>Select All</div><div class='input-root'><input class='checkbox select-root' type='checkbox' id='select-root' name='select-root' alt='select-child' /></div></div></div>");
+            _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col3'><div class='table-col-msg'><div class='en-label'>Student</div><div class='en-label'>ID</div></div></div>");
+            _html.AppendLine("                          <div class='table-col table-col-width-dynamic table-col4'><div class='table-col-msg'><div class='en-label'>Full Name</div><div class='en-label'>( TH )</div></div></div>");
+            _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col5'><div class='table-col-msg'><div class='en-label'>Faculty</div></div></div>");
+            _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col6'><div class='table-col-msg'><div class='en-label'>Program</div></div></div>");
+            _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='en-label'>Year</div><div class='en-label'>Attended</div></div></div>");
+            _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='en-label'>Admission</div><div class='en-label'>Type</div></div></div>");
+            _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'><div class='en-label'>Latest Date Download</div></div></div>");
+            _html.AppendLine("                          <div class='table-col table-col-width-fixed table-col10'><div class='table-col-msg'><div class='en-label'>Download</div><div class='en-label'>Count</div></div></div>");
+            _html.AppendLine("                      </div>");
+            _html.AppendLine("                  </div>");
             _html.AppendLine("              </div>");
+            _html.AppendFormat("            <div class='table-list'>{0}</div>", (_show.Equals(true) ? _searchResult["List"] : String.Empty));
+            _html.AppendFormat("            <div class='table-navpage'>{0}</div>", (_show.Equals(true) ? _searchResult["NavPage"] : String.Empty));
             _html.AppendLine("          </div>");
             _html.AppendLine("      </div>");
+            _html.AppendLine("  </div>");
             _html.AppendLine("</div>");
            
             return _html;
         }
 
-        //ฟังก์ชั่นสำหรับแสดงรายการในส่วนของการขึ้นทะเบียนสิทธิรักษาพยาบาล แล้วส่งค่ากลับเป็น StringBuilder
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _infoLogin เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-        //2. _dr        เป็น DataRow[] รับค่าชุดของข้อมูล
         public static StringBuilder GetList(Dictionary<string, object> _infoLogin, DataRow[] _dr)
         {
             StringBuilder _html = new StringBuilder();
             string _highlight = String.Empty;
-            string _callFunc = String.Empty;            
+            string _callFunc = String.Empty;
 
             if (_dr.GetLength(0) > 0)
             {
@@ -131,23 +123,23 @@ public class HCSStaffDownloadRegistrationFormUI
 
                 foreach (DataRow _dr1 in _dr)
                 {
-                    _highlight  = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";                    
-                    _callFunc   = "Util.gotoPage({" +
-                                  "page:('index.aspx?p=" + HCSStaffUtil.PAGE_STUDENTRECORDSSTUDENTCV_MAIN + "&id=" + _dr1["id"] + "')," +
-                                  "target:'_blank'" +
-                                  "})";                    
+                    _highlight = (double.Parse(_dr1["rowNum"].ToString()) % 2) == 0 ? " highlight-style2" : " highlight-style1";
+                    _callFunc = "Util.gotoPage({" +
+                                "page:('index.aspx?p=" + HCSStaffUtil.PAGE_STUDENTRECORDSSTUDENTCV_MAIN + "&id=" + _dr1["id"] + "')," +
+                                "target:'_blank'" +
+                                "})";
 
                     _html.AppendFormat("<div class='table-row{0}' id='table-row-id-{1}'>", _highlight, _dr1["id"]);
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
                     _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col2'><div class='table-col-msg'><div><input class='checkbox select-child' type='checkbox' id='select-child-{0}' name='select-child' alt='select-root' value='{0}' /></div></div></div>", _dr1["id"].ToString());
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));
-                    _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",  _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["facultyCode"].ToString()) ? _dr1["facultyCode"].ToString() : String.Empty));
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>",    _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>",       HCSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9' onclick={0}><div class='table-col-msg'><div class='th-label table-col-latestdatedownload'>{1}</div></div></div>",   _callFunc, (!String.IsNullOrEmpty(_dr1["latestDateDownload"].ToString()) ? DateTime.Parse(_dr1["latestDateDownload"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") : String.Empty));
-                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col10' onclick={0}><div class='table-col-msg'><div class='th-label table-col-countdownload'>{1}</div></div></div>",        _callFunc, (!String.IsNullOrEmpty(_dr1["countDownload"].ToString()) && !_dr1["countDownload"].ToString().Equals("0") ? (double.Parse(_dr1["countDownload"].ToString()).ToString("#,##0")) : String.Empty));
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col3' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["studentCode"].ToString()) ? _dr1["studentCode"].ToString() : "XXXXXXX"));
+                    _html.AppendFormat("    <div class='table-col table-col-width-dynamic table-col4' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, Util.GetFullName(_dr1["titlePrefixInitialsTH"].ToString(), _dr1["titlePrefixFullNameTH"].ToString(), _dr1["firstName"].ToString(), _dr1["middleName"].ToString(), _dr1["lastName"].ToString()));
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col5' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["facultyCode"].ToString()) ? _dr1["facultyCode"].ToString() : String.Empty));
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col6' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["programCode"].ToString()) ? (_dr1["programCode"].ToString() + " " + _dr1["majorCode"].ToString() + " " + _dr1["groupNum"].ToString()) : String.Empty));
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", HCSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9' onclick={0}><div class='table-col-msg'><div class='th-label table-col-latestdatedownload'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["latestDateDownload"].ToString()) ? DateTime.Parse(_dr1["latestDateDownload"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") : String.Empty));
+                    _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col10' onclick={0}><div class='table-col-msg'><div class='th-label table-col-countdownload'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["countDownload"].ToString()) && !_dr1["countDownload"].ToString().Equals("0") ? (double.Parse(_dr1["countDownload"].ToString()).ToString("#,##0")) : String.Empty));
                     _html.AppendLine("  </div>");
                 }
 
@@ -160,7 +152,6 @@ public class HCSStaffDownloadRegistrationFormUI
 
     public class SectionSearchUI
     {
-        //ฟังก์ชั่นสำหรับแสดงเนื้อหาหน้าค้นหาในส่วนของการขึ้นทะเบียนสิทธิรักษาพยาบาล แล้วส่งค่ากลับเป็น StringBuilder
         public static StringBuilder GetMain()
         {
             StringBuilder _html = new StringBuilder();

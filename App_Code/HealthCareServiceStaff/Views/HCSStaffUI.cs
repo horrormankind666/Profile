@@ -1,26 +1,21 @@
-﻿// =============================================
-// Author       : <ยุทธภูมิ ตวันนา>
-// Create date  : <๑๖/๐๗/๒๕๕๘>
-// Modify date  : <๑๖/๐๒/๒๕๖๓>
-// Description  : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผล>
-// =============================================
+﻿/*
+=============================================
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๑๖/๐๗/๒๕๕๘>
+Modify date : <๑๖/๐๒/๒๕๖๓>
+Description : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผล>
+=============================================
+*/
 
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Web;
 using NUtil;
 using NFinServiceLogin;
 
 public class HCSStaffUI
 {
-    //ฟังก์ชั่นสำหรับแสดงเมนูบาร์ แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _infoLogin เป็น Dictionary<string, object> รับค่าชุดข้อมูลของผู้ใช้งาน
-    //2. _page      เป็น string รับค่าชื่อหน้า
     public static StringBuilder GetMenuBar(Dictionary<string, object> _infoLogin, string _page)
     {
         StringBuilder _html = new StringBuilder();
@@ -88,16 +83,12 @@ public class HCSStaffUI
             _html.AppendLine("      </div>");
             _html.AppendLine("      <div class='clear'></div>");
             _html.AppendLine("  </div>");
-            _html.AppendLine("</div>");            
+            _html.AppendLine("</div>");
         }
 
         return _html;
     }
     
-    //ฟังก์ชั่นสำหรับแสดงเนื้อหาที่เป็นหัวข้อในหน้าที่ต้องการ แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _data      เป็น Dictionary รับค่าข้อมูลที่ต้องการให้แสดง
-    //2. _sticky    เป็น bool รับค่าการว่าต้องการให้ตรึงแนวหรือไม่
     public static StringBuilder GetInfoBar(Dictionary<string, object> _data, bool _sticky)
     {        
         int _i = 0;
@@ -141,7 +132,6 @@ public class HCSStaffUI
         if (!String.IsNullOrEmpty(_infoIcon) && (!String.IsNullOrEmpty(_infoTitleTH) || !String.IsNullOrEmpty(_infoTitleEN)) && String.IsNullOrEmpty(_infoContent))
         {
             _infoTitle += (!String.IsNullOrEmpty(_infoTitleTH) ? ("<div class='th-label'>" + _infoTitleTH + "</div>") : _infoTitle);
-            //_infoTitle += (!String.IsNullOrEmpty(_infoTitleTH) && !String.IsNullOrEmpty(_infoTitleEN) ? "<span class='en-label'>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</span>" : _infoTitle);
             _infoTitle += (!String.IsNullOrEmpty(_infoTitleEN) ? ("<div class='en-label'>" + _infoTitleEN + "</div>") : _infoTitle);
             
             _html.AppendLine("              <ul>");
@@ -150,7 +140,7 @@ public class HCSStaffUI
             _html.AppendLine("              </ul>");
         }
 
-        _html.AppendLine("              </div>");        
+        _html.AppendLine("              </div>");
         _html.AppendLine("              <div class='contentbody-right'>");
 
         if (!String.IsNullOrEmpty(_infoOperatorHome) ||
@@ -172,21 +162,50 @@ public class HCSStaffUI
             _html.AppendLine("              <div class='operator'>");
             _html.AppendLine("                  <ul>");
 
-            if (!String.IsNullOrEmpty(_infoOperatorHome))           _infoOperator.Add("operator-home;" + _infoOperatorHome + ";Home");
-            if (!String.IsNullOrEmpty(_infoOperatorNew))            _infoOperator.Add("operator-new;" + _infoOperatorNew + ";New");
-            if (!String.IsNullOrEmpty(_infoOperatorEdit))           _infoOperator.Add("operator-edit;" + _infoOperatorEdit + ";Edit");
-            if (!String.IsNullOrEmpty(_infoOperatorDelete))         _infoOperator.Add("operator-delete;" + _infoOperatorDelete + ";Delete");
-            if (!String.IsNullOrEmpty(_infoOperatorExportAll))      _infoOperator.Add("operator-exportall;" + _infoOperatorExportAll + ";Export All");
-            if (!String.IsNullOrEmpty(_infoOperatorExportSelected)) _infoOperator.Add("operator-exportselected;" + _infoOperatorExportSelected + ";Export Selected");
-            if (!String.IsNullOrEmpty(_infoOperatorSearch))         _infoOperator.Add("operator-search;" + _infoOperatorSearch + ";Search");
-            if (!String.IsNullOrEmpty(_infoOperatorReset))          _infoOperator.Add("operator-reset;" + _infoOperatorReset + ";Reset");
-            if (!String.IsNullOrEmpty(_infoOperatorSave))           _infoOperator.Add("operator-save;" + _infoOperatorSave + ";Save");
-            if (!String.IsNullOrEmpty(_infoOperatorApply))          _infoOperator.Add("operator-apply;" + _infoOperatorApply + ";Apply");
-            if (!String.IsNullOrEmpty(_infoOperatorUndo))           _infoOperator.Add("operator-undo;" + _infoOperatorUndo + ";Clear");
-            if (!String.IsNullOrEmpty(_infoOperatorPrint))          _infoOperator.Add("operator-print;" + _infoOperatorPrint + ";Print");
-            if (!String.IsNullOrEmpty(_infoOperatorUpload))         _infoOperator.Add("operator-upload;" + _infoOperatorUpload + ";Upload");
-            if (!String.IsNullOrEmpty(_infoOperatorTransfer))       _infoOperator.Add("operator-transfer;" + _infoOperatorTransfer + ";Transfer");
-            if (!String.IsNullOrEmpty(_infoOperatorClose))          _infoOperator.Add("operator-close;" + _infoOperatorClose + ";Close");
+            if (!String.IsNullOrEmpty(_infoOperatorHome))
+                _infoOperator.Add("operator-home;" + _infoOperatorHome + ";Home");
+
+            if (!String.IsNullOrEmpty(_infoOperatorNew))
+                _infoOperator.Add("operator-new;" + _infoOperatorNew + ";New");
+
+            if (!String.IsNullOrEmpty(_infoOperatorEdit))
+                _infoOperator.Add("operator-edit;" + _infoOperatorEdit + ";Edit");
+
+            if (!String.IsNullOrEmpty(_infoOperatorDelete))
+                _infoOperator.Add("operator-delete;" + _infoOperatorDelete + ";Delete");
+
+            if (!String.IsNullOrEmpty(_infoOperatorExportAll))
+                _infoOperator.Add("operator-exportall;" + _infoOperatorExportAll + ";Export All");
+
+            if (!String.IsNullOrEmpty(_infoOperatorExportSelected))
+                _infoOperator.Add("operator-exportselected;" + _infoOperatorExportSelected + ";Export Selected");
+
+            if (!String.IsNullOrEmpty(_infoOperatorSearch))
+                _infoOperator.Add("operator-search;" + _infoOperatorSearch + ";Search");
+
+            if (!String.IsNullOrEmpty(_infoOperatorReset))
+                _infoOperator.Add("operator-reset;" + _infoOperatorReset + ";Reset");
+
+            if (!String.IsNullOrEmpty(_infoOperatorSave))
+                _infoOperator.Add("operator-save;" + _infoOperatorSave + ";Save");
+
+            if (!String.IsNullOrEmpty(_infoOperatorApply))
+                _infoOperator.Add("operator-apply;" + _infoOperatorApply + ";Apply");
+
+            if (!String.IsNullOrEmpty(_infoOperatorUndo))
+                _infoOperator.Add("operator-undo;" + _infoOperatorUndo + ";Clear");
+
+            if (!String.IsNullOrEmpty(_infoOperatorPrint))
+                _infoOperator.Add("operator-print;" + _infoOperatorPrint + ";Print");
+
+            if (!String.IsNullOrEmpty(_infoOperatorUpload))
+                _infoOperator.Add("operator-upload;" + _infoOperatorUpload + ";Upload");
+
+            if (!String.IsNullOrEmpty(_infoOperatorTransfer))
+                _infoOperator.Add("operator-transfer;" + _infoOperatorTransfer + ";Transfer");
+
+            if (!String.IsNullOrEmpty(_infoOperatorClose))
+                _infoOperator.Add("operator-close;" + _infoOperatorClose + ";Close");
 
             for (_i = 0; _i < _infoOperator.Count; _i++)
             {
@@ -278,9 +297,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //สำหรับแสดงรายละเบียดรายการต่าง ๆ ของฟอร์มแล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _contentFrmColumn  เป็น Dictionary<string, object> รับค่ารายละเอียดของคอลัมภ์
     public static StringBuilder GetFrmColumn(Dictionary<string, object> _contentFrmColumn)
     {
         StringBuilder _html = new StringBuilder();
@@ -349,7 +365,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับแสดงความหมายของระบบการสอบเข้า แล้วส่งค่ากลับเป็น StringBuilder
     public static StringBuilder GetFrmMeaningOfAdmissionType()
     {
         StringBuilder _html = new StringBuilder();        
@@ -363,8 +378,8 @@ public class HCSStaffUI
         {
             _html.AppendLine("          <div>");
             _html.AppendLine("              <ul>");
-            _html.AppendFormat("                <li><div class='th-label'>{0}</div></li>",  _dr["id"]);
-            _html.AppendFormat("                <li><div class='th-label'>{0}</div></li>",  _dr["entranceTypeNameTH"]);
+            _html.AppendFormat("                <li><div class='th-label'>{0}</div></li>", _dr["id"]);
+            _html.AppendFormat("                <li><div class='th-label'>{0}</div></li>", _dr["entranceTypeNameTH"]);
 
             if (!String.IsNullOrEmpty(_dr["entranceTypeNameTH"].ToString()) && !String.IsNullOrEmpty(_dr["entranceTypeNameEN"].ToString())) 
                 _html.AppendFormat("            <li><div class='en-label'>&nbsp;: {0}</div></li>", _dr["entranceTypeNameEN"]);
@@ -383,10 +398,9 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับแสดงความหมายของสถานภาพการเป็นนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
     public static StringBuilder GetFrmMeaningOfStudentStatus()
     {
-        StringBuilder _html = new StringBuilder();        
+        StringBuilder _html = new StringBuilder();
         DataSet _ds = Util.DBUtil.GetListStudentStatus(new Dictionary<string, object>());
 
         _html.AppendFormat("<div class='dialogmessage-form' id='{0}-form'>", HCSStaffUtil.ID_SECTION_MEANINGOFSTUDENTSTATUS_MAIN.ToLower());
@@ -397,8 +411,8 @@ public class HCSStaffUI
         {
             _html.AppendLine("          <div>");
             _html.AppendLine("              <ul>");
-            _html.AppendFormat("                <li><div class='th-label'>{0}</div></li>",  _dr["id"]);
-            _html.AppendFormat("                <li><div class='th-label'>{0}</div></li>",  _dr["statusTypeNameTH"]);
+            _html.AppendFormat("                <li><div class='th-label'>{0}</div></li>", _dr["id"]);
+            _html.AppendFormat("                <li><div class='th-label'>{0}</div></li>", _dr["statusTypeNameTH"]);
 
             if (!String.IsNullOrEmpty(_dr["statusTypeNameTH"].ToString()) && !String.IsNullOrEmpty(_dr["statusTypeNameEN"].ToString()))
                 _html.AppendFormat("            <li><div class='en-label'>&nbsp;: {0}</div></li>", _dr["statusTypeNameEN"]);
@@ -417,7 +431,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับแสดงแบบฟอร์มบริการสุขภาพ แล้วส่งค่ากลับเป็น StringBuilder
     public static StringBuilder GetFrmMeaningOfHealthCareServiceForm()
     {
         StringBuilder _html = new StringBuilder();        
@@ -431,8 +444,8 @@ public class HCSStaffUI
         {
             _html.AppendLine("          <div>");
             _html.AppendLine("              <ul>");
-            _html.AppendFormat("                <li><div class='th-label'>{0}</div></li>",  _dr["id"]);
-            _html.AppendFormat("                <li><div class='th-label'>{0}</div></li>",  _dr["formNameTH"]);
+            _html.AppendFormat("                <li><div class='th-label'>{0}</div></li>", _dr["id"]);
+            _html.AppendFormat("                <li><div class='th-label'>{0}</div></li>", _dr["formNameTH"]);
 
             if (!String.IsNullOrEmpty(_dr["formNameTH"].ToString()) && !String.IsNullOrEmpty(_dr["formNameEN"].ToString()))
                 _html.AppendFormat("            <li><div class='en-label'>&nbsp;: {0}</div></li>", _dr["formNameEN"]);
@@ -451,10 +464,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้างฟอร์มแสดงการประมวลผลข้อมูลในส่วนของการดาว์นโหลดข้อมูล แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _page      เป็น string รับค่าชื่อหน้า
-    //2. _idContent เป็น string รับค่าชื่อฟอร์ม
     public static StringBuilder GetFrmProgressDownloadData(string _page, string _idContent)
     {
         StringBuilder _html = new StringBuilder();
@@ -467,8 +476,8 @@ public class HCSStaffUI
         {
             _contentTemp.Clear();
             _contentTemp.AppendLine("<div class='progresstext'>");
-            _contentTemp.AppendFormat("   <div class='th-label' id='{0}-registrationformnameth'></div>", _idContent);
-            _contentTemp.AppendFormat("   <div class='en-label' id='{0}-registrationformnameen'></div>", _idContent);
+            _contentTemp.AppendFormat(" <div class='th-label' id='{0}-registrationformnameth'></div>", _idContent);
+            _contentTemp.AppendFormat(" <div class='en-label' id='{0}-registrationformnameen'></div>", _idContent);
             _contentTemp.AppendLine("</div>");
 
             _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
@@ -575,7 +584,7 @@ public class HCSStaffUI
 
         _html.AppendFormat("<div class='dialog-form form progress' id='{0}-form'>", _idContent);
         _html.AppendLine("      <div class='form-layout'>");
-        _html.AppendLine("          <div class='form-content'>");              
+        _html.AppendLine("          <div class='form-content'>");
 
         if (_page.Equals(HCSStaffUtil.PAGE_DOWNLOADREGISTRATIONFORM_PROGRESS))
             _html.AppendLine(           HCSStaffUI.GetFrmColumn(_contentFrmColumn["RegistrationForm"]).ToString());
@@ -591,10 +600,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้างฟอร์มแสดงการประมวลผลข้อมูลในส่วนของการส่งออกข้อมูล แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _page      เป็น string รับค่าชื่อหน้า
-    //2. _idContent เป็น string รับค่าชื่อฟอร์ม
     public static StringBuilder GetFrmProgressExportData(string _page, string _idContent)
     {
         StringBuilder _html = new StringBuilder();
@@ -619,8 +624,8 @@ public class HCSStaffUI
         _contentTemp.Clear();
         _contentTemp.AppendLine("<div class='progresstotal'>");
         _contentTemp.AppendFormat(" <span class='th-label' id='{0}-total'></span>", _idContent);
-        _contentTemp.AppendFormat("   <span class='th-label'> {0}</span>", _unitTH);
-        _contentTemp.AppendFormat("   <span class='en-label'> : {0}</span>", _unitEN);
+        _contentTemp.AppendFormat(" <span class='th-label'> {0}</span>", _unitTH);
+        _contentTemp.AppendFormat(" <span class='en-label'> : {0}</span>", _unitEN);
         _contentTemp.AppendLine("</div>");
 
         _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
@@ -717,9 +722,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลระดับปริญญา แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxDegreeLevel(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -731,8 +733,8 @@ public class HCSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["id"].ToString();
-            _optionText[_i]     = (_dr["degreeLevelNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["degreeLevelNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["degreeLevelNameTH"].ToString()) ? " : " : String.Empty) + _dr["degreeLevelNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["id"].ToString();
+            _optionText[_i] = (_dr["degreeLevelNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["degreeLevelNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["degreeLevelNameTH"].ToString()) ? " : " : String.Empty) + _dr["degreeLevelNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -744,9 +746,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลคณะ แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxFaculty(string _idCombobox)
     {
         Dictionary<string, object> _infoLoginResult = HCSStaffUtil.GetInfoLogin("", "");
@@ -766,8 +765,8 @@ public class HCSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["facultyId"].ToString();
-            _optionText[_i]     = (_dr["facultyCode"].ToString() + " : " + _dr["facultyNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["facultyNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["facultyNameTH"].ToString()) ? " : " : String.Empty) + _dr["facultyNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["facultyId"].ToString();
+            _optionText[_i] = (_dr["facultyCode"].ToString() + " : " + _dr["facultyNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["facultyNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["facultyNameTH"].ToString()) ? " : " : String.Empty) + _dr["facultyNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -779,11 +778,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลหลักสูตร แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
-    //2. _degreeLevel   เป็น string รับค่าระดับปริญญา
-    //3. _faculty       เป็น string รับค่ารหัสคณะ
     public static StringBuilder GetComboboxProgram(string _idCombobox, string _degreeLevel, string _faculty)
     {
         Dictionary<string, object> _loginResult = HCSStaffUtil.GetInfoLogin("", "");
@@ -796,8 +790,8 @@ public class HCSStaffUI
 
         _paramSearch.Clear();
         _paramSearch.Add("DegreeLevel", _degreeLevel);
-        _paramSearch.Add("Faculty",     _faculty);
-        _paramSearch.Add("Program",     _program);
+        _paramSearch.Add("Faculty", _faculty);
+        _paramSearch.Add("Program", _program);
 
         DataSet _ds = Util.DBUtil.GetListProgram(_username, _systemGroup, _paramSearch);
         string[] _optionValue = new string[_ds.Tables[0].Rows.Count];
@@ -805,8 +799,8 @@ public class HCSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["programId"].ToString();
-            _optionText[_i]     = (_dr["programCode"].ToString() + " " + _dr["majorCode"].ToString() + " " + _dr["groupNum"].ToString() + " : " + _dr["programNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["programNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["programNameTH"].ToString()) ? " : " : String.Empty) + _dr["programNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["programId"].ToString();
+            _optionText[_i] = (_dr["programCode"].ToString() + " " + _dr["majorCode"].ToString() + " " + _dr["groupNum"].ToString() + " : " + _dr["programNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["programNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["programNameTH"].ToString()) ? " : " : String.Empty) + _dr["programNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -818,9 +812,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลการแสดงจำนวนข้อมูลในแต่ละหน้า แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxRowPerPage(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -832,8 +823,8 @@ public class HCSStaffUI
 
         for (_i = 0; _i < _rowPerPage.GetLength(0); _i++)
         {
-            _optionValue[_i]    = _rowPerPage[_i];
-            _optionText[_i]     = ("Display " + _rowPerPage[_i]);
+            _optionValue[_i] = _rowPerPage[_i];
+            _optionText[_i] = ("Display " + _rowPerPage[_i]);
         }
 
         _html = Util.GetSelect(_idCombobox, "", _optionValue, _optionText);
@@ -841,9 +832,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลสถานะการยกเลิก แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxCancelledStatus(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -854,8 +842,8 @@ public class HCSStaffUI
 
         for (_i = 0; _i < HCSStaffUtil._cancelledStatus.GetLength(0); _i++)
         {
-            _optionValue[_i]    = HCSStaffUtil._cancelledStatus[_i, 0];
-            _optionText[_i]     = (HCSStaffUtil._cancelledStatus[_i, 1] + " : " + HCSStaffUtil._cancelledStatus[_i, 2]);
+            _optionValue[_i] = HCSStaffUtil._cancelledStatus[_i, 0];
+            _optionText[_i] = (HCSStaffUtil._cancelledStatus[_i, 1] + " : " + HCSStaffUtil._cancelledStatus[_i, 2]);
         }
 
         _html = Util.GetSelect(_idCombobox, "กรุณาเลือก : Please Select", _optionValue, _optionText);
@@ -863,9 +851,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลสถานะการใช้งาน แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxActiveStatus(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -885,10 +870,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลหน่วยบริการสุขภาพ แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
-    //2. _paramSearch   เป็น Dictionary<string, object> รับค่าพารามิเตอร์ที่ใช้ค้นหาข้อมูล
     public static StringBuilder GetComboboxHospital(string _idCombobox, Dictionary<string, object> _paramSearch)
     {
         StringBuilder _html = new StringBuilder();
@@ -900,8 +881,8 @@ public class HCSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["id"].ToString();
-            _optionText[_i]     = (_dr["id"].ToString() + " - " + _dr["hospitalNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["hospitalNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["hospitalNameTH"].ToString()) ? " : " : String.Empty) + _dr["hospitalNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["id"].ToString();
+            _optionText[_i] = (_dr["id"].ToString() + " - " + _dr["hospitalNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["hospitalNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["hospitalNameTH"].ToString()) ? " : " : String.Empty) + _dr["hospitalNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -913,10 +894,6 @@ public class HCSStaffUI
         return _html;
     }
     
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลแบบฟอร์มบริการสุขภาพ แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
-    //2. _paramSearch   เป็น Dictionary<string, object> รับค่าพารามิเตอร์ที่ใช้ค้นหาข้อมูล
     public static StringBuilder GetComboboxRegistrationForm(string _idCombobox, Dictionary<string, object> _paramSearch)
     {
         StringBuilder _html = new StringBuilder();
@@ -930,8 +907,8 @@ public class HCSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["id"].ToString();
-            _optionText[_i]     = (_dr["id"].ToString() + " - " + _dr["formNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["formNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["formNameTH"].ToString()) ? " : " : String.Empty) + _dr["formNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["id"].ToString();
+            _optionText[_i] = (_dr["id"].ToString() + " - " + _dr["formNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["formNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["formNameTH"].ToString()) ? " : " : String.Empty) + _dr["formNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -943,11 +920,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลหน่วยงานที่ขึ้นทะเบียนสิทธิรักษาพยาบาล แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox        เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
-    //2. _yearEntry         เป็น string รับค่าปีที่เข้าศึกษา
-    //3. _registrationForm  เป็น string รับค่าแบบฟอร์มบริการสุขภาพ   
     public static StringBuilder GetComboboxAgencyRegistered(string _idCombobox, string _yearEntry, string _registrationForm)
     {
         Dictionary<string, object> _loginResult = HCSStaffUtil.GetInfoLogin("", "");
@@ -958,10 +930,10 @@ public class HCSStaffUI
         int _i = 0;
 
         _paramSearch.Clear();
-        _paramSearch.Add("YearEntry",           _yearEntry);
-        _paramSearch.Add("Faculty",             _faculty);
-        _paramSearch.Add("Program",             _program);
-        _paramSearch.Add("RegistrationForm",    _registrationForm);
+        _paramSearch.Add("YearEntry", _yearEntry);
+        _paramSearch.Add("Faculty", _faculty);
+        _paramSearch.Add("Program", _program);
+        _paramSearch.Add("RegistrationForm", _registrationForm);
 
         DataSet _ds = HCSStaffDB.GetListHCSAgencyRegistered(_paramSearch);
         string[] _optionValue = new string[_ds.Tables[0].Rows.Count];
@@ -969,8 +941,8 @@ public class HCSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["acaProgramId"].ToString();
-            _optionText[_i]     = (_dr["programCode"].ToString() + " " + _dr["majorCode"].ToString() + " " + _dr["groupNum"].ToString() + " : " + _dr["programNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["programNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["programNameTH"].ToString()) ? " : " : String.Empty) + _dr["programNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["acaProgramId"].ToString();
+            _optionText[_i] = (_dr["programCode"].ToString() + " " + _dr["majorCode"].ToString() + " " + _dr["groupNum"].ToString() + " : " + _dr["programNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["programNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["programNameTH"].ToString()) ? " : " : String.Empty) + _dr["programNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -982,9 +954,6 @@ public class HCSStaffUI
         return _html;
     }
     
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลปีที่เข้าศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxYearAttended(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -994,14 +963,14 @@ public class HCSStaffUI
         string[] _optionValue = new string[_ds.Tables[0].Rows.Count + 1];
         string[] _optionText = new string[_ds.Tables[0].Rows.Count + 1];
 
-        _optionValue[_i]    = (int.Parse(_ds.Tables[0].Rows[0]["yearEntry"].ToString()) + 1).ToString();
-        _optionText[_i]     = (int.Parse(_ds.Tables[0].Rows[0]["yearEntry"].ToString()) + 1).ToString();
+        _optionValue[_i] = (int.Parse(_ds.Tables[0].Rows[0]["yearEntry"].ToString()) + 1).ToString();
+        _optionText[_i] = (int.Parse(_ds.Tables[0].Rows[0]["yearEntry"].ToString()) + 1).ToString();
         _i = 1;
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["yearEntry"].ToString();
-            _optionText[_i]     = _dr["yearEntry"].ToString();
+            _optionValue[_i] = _dr["yearEntry"].ToString();
+            _optionText[_i] = _dr["yearEntry"].ToString();
 
             _i++;
         }
@@ -1013,9 +982,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลประเภทการสอบเข้ามหาวิทยาลัยมหิดล แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxEntranceType(string _idCombobox)
     {
         Dictionary<string, object> _paramSearch = new Dictionary<string, object>();
@@ -1031,8 +997,8 @@ public class HCSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["id"].ToString();
-            _optionText[_i]     = (_dr["entranceTypeNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["entranceTypeNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["entranceTypeNameTH"].ToString()) ? " : " : String.Empty) + _dr["entranceTypeNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["id"].ToString();
+            _optionText[_i] = (_dr["entranceTypeNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["entranceTypeNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["entranceTypeNameTH"].ToString()) ? " : " : String.Empty) + _dr["entranceTypeNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -1044,9 +1010,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลสถานภาพการเป็นนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxStudentStatus(string _idCombobox)
     {
         Dictionary<string, object> _paramSearch = new Dictionary<string, object>();
@@ -1059,8 +1022,8 @@ public class HCSStaffUI
 
         foreach (DataRow _dr in _ds.Tables[0].Rows)
         {
-            _optionValue[_i]    = _dr["id"].ToString();
-            _optionText[_i]     = (_dr["statusTypeNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["statusTypeNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["statusTypeNameTH"].ToString()) ? " : " : String.Empty) + _dr["statusTypeNameEN"].ToString() : String.Empty));
+            _optionValue[_i] = _dr["id"].ToString();
+            _optionText[_i] = (_dr["statusTypeNameTH"].ToString() + (!String.IsNullOrEmpty(_dr["statusTypeNameEN"].ToString()) ? (!String.IsNullOrEmpty(_dr["statusTypeNameTH"].ToString()) ? " : " : String.Empty) + _dr["statusTypeNameEN"].ToString() : String.Empty));
 
             _i++;
         }
@@ -1072,9 +1035,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลสถานะการด่่่าว์นโหลด แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxDownloadStatus(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1085,8 +1045,8 @@ public class HCSStaffUI
 
         for (_i = 0; _i < HCSStaffUtil._downloadStatus.GetLength(0); _i++)
         {
-            _optionValue[_i]    = HCSStaffUtil._downloadStatus[_i, 0];
-            _optionText[_i]     = (HCSStaffUtil._downloadStatus[_i, 1] + " : " + HCSStaffUtil._downloadStatus[_i, 2]);
+            _optionValue[_i] = HCSStaffUtil._downloadStatus[_i, 0];
+            _optionText[_i] = (HCSStaffUtil._downloadStatus[_i, 1] + " : " + HCSStaffUtil._downloadStatus[_i, 2]);
         }
 
         _html = Util.GetSelect(_idCombobox, "กรุณาเลือก : Please Select", _optionValue, _optionText);
@@ -1094,9 +1054,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลสถานะสิทธิขึ้นทะเบียนสิทธิรักษาพยาบาล แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxHCSJoinStatus(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1116,9 +1073,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลสถานะการแสดงความยินยอมให้ข้อมูลสำหรับการรับบริการปรึกษาออนไลน์สำหรับนักศึกษา แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
     public static StringBuilder GetComboboxConsentStatus(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1138,10 +1092,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ตามรายการข้อมูล แล้วค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
-    //2. _listCombobox  เป็น string[] รับค่ารายการที่ต้องการเรียง
     public static StringBuilder GetComboboxOrder(string _idCombobox, string[] _listCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1152,8 +1102,8 @@ public class HCSStaffUI
 
         for (_i = 0; _i < _listCombobox.GetLength(0); _i++)
         {
-            _optionValue[_i]    = _listCombobox[_i];
-            _optionText[_i]     = _listCombobox[_i];
+            _optionValue[_i] = _listCombobox[_i];
+            _optionText[_i] = _listCombobox[_i];
         }
 
         _html = Util.GetSelect(_idCombobox, "กรุณาเลือก : Please Select", _optionValue, _optionText);
@@ -1161,10 +1111,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง Combobox ข้อมูลลำดับตัวเลข แล้วค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCombobox    เป็น string รับค่าชื่อ Combobox ที่ต้องการตั้ง
-    //2. _listCombobox  เป็น string[] รับค่ารายการที่ต้องการเรียง
     public static StringBuilder GetComboboxOrder(string _idCombobox, int _orderStart, int _orderEnd)
     {
         StringBuilder _html = new StringBuilder();
@@ -1175,8 +1121,8 @@ public class HCSStaffUI
 
         for (_i = 0; _i < ((_orderEnd - _orderStart) + 1); _i++)
         {
-            _optionValue[_i]    = (_orderStart + _i).ToString();
-            _optionText[_i]     = (_orderStart + _i).ToString();
+            _optionValue[_i] = (_orderStart + _i).ToString();
+            _optionText[_i] = (_orderStart + _i).ToString();
         }
 
         _html = Util.GetSelect(_idCombobox, "กรุณาเลือก : Please Select", _optionValue, _optionText);
@@ -1184,12 +1130,6 @@ public class HCSStaffUI
         return _html;
     }
 
-    //ฟังก์ชั่นสำหรับสร้าง List ข้อมูลหลักสูตร แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _idCheckbox    เป็น string รับค่าชื่อ Checkbox ที่ต้องการตั้ง
-    //2. _degreeLevel   เป็น string รับค่าระดับปริญญา
-    //3. _faculty       เป็น string รับค่ารหัสคณะ
-    //4. _program       เป็น string รับค่ารหัสหลักสูตร
     public static StringBuilder GetListProgram(string _idCheckbox, string _degreeLevel, string _faculty, string _program)
     {
         Dictionary<string, object> _loginResult = HCSStaffUtil.GetInfoLogin("", "");
@@ -1201,8 +1141,8 @@ public class HCSStaffUI
 
         _paramSearch.Clear();
         _paramSearch.Add("DegreeLevel", _degreeLevel);
-        _paramSearch.Add("Faculty",     _faculty);
-        _paramSearch.Add("Program",     _program);
+        _paramSearch.Add("Faculty", _faculty);
+        _paramSearch.Add("Program", _program);
 
         DataSet _ds = Util.DBUtil.GetListProgram(_username, _systemGroup, _paramSearch);
         string[] _optionValue = new string[_ds.Tables[0].Rows.Count];
@@ -1228,107 +1168,104 @@ public class HCSStaffUI
         return _html;
     }
     
-    //ฟังก์ชั่นสำหรับแสดงค่าที่ใช้ค้นหาข้อมูล แล้วส่งค่ากลับเป็น StringBuilder
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _page  เป็น string รับค่าชื่อหน้า
     public static StringBuilder GetValueSearch(string _page)
     {
         StringBuilder _html = new StringBuilder();
         Dictionary<string, object> _valueSearch = HCSStaffUtil.SetValueSearch(_page);
-        string _keyword                 = (string)Util.GetValueDataDictionary(_valueSearch, "Keyword", _valueSearch["Keyword"], String.Empty);
-        string _degreeLevel             = (string)Util.GetValueDataDictionary(_valueSearch, "DegreeLevel", _valueSearch["DegreeLevel"], String.Empty);
-        string _faculty                 = (string)Util.GetValueDataDictionary(_valueSearch, "Faculty", _valueSearch["Faculty"], String.Empty);
-        string _program                 = (string)Util.GetValueDataDictionary(_valueSearch, "Program", _valueSearch["Program"], String.Empty);
-        string _yearEntry               = (string)Util.GetValueDataDictionary(_valueSearch, "YearEntry", _valueSearch["YearEntry"], String.Empty);
-        string _entranceType            = (string)Util.GetValueDataDictionary(_valueSearch, "EntranceType", _valueSearch["EntranceType"], String.Empty);
-        string _studentStatus           = (string)Util.GetValueDataDictionary(_valueSearch, "StudentStatus", _valueSearch["StudentStatus"], String.Empty);
-        string _cancelledStatus         = (string)Util.GetValueDataDictionary(_valueSearch, "CancelledStatus", _valueSearch["CancelledStatus"], String.Empty);
-        string _forPublicServant        = (string)Util.GetValueDataDictionary(_valueSearch, "ForPublicServant", _valueSearch["ForPublicServant"], String.Empty);        
-        string _hospital                = (string)Util.GetValueDataDictionary(_valueSearch, "Hospital", _valueSearch["Hospital"], String.Empty);
-        string _hcsJoin                 = (string)Util.GetValueDataDictionary(_valueSearch, "HCSJoin", _valueSearch["HCSJoin"], String.Empty);
-        string _registrationForm        = (string)Util.GetValueDataDictionary(_valueSearch, "RegistrationForm", _valueSearch["RegistrationForm"], String.Empty);        
-        string _downloadStatus          = (string)Util.GetValueDataDictionary(_valueSearch, "DownloadStatus", _valueSearch["DownloadStatus"], String.Empty);
-        string _consentStatus           = (string)Util.GetValueDataDictionary(_valueSearch, "ConsentStatus", _valueSearch["ConsentStatus"], String.Empty);
-        string _termServiceNote         = (string)Util.GetValueDataDictionary(_valueSearch, "TermServiceNote", _valueSearch["TermServiceNote"], String.Empty);
-        string _consentDateStart        = (string)Util.GetValueDataDictionary(_valueSearch, "ConsentDateStart", _valueSearch["ConsentDateStart"], String.Empty);
-        string _consentDateEnd          = (string)Util.GetValueDataDictionary(_valueSearch, "ConsentDateEnd", _valueSearch["ConsentDateEnd"], String.Empty);        
-        string _sortOrderBy             = (string)Util.GetValueDataDictionary(_valueSearch, "SortOrderBy", _valueSearch["SortOrderBy"], String.Empty);
-        string _sortExpression          = (string)Util.GetValueDataDictionary(_valueSearch, "SortExpression", _valueSearch["SortExpression"], String.Empty);
-        string _rowPerPage              = (string)Util.GetValueDataDictionary(_valueSearch, "RowPerPage", _valueSearch["RowPerPage"].ToString(), String.Empty);
-        string _idSectionMain           = String.Empty;
-        string _idSectionSearch         = String.Empty;
-        string _sortOrderByDefault      = String.Empty;
+        string _keyword = (string)Util.GetValueDataDictionary(_valueSearch, "Keyword", _valueSearch["Keyword"], String.Empty);
+        string _degreeLevel = (string)Util.GetValueDataDictionary(_valueSearch, "DegreeLevel", _valueSearch["DegreeLevel"], String.Empty);
+        string _faculty = (string)Util.GetValueDataDictionary(_valueSearch, "Faculty", _valueSearch["Faculty"], String.Empty);
+        string _program = (string)Util.GetValueDataDictionary(_valueSearch, "Program", _valueSearch["Program"], String.Empty);
+        string _yearEntry = (string)Util.GetValueDataDictionary(_valueSearch, "YearEntry", _valueSearch["YearEntry"], String.Empty);
+        string _entranceType = (string)Util.GetValueDataDictionary(_valueSearch, "EntranceType", _valueSearch["EntranceType"], String.Empty);
+        string _studentStatus = (string)Util.GetValueDataDictionary(_valueSearch, "StudentStatus", _valueSearch["StudentStatus"], String.Empty);
+        string _cancelledStatus = (string)Util.GetValueDataDictionary(_valueSearch, "CancelledStatus", _valueSearch["CancelledStatus"], String.Empty);
+        string _forPublicServant = (string)Util.GetValueDataDictionary(_valueSearch, "ForPublicServant", _valueSearch["ForPublicServant"], String.Empty);        
+        string _hospital = (string)Util.GetValueDataDictionary(_valueSearch, "Hospital", _valueSearch["Hospital"], String.Empty);
+        string _hcsJoin = (string)Util.GetValueDataDictionary(_valueSearch, "HCSJoin", _valueSearch["HCSJoin"], String.Empty);
+        string _registrationForm = (string)Util.GetValueDataDictionary(_valueSearch, "RegistrationForm", _valueSearch["RegistrationForm"], String.Empty);        
+        string _downloadStatus = (string)Util.GetValueDataDictionary(_valueSearch, "DownloadStatus", _valueSearch["DownloadStatus"], String.Empty);
+        string _consentStatus = (string)Util.GetValueDataDictionary(_valueSearch, "ConsentStatus", _valueSearch["ConsentStatus"], String.Empty);
+        string _termServiceNote = (string)Util.GetValueDataDictionary(_valueSearch, "TermServiceNote", _valueSearch["TermServiceNote"], String.Empty);
+        string _consentDateStart = (string)Util.GetValueDataDictionary(_valueSearch, "ConsentDateStart", _valueSearch["ConsentDateStart"], String.Empty);
+        string _consentDateEnd = (string)Util.GetValueDataDictionary(_valueSearch, "ConsentDateEnd", _valueSearch["ConsentDateEnd"], String.Empty);        
+        string _sortOrderBy = (string)Util.GetValueDataDictionary(_valueSearch, "SortOrderBy", _valueSearch["SortOrderBy"], String.Empty);
+        string _sortExpression = (string)Util.GetValueDataDictionary(_valueSearch, "SortExpression", _valueSearch["SortExpression"], String.Empty);
+        string _rowPerPage = (string)Util.GetValueDataDictionary(_valueSearch, "RowPerPage", _valueSearch["RowPerPage"].ToString(), String.Empty);
+        string _idSectionMain = String.Empty;
+        string _idSectionSearch = String.Empty;
+        string _sortOrderByDefault = String.Empty;
 
         if (_page.Equals(HCSStaffUtil.PAGE_MASTERDATAHOSPITALOFHEALTHCARESERVICE_MAIN))
         {
-            _idSectionMain      = HCSStaffUtil.ID_SECTION_MASTERDATAHOSPITALOFHEALTHCARESERVICE_MAIN.ToLower();
-            _idSectionSearch    = HCSStaffUtil.ID_SECTION_MASTERDATAHOSPITALOFHEALTHCARESERVICE_SEARCH.ToLower();
+            _idSectionMain = HCSStaffUtil.ID_SECTION_MASTERDATAHOSPITALOFHEALTHCARESERVICE_MAIN.ToLower();
+            _idSectionSearch = HCSStaffUtil.ID_SECTION_MASTERDATAHOSPITALOFHEALTHCARESERVICE_SEARCH.ToLower();
             _sortOrderByDefault = "ID";
         }
 
         if (_page.Equals(HCSStaffUtil.PAGE_MASTERDATAREGISTRATIONFORM_MAIN))
         {
-            _idSectionMain      = HCSStaffUtil.ID_SECTION_MASTERDATAREGISTRATIONFORM_MAIN.ToLower();
-            _idSectionSearch    = HCSStaffUtil.ID_SECTION_MASTERDATAREGISTRATIONFORM_SEARCH.ToLower();
+            _idSectionMain = HCSStaffUtil.ID_SECTION_MASTERDATAREGISTRATIONFORM_MAIN.ToLower();
+            _idSectionSearch = HCSStaffUtil.ID_SECTION_MASTERDATAREGISTRATIONFORM_SEARCH.ToLower();
             _sortOrderByDefault = "Order Form";
         }
 
         if (_page.Equals(HCSStaffUtil.PAGE_MASTERDATAAGENCYREGISTERED_MAIN))
         {
-            _idSectionMain      = HCSStaffUtil.ID_SECTION_MASTERDATAAGENCYREGISTERED_MAIN.ToLower();
-            _idSectionSearch    = HCSStaffUtil.ID_SECTION_MASTERDATAAGENCYREGISTERED_SEARCH.ToLower();
+            _idSectionMain = HCSStaffUtil.ID_SECTION_MASTERDATAAGENCYREGISTERED_MAIN.ToLower();
+            _idSectionSearch = HCSStaffUtil.ID_SECTION_MASTERDATAAGENCYREGISTERED_SEARCH.ToLower();
             _sortOrderByDefault = "Program";
         }
 
         if (_page.Equals(HCSStaffUtil.PAGE_DOWNLOADREGISTRATIONFORM_MAIN))
         {
-            _idSectionMain      = HCSStaffUtil.ID_SECTION_DOWNLOADREGISTRATIONFORM_MAIN.ToLower();
-            _idSectionSearch    = HCSStaffUtil.ID_SECTION_DOWNLOADREGISTRATIONFORM_SEARCH.ToLower();
+            _idSectionMain = HCSStaffUtil.ID_SECTION_DOWNLOADREGISTRATIONFORM_MAIN.ToLower();
+            _idSectionSearch = HCSStaffUtil.ID_SECTION_DOWNLOADREGISTRATIONFORM_SEARCH.ToLower();
             _sortOrderByDefault = "Student ID";
         }
 
         if (_page.Equals(HCSStaffUtil.PAGE_OURSERVICESHEALTHINFORMATION_MAIN))
         {
-            _idSectionMain      = HCSStaffUtil.ID_SECTION_OURSERVICESHEALTHINFORMATION_MAIN.ToLower();
-            _idSectionSearch    = HCSStaffUtil.ID_SECTION_OURSERVICESHEALTHINFORMATION_SEARCH.ToLower();
+            _idSectionMain = HCSStaffUtil.ID_SECTION_OURSERVICESHEALTHINFORMATION_MAIN.ToLower();
+            _idSectionSearch = HCSStaffUtil.ID_SECTION_OURSERVICESHEALTHINFORMATION_SEARCH.ToLower();
             _sortOrderByDefault = "Student ID";
         }
 
         if (_page.Equals(HCSStaffUtil.PAGE_OURSERVICESSTATISTICSDOWNLOADHEALTHCARESERVICEFORM_MAIN))
         {
-            _idSectionMain      = HCSStaffUtil.ID_SECTION_OURSERVICESSTATISTICSDOWNLOADHEALTHCARESERVICEFORM_MAIN.ToLower();
-            _idSectionSearch    = HCSStaffUtil.ID_SECTION_OURSERVICESSTATISTICSDOWNLOADHEALTHCARESERVICEFORM_SEARCH.ToLower();
+            _idSectionMain = HCSStaffUtil.ID_SECTION_OURSERVICESSTATISTICSDOWNLOADHEALTHCARESERVICEFORM_MAIN.ToLower();
+            _idSectionSearch = HCSStaffUtil.ID_SECTION_OURSERVICESSTATISTICSDOWNLOADHEALTHCARESERVICEFORM_SEARCH.ToLower();
             _sortOrderByDefault = "Student ID";
         }
 
         if (_page.Equals(HCSStaffUtil.PAGE_OURSERVICESTERMSERVICEHCSCONSENTREGISTRATION_MAIN) ||
             _page.Equals(HCSStaffUtil.PAGE_OURSERVICESTERMSERVICEHCSCONSENTOOCA_MAIN))
         {
-            _idSectionMain      = HCSStaffUtil.ID_SECTION_OURSERVICESTERMSERVICEHCSCONSENT_MAIN.ToLower();
-            _idSectionSearch    = HCSStaffUtil.ID_SECTION_OURSERVICESTERMSERVICEHCSCONSENT_SEARCH.ToLower();
+            _idSectionMain = HCSStaffUtil.ID_SECTION_OURSERVICESTERMSERVICEHCSCONSENT_MAIN.ToLower();
+            _idSectionSearch = HCSStaffUtil.ID_SECTION_OURSERVICESTERMSERVICEHCSCONSENT_SEARCH.ToLower();
             _sortOrderByDefault = "Student ID";
         }
 
-        _html.AppendFormat("<input type='hidden' id='{0}-keyword-hidden' value='{1}' />",           _idSectionSearch, (!String.IsNullOrEmpty(_keyword) ? _keyword : Util._valueTextDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-degreelevel-hidden' value='{1}' />",       _idSectionSearch, (!String.IsNullOrEmpty(_degreeLevel) ? _degreeLevel : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-faculty-hidden' value='{1}' />",           _idSectionSearch, (!String.IsNullOrEmpty(_faculty) ? _faculty : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-program-hidden' value='{1}' />",           _idSectionSearch, (!String.IsNullOrEmpty(_program) ? _program : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-yearattended-hidden' value='{1}' />",      _idSectionSearch, (!String.IsNullOrEmpty(_yearEntry) ? _yearEntry : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-entrancetype-hidden' value='{1}' />",      _idSectionSearch, (!String.IsNullOrEmpty(_entranceType) ? _entranceType : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-studentstatus-hidden' value='{1}' />",     _idSectionSearch, (!String.IsNullOrEmpty(_studentStatus) ? _studentStatus : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-cancelledstatus-hidden' value='{1}' />",   _idSectionSearch, (!String.IsNullOrEmpty(_cancelledStatus) ? _cancelledStatus : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-forpublicservant-hidden' value='{1}' />",  _idSectionSearch, (!String.IsNullOrEmpty(_forPublicServant) ? _forPublicServant : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-hospital-hidden' value='{1}' />",          _idSectionSearch, (!String.IsNullOrEmpty(_hospital) ? _hospital : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-hcsjoin-hidden' value='{1}' />",           _idSectionSearch, (!String.IsNullOrEmpty(_hcsJoin) ? _hcsJoin : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-registrationform-hidden' value='{1}' />",  _idSectionSearch, (!String.IsNullOrEmpty(_registrationForm) ? _registrationForm : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-downloadstatus-hidden' value='{1}' />",    _idSectionSearch, (!String.IsNullOrEmpty(_downloadStatus) ? _downloadStatus : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-consentstatus-hidden' value='{1}' />",     _idSectionSearch, (!String.IsNullOrEmpty(_consentStatus) ? _consentStatus : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-termservicenote-hidden' value='{1}' />",   _idSectionSearch, (!String.IsNullOrEmpty(_termServiceNote) ? _termServiceNote : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-consentdatestart-hidden' value='{1}' />",  _idSectionSearch, (!String.IsNullOrEmpty(_consentDateStart) ? _consentDateStart : Util._valueTextDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-consentdateend-hidden' value='{1}' />",    _idSectionSearch, (!String.IsNullOrEmpty(_consentDateEnd) ? _consentDateEnd : Util._valueTextDefault));        
-        _html.AppendFormat("<input type='hidden' id='{0}-sortorderby-hidden' value='{1}' />",       _idSectionSearch, (!String.IsNullOrEmpty(_sortOrderBy) ? _sortOrderBy : _sortOrderByDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-sortexpression-hidden' value='{1}' />",    _idSectionSearch, (!String.IsNullOrEmpty(_sortExpression) ? _sortExpression : "Ascending"));
-        _html.AppendFormat("<input type='hidden' id='{0}-rowperpage-hidden' value='{1}' />",        _idSectionMain, (!String.IsNullOrEmpty(_rowPerPage) ? _rowPerPage : HCSStaffUtil._myRowPerPageDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-keyword-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_keyword) ? _keyword : Util._valueTextDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-degreelevel-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_degreeLevel) ? _degreeLevel : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-faculty-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_faculty) ? _faculty : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-program-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_program) ? _program : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-yearattended-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_yearEntry) ? _yearEntry : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-entrancetype-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_entranceType) ? _entranceType : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-studentstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_studentStatus) ? _studentStatus : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-cancelledstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_cancelledStatus) ? _cancelledStatus : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-forpublicservant-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_forPublicServant) ? _forPublicServant : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-hospital-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_hospital) ? _hospital : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-hcsjoin-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_hcsJoin) ? _hcsJoin : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-registrationform-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_registrationForm) ? _registrationForm : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-downloadstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_downloadStatus) ? _downloadStatus : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-consentstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_consentStatus) ? _consentStatus : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-termservicenote-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_termServiceNote) ? _termServiceNote : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-consentdatestart-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_consentDateStart) ? _consentDateStart : Util._valueTextDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-consentdateend-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_consentDateEnd) ? _consentDateEnd : Util._valueTextDefault));        
+        _html.AppendFormat("<input type='hidden' id='{0}-sortorderby-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_sortOrderBy) ? _sortOrderBy : _sortOrderByDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-sortexpression-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_sortExpression) ? _sortExpression : "Ascending"));
+        _html.AppendFormat("<input type='hidden' id='{0}-rowperpage-hidden' value='{1}' />", _idSectionMain, (!String.IsNullOrEmpty(_rowPerPage) ? _rowPerPage : HCSStaffUtil._myRowPerPageDefault));
 
         return _html;
     }

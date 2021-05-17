@@ -1,18 +1,18 @@
-﻿// =============================================
-// Author       : <ยุทธภูมิ ตวันนา>
-// Create date  : <๒๑/๐๗/๒๕๕๘>
-// Modify date  : <๒๙/๐๕/๒๕๖๒>
-// Description  : <รวมรวบฟังก์ชั่นใช้งานทั่วไปในส่วนของการจัดการข้อมูลหลัก>
-// =============================================
+﻿/*
+=============================================
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๒๑/๐๗/๒๕๕๘>
+Modify date : <๒๙/๐๕/๒๕๖๒>
+Description : <รวมรวบฟังก์ชั่นใช้งานทั่วไปในส่วนของการจัดการข้อมูลหลัก>
+=============================================
+*/
 
 var HCSStaffMasterData = {
     hospitalofhealthcareservice: {
         idSectionMain: HCSStaffUtil.idSectionMasterDataHospitalOfHealthCareServiceMain.toLowerCase(),
         idSectionNew: HCSStaffUtil.idSectionMasterDataHospitalOfHealthCareServiceNew.toLowerCase(),
-        idSectionEdit: HCSStaffUtil.idSectionMasterDataHospitalOfHealthCareServiceEdit.toLowerCase(),
-        
+        idSectionEdit: HCSStaffUtil.idSectionMasterDataHospitalOfHealthCareServiceEdit.toLowerCase(),        
         sectionMain: {
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับหน้าหลักในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยบริการสุขภาพ
             initMain: function () {
                 var _this = Util.tut.tmd.hospitalofhealthcareservice;
 
@@ -24,8 +24,6 @@ var HCSStaffMasterData = {
 
                 this.resetMain();
             },
-
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับหน้าหลักในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยบริการสุขภาพ
             resetMain: function () {
                 var _this = Util.tut.tmd.hospitalofhealthcareservice;
                 
@@ -35,12 +33,9 @@ var HCSStaffMasterData = {
                 });
             }
         },
-
         sectionAddUpdate: {
             idSectionAddUpdate: "",
-
             sectionNew: {
-                //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการเพิ่มในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยบริการสุขภาพ
                 initMain: function () {
                     var _this1 = Util.tut.tmd;
                     var _this2 = _this1.hospitalofhealthcareservice;
@@ -52,9 +47,7 @@ var HCSStaffMasterData = {
                     });
                 },
             },
-            
             sectionEdit: {
-                //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการแก้ไขในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยบริการสุขภาพ
                 initMain: function () {
                     var _this1 = Util.tut.tmd;
                     var _this2 = _this1.hospitalofhealthcareservice;
@@ -67,8 +60,6 @@ var HCSStaffMasterData = {
 
                     this.resetMain();
                 },
-                
-                //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานของการแก้ไขในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยบริการสุขภาพ
                 resetMain: function () {
                     var _this1 = Util.tut.tmd;
                     var _this2 = _this1.hospitalofhealthcareservice;
@@ -77,11 +68,6 @@ var HCSStaffMasterData = {
                     Util.textboxDisable("#" + _this3.idSectionAddUpdate + "-id");
                 }
             },
-            
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการเพิ่มหรือแก้ไขในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยบริการสุขภาพ
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //page      รับค่าชื่อหน้า
             initMain: function (_param) {
                 _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
@@ -96,14 +82,22 @@ var HCSStaffMasterData = {
                 });
                 
                 $("input:text").keypress(function (_e) {
-                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-id"))              return Util.blockNonEnglishAndNumeric(this, _e);
-                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-hospitalnameth"))  return Util.blockEnglish(this, _e);
-                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-hospitalnameen"))  return Util.blockNonEnglishAndNumeric(this, _e);
+                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-id"))
+                        return Util.blockNonEnglishAndNumeric(this, _e);
+
+                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-hospitalnameth"))
+                        return Util.blockEnglish(this, _e);
+
+                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-hospitalnameen"))
+                        return Util.blockNonEnglishAndNumeric(this, _e);
                 });
                 
                 $("input:text").focusout(function () {
-                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-id"))              $(this).val($(this).val().toUpperCase());
-                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-hospitalnameen"))  $(this).val(Util.toUpperCaseFirst($(this).val()));
+                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-id"))
+                        $(this).val($(this).val().toUpperCase());
+
+                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-hospitalnameen"))
+                        $(this).val(Util.toUpperCaseFirst($(this).val()));
                 });
 
                 $("#" + _this3.idSectionAddUpdate + "-form .button .click-button").click(function () {
@@ -111,14 +105,13 @@ var HCSStaffMasterData = {
                         _this1.confirmSave({
                             page: _param["page"]
                         });
+
                     if ($(this).hasClass("button-undo") == true)
                         _this3.resetMain();
                 });
                 
                 _this3.resetMain();
             },
-            
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานของการเพิ่มหรือแก้ไขในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยบริการสุขภาพ
             resetMain: function () {
                 var _this1 = Util.tut.tmd;
                 var _this2 = _this1.hospitalofhealthcareservice;
@@ -138,8 +131,6 @@ var HCSStaffMasterData = {
                     value: $("#" + _this3.idSectionAddUpdate + "-cancelledstatus-hidden").val()
                 });
             },
-
-            //ฟังก์ชั่นสำหรับตรวจสอบความถูกต้องในการบันทึกข้อมูลในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยบริการสุขภาพ
             validateSave: function () {
                 var _this1 = Util.tut.tmd;
                 var _this2 = _this1.hospitalofhealthcareservice;
@@ -147,8 +138,15 @@ var HCSStaffMasterData = {
                 var _error = new Array();
                 var _i = 0;
 
-                if ($("#" + _this3.idSectionAddUpdate + "-id").val().length == 0) { _error[_i] = ("กรุณาใส่รหัส;Please enter id.;" + _this3.idSectionAddUpdate + "-id-content"); _i++; }
-                if ($("#" + _this3.idSectionAddUpdate + "-hospitalnameth").val().length == 0) { _error[_i] = ("กรุณาใส่ชื่อหน่วยบริการสุขภาพ;Please enter hospital name.;" + _this3.idSectionAddUpdate + "-hospitalnameth-content"); _i++; }
+                if ($("#" + _this3.idSectionAddUpdate + "-id").val().length == 0) {
+                    _error[_i] = ("กรุณาใส่รหัส;Please enter id.;" + _this3.idSectionAddUpdate + "-id-content");
+                    _i++;
+                }
+
+                if ($("#" + _this3.idSectionAddUpdate + "-hospitalnameth").val().length == 0) {
+                    _error[_i] = ("กรุณาใส่ชื่อหน่วยบริการสุขภาพ;Please enter hospital name.;" + _this3.idSectionAddUpdate + "-hospitalnameth-content");
+                    _i++;
+                }
 
                 Util.dialogListMessageError({
                     content: _error
@@ -157,15 +155,12 @@ var HCSStaffMasterData = {
                 return (_i > 0 ? false : true);
             },
         },
-    },
-    
+    },    
     registrationform: {
         idSectionMain: HCSStaffUtil.idSectionMasterDataRegistrationFormMain.toLowerCase(),
         idSectionNew: HCSStaffUtil.idSectionMasterDataRegistrationFormNew.toLowerCase(),
         idSectionEdit: HCSStaffUtil.idSectionMasterDataRegistrationFormEdit.toLowerCase(),
-
         sectionMain: {
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับหน้าหลักในส่วนของการจัดการข้อมูลหลัก-ข้อมูลแบบฟอร์มบริการสุขภาพ
             initMain: function () {
                 var _this = Util.tut.tmd.registrationform;
 
@@ -177,8 +172,6 @@ var HCSStaffMasterData = {
 
                 this.resetMain();
             },
-
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับหน้าหลักในส่วนของการจัดการข้อมูลหลัก-ข้อมูลแบบฟอร์มบริการสุขภาพ
             resetMain: function () {
                 var _this = Util.tut.tmd.registrationform;
 
@@ -187,13 +180,10 @@ var HCSStaffMasterData = {
                     value: $("#" + _this.idSectionMain + "-rowperpage-hidden").val()
                 });
             }
-        },
-        
+        },        
         sectionAddUpdate: {
             idSectionAddUpdate: "",
-
             sectionNew: {
-                //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการเพิ่มในส่วนของการจัดการข้อมูลหลัก-ข้อมูลแบบฟอร์มบริการสุขภาพ
                 initMain: function () {
                     var _this1 = Util.tut.tmd;
                     var _this2 = _this1.registrationform;
@@ -205,9 +195,7 @@ var HCSStaffMasterData = {
                     });
                 },
             },
-            
             sectionEdit: {
-                //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการแก้ไขในส่วนของการจัดการข้อมูลหลัก-ข้อมูลแบบฟอร์มบริการสุขภาพ
                 initMain: function () {
                     var _this1 = Util.tut.tmd;
                     var _this2 = _this1.registrationform;
@@ -220,8 +208,6 @@ var HCSStaffMasterData = {
 
                     this.resetMain();
                 },
-
-                //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานของการแก้ไขในส่วนของการจัดการข้อมูลหลัก-ข้อมูลแบบฟอร์มบริการสุขภาพ
                 resetMain: function () {
                     var _this1 = Util.tut.tmd;
                     var _this2 = _this1.registrationform;
@@ -230,11 +216,6 @@ var HCSStaffMasterData = {
                     Util.textboxDisable("#" + _this3.idSectionAddUpdate + "-id");
                 }
             },
-            
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการเพิ่มหรือแก้ไขในส่วนของการจัดการข้อมูลหลัก-ข้อมูลแบบฟอร์มบริการสุขภาพ
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //page      รับค่าชื่อหน้า
             initMain: function (_param) {
                 _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
@@ -257,13 +238,19 @@ var HCSStaffMasterData = {
                 });
 
                 $("input:text").keypress(function (_e) {
-                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-id"))          return Util.blockNonEnglishAndNumeric(this, _e);
-                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-formnameth"))  return Util.blockEnglish(this, _e);
-                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-formnameen"))  return Util.blockNonEnglishAndNumeric(this, _e);
+                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-id"))
+                        return Util.blockNonEnglishAndNumeric(this, _e);
+
+                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-formnameth"))
+                        return Util.blockEnglish(this, _e);
+
+                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-formnameen"))
+                        return Util.blockNonEnglishAndNumeric(this, _e);
                 });
 
                 $("input:text").focusout(function () {
-                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-formnameen"))  $(this).val(Util.toUpperCaseFirst($(this).val()));
+                    if ($(this).attr("id") == (_this3.idSectionAddUpdate + "-formnameen"))
+                        $(this).val(Util.toUpperCaseFirst($(this).val()));
                 });
 
                 $("#" + _this3.idSectionAddUpdate + "-form .button .click-button").click(function () {
@@ -271,14 +258,13 @@ var HCSStaffMasterData = {
                         _this1.confirmSave({
                             page: _param["page"]
                         });
+
                     if ($(this).hasClass("button-undo") == true)
                         _this3.resetMain();
                 });
 
                 _this3.resetMain();
             },
-
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานของการเพิ่มหรือแก้ไขในส่วนของการจัดการข้อมูลหลัก-ข้อมูลแบบฟอร์มบริการสุขภาพ
             resetMain: function () {
                 var _this1 = Util.tut.tmd;
                 var _this2 = _this1.registrationform;
@@ -306,8 +292,6 @@ var HCSStaffMasterData = {
                     value: $("#" + _this3.idSectionAddUpdate + "-cancelledstatus-hidden").val()
                 });
             },
-            
-            //ฟังก์ชั่นสำหรับตรวจสอบความถูกต้องในการบันทึกข้อมูลในส่วนของการจัดการข้อมูลหลัก-ข้อมูลแบบฟอร์มบริการสุขภาพ
             validateSave: function () {
                 var _this1 = Util.tut.tmd;
                 var _this2 = _this1.registrationform;
@@ -315,8 +299,15 @@ var HCSStaffMasterData = {
                 var _error = new Array();
                 var _i = 0;
 
-                if ($("#" + _this3.idSectionAddUpdate + "-id").val().length == 0) { _error[_i] = ("กรุณาใส่รหัส;Please enter id.;" + _this3.idSectionAddUpdate + "-id-content"); _i++; }
-                if ($("#" + _this3.idSectionAddUpdate + "-formnameth").val().length == 0) { _error[_i] = ("กรุณาใส่ชื่อแบบฟอร์มบริการสุขภาพ;Please enter form name.;" + _this3.idSectionAddUpdate + "-formnameth-content"); _i++; }
+                if ($("#" + _this3.idSectionAddUpdate + "-id").val().length == 0) {
+                    _error[_i] = ("กรุณาใส่รหัส;Please enter id.;" + _this3.idSectionAddUpdate + "-id-content");
+                    _i++;
+                }
+
+                if ($("#" + _this3.idSectionAddUpdate + "-formnameth").val().length == 0) {
+                    _error[_i] = ("กรุณาใส่ชื่อแบบฟอร์มบริการสุขภาพ;Please enter form name.;" + _this3.idSectionAddUpdate + "-formnameth-content");
+                    _i++;
+                }
 
                 Util.dialogListMessageError({
                     content: _error
@@ -325,15 +316,12 @@ var HCSStaffMasterData = {
                 return (_i > 0 ? false : true);
             },
         }
-    },
-    
+    },    
     agencyregistered: {
         idSectionMain: HCSStaffUtil.idSectionMasterDataAgencyRegisteredMain.toLowerCase(),
         idSectionNew: HCSStaffUtil.idSectionMasterDataAgencyRegisteredNew.toLowerCase(),
         idSectionEdit: HCSStaffUtil.idSectionMasterDataAgencyRegisteredEdit.toLowerCase(),
-
         sectionMain: {
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับหน้าหลักในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยงานที่ขึ้นทะเบียนสิทธิรักษาพยาบาล
             initMain: function () {
                 var _this = Util.tut.tmd.agencyregistered;
 
@@ -345,8 +333,6 @@ var HCSStaffMasterData = {
 
                 this.resetMain();
             },
-
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับหน้าหลักในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยงานที่ขึ้นทะเบียนสิทธิรักษาพยาบาล
             resetMain: function () {
                 var _this = Util.tut.tmd.agencyregistered;
 
@@ -355,13 +341,10 @@ var HCSStaffMasterData = {
                     value: $("#" + _this.idSectionMain + "-rowperpage-hidden").val()
                 });
             }
-        },
-        
+        },        
         sectionAddUpdate: {
             idSectionAddUpdate: "",
-
             sectionNew: {
-                //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการเพิ่มในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยงานที่ขึ้นทะเบียนสิทธิรักษาพยาบาล
                 initMain: function () {
                     var _this1 = Util.tut.tmd;
                     var _this2 = _this1.agencyregistered;
@@ -373,9 +356,7 @@ var HCSStaffMasterData = {
                     });
                 },
             },
-            
             sectionEdit: {
-                //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการแก้ไขในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยงานที่ขึ้นทะเบียนสิทธิรักษาพยาบาล
                 initMain: function () {
                     var _this1 = Util.tut.tmd;
                     var _this2 = _this1.agencyregistered;
@@ -388,8 +369,6 @@ var HCSStaffMasterData = {
 
                     this.resetMain();
                 },
-
-                //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานของการแก้ไขในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยงานที่ขึ้นทะเบียนสิทธิรักษาพยาบาล
                 resetMain: function () {
                     var _this1 = Util.tut.tmd;
                     var _this2 = _this1.agencyregistered;
@@ -400,11 +379,6 @@ var HCSStaffMasterData = {
                     Util.comboboxDisable("#" + _this3.idSectionAddUpdate + "-faculty");
                 }
             },
-            
-            //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการเพิ่มหรือแก้ไขในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยงานที่ขึ้นทะเบียนสิทธิรักษาพยาบาล
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-            //page      รับค่าชื่อหน้า
             initMain: function (_param) {
                 _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
@@ -446,14 +420,13 @@ var HCSStaffMasterData = {
                         _this1.confirmSave({
                             page: _param["page"]
                         });
+
                     if ($(this).hasClass("button-undo") == true)
                         _this3.resetMain();
                 });
 
                 _this3.resetMain();
             },
-            
-            //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานของการเพิ่มหรือแก้ไขในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยงานที่ขึ้นทะเบียนสิทธิรักษาพยาบาล
             resetMain: function () {
                 var _this1 = Util.tut.tmd;
                 var _this2 = _this1.agencyregistered;
@@ -498,8 +471,7 @@ var HCSStaffMasterData = {
                 _value = $("#" + _this3.idSectionAddUpdate + "-registrationform-hidden").val();
                 _valueArray = _value.split(",");
 
-                for (_i = 0; _i < _valueArray.length; _i++)
-                {
+                for (_i = 0; _i < _valueArray.length; _i++) {
                     Util.checkSetValue({
                         id: (_this3.idSectionAddUpdate + "-registrationform"),
                         value: _valueArray[_i]
@@ -512,9 +484,7 @@ var HCSStaffMasterData = {
                     id: (_this3.idSectionAddUpdate + "-cancelledstatus"),
                     value: $("#" + _this3.idSectionAddUpdate + "-cancelledstatus-hidden").val()
                 });
-            },
-            
-            //ฟังก์ชั่นสำหรับตรวจสอบความถูกต้องในการบันทึกข้อมูลในส่วนของการจัดการข้อมูลหลัก-ข้อมูลหน่วยงานที่ขึ้นทะเบียนสิทธิรักษาพยาบาล
+            },            
             validateSave: function () {
                 var _this1 = Util.tut.tmd;
                 var _this2 = _this1.agencyregistered;
@@ -522,26 +492,44 @@ var HCSStaffMasterData = {
                 var _error = new Array();
                 var _i = 0;
 
-                if (Util.comboboxGetValue("#" + _this3.idSectionAddUpdate + "-yearattended") == "0") { _error[_i] = ("กรุณาเลือกปีที่เข้าศึกษา;Please select year attended.;" + _this3.idSectionAddUpdate + "-yearattended-content"); _i++; }
-                if (Util.comboboxGetValue("#" + _this3.idSectionAddUpdate + "-faculty") == "0") { _error[_i] = ("กรุณาเลือกคณะ;Please select faculty.;" + _this3.idSectionAddUpdate + "-faculty-content"); _i++; }
-                if ($("input[name=" + _this3.idSectionAddUpdate + "-program]:checked").length == 0) { _error[_i] = ("กรุณาเลือกหลักสูตร;Please select program.;" + _this3.idSectionAddUpdate + "-program-content"); _i++; }
-                if (Util.comboboxGetValue("#" + _this3.idSectionAddUpdate + "-hospital") == "0") { _error[_i] = ("กรุณาเลือกหน่วยบริการสุขภาพ;Please select hospital of health care service.;" + _this3.idSectionAddUpdate + "-hospital-content"); _i++; }
-                if ($("input[name=" + _this3.idSectionAddUpdate + "-registrationform]:checked").length == 0) { _error[_i] = ("กรุณาเลือกแบบฟอร์มบริการสุขภาพ;Please select registration form.;" + _this3.idSectionAddUpdate + "-registrationform-content"); _i++; }
-                if ($("#" + _this3.idSectionAddUpdate + "-programaddress").val().length == 0) { _error[_i] = ("กรุณาใส่ที่อยู่สำหรับจัดส่งเอกสาร;Please enter address for delivery.;" + _this3.idSectionAddUpdate + "-programaddress-content"); _i++; }
+                if (Util.comboboxGetValue("#" + _this3.idSectionAddUpdate + "-yearattended") == "0") {
+                    _error[_i] = ("กรุณาเลือกปีที่เข้าศึกษา;Please select year attended.;" + _this3.idSectionAddUpdate + "-yearattended-content");
+                    _i++;
+                }
+
+                if (Util.comboboxGetValue("#" + _this3.idSectionAddUpdate + "-faculty") == "0") {
+                    _error[_i] = ("กรุณาเลือกคณะ;Please select faculty.;" + _this3.idSectionAddUpdate + "-faculty-content");
+                    _i++;
+                }
+
+                if ($("input[name=" + _this3.idSectionAddUpdate + "-program]:checked").length == 0) {
+                    _error[_i] = ("กรุณาเลือกหลักสูตร;Please select program.;" + _this3.idSectionAddUpdate + "-program-content");
+                    _i++;
+                }
+
+                if (Util.comboboxGetValue("#" + _this3.idSectionAddUpdate + "-hospital") == "0") {
+                    _error[_i] = ("กรุณาเลือกหน่วยบริการสุขภาพ;Please select hospital of health care service.;" + _this3.idSectionAddUpdate + "-hospital-content");
+                    _i++;
+                }
+
+                if ($("input[name=" + _this3.idSectionAddUpdate + "-registrationform]:checked").length == 0) {
+                    _error[_i] = ("กรุณาเลือกแบบฟอร์มบริการสุขภาพ;Please select registration form.;" + _this3.idSectionAddUpdate + "-registrationform-content");
+                    _i++;
+                }
+
+                if ($("#" + _this3.idSectionAddUpdate + "-programaddress").val().length == 0) {
+                    _error[_i] = ("กรุณาใส่ที่อยู่สำหรับจัดส่งเอกสาร;Please enter address for delivery.;" + _this3.idSectionAddUpdate + "-programaddress-content");
+                    _i++;
+                }
 
                 Util.dialogListMessageError({
                     content: _error
                 });
 
                 return (_i > 0 ? false : true);
-            },            
+            },
         }
     },
-    
-    //ฟังก์ชั่นสำหรับแสดงไดอะล็อกยืนยันการบันทึกข้อมูลในส่วนของการจัดการข้อมูลหลัก
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-    //page      รับค่าชื่อหน้าหลัก
     confirmSave: function (_param) {
         _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
@@ -554,8 +542,7 @@ var HCSStaffMasterData = {
                 msgNo: "CANCEL"
             }
         }, function (_result) {
-            if (_result == "Y")
-            {
+            if (_result == "Y") {
                 if (_this.validateSave({
                         page: _param["page"]
                     }))
@@ -565,34 +552,35 @@ var HCSStaffMasterData = {
             }
         });
     },
-    
-    //ฟังก์ชั่นสำหรับตรวจสอบความถูกต้องในการบันทึกข้อมูลในส่วนของการจัดการข้อมูลหลัก
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-    //page      รับค่าชื่อหน้าหลัก
     validateSave: function (_param) {
         _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
         var _this = null;
         var _validateResult = true;
 
-        if (_param["page"] == Util.tut.pageMasterDataHospitalOfHealthCareServiceNew)    _this = this.hospitalofhealthcareservice.sectionAddUpdate;
-        if (_param["page"] == Util.tut.pageMasterDataHospitalOfHealthCareServiceEdit)   _this = this.hospitalofhealthcareservice.sectionAddUpdate;
-        if (_param["page"] == Util.tut.pageMasterDataRegistrationFormNew)               _this = this.registrationform.sectionAddUpdate;
-        if (_param["page"] == Util.tut.pageMasterDataRegistrationFormEdit)              _this = this.registrationform.sectionAddUpdate;
-        if (_param["page"] == Util.tut.pageMasterDataAgencyRegisteredNew)               _this = this.agencyregistered.sectionAddUpdate;
-        if (_param["page"] == Util.tut.pageMasterDataAgencyRegisteredEdit)              _this = this.agencyregistered.sectionAddUpdate;
+        if (_param["page"] == Util.tut.pageMasterDataHospitalOfHealthCareServiceNew)
+            _this = this.hospitalofhealthcareservice.sectionAddUpdate;
+
+        if (_param["page"] == Util.tut.pageMasterDataHospitalOfHealthCareServiceEdit)
+            _this = this.hospitalofhealthcareservice.sectionAddUpdate;
+
+        if (_param["page"] == Util.tut.pageMasterDataRegistrationFormNew)
+            _this = this.registrationform.sectionAddUpdate;
+
+        if (_param["page"] == Util.tut.pageMasterDataRegistrationFormEdit)
+            _this = this.registrationform.sectionAddUpdate;
+
+        if (_param["page"] == Util.tut.pageMasterDataAgencyRegisteredNew)
+            _this = this.agencyregistered.sectionAddUpdate;
+
+        if (_param["page"] == Util.tut.pageMasterDataAgencyRegisteredEdit)
+            _this = this.agencyregistered.sectionAddUpdate;
 
         if (_this != null)
             _validateResult = _this.validateSave();
 
         return _validateResult;
     },
-
-    //ฟังก์ชั่นสำหรับนำข้อมูลในฟอร์มข้อมูลในส่วนของการจัดการข้อมูลหลักมาเตรียมสำหรับบันทึกข้อมูลลงฐานข้อมูล
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-    //page      รับค่าชื่อหน้าหลัก
     getSave: function (_param) {
         _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
@@ -604,156 +592,149 @@ var HCSStaffMasterData = {
         var _value;
         var _valueSave = {};
 
-        if (_param["page"] == Util.tut.pageMasterDataHospitalOfHealthCareServiceNew)
-        {           
+        if (_param["page"] == Util.tut.pageMasterDataHospitalOfHealthCareServiceNew) {
             _this1 = _this2.hospitalofhealthcareservice.sectionAddUpdate;
 
-            _valueSave["id"]                = $("#" + _this1.idSectionAddUpdate + "-id").val();
-            _valueSave["hospitalnameth"]    = $("#" + _this1.idSectionAddUpdate + "-hospitalnameth").val();
-            _valueSave["hospitalnameen"]    = $("#" + _this1.idSectionAddUpdate + "-hospitalnameen").val();
-            _valueSave["cancelledstatus"]   = Util.getSelectionIsSelect({
-                                                id: (_this1.idSectionAddUpdate + "-cancelledstatus"),
-                                                type: "checkbox",
-                                                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-cancelledstatus"),
-                                                valueFalse: "N"
-                                              });
+            _valueSave["id"] = $("#" + _this1.idSectionAddUpdate + "-id").val();
+            _valueSave["hospitalnameth"] = $("#" + _this1.idSectionAddUpdate + "-hospitalnameth").val();
+            _valueSave["hospitalnameen"] = $("#" + _this1.idSectionAddUpdate + "-hospitalnameen").val();
+            _valueSave["cancelledstatus"] = Util.getSelectionIsSelect({
+                id: (_this1.idSectionAddUpdate + "-cancelledstatus"),
+                type: "checkbox",
+                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-cancelledstatus"),
+                valueFalse: "N"
+            });
         }
         
-        if (_param["page"] == Util.tut.pageMasterDataHospitalOfHealthCareServiceEdit)
-        {           
+        if (_param["page"] == Util.tut.pageMasterDataHospitalOfHealthCareServiceEdit) {
             _this1 = _this2.hospitalofhealthcareservice.sectionAddUpdate;
 
-            _valueSave["id"]                = $("#" + _this1.idSectionAddUpdate + "-id").val();
-            _valueSave["hospitalnameth"]    = $("#" + _this1.idSectionAddUpdate + "-hospitalnameth").val();
-            _valueSave["hospitalnameen"]    = $("#" + _this1.idSectionAddUpdate + "-hospitalnameen").val();
-            _valueSave["cancelledstatus"]   = Util.getSelectionIsSelect({
-                                                id: (_this1.idSectionAddUpdate + "-cancelledstatus"),
-                                                type: "checkbox",
-                                                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-cancelledstatus"),
-                                                valueFalse: "N"
-                                              });
+            _valueSave["id"] = $("#" + _this1.idSectionAddUpdate + "-id").val();
+            _valueSave["hospitalnameth"] = $("#" + _this1.idSectionAddUpdate + "-hospitalnameth").val();
+            _valueSave["hospitalnameen"] = $("#" + _this1.idSectionAddUpdate + "-hospitalnameen").val();
+            _valueSave["cancelledstatus"] = Util.getSelectionIsSelect({
+                id: (_this1.idSectionAddUpdate + "-cancelledstatus"),
+                type: "checkbox",
+                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-cancelledstatus"),
+                valueFalse: "N"
+            });
         }
         
-        if (_param["page"] == Util.tut.pageMasterDataRegistrationFormNew)
-        {           
+        if (_param["page"] == Util.tut.pageMasterDataRegistrationFormNew) {
             _this1 = _this2.registrationform.sectionAddUpdate;
 
-            _valueSave["id"]                = $("#" + _this1.idSectionAddUpdate + "-id").val();
-            _valueSave["formnameth"]        = $("#" + _this1.idSectionAddUpdate + "-formnameth").val();
-            _valueSave["formnameen"]        = $("#" + _this1.idSectionAddUpdate + "-formnameen").val();
-            _valueSave["forpublicservant"]  = Util.getSelectionIsSelect({
-                                                id: (_this1.idSectionAddUpdate + "-forpublicservant"),
-                                                type: "checkbox",
-                                                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-forpublicservant"),
-                                                valueFalse: "N"
-                                              });
-            _valueSave["orderform"]         = Util.getSelectionIsSelect({
-                                                id: ("#" + _this1.idSectionAddUpdate + "-orderform"),
-                                                type: "select",
-                                                valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-orderform")
-                                              });
-            _valueSave["cancelledstatus"]   = Util.getSelectionIsSelect({
-                                                id: (_this1.idSectionAddUpdate + "-cancelledstatus"),
-                                                type: "checkbox",
-                                                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-cancelledstatus"),
-                                                valueFalse: "N"
-                                              });
+            _valueSave["id"] = $("#" + _this1.idSectionAddUpdate + "-id").val();
+            _valueSave["formnameth"] = $("#" + _this1.idSectionAddUpdate + "-formnameth").val();
+            _valueSave["formnameen"] = $("#" + _this1.idSectionAddUpdate + "-formnameen").val();
+            _valueSave["forpublicservant"] = Util.getSelectionIsSelect({
+                id: (_this1.idSectionAddUpdate + "-forpublicservant"),
+                type: "checkbox",
+                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-forpublicservant"),
+                valueFalse: "N"
+            });
+            _valueSave["orderform"] = Util.getSelectionIsSelect({
+                id: ("#" + _this1.idSectionAddUpdate + "-orderform"),
+                type: "select",
+                valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-orderform")
+            });
+            _valueSave["cancelledstatus"] = Util.getSelectionIsSelect({
+                id: (_this1.idSectionAddUpdate + "-cancelledstatus"),
+                type: "checkbox",
+                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-cancelledstatus"),
+                valueFalse: "N"
+            });
         }
         
-        if (_param["page"] == Util.tut.pageMasterDataRegistrationFormEdit)
-        {           
+        if (_param["page"] == Util.tut.pageMasterDataRegistrationFormEdit) {
             _this1 = _this2.registrationform.sectionAddUpdate;
 
-            _valueSave["id"]                = $("#" + _this1.idSectionAddUpdate + "-id").val();
-            _valueSave["formnameth"]        = $("#" + _this1.idSectionAddUpdate + "-formnameth").val();
-            _valueSave["formnameen"]        = $("#" + _this1.idSectionAddUpdate + "-formnameen").val();
-            _valueSave["forpublicservant"]  = Util.getSelectionIsSelect({
-                                                id: (_this1.idSectionAddUpdate + "-forpublicservant"),
-                                                type: "checkbox",
-                                                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-forpublicservant"),
-                                                valueFalse: "N"
-                                              });
-            _valueSave["orderform"]         = Util.getSelectionIsSelect({
-                                                id: ("#" + _this1.idSectionAddUpdate + "-orderform"),
-                                                type: "select",
-                                                valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-orderform")
-                                              });
-            _valueSave["cancelledstatus"]   = Util.getSelectionIsSelect({
-                                                id: (_this1.idSectionAddUpdate + "-cancelledstatus"),
-                                                type: "checkbox",
-                                                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-cancelledstatus"),
-                                                valueFalse: "N"
-                                              });
+            _valueSave["id"] = $("#" + _this1.idSectionAddUpdate + "-id").val();
+            _valueSave["formnameth"] = $("#" + _this1.idSectionAddUpdate + "-formnameth").val();
+            _valueSave["formnameen"] = $("#" + _this1.idSectionAddUpdate + "-formnameen").val();
+            _valueSave["forpublicservant"] = Util.getSelectionIsSelect({
+                id: (_this1.idSectionAddUpdate + "-forpublicservant"),
+                type: "checkbox",
+                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-forpublicservant"),
+                valueFalse: "N"
+            });
+            _valueSave["orderform"] = Util.getSelectionIsSelect({
+                id: ("#" + _this1.idSectionAddUpdate + "-orderform"),
+                type: "select",
+                valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-orderform")
+            });
+            _valueSave["cancelledstatus"] = Util.getSelectionIsSelect({
+                id: (_this1.idSectionAddUpdate + "-cancelledstatus"),
+                type: "checkbox",
+                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-cancelledstatus"),
+                valueFalse: "N"
+            });
         }
 
-        if (_param["page"] == Util.tut.pageMasterDataAgencyRegisteredNew)
-        {           
+        if (_param["page"] == Util.tut.pageMasterDataAgencyRegisteredNew) {
             _this1 = _this2.agencyregistered.sectionAddUpdate;
 
-            _valueSave["id"]                = $("#" + _this1.idSectionAddUpdate + "-id-hidden").val();
-            _valueSave["yearentry"]         = Util.getSelectionIsSelect({
-                                                id: ("#" + _this1.idSectionAddUpdate + "-yearattended"),
-                                                type: "select",
-                                                valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-yearattended")
-                                              });
-            _valueSave["program"]           = Util.getValueSelectCheck({
-                                                id: (_this1.idSectionAddUpdate + "-program")
-                                              }).join(",");
-            _valueSave["hospital"]          = Util.getSelectionIsSelect({
-                                                id: ("#" + _this1.idSectionAddUpdate + "-hospital"),
-                                                type: "select",
-                                                valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-hospital")
-                                              });
-            _valueSave["registrationform"]  = Util.getValueSelectCheck({
-                                                id: (_this1.idSectionAddUpdate + "-registrationform")
-                                              }).join(",");
-            _valueSave["programaddress"]    = $("#" + _this1.idSectionAddUpdate + "-programaddress").val().replace(/\n/g, "&");
-            _valueSave["programtelephone"]  = $("#" + _this1.idSectionAddUpdate + "-programtelephone").val();
-            _valueSave["cancelledstatus"]   = Util.getSelectionIsSelect({
-                                                id: (_this1.idSectionAddUpdate + "-cancelledstatus"),
-                                                type: "checkbox",
-                                                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-cancelledstatus"),
-                                                valueFalse: "N"
-                                              });
-        }        
+            _valueSave["id"] = $("#" + _this1.idSectionAddUpdate + "-id-hidden").val();
+            _valueSave["yearentry"] = Util.getSelectionIsSelect({
+                id: ("#" + _this1.idSectionAddUpdate + "-yearattended"),
+                type: "select",
+                valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-yearattended")
+            });
+            _valueSave["program"] = Util.getValueSelectCheck({
+                id: (_this1.idSectionAddUpdate + "-program")
+            }).join(",");
+            _valueSave["hospital"] = Util.getSelectionIsSelect({
+                id: ("#" + _this1.idSectionAddUpdate + "-hospital"),
+                type: "select",
+                valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-hospital")
+            });
+            _valueSave["registrationform"] = Util.getValueSelectCheck({
+                id: (_this1.idSectionAddUpdate + "-registrationform")
+            }).join(",");
+            _valueSave["programaddress"] = $("#" + _this1.idSectionAddUpdate + "-programaddress").val().replace(/\n/g, "&");
+            _valueSave["programtelephone"] = $("#" + _this1.idSectionAddUpdate + "-programtelephone").val();
+            _valueSave["cancelledstatus"] = Util.getSelectionIsSelect({
+                id: (_this1.idSectionAddUpdate + "-cancelledstatus"),
+                type: "checkbox",
+                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-cancelledstatus"),
+                valueFalse: "N"
+            });
+        }
         
-        if (_param["page"] == Util.tut.pageMasterDataAgencyRegisteredEdit)
-        {           
+        if (_param["page"] == Util.tut.pageMasterDataAgencyRegisteredEdit) {
             _this1 = _this2.agencyregistered.sectionAddUpdate;
 
-            _valueSave["id"]                = $("#" + _this1.idSectionAddUpdate + "-id-hidden").val();
-            _valueSave["yearentry"]         = Util.getSelectionIsSelect({
-                                                id: ("#" + _this1.idSectionAddUpdate + "-yearattended"),
-                                                type: "select",
-                                                valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-yearattended")
-                                              });
-            _valueSave["program"]           = Util.getValueSelectCheck({
-                                                id: (_this1.idSectionAddUpdate + "-program")
-                                              }).join(",");
-            _valueSave["hospital"]          = Util.getSelectionIsSelect({
-                                                id: ("#" + _this1.idSectionAddUpdate + "-hospital"),
-                                                type: "select",
-                                                valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-hospital")
-                                              });
-            _valueSave["registrationform"]  = Util.getValueSelectCheck({
-                                                id: (_this1.idSectionAddUpdate + "-registrationform")
-                                              }).join(",");
-            _valueSave["programaddress"]    = $("#" + _this1.idSectionAddUpdate + "-programaddress").val().replace(/\n/g, "&");
-            _valueSave["programtelephone"]  = $("#" + _this1.idSectionAddUpdate + "-programtelephone").val();
-            _valueSave["cancelledstatus"]   = Util.getSelectionIsSelect({
-                                                id: (_this1.idSectionAddUpdate + "-cancelledstatus"),
-                                                type: "checkbox",
-                                                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-cancelledstatus"),
-                                                valueFalse: "N"
-                                              });
+            _valueSave["id"] = $("#" + _this1.idSectionAddUpdate + "-id-hidden").val();
+            _valueSave["yearentry"] = Util.getSelectionIsSelect({
+                id: ("#" + _this1.idSectionAddUpdate + "-yearattended"),
+                type: "select",
+                valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-yearattended")
+            });
+            _valueSave["program"] = Util.getValueSelectCheck({
+                id: (_this1.idSectionAddUpdate + "-program")
+            }).join(",");
+            _valueSave["hospital"] = Util.getSelectionIsSelect({
+                id: ("#" + _this1.idSectionAddUpdate + "-hospital"),
+                type: "select",
+                valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-hospital")
+            });
+            _valueSave["registrationform"] = Util.getValueSelectCheck({
+                id: (_this1.idSectionAddUpdate + "-registrationform")
+            }).join(",");
+            _valueSave["programaddress"] = $("#" + _this1.idSectionAddUpdate + "-programaddress").val().replace(/\n/g, "&");
+            _valueSave["programtelephone"] = $("#" + _this1.idSectionAddUpdate + "-programtelephone").val();
+            _valueSave["cancelledstatus"] = Util.getSelectionIsSelect({
+                id: (_this1.idSectionAddUpdate + "-cancelledstatus"),
+                type: "checkbox",
+                valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-cancelledstatus"),
+                valueFalse: "N"
+            });
         }
 
         this.actionSave({
             page: _param["page"],
             data: _valueSave
         }, function (_resultSave, _resultValueSave) {
-            if (_resultSave == true)
-            {
+            if (_resultSave == true) {
                 if (_param["page"] == Util.tut.pageMasterDataHospitalOfHealthCareServiceNew ||
                     _param["page"] == Util.tut.pageMasterDataRegistrationFormNew ||
                     _param["page"] == Util.tut.pageMasterDataAgencyRegisteredNew)
@@ -771,13 +752,6 @@ var HCSStaffMasterData = {
             }
         });
     },
-    
-    //ฟังก์ชั่นสำหรับบันทึกข้อมูลในส่วนของการจัดการข้อมูลหลัก
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _param         รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-    //page              รับค่าชื่อหน้าหลัก
-    //data              รับค่าข้อมูลที่ต้องการส่ง
-    //2. _callBackFunc  รับค่าสำหรับให้ส่งค่าที่ต้องการในฟังก์ชั่นกลับ
     actionSave: function (_param, _callBackFunc) {        
         _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
         _param["data"] = (_param["data"] == undefined || _param["data"] == "" ? {} : _param["data"]);
@@ -795,22 +769,16 @@ var HCSStaffMasterData = {
             data: _send
         }, function (_result) {
             _error = Util.tut.getErrorMsg({
-                        signinYN: _signinYN,
-                        pageError: 0,
-                        cookieError: _result.CookieError,
-                        userError: _result.UserError,
-                        saveError: _result.SaveError
-                     });
+                signinYN: _signinYN,
+                pageError: 0,
+                cookieError: _result.CookieError,
+                userError: _result.UserError,
+                saveError: _result.SaveError
+            });
 
             _callBackFunc((_error == false ? true : false), _result);
         });
     },
-    
-    //ฟังก์ชั่นสำหรับคัดลอกข้อมูลจากฟอร์มบันทึกข้อมูลไปที่ input type hidden ในส่วนของการจัดการข้อมูลหลัก
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-    //page      รับค่าชื่อหน้าหลัก
-    //data      รับค่าข้อมูลหลังจากการบันทึกข้อมูล
     setValueDataRecorded: function (_param) {
         _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
         _param["data"] = (_param["data"] == undefined ? "" : _param["data"]);
@@ -818,8 +786,7 @@ var HCSStaffMasterData = {
         var _this1;
         var _this2 = this;
 
-        if (_param["page"] == Util.tut.pageMasterDataHospitalOfHealthCareServiceEdit)
-        {
+        if (_param["page"] == Util.tut.pageMasterDataHospitalOfHealthCareServiceEdit) {
             _this1 = _this2.hospitalofhealthcareservice.sectionAddUpdate;
 
             $("#" + _this1.idSectionAddUpdate + "-id-hidden").val($("#" + _this1.idSectionAddUpdate + "-id").val());
@@ -831,11 +798,11 @@ var HCSStaffMasterData = {
                     type: "checkbox",
                     valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-cancelledstatus"),
                     valueFalse: "N"
-                }));
+                })
+            );
         }
         
-        if (_param["page"] == Util.tut.pageMasterDataRegistrationFormEdit)
-        {
+        if (_param["page"] == Util.tut.pageMasterDataRegistrationFormEdit) {
             _this1 = _this2.registrationform.sectionAddUpdate;
 
             $("#" + _this1.idSectionAddUpdate + "-id-hidden").val($("#" + _this1.idSectionAddUpdate + "-id").val());
@@ -847,21 +814,24 @@ var HCSStaffMasterData = {
                     type: "checkbox",
                     valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-forpublicservant"),
                     valueFalse: "N"
-                }));
+                })
+            );
             $("#" + _this1.idSectionAddUpdate + "-orderform-hidden").val(
                 Util.getSelectionIsSelect({
                     id: ("#" + _this1.idSectionAddUpdate + "-orderform"),
                     type: "select",
                     valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-orderform"),
                     valueFalse: "0"
-                }));
+                })
+            );
             $("#" + _this1.idSectionAddUpdate + "-cancelledstatus-hidden").val(
                 Util.getSelectionIsSelect({
                     id: (_this1.idSectionAddUpdate + "-cancelledstatus"),
                     type: "checkbox",
                     valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-cancelledstatus"),
                     valueFalse: "N"
-                }));
+                })
+            );
         }
         
         if (_param["page"] == Util.tut.pageMasterDataAgencyRegisteredEdit)
@@ -875,38 +845,44 @@ var HCSStaffMasterData = {
                     type: "select",
                     valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-yearattended"),
                     valueFalse: "0"
-                }));
+                })
+            );
             $("#" + _this1.idSectionAddUpdate + "-degreelevel-hidden").val(
                 Util.getSelectionIsSelect({
                     id: ("#" + _this1.idSectionAddUpdate + "-degreelevel"),
                     type: "select",
                     valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-degreelevel"),
                     valueFalse: "0"
-                }));
+                })
+            );
             $("#" + _this1.idSectionAddUpdate + "-faculty-hidden").val(
                 Util.getSelectionIsSelect({
                     id: ("#" + _this1.idSectionAddUpdate + "-faculty"),
                     type: "select",
                     valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-faculty"),
                     valueFalse: "0"
-                }));
+                })
+            );
             $("#" + _this1.idSectionAddUpdate + "-program-hidden").val(
                 Util.getSelectionIsSelect({
                     id: (_this1.idSectionAddUpdate + "-program"),
                     type: "checkbox",
                     valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-program")
-                }));
+                })
+            );
             $("#" + _this1.idSectionAddUpdate + "-hospital-hidden").val(
                 Util.getSelectionIsSelect({
                     id: ("#" + _this1.idSectionAddUpdate + "-hospital"),
                     type: "select",
                     valueTrue: Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-hospital"),
                     valueFalse: "0"
-                }));
+                })
+            );
             $("#" + _this1.idSectionAddUpdate + "-registrationform-hidden").val(
                 Util.getValueSelectCheck({
                     id: (_this1.idSectionAddUpdate + "-registrationform")
-                }).join(","));
+                }).join(",")
+            );
             $("#" + _this1.idSectionAddUpdate + "-programaddress-hidden").val($("#" + _this1.idSectionAddUpdate + "-programaddress").val().replace(/\n/g, "&"));
             $("#" + _this1.idSectionAddUpdate + "-programtelephone-hidden").val($("#" + _this1.idSectionAddUpdate + "-programtelephone").val());
             $("#" + _this1.idSectionAddUpdate + "-cancelledstatus-hidden").val(
@@ -915,7 +891,8 @@ var HCSStaffMasterData = {
                     type: "checkbox",
                     valueTrue: Util.checkGetValue(_this1.idSectionAddUpdate + "-cancelledstatus"),
                     valueFalse: "N"
-                }));
+                })
+            );
         }
     }
 }

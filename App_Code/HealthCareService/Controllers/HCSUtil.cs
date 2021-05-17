@@ -1,45 +1,37 @@
-﻿// =============================================
-// Author       : <ยุทธภูมิ ตวันนา>
-// Create date  : <๑๕/๑๒/๒๕๕๗>
-// Modify date  : <๐๗/๐๗/๒๕๕๙>
-// Description  : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นทั่วไป>
-// =============================================
+﻿/*
+=============================================
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๑๕/๑๒/๒๕๕๗>
+Modify date : <๐๗/๐๗/๒๕๕๙>
+Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นทั่วไป>
+=============================================
+*/
 
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Globalization;
-using System.IO;
-using System.Linq;
 using System.Text;
-using System.Web;
 using NUtil;
 using NExportToPDF;
 using NFinServiceLogin;
 
 public class HCSUtil
 {    
-    public const string SUBJECT_SECTION_DOWNLOADREGISTRATIONFORM                = "DownloadRegistrationForm";
-    public const string SUBJECT_SECTION_STUDENTRECORDS                          = "StudentRecords";
-    public const string SUBJECT_SECTION_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS  = (SUBJECT_SECTION_DOWNLOADREGISTRATIONFORM + SUBJECT_SECTION_STUDENTRECORDS);
+    public const string SUBJECT_SECTION_DOWNLOADREGISTRATIONFORM = "DownloadRegistrationForm";
+    public const string SUBJECT_SECTION_STUDENTRECORDS = "StudentRecords";
+    public const string SUBJECT_SECTION_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS = (SUBJECT_SECTION_DOWNLOADREGISTRATIONFORM + SUBJECT_SECTION_STUDENTRECORDS);
 
-    public const string ID_SECTION_DOWNLOADREGISTRATIONFORM_MAIN                = ("Main-" + SUBJECT_SECTION_DOWNLOADREGISTRATIONFORM);
-    public const string ID_SECTION_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS_MAIN  = ("Main-" + SUBJECT_SECTION_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS);
+    public const string ID_SECTION_DOWNLOADREGISTRATIONFORM_MAIN = ("Main-" + SUBJECT_SECTION_DOWNLOADREGISTRATIONFORM);
+    public const string ID_SECTION_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS_MAIN = ("Main-" + SUBJECT_SECTION_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS);
 
-    public const string PAGE_DOWNLOADREGISTRATIONFORM_MAIN                  = (SUBJECT_SECTION_DOWNLOADREGISTRATIONFORM + "Main");
-    public const string PAGE_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS_MAIN    = (SUBJECT_SECTION_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS + "Main");
+    public const string PAGE_DOWNLOADREGISTRATIONFORM_MAIN = (SUBJECT_SECTION_DOWNLOADREGISTRATIONFORM + "Main");
+    public const string PAGE_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS_MAIN = (SUBJECT_SECTION_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS + "Main");
 
     public static string _myPDFFormTemplate = System.Configuration.ConfigurationManager.AppSettings["hcsPDFFormTemplate"].ToString();
-    public static string _myPDFFontNormal   = System.Configuration.ConfigurationManager.AppSettings["hcsPDFFontNormal"].ToString();
-    public static string _myPDFFontBold     = System.Configuration.ConfigurationManager.AppSettings["hcsPDFFontBold"].ToString();
-    public static string _myPDFFontBarcode  = System.Configuration.ConfigurationManager.AppSettings["hcsPDFFontBarcode"].ToString();    
+    public static string _myPDFFontNormal = System.Configuration.ConfigurationManager.AppSettings["hcsPDFFontNormal"].ToString();
+    public static string _myPDFFontBold = System.Configuration.ConfigurationManager.AppSettings["hcsPDFFontBold"].ToString();
+    public static string _myPDFFontBarcode = System.Configuration.ConfigurationManager.AppSettings["hcsPDFFontBarcode"].ToString();    
 
-   
-    //ฟังก์ชั่นสำหรับตรวจสอบและดึงข้อมูลผู้ใช้งานที่เข้าใช้งานระบบนักศึกษา แล้วส่งค่ากลับเป็น Dictionary<string, object>
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _page  เป็น string รับค่าชื่อหน้า
-    //1. _id    เป็น string รับค่ารหัสที่ต้องการ
     public static Dictionary<string, object> GetInfoLogin(string _page, string _id)
     {
         Dictionary<string, object> _finServiceLoginResult = FinServiceLogin.GetFinServiceLogin(FinServiceLogin.USERTYPE_STUDENT, "e-Profile");
@@ -57,25 +49,34 @@ public class HCSUtil
 
         switch (_systemError)
         {
-            case 1  : { _cookieError = 1; break; }
-            case 2  : { _userError = 1; break; }
-            case 6  : { _userError = 2; break; }
-            case 3  : { _userError = 4; break; }
-            case 4  : { _userError = 5; break; }
-            case 5  : { _userError = 6; break; }
+            case 1:
+                _cookieError = 1;
+                break;
+            case 2:
+                _userError = 1;
+                break;
+            case 6:
+                _userError = 2;
+                break;
+            case 3:
+                _userError = 4;
+                break;
+            case 4:
+                _userError = 5;
+                break;
+            case 5:
+                _userError = 6;
+                break;
         }
 
         _loginResult.Add("CookieError", _cookieError.ToString());
-        _loginResult.Add("UserError",   _userError.ToString());
-        _loginResult.Add("PersonId",    _personId);
-        _loginResult.Add("StudentId",   _studentId);
+        _loginResult.Add("UserError", _userError.ToString());
+        _loginResult.Add("PersonId", _personId);
+        _loginResult.Add("StudentId", _studentId);
 
         return _loginResult;
     }
 
-    //ฟังก์ชั่นสำหรับแสดงหน้าเพจ แล้วส่งค่ากลับเป็น Dictionary<string, object>
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _page  เป็น string รับค่าชื่อหน้า
     public static Dictionary<string, object> GetPage(string _page)
     {
         Dictionary<string, object> _loginResult = GetInfoLogin("", "");
@@ -94,53 +95,48 @@ public class HCSUtil
 
         if (_page.Equals(PAGE_DOWNLOADREGISTRATIONFORM_MAIN))
         {
-            _pageError      = 0;
-            _signinYN       = "Y";
-            _mainContent    = (_cookieError.Equals(0) && _userError.Equals(0) ? HCSUI.HCSStaffDownloadRegistrationFormUI.GetSection(_loginResult, "MAIN", "", _personId) : null);
+            _pageError = 0;
+            _signinYN = "Y";
+            _mainContent = (_cookieError.Equals(0) && _userError.Equals(0) ? HCSUI.HCSStaffDownloadRegistrationFormUI.GetSection(_loginResult, "MAIN", "", _personId) : null);
         }
 
-        _pageResult.Add("Page",         _page);
-        _pageResult.Add("PageError",    _pageError.ToString());
-        _pageResult.Add("SignInYN",     _signinYN);
-        _pageResult.Add("CookieError",  _cookieError.ToString());
-        _pageResult.Add("UserError",    _userError.ToString());
-        _pageResult.Add("MainContent",  (_mainContent != null ? _mainContent.ToString() : String.Empty));
+        _pageResult.Add("Page", _page);
+        _pageResult.Add("PageError", _pageError.ToString());
+        _pageResult.Add("SignInYN", _signinYN);
+        _pageResult.Add("CookieError", _cookieError.ToString());
+        _pageResult.Add("UserError", _userError.ToString());
+        _pageResult.Add("MainContent", (_mainContent != null ? _mainContent.ToString() : String.Empty));
 
         return _pageResult;
     }
 
-    //ฟังก์ชั่นสำหรับกำหนดค่าต่าง ๆ ของข้อมูลที่บันทึกไว้ แล้วส่งค่ากลับเป็น Dictionary<string, object>
-    //โดยมีพารามิเตอร์ดังนี้
-    //1. _page  เป็น string รับค่าชื่อหน้า
-    //2. _id    เป็น string รับค่ารหัสที่ต้องการ
     public static Dictionary<string, object> SetValueDataRecorded(string _page, string _id)
     {
         Dictionary<string, object> _valueDataRecordedResult = new Dictionary<string, object>();
         Dictionary<string, object> _dataRecorded = new Dictionary<string, object>();
         DataSet _ds = new DataSet();
 
-        if (_page.Equals(PAGE_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS_MAIN)) _ds = HCSDB.GetHCSStudentRecords(_id);
+        if (_page.Equals(PAGE_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS_MAIN)) 
+            _ds = HCSDB.GetHCSStudentRecords(_id);
         
         if (_ds.Tables.Count > 0)
         {
-            if (_page.Equals(PAGE_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS_MAIN)) _dataRecorded = HCSStaffDownloadRegistrationFormUtil.StudentRecordsUtil.SetValueDataRecorded(_dataRecorded, _ds);        
+            if (_page.Equals(PAGE_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS_MAIN))
+                _dataRecorded = HCSStaffDownloadRegistrationFormUtil.StudentRecordsUtil.SetValueDataRecorded(_dataRecorded, _ds);
         }
 
         _ds.Dispose();
 
-        if (_page.Equals(PAGE_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS_MAIN)) _valueDataRecordedResult.Add(("DataRecorded" + SUBJECT_SECTION_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS), _dataRecorded);
+        if (_page.Equals(PAGE_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS_MAIN))
+            _valueDataRecordedResult.Add(("DataRecorded" + SUBJECT_SECTION_DOWNLOADREGISTRATIONFORMSTUDENTRECORDS), _dataRecorded);
         
-        return _valueDataRecordedResult;               
+        return _valueDataRecordedResult;
     }
 
     public class HCSStaffDownloadRegistrationFormUtil
     {
         public class StudentRecordsUtil
         {
-            //ฟังก์ชั่นสำหรับกำหนดค่าต่าง ๆ ของข้อมูลที่บันทึกไว้ให้กับข้อมูลการเป็นนักศึกษาในส่วนของการขึ้นทะเบียนสิทธิรักษาพยาบาลของนักศึกษา แล้วส่งค่ากลับเป็น Dictionary<string, object>
-            //โดยมีพารามิเตอร์ดังนี้
-            //1. _dataRecorded  เป็น Dictionary<string, object> รับค่าชุดข้อมูล
-            //2. _ds            เป็น DataSet รับค่าชุดข้อมูล
             public static Dictionary<string, object> SetValueDataRecorded(Dictionary<string, object> _dataRecorded, DataSet _ds)
             {
                 DataRow _dr = null;
@@ -148,89 +144,86 @@ public class HCSUtil
                 if (_ds.Tables[0].Rows.Count > 0)
                     _dr = _ds.Tables[0].Rows[0];
 
-                _dataRecorded.Add("PersonId",                           (_dr != null && !String.IsNullOrEmpty(_dr["id"].ToString()) ? _dr["id"] : String.Empty));
-                _dataRecorded.Add("StudentId",                          (_dr != null && !String.IsNullOrEmpty(_dr["studentId"].ToString()) ? _dr["studentId"] : String.Empty));
-                _dataRecorded.Add("StudentCode",                        (_dr != null && !String.IsNullOrEmpty(_dr["studentCode"].ToString()) ? _dr["studentCode"] : "XXXXXXX"));
-                _dataRecorded.Add("IdCard",                             (_dr != null && !String.IsNullOrEmpty(_dr["idCard"].ToString()) ? _dr["idCard"].ToString() : String.Empty));
-                _dataRecorded.Add("TitleInitialsTH",                    (_dr != null && !String.IsNullOrEmpty(_dr["titlePrefixInitialsTH"].ToString()) ? _dr["titlePrefixInitialsTH"].ToString() : String.Empty));
-                _dataRecorded.Add("TitleInitialsEN",                    (_dr != null && !String.IsNullOrEmpty(_dr["titlePrefixInitialsEN"].ToString()) ? _dr["titlePrefixInitialsEN"].ToString() : String.Empty));
-                _dataRecorded.Add("TitleFullNameTH",                    (_dr != null && !String.IsNullOrEmpty(_dr["titlePrefixFullNameTH"].ToString()) ? _dr["titlePrefixFullNameTH"].ToString() : String.Empty));
-                _dataRecorded.Add("TitleFullNameEN",                    (_dr != null && !String.IsNullOrEmpty(_dr["titlePrefixFullNameEN"].ToString()) ? _dr["titlePrefixFullNameEN"].ToString() : String.Empty));
-                _dataRecorded.Add("FirstName",                          (_dr != null && !String.IsNullOrEmpty(_dr["firstName"].ToString()) ? _dr["firstName"].ToString() : String.Empty));
-                _dataRecorded.Add("MiddleName",                         (_dr != null && !String.IsNullOrEmpty(_dr["middleName"].ToString()) ? _dr["middleName"].ToString() : String.Empty));
-                _dataRecorded.Add("LastName",                           (_dr != null && !String.IsNullOrEmpty(_dr["lastName"].ToString()) ? _dr["lastName"].ToString() : String.Empty));
-                _dataRecorded.Add("FirstNameEN",                        (_dr != null && !String.IsNullOrEmpty(_dr["firstNameEN"].ToString()) ? _dr["firstNameEN"].ToString() : String.Empty));
-                _dataRecorded.Add("MiddleNameEN",                       (_dr != null && !String.IsNullOrEmpty(_dr["middleNameEN"].ToString()) ? _dr["middleNameEN"].ToString() : String.Empty));
-                _dataRecorded.Add("LastNameEN",                         (_dr != null && !String.IsNullOrEmpty(_dr["lastNameEN"].ToString()) ? _dr["lastNameEN"].ToString() : String.Empty));
-                _dataRecorded.Add("BirthDateTH",                        (_dr != null && !String.IsNullOrEmpty(_dr["birthDateTH"].ToString()) ? _dr["birthDateTH"].ToString() : String.Empty));
-                _dataRecorded.Add("BirthDateEN",                        (_dr != null && !String.IsNullOrEmpty(_dr["birthDateEN"].ToString()) ? _dr["birthDateEN"].ToString() : String.Empty));
-                _dataRecorded.Add("FacultyCode",                        (_dr != null && !String.IsNullOrEmpty(_dr["facultyCode"].ToString()) ? _dr["facultyCode"].ToString() : String.Empty));
-                _dataRecorded.Add("FacultyNameTH",                      (_dr != null && !String.IsNullOrEmpty(_dr["facultyNameTH"].ToString()) ? _dr["facultyNameTH"].ToString() : String.Empty));
-                _dataRecorded.Add("FacultyNameEN",                      (_dr != null && !String.IsNullOrEmpty(_dr["facultyNameEN"].ToString()) ? _dr["facultyNameEN"].ToString() : String.Empty));
-                _dataRecorded.Add("ProgramCode",                        (_dr != null && !String.IsNullOrEmpty(_dr["programCode"].ToString()) ? _dr["programCode"].ToString() : String.Empty));
-                _dataRecorded.Add("ProgramNameTH",                      (_dr != null && !String.IsNullOrEmpty(_dr["programNameTH"].ToString()) ? _dr["programNameTH"].ToString() : String.Empty));
-                _dataRecorded.Add("ProgramNameEN",                      (_dr != null && !String.IsNullOrEmpty(_dr["programNameEN"].ToString()) ? _dr["programNameEN"].ToString() : String.Empty));
-                _dataRecorded.Add("ProgramAddress",                     (_dr != null && !String.IsNullOrEmpty(_dr["programAddress"].ToString()) ? _dr["programAddress"].ToString() : String.Empty));
-                _dataRecorded.Add("ProgramTelephone",                   (_dr != null && !String.IsNullOrEmpty(_dr["programTelephone"].ToString()) ? _dr["programTelephone"].ToString() : String.Empty));
-                _dataRecorded.Add("HospitalId",                         (_dr != null && !String.IsNullOrEmpty(_dr["hcsHospitalId"].ToString()) ? _dr["hcsHospitalId"].ToString() : String.Empty));
-                _dataRecorded.Add("HospitalNameTH",                     (_dr != null && !String.IsNullOrEmpty(_dr["hospitalNameTH"].ToString()) ? _dr["hospitalNameTH"].ToString() : String.Empty));
-                _dataRecorded.Add("HospitalNameEN",                     (_dr != null && !String.IsNullOrEmpty(_dr["hospitalNameEN"].ToString()) ? _dr["hospitalNameEN"].ToString() : String.Empty));
-                _dataRecorded.Add("CountryNameTHPermanentAddress",      (_dr != null && !String.IsNullOrEmpty(_dr["countryNameTHPermanent"].ToString()) ? _dr["countryNameTHPermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("CountryNameENPermanentAddress",      (_dr != null && !String.IsNullOrEmpty(_dr["countryNameENPermanent"].ToString()) ? _dr["countryNameENPermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("ProvinceNameTHPermanentAddress",     (_dr != null && !String.IsNullOrEmpty(_dr["provinceNameTHPermanent"].ToString()) ? _dr["provinceNameTHPermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("ProvinceNameENPermanentAddress",     (_dr != null && !String.IsNullOrEmpty(_dr["provinceNameENPermanent"].ToString()) ? _dr["provinceNameENPermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("DistrictNameTHPermanentAddress",     (_dr != null && !String.IsNullOrEmpty(_dr["districtNameTHPermanent"].ToString()) ? _dr["districtNameTHPermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("DistrictNameENPermanentAddress",     (_dr != null && !String.IsNullOrEmpty(_dr["districtNameENPermanent"].ToString()) ? _dr["districtNameENPermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("SubDistrictNameTHPermanentAddress",  (_dr != null && !String.IsNullOrEmpty(_dr["subdistrictNameTHPermanent"].ToString()) ? _dr["subdistrictNameTHPermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("SubDistrictNameENPermanentAddress",  (_dr != null && !String.IsNullOrEmpty(_dr["subdistrictNameENPermanent"].ToString()) ? _dr["subdistrictNameENPermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("PostalCodePermanentAddress",         (_dr != null && !String.IsNullOrEmpty(_dr["zipCodePermanent"].ToString()) ? _dr["zipCodePermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("VillagePermanentAddress",            (_dr != null && !String.IsNullOrEmpty(_dr["villagePermanent"].ToString()) ? _dr["villagePermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("HouseNoPermanentAddress",            (_dr != null && !String.IsNullOrEmpty(_dr["noPermanent"].ToString()) ? _dr["noPermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("VillageNoPermanentAddress",          (_dr != null && !String.IsNullOrEmpty(_dr["mooPermanent"].ToString()) ? _dr["mooPermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("LaneAlleyPermanentAddress",          (_dr != null && !String.IsNullOrEmpty(_dr["soiPermanent"].ToString()) ? _dr["soiPermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("RoadPermanentAddress",               (_dr != null && !String.IsNullOrEmpty(_dr["roadPermanent"].ToString()) ? _dr["roadPermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("PhoneNumberPermanentAddress",        (_dr != null && !String.IsNullOrEmpty(_dr["phoneNumberPermanent"].ToString()) ? _dr["phoneNumberPermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("MobileNumberPermanentAddress",       (_dr != null && !String.IsNullOrEmpty(_dr["mobileNumberPermanent"].ToString()) ? _dr["mobileNumberPermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("FaxNumberPermanentAddress",          (_dr != null && !String.IsNullOrEmpty(_dr["faxNumberPermanent"].ToString()) ? _dr["faxNumberPermanent"].ToString() : String.Empty));
-                _dataRecorded.Add("CountryNameTHCurrentAddress",        (_dr != null && !String.IsNullOrEmpty(_dr["countryNameTHCurrent"].ToString()) ? _dr["countryNameTHCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("CountryNameENCurrentAddress",        (_dr != null && !String.IsNullOrEmpty(_dr["countryNameENCurrent"].ToString()) ? _dr["countryNameENCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("ProvinceNameTHCurrentAddress",       (_dr != null && !String.IsNullOrEmpty(_dr["provinceNameTHCurrent"].ToString()) ? _dr["provinceNameTHCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("ProvinceNameENCurrentAddress",       (_dr != null && !String.IsNullOrEmpty(_dr["provinceNameENCurrent"].ToString()) ? _dr["provinceNameENCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("DistrictNameTHCurrentAddress",       (_dr != null && !String.IsNullOrEmpty(_dr["districtNameTHCurrent"].ToString()) ? _dr["districtNameTHCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("DistrictNameENCurrentAddress",       (_dr != null && !String.IsNullOrEmpty(_dr["districtNameENCurrent"].ToString()) ? _dr["districtNameENCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("SubDistrictNameTHCurrentAddress",    (_dr != null && !String.IsNullOrEmpty(_dr["subdistrictNameTHCurrent"].ToString()) ? _dr["subdistrictNameTHCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("SubDistrictNameENCurrentAddress",    (_dr != null && !String.IsNullOrEmpty(_dr["subdistrictNameENCurrent"].ToString()) ? _dr["subdistrictNameENCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("PostalCodeCurrentAddress",           (_dr != null && !String.IsNullOrEmpty(_dr["zipCodeCurrent"].ToString()) ? _dr["zipCodeCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("VillageCurrentAddress",              (_dr != null && !String.IsNullOrEmpty(_dr["villageCurrent"].ToString()) ? _dr["villageCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("HouseNoCurrentAddress",              (_dr != null && !String.IsNullOrEmpty(_dr["noCurrent"].ToString()) ? _dr["noCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("VillageNoCurrentAddress",            (_dr != null && !String.IsNullOrEmpty(_dr["mooCurrent"].ToString()) ? _dr["mooCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("LaneAlleyCurrentAddress",            (_dr != null && !String.IsNullOrEmpty(_dr["soiCurrent"].ToString()) ? _dr["soiCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("RoadCurrentAddress",                 (_dr != null && !String.IsNullOrEmpty(_dr["roadCurrent"].ToString()) ? _dr["roadCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("PhoneNumberCurrentAddress",          (_dr != null && !String.IsNullOrEmpty(_dr["phoneNumberCurrent"].ToString()) ? _dr["phoneNumberCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("MobileNumberCurrentAddress",         (_dr != null && !String.IsNullOrEmpty(_dr["mobileNumberCurrent"].ToString()) ? _dr["mobileNumberCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("FaxNumberCurrentAddress",            (_dr != null && !String.IsNullOrEmpty(_dr["faxNumberCurrent"].ToString()) ? _dr["faxNumberCurrent"].ToString() : String.Empty));
-                _dataRecorded.Add("OccupationFather",                   (_dr != null && !String.IsNullOrEmpty(_dr["occupationFather"].ToString()) ? _dr["occupationFather"].ToString() : String.Empty));
-                _dataRecorded.Add("OccupationNameTHFather",             (_dr != null && !String.IsNullOrEmpty(_dr["occupationNameTHFather"].ToString()) ? _dr["occupationNameTHFather"].ToString() : String.Empty));
-                _dataRecorded.Add("OccupationNameENFather",             (_dr != null && !String.IsNullOrEmpty(_dr["occupationNameENFather"].ToString()) ? _dr["occupationNameENFather"].ToString() : String.Empty));
-                _dataRecorded.Add("OccupationMother",                   (_dr != null && !String.IsNullOrEmpty(_dr["occupationMother"].ToString()) ? _dr["occupationMother"].ToString() : String.Empty));
-                _dataRecorded.Add("OccupationNameTHMother",             (_dr != null && !String.IsNullOrEmpty(_dr["occupationNameTHMother"].ToString()) ? _dr["occupationNameTHMother"].ToString() : String.Empty));
-                _dataRecorded.Add("OccupationNameENMother",             (_dr != null && !String.IsNullOrEmpty(_dr["occupationNameENMother"].ToString()) ? _dr["occupationNameENMother"].ToString() : String.Empty));            
-                _dataRecorded.Add("OccupationParent",                   (_dr != null && !String.IsNullOrEmpty(_dr["occupationParent"].ToString()) ? _dr["occupationParent"].ToString() : String.Empty));
-                _dataRecorded.Add("OccupationNameTHParent",             (_dr != null && !String.IsNullOrEmpty(_dr["occupationNameTHParent"].ToString()) ? _dr["occupationNameTHParent"].ToString() : String.Empty));
-                _dataRecorded.Add("OccupationNameENParent",             (_dr != null && !String.IsNullOrEmpty(_dr["occupationNameENParent"].ToString()) ? _dr["occupationNameENParent"].ToString() : String.Empty));
+                _dataRecorded.Add("PersonId", (_dr != null && !String.IsNullOrEmpty(_dr["id"].ToString()) ? _dr["id"] : String.Empty));
+                _dataRecorded.Add("StudentId", (_dr != null && !String.IsNullOrEmpty(_dr["studentId"].ToString()) ? _dr["studentId"] : String.Empty));
+                _dataRecorded.Add("StudentCode", (_dr != null && !String.IsNullOrEmpty(_dr["studentCode"].ToString()) ? _dr["studentCode"] : "XXXXXXX"));
+                _dataRecorded.Add("IdCard", (_dr != null && !String.IsNullOrEmpty(_dr["idCard"].ToString()) ? _dr["idCard"].ToString() : String.Empty));
+                _dataRecorded.Add("TitleInitialsTH", (_dr != null && !String.IsNullOrEmpty(_dr["titlePrefixInitialsTH"].ToString()) ? _dr["titlePrefixInitialsTH"].ToString() : String.Empty));
+                _dataRecorded.Add("TitleInitialsEN", (_dr != null && !String.IsNullOrEmpty(_dr["titlePrefixInitialsEN"].ToString()) ? _dr["titlePrefixInitialsEN"].ToString() : String.Empty));
+                _dataRecorded.Add("TitleFullNameTH", (_dr != null && !String.IsNullOrEmpty(_dr["titlePrefixFullNameTH"].ToString()) ? _dr["titlePrefixFullNameTH"].ToString() : String.Empty));
+                _dataRecorded.Add("TitleFullNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["titlePrefixFullNameEN"].ToString()) ? _dr["titlePrefixFullNameEN"].ToString() : String.Empty));
+                _dataRecorded.Add("FirstName", (_dr != null && !String.IsNullOrEmpty(_dr["firstName"].ToString()) ? _dr["firstName"].ToString() : String.Empty));
+                _dataRecorded.Add("MiddleName", (_dr != null && !String.IsNullOrEmpty(_dr["middleName"].ToString()) ? _dr["middleName"].ToString() : String.Empty));
+                _dataRecorded.Add("LastName", (_dr != null && !String.IsNullOrEmpty(_dr["lastName"].ToString()) ? _dr["lastName"].ToString() : String.Empty));
+                _dataRecorded.Add("FirstNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["firstNameEN"].ToString()) ? _dr["firstNameEN"].ToString() : String.Empty));
+                _dataRecorded.Add("MiddleNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["middleNameEN"].ToString()) ? _dr["middleNameEN"].ToString() : String.Empty));
+                _dataRecorded.Add("LastNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["lastNameEN"].ToString()) ? _dr["lastNameEN"].ToString() : String.Empty));
+                _dataRecorded.Add("BirthDateTH", (_dr != null && !String.IsNullOrEmpty(_dr["birthDateTH"].ToString()) ? _dr["birthDateTH"].ToString() : String.Empty));
+                _dataRecorded.Add("BirthDateEN", (_dr != null && !String.IsNullOrEmpty(_dr["birthDateEN"].ToString()) ? _dr["birthDateEN"].ToString() : String.Empty));
+                _dataRecorded.Add("FacultyCode", (_dr != null && !String.IsNullOrEmpty(_dr["facultyCode"].ToString()) ? _dr["facultyCode"].ToString() : String.Empty));
+                _dataRecorded.Add("FacultyNameTH", (_dr != null && !String.IsNullOrEmpty(_dr["facultyNameTH"].ToString()) ? _dr["facultyNameTH"].ToString() : String.Empty));
+                _dataRecorded.Add("FacultyNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["facultyNameEN"].ToString()) ? _dr["facultyNameEN"].ToString() : String.Empty));
+                _dataRecorded.Add("ProgramCode", (_dr != null && !String.IsNullOrEmpty(_dr["programCode"].ToString()) ? _dr["programCode"].ToString() : String.Empty));
+                _dataRecorded.Add("ProgramNameTH", (_dr != null && !String.IsNullOrEmpty(_dr["programNameTH"].ToString()) ? _dr["programNameTH"].ToString() : String.Empty));
+                _dataRecorded.Add("ProgramNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["programNameEN"].ToString()) ? _dr["programNameEN"].ToString() : String.Empty));
+                _dataRecorded.Add("ProgramAddress", (_dr != null && !String.IsNullOrEmpty(_dr["programAddress"].ToString()) ? _dr["programAddress"].ToString() : String.Empty));
+                _dataRecorded.Add("ProgramTelephone", (_dr != null && !String.IsNullOrEmpty(_dr["programTelephone"].ToString()) ? _dr["programTelephone"].ToString() : String.Empty));
+                _dataRecorded.Add("HospitalId", (_dr != null && !String.IsNullOrEmpty(_dr["hcsHospitalId"].ToString()) ? _dr["hcsHospitalId"].ToString() : String.Empty));
+                _dataRecorded.Add("HospitalNameTH", (_dr != null && !String.IsNullOrEmpty(_dr["hospitalNameTH"].ToString()) ? _dr["hospitalNameTH"].ToString() : String.Empty));
+                _dataRecorded.Add("HospitalNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["hospitalNameEN"].ToString()) ? _dr["hospitalNameEN"].ToString() : String.Empty));
+                _dataRecorded.Add("CountryNameTHPermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["countryNameTHPermanent"].ToString()) ? _dr["countryNameTHPermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("CountryNameENPermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["countryNameENPermanent"].ToString()) ? _dr["countryNameENPermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("ProvinceNameTHPermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["provinceNameTHPermanent"].ToString()) ? _dr["provinceNameTHPermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("ProvinceNameENPermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["provinceNameENPermanent"].ToString()) ? _dr["provinceNameENPermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("DistrictNameTHPermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["districtNameTHPermanent"].ToString()) ? _dr["districtNameTHPermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("DistrictNameENPermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["districtNameENPermanent"].ToString()) ? _dr["districtNameENPermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("SubDistrictNameTHPermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["subdistrictNameTHPermanent"].ToString()) ? _dr["subdistrictNameTHPermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("SubDistrictNameENPermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["subdistrictNameENPermanent"].ToString()) ? _dr["subdistrictNameENPermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("PostalCodePermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["zipCodePermanent"].ToString()) ? _dr["zipCodePermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("VillagePermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["villagePermanent"].ToString()) ? _dr["villagePermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("HouseNoPermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["noPermanent"].ToString()) ? _dr["noPermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("VillageNoPermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["mooPermanent"].ToString()) ? _dr["mooPermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("LaneAlleyPermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["soiPermanent"].ToString()) ? _dr["soiPermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("RoadPermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["roadPermanent"].ToString()) ? _dr["roadPermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("PhoneNumberPermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["phoneNumberPermanent"].ToString()) ? _dr["phoneNumberPermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("MobileNumberPermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["mobileNumberPermanent"].ToString()) ? _dr["mobileNumberPermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("FaxNumberPermanentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["faxNumberPermanent"].ToString()) ? _dr["faxNumberPermanent"].ToString() : String.Empty));
+                _dataRecorded.Add("CountryNameTHCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["countryNameTHCurrent"].ToString()) ? _dr["countryNameTHCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("CountryNameENCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["countryNameENCurrent"].ToString()) ? _dr["countryNameENCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("ProvinceNameTHCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["provinceNameTHCurrent"].ToString()) ? _dr["provinceNameTHCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("ProvinceNameENCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["provinceNameENCurrent"].ToString()) ? _dr["provinceNameENCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("DistrictNameTHCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["districtNameTHCurrent"].ToString()) ? _dr["districtNameTHCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("DistrictNameENCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["districtNameENCurrent"].ToString()) ? _dr["districtNameENCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("SubDistrictNameTHCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["subdistrictNameTHCurrent"].ToString()) ? _dr["subdistrictNameTHCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("SubDistrictNameENCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["subdistrictNameENCurrent"].ToString()) ? _dr["subdistrictNameENCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("PostalCodeCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["zipCodeCurrent"].ToString()) ? _dr["zipCodeCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("VillageCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["villageCurrent"].ToString()) ? _dr["villageCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("HouseNoCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["noCurrent"].ToString()) ? _dr["noCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("VillageNoCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["mooCurrent"].ToString()) ? _dr["mooCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("LaneAlleyCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["soiCurrent"].ToString()) ? _dr["soiCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("RoadCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["roadCurrent"].ToString()) ? _dr["roadCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("PhoneNumberCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["phoneNumberCurrent"].ToString()) ? _dr["phoneNumberCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("MobileNumberCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["mobileNumberCurrent"].ToString()) ? _dr["mobileNumberCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("FaxNumberCurrentAddress", (_dr != null && !String.IsNullOrEmpty(_dr["faxNumberCurrent"].ToString()) ? _dr["faxNumberCurrent"].ToString() : String.Empty));
+                _dataRecorded.Add("OccupationFather", (_dr != null && !String.IsNullOrEmpty(_dr["occupationFather"].ToString()) ? _dr["occupationFather"].ToString() : String.Empty));
+                _dataRecorded.Add("OccupationNameTHFather", (_dr != null && !String.IsNullOrEmpty(_dr["occupationNameTHFather"].ToString()) ? _dr["occupationNameTHFather"].ToString() : String.Empty));
+                _dataRecorded.Add("OccupationNameENFather", (_dr != null && !String.IsNullOrEmpty(_dr["occupationNameENFather"].ToString()) ? _dr["occupationNameENFather"].ToString() : String.Empty));
+                _dataRecorded.Add("OccupationMother", (_dr != null && !String.IsNullOrEmpty(_dr["occupationMother"].ToString()) ? _dr["occupationMother"].ToString() : String.Empty));
+                _dataRecorded.Add("OccupationNameTHMother", (_dr != null && !String.IsNullOrEmpty(_dr["occupationNameTHMother"].ToString()) ? _dr["occupationNameTHMother"].ToString() : String.Empty));
+                _dataRecorded.Add("OccupationNameENMother", (_dr != null && !String.IsNullOrEmpty(_dr["occupationNameENMother"].ToString()) ? _dr["occupationNameENMother"].ToString() : String.Empty));            
+                _dataRecorded.Add("OccupationParent", (_dr != null && !String.IsNullOrEmpty(_dr["occupationParent"].ToString()) ? _dr["occupationParent"].ToString() : String.Empty));
+                _dataRecorded.Add("OccupationNameTHParent", (_dr != null && !String.IsNullOrEmpty(_dr["occupationNameTHParent"].ToString()) ? _dr["occupationNameTHParent"].ToString() : String.Empty));
+                _dataRecorded.Add("OccupationNameENParent", (_dr != null && !String.IsNullOrEmpty(_dr["occupationNameENParent"].ToString()) ? _dr["occupationNameENParent"].ToString() : String.Empty));
 
                 return _dataRecorded;
             }
         }
 
-        //ฟังก์ชั่นสำหรับสร้างฟอร์มขึ้นทะเบียนสิทธิรักษาพยาบาล
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _dataRecorded เป็น Dictionary<string, object> รับค่าต่าง ๆ ของข้อมูลที่บันทึกไว้
         public static void GetRegisForm(Dictionary<string, object> _dataRecorded)
         {
             string _formName = String.Empty;
             string _address = String.Empty;
-            int _error = 0;            
+            int _error = 0;
             int _template = 0;
             int _i = 0;
             bool _download1 = false;
@@ -240,8 +233,14 @@ public class HCSUtil
 
             switch (_dataRecorded["HospitalId"].ToString())
             {
-                case "RA"   : { _template = 2; _formName = "RARegisForm"; break; }
-                case "SI"   : { _template = 3; _formName = "SIRegisForm"; break; }
+                case "RA":
+                    _template = 2;
+                    _formName = "RARegisForm";
+                    break;
+                case "SI":
+                    _template = 3;
+                    _formName = "SIRegisForm";
+                    break;
             }
 
             _ds = HCSDB.GetHCSRegistrationForm(_formName);
@@ -264,8 +263,12 @@ public class HCSUtil
 
             _ds.Dispose();
 
-            if (_error.Equals(0) && _download1.Equals(true)) _error = HCSDB.InsertHCSDownloadLog(_dataRecorded["PersonId"].ToString(), _formName, "Student");
-            if (_error.Equals(0) && _download2.Equals(true)) _error = HCSDB.InsertHCSDownloadLog(_dataRecorded["PersonId"].ToString(), "KN003Form", "Student");
+            if (_error.Equals(0) && _download1.Equals(true))
+                _error = HCSDB.InsertHCSDownloadLog(_dataRecorded["PersonId"].ToString(), _formName, "Student");
+
+            if (_error.Equals(0) && _download2.Equals(true))
+                _error = HCSDB.InsertHCSDownloadLog(_dataRecorded["PersonId"].ToString(), "KN003Form", "Student");
+
             if (_error.Equals(0))
             {
                 ExportToPDF _e = new ExportToPDF();

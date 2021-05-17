@@ -1,17 +1,17 @@
-﻿// =============================================
-// Author       : <ยุทธภูมิ ตวันนา>
-// Create date  : <๐๕/๐๘/๒๕๕๘>
-// Modify date  : <๐๓/๐๖/๒๕๕๙>
-// Description  : <รวมรวบฟังก์ชั่นใช้งานทั่วไปในส่วนของการขึ้นทะเบียนสิทธิรักษาพยาบาล>
-// =============================================
+﻿/*
+=============================================
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๐๕/๐๘/๒๕๕๘>
+Modify date : <๐๓/๐๖/๒๕๕๙>
+Description : <รวมรวบฟังก์ชั่นใช้งานทั่วไปในส่วนของการขึ้นทะเบียนสิทธิรักษาพยาบาล>
+=============================================
+*/
 
 var HCSStaffDownloadRegistrationForm = {
     idSectionMain: HCSStaffUtil.idSectionDownloadRegistrationFormMain.toLowerCase(),
     idSectionSearch: HCSStaffUtil.idSectionDownloadRegistrationFormSearch.toLowerCase(),
     idSectionProgress: HCSStaffUtil.idSectionDownloadRegistrationFormProgress.toLowerCase(),
-
     sectionMain: {
-        //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับหน้าหลักในส่วนของการขึ้นทะเบียนสิทธิรักษาพยาบาล
         initMain: function () {
             var _this = Util.tut.tdf;
 
@@ -38,8 +38,6 @@ var HCSStaffDownloadRegistrationForm = {
 
             this.resetMain();
         },
-
-        //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับหน้าหลักในส่วนของการขึ้นทะเบียนสิทธิรักษาพยาบาล
         resetMain: function () {
             var _this = Util.tut.tdf;
 
@@ -48,18 +46,11 @@ var HCSStaffDownloadRegistrationForm = {
                 value: $("#" + _this.idSectionMain + "-rowperpage-hidden").val()
             });
         },
-
-        //ฟังก์ชั่นสำหรับเริ่มต้นการทำงานให้กับการแสดงข้อมูลนักศึกษาในส่วนของการขึ้นทะเบียนสิทธิรักษาพยาบาล
         initTable: function () {
             Util.tut.getDialogFormOnClick();
         }
-    },
-    
-    sectionProgress: {        
-        //ฟังก์ชั่นสำหรับรีเซ็ตการทำงานให้กับการประมวลผลข้อมูลในส่วนของการขึ้นทะเบียนสิทธิรักษาพยาบาล
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //page      รับค่าชื่อหน้า
+    },    
+    sectionProgress: {
         resetMain: function (_param) {
             _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
@@ -70,11 +61,6 @@ var HCSStaffDownloadRegistrationForm = {
             $("#" + _this.idSectionProgress + "-registrationformnameth").html($.trim(_valueRegistrationForm[_valueRegistrationForm.length - 1]));
             $("#" + _this.idSectionProgress + "-registrationformnameen").html(Util.comboboxGetValue("#" + _this.idSectionSearch + "-registrationform"));
         },
-        
-        //ฟังก์ชั่นสำหรับตรวจสอบความถูกต้องในการประมวลผลข้อมูลในส่วนของการขึ้นทะเบียนสิทธิรักษาพยาบาล
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //page      รับค่าชื่อหน้า
         validateProcess: function (_param) {
             _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
 
@@ -84,14 +70,8 @@ var HCSStaffDownloadRegistrationForm = {
 
             return (_i > 0 ? false : true);
         },
-
-        //ฟังก์ชั่นสำหรับแสดงผลการประมวลผลข้อมูลในส่วนของการขึ้นทะเบียนสิทธิรักษาพยาบาล
-        //โดยมีพารามิเตอร์ดังนี้
-        //1. _param             รับค่าพารามิเตอร์ต่าง ๆ ที่ต้องการ
-        //page                  รับค่าชื่อหน้า
-        //resultValueProcess    รับค่าผลลัพธ์ของการประมวลผลข้อมูล
         getResultProcess: function (_param) {
-            _param["page"]              = (_param["page"] == undefined ? "" : _param["page"]);
+            _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
             _param["resultValueProcess"] = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
 
             var _this = Util.tut.tdf;
@@ -103,13 +83,11 @@ var HCSStaffDownloadRegistrationForm = {
             var _valueArray2;
             var _i;
                 
-            for (_i = 0; _i < _valueArray1.length; _i++)
-            {
-                _valueArray2    = _valueArray1[_i].split(";")                
-                _idTableRow     = (_idTable + " .table-grid #table-row-id-" + _valueArray2[0]);
+            for (_i = 0; _i < _valueArray1.length; _i++) {
+                _valueArray2 = _valueArray1[_i].split(";")
+                _idTableRow = (_idTable + " .table-grid #table-row-id-" + _valueArray2[0]);
 
-                if ($("#" + _idTableRow).length > 0)
-                {
+                if ($("#" + _idTableRow).length > 0) {
                     $("#" + _idTableRow + " .table-col-latestdatedownload").html(_valueArray2[1]);
                     $("#" + _idTableRow + " .table-col-countdownload").html(_valueArray2[2]);
                 }

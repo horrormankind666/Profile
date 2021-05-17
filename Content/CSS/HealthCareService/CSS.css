@@ -1,155 +1,458 @@
-﻿/* =============================================
-   Author       : <ยุทธภูมิ ตวันนา>
-   Create date  : <๑๖/๑๒/๒๕๕๗>
-   Modify date  : <๑๒/๐๕/๒๕๕๙>
-   Description  : <Style Sheet จัดรูปการแสดงผล>
-   ============================================= */
+﻿/*
+=============================================
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๑๖/๑๒/๒๕๕๗>
+Modify date : <๑๒/๐๕/๒๕๕๙>
+Description : <Style Sheet จัดรูปการแสดงผล>
+=============================================
+*/
 
-a:link {text-decoration:none;}
-a:visited {text-decoration:none;}
-a:active {text-decoration:none;}
-a:hover {text-decoration:none;}
-
-body
-{
-    background-color:transparent;
-    background-image:url(../../Image/HealthCareService/BGBody.png);
-    background-repeat:no-repeat;
-    background-attachment:fixed;
-    background-position:center center;
-    background-size:cover;
-    margin:0px;
-    padding:0px;
-    overflow-x:hidden;
-    overflow-y:scroll;
-    cursor:default;   
+a:link {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+}
+a:active {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
 }
 
-#bodymain {width:100%;}
-#mainbody {min-width:1008px;}
-#contentbody #contentbody-layout {width:1008px;}
-#contentbody #contentbody-content {width:inherit;}
-.contentbody-left {float:left;}
-.contentbody-right {float:right;}
-
-.clear { clear:both; }
-.clearfix:after
-{
-    content:".";
-    display:block;
-    height:0px;
-    clear:both;
-    visibility:hidden;
+body {
+    background-color: transparent;
+    background-image: url(../../Image/HealthCareService/BGBody.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    cursor: default;   
 }
-.clearfix {display:inline-block;}
-* html .clearfix {height:1%;}
-.clearfix {display:block;}
 
-form, input, select, span {margin:0px;padding:0px;outline:none;}
-.frame-util {width:0px;height:0px;border:none;}
-input.inputcalendar {width:80px;cursor:default;}
-img.ui-datepicker-trigger {cursor:pointer;}
-a {outline:none;}
-.box {width:auto;}
-.hidden {display:none;}
-.th-label {font:bold 14px Tahoma, Verdana, Arial, sans-serif;color:#000000;}
-.en-label {font:bold 16px Corbel, Verdana, Arial, sans-serif;color:#666666;}
+#bodymain {
+    width: 100%;
+}
+#mainbody {
+    min-width: 1008px;
+}
+#contentbody #contentbody-layout {
+    width: 1008px;
+}
+#contentbody #contentbody-content {
+    width: inherit;
+}
+.contentbody-left {
+    float: left;
+}
+.contentbody-right {
+    float: right;
+}
 
-.class-dialog-preloading, .class-dialog-box, .class-dialog-error, .class-dialog-confirm {z-index:3001;}
+.clear {
+    clear: both; 
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix {
+    display: inline-block;
+}
+* html .clearfix {
+    height: 1%;
+}
+.clearfix {
+    display: block;
+}
+
+form,
+input,
+select,
+span {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+.frame-util {
+    width: 0;
+    height: 0;
+    border: none;
+}
+input.inputcalendar {
+    width: 80px;
+    cursor: default;
+}
+img.ui-datepicker-trigger {
+    cursor: pointer;
+}
+a {
+    outline: none;
+}
+.box {
+    width: auto;
+}
+.hidden {
+    display: none;
+}
+.th-label {
+    font: bold 14px Tahoma, Verdana, Arial, sans-serif;
+    color: #000000;
+}
+.en-label {
+    font: bold 16px Corbel, Verdana, Arial, sans-serif;
+    color: #666666;
+}
+
+.class-dialog-preloading,
+.class-dialog-box,
+.class-dialog-error,
+.class-dialog-confirm {
+    z-index: 3001;
+}
 .class-dialog-preloading .ui-dialog-titlebar,
 .class-dialog-box .ui-dialog-titlebar,
 .class-dialog-error .ui-dialog-titlebar,
 .class-dialog-confirm .ui-dialog-titlebar,
-.class-dialog-preloading .ui-dialog-buttonpane {display:none;}
-.class-dialog-preloading .ui-dialog-content {width:128px;height:128px;background:url(../../Image/HealthCareService/Preloading.gif) no-repeat center center;border:0px;padding:55px 0px 0px 0px;text-align:center;font:bold 14px Corbel, Verdana, Arial, sans-serif;}
+.class-dialog-preloading .ui-dialog-buttonpane {
+    display: none;
+}
+.class-dialog-preloading .ui-dialog-content {
+    width: 128px;
+    height: 128px;
+    background: url(../../Image/HealthCareService/Preloading.gif) no-repeat center center;
+    border: 0;
+    padding: 55px 0 0 0;
+    text-align: center;
+    font: bold 14px Corbel, Verdana, Arial, sans-serif;
+}
 .class-dialog-box .ui-dialog-content,
-.class-dialog-box .ui-dialog-buttonpane {border:3px solid #428001;background:#428001;}
+.class-dialog-box .ui-dialog-buttonpane {
+    border: 3px solid #428001;
+    background: #428001;
+}
 .class-dialog-error .ui-dialog-content,
-.class-dialog-error .ui-dialog-buttonpane {border:3px solid #B82A28;background:#B82A28;}
+.class-dialog-error .ui-dialog-buttonpane {
+    border: 3px solid #B82A28;
+    background: #B82A28;
+}
 .class-dialog-confirm .ui-dialog-content,
-.class-dialog-confirm .ui-dialog-buttonpane {border:3px solid #2A80B9;background:#2A80B9;}
+.class-dialog-confirm .ui-dialog-buttonpane {
+    border: 3px solid #2A80B9;
+    background: #2A80B9;
+}
 .class-dialog-box .ui-dialog-content,
 .class-dialog-error .ui-dialog-content,
-.class-dialog-confirm .ui-dialog-content {border-left:0px;border-right:0px;border-bottom:0px;}
+.class-dialog-confirm .ui-dialog-content {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
 .class-dialog-box .ui-dialog-content .th-label,
 .class-dialog-error .ui-dialog-content .th-label,
-.class-dialog-confirm .ui-dialog-content .th-label {font-size:14px;line-height:21px;}
+.class-dialog-confirm .ui-dialog-content .th-label {
+    font-size: 14px;
+    line-height: 21px;
+}
 .class-dialog-box .ui-dialog-content .en-label,
 .class-dialog-error .ui-dialog-content .en-label,
-.class-dialog-confirm .ui-dialog-content .en-label {font-size:14px;line-height:21px;color:#FFFFFF;}
-.class-dialog-error .ui-dialog-content a:hover {text-decoration:underline;}
+.class-dialog-confirm .ui-dialog-content .en-label {
+    font-size: 14px;
+    line-height: 21px;
+    color: #FFFFFF;
+}
+.class-dialog-error .ui-dialog-content a:hover {
+    text-decoration: underline;
+}
 .class-dialog-box .ui-dialog-buttonpane,
 .class-dialog-error .ui-dialog-buttonpane,
-.class-dialog-confirm .ui-dialog-buttonpane {border:0px;}
+.class-dialog-confirm .ui-dialog-buttonpane {
+    border: 0;
+}
 .class-dialog-box .ui-dialog-buttonpane button,
 .class-dialog-error .ui-dialog-buttonpane button,
-.class-dialog-confirm .ui-dialog-buttonpane button {border:0px;font:bold 16px Corbel, Verdana, Arial, sans-serif;color:#FFFFFF;width:85px;height:32px;line-height:32px;outline:none;}
-.class-dialog-error .ui-dialog-buttonpane button {background:#E84C3D;}
-.class-dialog-confirm .ui-dialog-buttonpane button {background:#4AA3DF;}
-.class-dialog-box .ui-dialog-buttonpane button {background:#59B200;}
+.class-dialog-confirm .ui-dialog-buttonpane button {
+    border: 0;
+    font: bold 16px Corbel, Verdana, Arial, sans-serif;
+    color: #FFFFFF;
+    width: 85px;
+    height: 32px;
+    line-height: 32px;
+    outline: none;
+}
+.class-dialog-error .ui-dialog-buttonpane button {
+    background: #E84C3D;
+}
+.class-dialog-confirm .ui-dialog-buttonpane button {
+    background: #4AA3DF;
+}
+.class-dialog-box .ui-dialog-buttonpane button {
+    background: #59B200;
+}
 .class-dialog-box button:hover,
 .class-dialog-error button:hover,
-.class-dialog-confirm button:hover {color:#FFFFFF;}
-.class-dialog-box button:hover {background:#6BDD01;}
-.class-dialog-error button:hover {background:#E65D50;}
-.class-dialog-confirm button:hover {background:#4DADEE;}
+.class-dialog-confirm button:hover {
+    color: #FFFFFF;
+}
+.class-dialog-box button:hover {
+    background: #6BDD01;
+}
+.class-dialog-error button:hover {
+    background: #E65D50;
+}
+.class-dialog-confirm button:hover {
+    background: #4DADEE;
+}
 
-.class-dialog-form .ui-dialog-titlebar {background:#B82A28;border:10px solid #9AC3BD;border-bottom:0px;}
-.class-dialog-form .ui-dialog-title {font:bold 14px Corbel, Tahoma, Verdana, Arial, sans-serif;color:#FFFFFF;padding:8px 45px 8px 12px;line-height:22px;}
-.class-dialog-form .ui-dialog-titlebar-close {visibility:visible;outline:none;border:0px;background:transparent;}
-.class-dialog-form .ui-dialog-titlebar-close {width:25px;height:25px;background:url(../../Image/HealthCareService/Label.png) 0px -59px;}
-.class-dialog-form .ui-dialog-titlebar-close:hover {width:25px;height:25px;background:url(../../Image/HealthCareService/Label.png) -25px -59px;}
-.class-dialog-form .ui-dialog-content {padding:0px;margin:0px;background:#FFFFFF;border:10px solid #9AC3BD;border-top:0px;}
-.class-dialog-form .msgbox {width:auto;line-height:25px;padding:10px;background:#ECF0F1;text-align:justify;}
-.class-dialog-form .msgbox.en-label {font-size:18px;font-weight:normal;color:#000000;}
-.class-dialog-form .msgbox a {color:#000099;}
-.class-dialog-form .msgbox a:hover {color:#FF0000;}
+.class-dialog-form .ui-dialog-titlebar {
+    background: #B82A28;
+    border: 10px solid #9AC3BD;
+    border-bottom: 0;
+}
+.class-dialog-form .ui-dialog-title {
+    font: bold 14px Corbel, Tahoma, Verdana, Arial, sans-serif;
+    color: #FFFFFF;
+    padding: 8px 45px 8px 12px;
+    line-height: 22px;
+}
+.class-dialog-form .ui-dialog-titlebar-close {
+    visibility: visible;
+    outline: none;
+    border: 0;
+    background: transparent;
+}
+.class-dialog-form .ui-dialog-titlebar-close {
+    width: 25px;
+    height: 25px;
+    background: url(../../Image/HealthCareService/Label.png) 0 -59px;
+}
+.class-dialog-form .ui-dialog-titlebar-close:hover {
+    width: 25px;
+    height: 25px;
+    background: url(../../Image/HealthCareService/Label.png) -25px -59px;
+}
+.class-dialog-form .ui-dialog-content {
+    padding: 0;
+    margin: 0;
+    background: #FFFFFF;
+    border: 10px solid #9AC3BD;
+    border-top: 0;
+}
+.class-dialog-form .msgbox {
+    width: auto;
+    line-height: 25px;
+    padding: 10px;
+    background: #ECF0F1;
+    text-align: justify;
+}
+.class-dialog-form .msgbox.en-label {
+    font-size: 18px;
+    font-weight: normal;
+    color: #000000;
+}
+.class-dialog-form .msgbox a {
+    color: #000099;
+}
+.class-dialog-form .msgbox a:hover {
+    color: #FF0000;
+}
 
-.preloading-inline {width:38px;height:26px;border:0px;}
+.preloading-inline {
+    width: 38px;
+    height: 26px;
+    border: 0;
+}
 
-.button .button-layout {width:auto;}
-.button .button-content {width:inherit;}
-.button .button-content ul {margin:0px;padding:0px;list-style:none;overflow:hidden;}
-.button .button-content ul li {display:block;float:left;text-align:center;margin-left:6px;}
-.button .button-content ul .nomargin {margin-left:0px;}
-.button .button-content ul li .click-button {display:block;text-decoration:none;outline:none;color:#FFFFFF;cursor:pointer;}
-.button .button-content ul li .click-button:hover {text-decoration:none;color:#FFFFFF;}
-.button .button-content .button-style1 li .click-button {background:#1ABC9C;}
-.button .button-content .button-style1 li .click-button:hover {background:#48C9B0;}
-.button .button-content ul li .disable {background:#C8C8C8;color:#A6A5A5;cursor:default;}
-.button .button-content ul li .disable:hover {background:#C8C8C8;color:#A6A5A5;cursor:default;}
+.button .button-layout {
+    width: auto;
+}
+.button .button-content {
+    width: inherit;
+}
+.button .button-content ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+}
+.button .button-content ul li {
+    display: block;
+    float: left;
+    text-align: center;
+    margin-left: 6px;
+}
+.button .button-content ul .nomargin {
+    margin-left: 0;
+}
+.button .button-content ul li .click-button {
+    display: block;
+    text-decoration: none;
+    outline: none;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.button .button-content ul li .click-button:hover {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+.button .button-content .button-style1 li .click-button {
+    background: #1ABC9C;
+}
+.button .button-content .button-style1 li .click-button:hover {
+    background: #48C9B0;
+}
+.button .button-content ul li .disable {
+    background: #C8C8C8;
+    color: #A6A5A5;
+    cursor: default;
+}
+.button .button-content ul li .disable:hover {
+    background: #C8C8C8;
+    color: #A6A5A5;
+    cursor: default;
+}
 
-#main-downloadregistrationform-form {margin-top:20px;}
-#main-downloadregistrationform-form .form-layout {width:auto;height:550px;background:url(../../Image/HealthCareService/BGMain.png);position:relative;}
-#main-downloadregistrationform-form .form-content {width:inherit;}
-#main-downloadregistrationform-form .form-content .title {width:406px;height:406px;background:url(../../Image/HealthCareService/Label.png) 0px 0px;position:absolute;left:0px;top:0px;z-index:1;}
-#main-downloadregistrationform-form .form-content .slide {width:400px;height:400px;position:absolute;left:3px;top:3px;}
+#main-downloadregistrationform-form {
+    margin-top: 20px;
+}
+#main-downloadregistrationform-form .form-layout {
+    width: auto;
+    height: 550px;
+    background: url(../../Image/HealthCareService/BGMain.png);
+    position: relative;
+}
+#main-downloadregistrationform-form .form-content {
+    width: inherit;
+}
+#main-downloadregistrationform-form .form-content .title {
+    width: 406px;
+    height: 406px;
+    background: url(../../Image/HealthCareService/Label.png) 0 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+#main-downloadregistrationform-form .form-content .slide {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    left: 3px;
+    top: 3px;
+}
 #main-downloadregistrationform-form .form-content .slide .slideimage1,
 #main-downloadregistrationform-form .form-content .slide .slideimage2,
 #main-downloadregistrationform-form .form-content .slide .slideimage3,
-#main-downloadregistrationform-form .form-content .slide .slideimage4 {width:100px;height:400px;background:url(../../Image/HealthCareService/Label.png);position:absolute;top:0px;display:none;}
-#main-downloadregistrationform-form .form-content .slide .active {display:block;}
-#main-downloadregistrationform-form .form-content .slide .slideimage1 {background-position:0px -406px;left:0px;}
-#main-downloadregistrationform-form .form-content .slide .slideimage2 {background-position:-100px -406px;left:100px;}
-#main-downloadregistrationform-form .form-content .slide .slideimage3 {background-position:-200px -406px;left:200px;}
-#main-downloadregistrationform-form .form-content .slide .slideimage4 {background-position:-300px -406px;left:300px;}
-#main-downloadregistrationform-form .form-content .menubar {position:absolute;left:416px;top:382px;}
-#main-downloadregistrationform-form .form-content .menubar .menubar-layout {width:602px;background:transparent;}
-#main-downloadregistrationform-form .form-content .menubar .menubar-content ul .link-msg {padding:0px;}
-#main-downloadregistrationform-form .form-content .menubar .menubar-content ul li .th-label {font-size:16px;}
-#main-downloadregistrationform-form .form-content .menubar .menubar-content ul .have-link:hover {position:relative;background:transparent;}
-#main-downloadregistrationform-form .form-content .button {position:absolute;left:748px;top:416px;}
-#main-downloadregistrationform-form .form-content .button ul li .click-button {width:260px;padding:10px 0px 10px 0px;}
-#main-downloadregistrationform-form .form-content .button ul li .click-button .th-label {height:24px;font-weight:normal;}
-#main-downloadregistrationform-form .form-content .button ul li .click-button .en-label {font-size:14px;font-weight:normal;}
+#main-downloadregistrationform-form .form-content .slide .slideimage4 {
+    width: 100px;
+    height: 400px;
+    background: url(../../Image/HealthCareService/Label.png);
+    position: absolute;
+    top: 0;
+    display: none;
+}
+#main-downloadregistrationform-form .form-content .slide .active {
+    display: block;
+}
+#main-downloadregistrationform-form .form-content .slide .slideimage1 {
+    background-position: 0 -406px;
+    left: 0;
+}
+#main-downloadregistrationform-form .form-content .slide .slideimage2 {
+    background-position: -100px -406px;
+    left: 100px;
+}
+#main-downloadregistrationform-form .form-content .slide .slideimage3 {
+    background-position: -200px -406px;
+    left: 200px;
+}
+#main-downloadregistrationform-form .form-content .slide .slideimage4 {
+    background-position: -300px -406px;
+    left: 300px;
+}
+#main-downloadregistrationform-form .form-content .menubar {
+    position: absolute;
+    left: 416px;
+    top: 382px;
+}
+#main-downloadregistrationform-form .form-content .menubar .menubar-layout {
+    width: 602px;
+    background: transparent;
+}
+#main-downloadregistrationform-form .form-content .menubar .menubar-content ul .link-msg {
+    padding: 0;
+}
+#main-downloadregistrationform-form .form-content .menubar .menubar-content ul li .th-label {
+    font-size: 16px;
+}
+#main-downloadregistrationform-form .form-content .menubar .menubar-content ul .have-link:hover {
+    position: relative;
+    background: transparent;
+}
+#main-downloadregistrationform-form .form-content .button { 
+    position: absolute;
+    left: 748px;
+    top: 416px;
+}
+#main-downloadregistrationform-form .form-content .button ul li .click-button {
+    width: 260px;
+    padding: 10px 0 10px 0;
+}
+#main-downloadregistrationform-form .form-content .button ul li .click-button .th-label {
+    height: 24px;
+    font-weight: normal;
+}
+#main-downloadregistrationform-form .form-content .button ul li .click-button .en-label {
+    font-size: 14px;
+    font-weight: normal;
+}
 
-#main-downloadregistrationformstudentrecords div {display:block;position:absolute;left:540px;width:461px;height:30px;font-size:13px;font-weight:normal;text-align:left;line-height:30px;word-wrap:break-word;word-break:break-all;overflow:hidden;}
-#main-downloadregistrationformstudentrecords div:first-child {top:24px;font-size:18px;}
-#main-downloadregistrationformstudentrecords-studentnameth {top:80px;}
-#main-downloadregistrationformstudentrecords-studentnameen {top:110px;}
-#main-downloadregistrationformstudentrecords-facultyth {top:150px;}
-#main-downloadregistrationformstudentrecords-facultyen {top:180px;}
-#main-downloadregistrationformstudentrecords-programth {top:220px;}
-#main-downloadregistrationformstudentrecords-programen {top:250px;}
-#main-downloadregistrationformstudentrecords-hospitalth {top:290px;}
-#main-downloadregistrationformstudentrecords-hospitalen {top:320px;}
+#main-downloadregistrationformstudentrecords div {
+    display: block;
+    position: absolute;
+    left: 540px;
+    width: 461px;
+    height: 30px;
+    font-size: 13px;
+    font-weight: normal;
+    text-align: left;
+    line-height: 30px;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+}
+#main-downloadregistrationformstudentrecords div:first-child {
+    top: 24px;
+    font-size: 18px;
+}
+#main-downloadregistrationformstudentrecords-studentnameth {
+    top: 80px;
+}
+#main-downloadregistrationformstudentrecords-studentnameen {
+    top: 110px;
+}
+#main-downloadregistrationformstudentrecords-facultyth {
+    top: 150px;
+}
+#main-downloadregistrationformstudentrecords-facultyen {
+    top: 180px;
+}
+#main-downloadregistrationformstudentrecords-programth {
+    top: 220px;
+}
+#main-downloadregistrationformstudentrecords-programen {
+    top: 250px;
+}
+#main-downloadregistrationformstudentrecords-hospitalth {
+    top: 290px;
+}
+#main-downloadregistrationformstudentrecords-hospitalen {
+    top: 320px;
+}
