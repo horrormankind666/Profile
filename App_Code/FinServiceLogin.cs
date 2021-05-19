@@ -18,13 +18,13 @@ namespace NFinServiceLogin
 {
     public class FinServiceLogin
     {
-        public const string USERTYPE_STAFF      = "STAFF";
-        public const string USERTYPE_STUDENT    = "STUDENT";
-        public const string USERLEVEL_ADMIN     = "ADMIN";
+        public const string USERTYPE_STAFF = "STAFF";
+        public const string USERTYPE_STUDENT = "STUDENT";
+        public const string USERLEVEL_ADMIN = "ADMIN";
         public const string USERLEVEL_ADMINUSER = "ADMINUSER";
         public const string USERLEVEL_SUPERUSER = "SUPERUSER";
-        public const string USERLEVEL_USER      = "USER";
-        public const string USERLEVEL_GUEST     = "GUEST";
+        public const string USERLEVEL_USER = "USER";
+        public const string USERLEVEL_GUEST = "GUEST";
         
         public static Dictionary<string, object> GetFinServiceLogin(string _usertype, string _systemGroup)
         {
@@ -100,6 +100,9 @@ namespace NFinServiceLogin
                             }
                         }
 
+                        _facultyId = (!String.IsNullOrEmpty(_facultyId) ? _facultyId.Substring(0, (_facultyId.Length - 2)) : String.Empty);
+                        _programId = (!String.IsNullOrEmpty(_programId) ? _programId.Substring(0, (_programId.Length - 2)) : String.Empty);
+
                         _ds2.Dispose();
                     }
                 }
@@ -117,8 +120,8 @@ namespace NFinServiceLogin
             _loginResult.Add("FullnameEN", _fullnameEN);
             _loginResult.Add("FullnameTH", _fullnameTH);
             _loginResult.Add("EntranceType", _entranceTypeId);
-            _loginResult.Add("FacultyId", (!String.IsNullOrEmpty(_facultyId) ? _facultyId.Substring(0, (_facultyId.Length - 2)) : String.Empty));
-            _loginResult.Add("ProgramId", (!String.IsNullOrEmpty(_programId) ? _programId.Substring(0, (_programId.Length - 2)) : String.Empty));
+            _loginResult.Add("FacultyId", _facultyId);
+            _loginResult.Add("ProgramId", _programId);
             _loginResult.Add("YearEntry", _yearEntry);
             _loginResult.Add("DepID", _depId);
             _loginResult.Add("Userlevel", _userlevel.ToUpper());

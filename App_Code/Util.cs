@@ -1976,14 +1976,18 @@ namespace NUtil
                                 if (_systemEntranceType.IndexOf(_entranceTypeId).Equals(-1))
                                     _systemError = 5;
                             }
-                            
+
                             if (_systemError.Equals(0) && !String.IsNullOrEmpty(_systemFacultyProgram))
                             {
+    
                                 if (_systemFacultyProgram.IndexOf(_facultyId).Equals(-1))
                                     _systemError = 5;
 
-                                if (_systemFacultyProgram.IndexOf(_programId).Equals(-1))
-                                    _systemError = 5;
+                                if (_systemError.Equals(0) && (_systemFacultyProgram.IndexOf(_facultyId + "*").Equals(-1)))
+                                {
+                                    if (_systemFacultyProgram.IndexOf(_programId).Equals(-1))
+                                        _systemError = 5;
+                                }
                             }
                         }
 

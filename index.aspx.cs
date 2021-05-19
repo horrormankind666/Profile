@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Data;
 using System.Text;
 using System.Web.UI;
+using NUtil;
 
 public partial class index : Page
 {

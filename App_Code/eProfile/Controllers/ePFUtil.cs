@@ -230,7 +230,6 @@ public class ePFUtil
         string _fullnameEN = _finServiceLoginResult["FullnameEN"].ToString();
 
         //_systemError = 0;
-
         switch (_systemError)
         {
             case 1: 
@@ -249,7 +248,7 @@ public class ePFUtil
                 _userError = 4;
                 break;
         }
-
+        
         _loginResult.Add("CookieError", _cookieError.ToString());
         _loginResult.Add("UserError", _userError.ToString());
         _loginResult.Add("PersonId", _personId);

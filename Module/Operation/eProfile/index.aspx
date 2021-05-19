@@ -132,13 +132,13 @@
 
         Util.tut.getMSent(function (isError) {
             $("#" + Util.dialogPreloading).dialog("close");
-      
+
             if (!isError) {
                 if (!MSent.isConsent)
                     location.href = MSent.getPage.termsAndConditions();
                 else
                     Util.getPage();
-            }
+            }            
             else
                 Util.getPage();
         });

@@ -346,13 +346,14 @@ var ePFStaffSetting = {
             _value = Util.getValueSelectCheck({
                 id: (_this1.idSectionAddUpdate + "-faculty")
             });
-            
+
             for (_i = 0; _i < _value.length; _i++) {
                 _valueProgram = Util.getValueSelectCheck({
                     id: (_this1.idSectionAddUpdate + "-program"),
                     idParent: (".faculty-" + _value[_i])
                 });
-                _valueFacultyProgram[_i] = (_value[_i] + (_valueProgram.length > 0 ? (":" + _valueProgram.join(",")) : ""));
+
+                _valueFacultyProgram[_i] = (_value[_i] + ":" + (_valueProgram.length > 0 ? _valueProgram.join(",") : (_value[_i] + "*")));
             }
             
             _valueSave["startdate"] = $("#" + _this1.idSectionAddUpdate + "-startdate").val();
