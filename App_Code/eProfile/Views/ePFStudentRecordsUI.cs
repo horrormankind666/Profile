@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๙/๐๙/๒๕๕๗>
-Modify date : <๐๙/๐๓/๒๕๖๔>
+Modify date : <๒๕/๐๕/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผลในส่วนของการจัดการข้อมูลระเบียนประวัตินักศึกษา>
 =============================================
 */
@@ -122,6 +122,7 @@ public class ePFStudentRecordsUI
                 _html.AppendFormat("<input type='hidden' id='{0}-gender-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "Gender", _dataRecorded["Gender"], Util._valueTextDefault) : Util._valueTextDefault));
                 _html.AppendFormat("<input type='hidden' id='{0}-studentpicture-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StudentPicture", _dataRecorded["StudentPicture"], Util._valueTextDefault) : Util._valueTextDefault));
                 _html.AppendFormat("<input type='hidden' id='{0}-entrancetype-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "EntranceType", _dataRecorded["EntranceType"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-nationality-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "NationalityNameTH", _dataRecorded["NationalityNameTH"], Util._valueTextDefault) : Util._valueTextDefault));
                 _html.AppendFormat("<input type='hidden' id='{0}-studentrecordspersonalstatus-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StudentRecordsPersonalStatus", _dataRecorded["StudentRecordsPersonalStatus"], Util._valueTextDefault) : Util._valueTextDefault));
                 _html.AppendFormat("<input type='hidden' id='{0}-studentrecordsaddresspermanentstatus-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StudentRecordsAddressPermanentStatus", _dataRecorded["StudentRecordsAddressPermanentStatus"], Util._valueTextDefault) : Util._valueTextDefault));
                 _html.AppendFormat("<input type='hidden' id='{0}-studentrecordsaddresscurrentstatus-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "StudentRecordsAddressCurrentStatus", _dataRecorded["StudentRecordsAddressCurrentStatus"], Util._valueTextDefault) : Util._valueTextDefault));
@@ -1113,7 +1114,7 @@ public class ePFStudentRecordsUI
                 _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
                 _contentFrmColumnDetail[_i].Add("InputContentPaddingDown", false);
                 _contentFrmColumnDetail[_i].Add("InputContent", ("<div id='" + _idSection + "-district-combobox'></div>"));
-                _contentFrmColumnDetail[_i].Add("Require", false);
+                _contentFrmColumnDetail[_i].Add("Require", true);
                 _contentFrmColumnDetail[_i].Add("LastRow", false);
                 _contentFrmColumn.Add("District", _contentFrmColumnDetail[_i]);
                 _i++;
@@ -1127,7 +1128,7 @@ public class ePFStudentRecordsUI
                 _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
                 _contentFrmColumnDetail[_i].Add("InputContentPaddingDown", false);
                 _contentFrmColumnDetail[_i].Add("InputContent", ("<div id='" + _idSection + "-subdistrict-combobox'></div>"));
-                _contentFrmColumnDetail[_i].Add("Require", false);
+                _contentFrmColumnDetail[_i].Add("Require", true);
                 _contentFrmColumnDetail[_i].Add("LastRow", false);
                 _contentFrmColumn.Add("SubDistrict", _contentFrmColumnDetail[_i]);
                 _i++;
@@ -1141,7 +1142,7 @@ public class ePFStudentRecordsUI
                 _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
                 _contentFrmColumnDetail[_i].Add("InputContentPaddingDown", false);
                 _contentFrmColumnDetail[_i].Add("InputContent", "<input class='inputbox' type='text' id='" + _idSection + "-postalcode' value='' />");
-                _contentFrmColumnDetail[_i].Add("Require", false);
+                _contentFrmColumnDetail[_i].Add("Require", true);
                 _contentFrmColumnDetail[_i].Add("LastRow", false);
                 _contentFrmColumn.Add("PostalCode", _contentFrmColumnDetail[_i]);
                 _i++;
@@ -1303,7 +1304,7 @@ public class ePFStudentRecordsUI
                 _html.AppendLine(               ePFUI.GetFrmColumn(_contentFrmColumn["PhoneNumber"]).ToString());
                 _html.AppendLine(               ePFUI.GetFrmColumn(_contentFrmColumn["MobileNumber"]).ToString());
                 _html.AppendLine(               ePFUI.GetFrmColumn(_contentFrmColumn["FaxNumber"]).ToString());
-                _html.AppendLine(               ePFUI.GetFrmColumn(_contentFrmColumn["Save"]).ToString());                
+                _html.AppendLine(               ePFUI.GetFrmColumn(_contentFrmColumn["Save"]).ToString());
                 _html.AppendLine("          </div>");
                 _html.AppendLine("      </div>");
                 _html.AppendLine("  </div>");

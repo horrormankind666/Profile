@@ -204,7 +204,7 @@
         var _outerHeight = 0;
         var _callFunc;
 
-        if (_param["content"].length > 0) {        
+        if (_param["content"].length > 0) {
             _outerHeight = (_outerHeight + ($(".tabbar").length > 0 ? $(".tabbar").outerHeight() : 0));
             _outerHeight = (_outerHeight + ($(".subtabbar").length > 0 ? $(".tabbar").outerHeight() : 0));
 
@@ -214,8 +214,8 @@
             for (_i = 0; (_i < _param["content"].length && _i < 5); _i++) {
                 _msgArray = _param["content"][_i].split(";");
                 _callFunc = "Util.gotoElement({" +
-                            "   anchorName: ('#" + _msgArray[2] + "')," +
-                            "   top: " + (this.offsetTop + _outerHeight) +
+                            "anchorName:('#" + _msgArray[2] + "')," +
+                            "top:" + (this.offsetTop + _outerHeight) +
                             "});";
 
                 _content += "   <li>" +
@@ -1782,7 +1782,7 @@
     },
     getTabActiveOnTabbar: function (_param) {
         _param["id"] = (_param["id"] == undefined ? "" : _param["id"]);
-        
+
         return ($("#" + _param["id"] + ".tabbar").length == 0 ? "" : $("#" + _param["id"] + " ul li .tab-active").attr("alt"));;
     },
     getSectionActive: function (_param) {

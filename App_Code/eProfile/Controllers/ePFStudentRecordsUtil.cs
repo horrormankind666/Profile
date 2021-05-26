@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๕/๐๙/๒๕๕๗>
-Modify date : <๐๘/๐๓/๒๕๖๔>
+Modify date : <๑๕/๐๕/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นทั่วไปในส่วนของการจัดการข้อมูลระเบียนประวัตินักศึกษา>
 =============================================
 */
@@ -198,6 +198,7 @@ public class ePFStudentRecordsUtil
             _dataRecorded.Add("MiddleNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["middleNameEN"].ToString()) ? _dr["middleNameEN"].ToString() : String.Empty));
             _dataRecorded.Add("LastNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["lastNameEN"].ToString()) ? _dr["lastNameEN"].ToString() : String.Empty));
             _dataRecorded.Add("Gender", (_dr != null && !String.IsNullOrEmpty(_dr["genderInitialsEN"].ToString()) ? _dr["genderInitialsEN"].ToString() : String.Empty));
+            _dataRecorded.Add("NationalityNameTH", (_dr != null && !String.IsNullOrEmpty(_dr["nationalityNameTH"].ToString()) ? _dr["nationalityNameTH"].ToString() : String.Empty));
             _dataRecorded.Add("DegreeLevelNameTH", (_dr != null && !String.IsNullOrEmpty(_dr["degreeLevelNameTH"].ToString()) ? _dr["degreeLevelNameTH"].ToString() : String.Empty));
             _dataRecorded.Add("DegreeLevelNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["degreeLevelNameEN"].ToString()) ? _dr["degreeLevelNameEN"].ToString() : String.Empty));
             _dataRecorded.Add("FacultyNameTH", (_dr != null && !String.IsNullOrEmpty(_dr["facultyNameTH"].ToString()) ? _dr["facultyNameTH"].ToString() : String.Empty));

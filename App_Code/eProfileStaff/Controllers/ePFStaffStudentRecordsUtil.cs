@@ -208,7 +208,7 @@ public class ePFStaffStudentRecordsUtil
         _searchResult.Add("RecordCount", _recordCount);
         _searchResult.Add("RecordCountPrimary", _recordCountPrimary);
         _searchResult.Add("RecordCountSecondary", _recordCountSecondary);
-        _searchResult.Add("RecordCountAllPrimary", _recordCountAllPrimary);                
+        _searchResult.Add("RecordCountAllPrimary", _recordCountAllPrimary);
         _searchResult.Add("RecordCountAllSecondary", _recordCountAllSecondary);
         _searchResult.Add("List", _list);
         _searchResult.Add("NavPage", _navPage);
@@ -280,6 +280,7 @@ public class ePFStaffStudentRecordsUtil
             _dataRecorded.Add("MiddleNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["middleNameEN"].ToString()) ? _dr["middleNameEN"].ToString() : String.Empty));
             _dataRecorded.Add("LastNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["lastNameEN"].ToString()) ? _dr["lastNameEN"].ToString() : String.Empty));
             _dataRecorded.Add("Gender", (_dr != null && !String.IsNullOrEmpty(_dr["genderInitialsEN"].ToString()) ? _dr["genderInitialsEN"].ToString() : String.Empty));
+            _dataRecorded.Add("NationalityNameTH", (_dr != null && !String.IsNullOrEmpty(_dr["nationalityNameTH"].ToString()) ? _dr["nationalityNameTH"].ToString() : String.Empty));
             _dataRecorded.Add("DegreeLevelNameTH", (_dr != null && !String.IsNullOrEmpty(_dr["degreeLevelNameTH"].ToString()) ? _dr["degreeLevelNameTH"].ToString() : String.Empty));
             _dataRecorded.Add("DegreeLevelNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["degreeLevelNameEN"].ToString()) ? _dr["degreeLevelNameEN"].ToString() : String.Empty));
             _dataRecorded.Add("FacultyNameTH", (_dr != null && !String.IsNullOrEmpty(_dr["facultyNameTH"].ToString()) ? _dr["facultyNameTH"].ToString() : String.Empty));

@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๒/๐๙/๒๕๕๗>
-Modify date : <๑๐/๐๓/๒๕๖๔>
+Modify date : <๒๕/๐๕/๒๕๖๔>
 Description : <รวมรวบฟังก์ชั่นใช้งานทั่วไปในส่วนของการจัดการข้อมูลระเบียนประวัตินักศึกษา>
 =============================================
 */
@@ -150,6 +150,31 @@ var ePFStudentRecords = {
                     idLink: _idLink,
                     data: $("#" + _this2.studentrecords.idSectionAddUpdate + "-personid-hidden").val()
                 }, function (_result) {
+                    if (_page == Util.tut.pageStudentRecordsAddressAddUpdate ||
+                        _page == Util.tut.pageStudentRecordsAddressPermanentAddUpdate ||
+                        _page == Util.tut.pageStudentRecordsAddressCurrentAddUpdate) {
+                        var _idTabActive = Util.getTabActiveOnTabbar({
+                            id: (_this2.address.idSectionAddUpdate + "-menu")
+                        });
+
+                        if (_idTabActive == _this2.address.permanentaddress.idSectionAddUpdate)
+                            _this3 = _this2.address.permanentaddress;
+
+                        if (_idTabActive == _this2.address.currentaddress.idSectionAddUpdate)
+                            _this3 = _this2.address.currentaddress;
+
+                        if (_this2.studentrecords.nationality == "ไทย") {
+                            $("#" + _this3.idSectionAddUpdate + "-district-label .th-label .icon-fieldmarkblank").removeClass("icon-fieldmarkblank").addClass("icon-fieldmark");
+                            $("#" + _this3.idSectionAddUpdate + "-subdistrict-label .th-label .icon-fieldmarkblank").removeClass("icon-fieldmarkblank").addClass("icon-fieldmark");
+                            $("#" + _this3.idSectionAddUpdate + "-postalcode-label .th-label .icon-fieldmarkblank").removeClass("icon-fieldmarkblank").addClass("icon-fieldmark");
+                        }
+                        else {
+                            $("#" + _this3.idSectionAddUpdate + "-district-label .th-label .icon-fieldmark").removeClass("icon-fieldmark").addClass("icon-fieldmarkblank");
+                            $("#" + _this3.idSectionAddUpdate + "-subdistrict-label .th-label .icon-fieldmark").removeClass("icon-fieldmark").addClass("icon-fieldmarkblank");
+                            $("#" + _this3.idSectionAddUpdate + "-postalcode-label .th-label .icon-fieldmark").removeClass("icon-fieldmark").addClass("icon-fieldmarkblank");
+                        }
+                    }
+                    
                     if (_result == true) {
                         $("#infobar-" + Util.tut.subjectSectionStudentRecords.toLowerCase() + " .operator-save, " + 
                           "#infobar-" + Util.tut.subjectSectionStudentRecords.toLowerCase() + " .operator-saveall").show();
@@ -784,6 +809,7 @@ var ePFStudentRecords = {
         },
         studentrecords: {
             idSectionAddUpdate: ePFUtil.idSectionStudentRecordsStudentRecordsAddUpdate.toLowerCase(),
+            nationality: "",
             initMain: function () {
                 var _this = Util.tut.tsr;
 
@@ -802,7 +828,7 @@ var ePFStudentRecords = {
                 var _this2 = _this1.sectionAddUpdate;
                 var _idContent = new Array();
                 var _i = 0;
-
+                
                 _this2.setMenuByStudentRecordsStatus({
                     section: Util.tut.subjectSectionStudentRecordsPersonal
                 });
@@ -836,6 +862,8 @@ var ePFStudentRecords = {
                     $("#" + this.idSectionAddUpdate + "-studentpicture-content .picture-content .picture-watermark").hide();
                     $("#" + this.idSectionAddUpdate + "-studentpicture-content .picture-content img").hide();
                 }
+
+                this.nationality = $("#" + this.idSectionAddUpdate + "-nationality-hidden").val();
             }
         },
         personal: {
@@ -1063,6 +1091,13 @@ var ePFStudentRecords = {
                     id: ("#" + _this3.idSectionAddUpdate + "-nationality"),
                     value: $("#" + _this3.idSectionAddUpdate + "-nationality-hidden").val()
                 });
+
+                if (Util.comboboxGetValue("#" + _this3.idSectionAddUpdate + "-nationality") != "0") {
+                    _value = $("#" + _this3.idSectionAddUpdate + "-nationality .select2-selection .select2-selection__rendered").attr("title");
+                    _valueArray = _value.split(" : ");
+                    _this2.studentrecords.nationality = _valueArray[0];
+                }
+
                 /*
                 Util.comboboxSetValue({
                     id: ("#" + _this3.idSectionAddUpdate + "-race"),
@@ -1397,6 +1432,28 @@ var ePFStudentRecords = {
                     if (Util.comboboxGetValue("#" + _param["this"].idSectionAddUpdate + "-country") == "0") {
                         _error[_i] = ("กรุณาเลือกประเทศ;Please select country.;" + _param["this"].idSectionAddUpdate + "-country-content");
                         _i++;
+                    }
+
+                    if (_this2.studentrecords.nationality == "ไทย") {
+                        if (Util.comboboxGetValue("#" + _param["this"].idSectionAddUpdate + "-province") == "0") {
+                            _error[_i] = ("กรุณาเลือกจังหวัด;Please select province.;" + _param["this"].idSectionAddUpdate + "-province-content");
+                            _i++;
+                        }
+
+                        if (Util.comboboxGetValue("#" + _param["this"].idSectionAddUpdate + "-district") == "0") {
+                            _error[_i] = ("กรุณาเลือกอำเภอ / เขต;Please select district.;" + _param["this"].idSectionAddUpdate + "-district-content");
+                            _i++;
+                        }
+
+                        if (Util.comboboxGetValue("#" + _param["this"].idSectionAddUpdate + "-subdistrict") == "0") {
+                            _error[_i] = ("กรุณาเลือกตำบล / แขวง;Please select sub-district.;" + _param["this"].idSectionAddUpdate + "-subdistrict-content");
+                            _i++;
+                        }
+
+                        if ($("#" + _param["this"].idSectionAddUpdate + "-postalcode").val().length == 0) {
+                            _error[_i] = ("กรุณาใส่รหัสไปรษณีย์;Please enter postal code.;" + _param["this"].idSectionAddUpdate + "-postalcode-content");
+                            _i++;
+                        }
                     }
 
                     if ($("#" + _param["this"].idSectionAddUpdate + "-addressnumber").val().length == 0) {
@@ -2465,7 +2522,7 @@ var ePFStudentRecords = {
                             content: _error
                         });
 
-                    if (_param["option"] == "all" && _i > 0)                        
+                    if (_param["option"] == "all" && _i > 0)
                         Util.dialogMessageError({
                             content: ("<div class='th-label'>กรุณาใส่ข้อมูลความสามารถพิเศษให้ครบถ้วนและสมบูรณ์</div><div class='en-label'>Please enter talent information complete.</div>")
                         });
@@ -3468,7 +3525,7 @@ var ePFStudentRecords = {
                 var _valueFamilyRelation = "";
                 var _familyRelation = "";
                 var _relationshipTH = "";
-                var _relationshipEN = "";                
+                var _relationshipEN = "";
                 var _inputParent = true;
                 var _copy = false;
                 var _copyData;
@@ -3476,7 +3533,7 @@ var ePFStudentRecords = {
                 var _idSrc = "";
 
                 _valueRelationship = Util.comboboxGetValue("#" + _this3.personal.idSectionParentAddUpdate + "-relationship");
-                _idSection = _param["this"].idSectionParentAddUpdate;                
+                _idSection = _param["this"].idSectionParentAddUpdate;
 
                 if (_valueRelationship != "0") {
                     _valueRelationshipArray = _valueRelationship.split(";");
@@ -5775,7 +5832,7 @@ var ePFStudentRecords = {
                         idFather: _this2.family.address.currentaddress.idSectionFatherAddUpdate,
                         idMother: _this2.family.address.currentaddress.idSectionMotherAddUpdate,
                         idParent: _this2.family.address.currentaddress.idSectionParentAddUpdate
-                    });                                            
+                    });
                     _formatMenu = "subtab";
 
                     _value = Util.comboboxGetValue("#" + _idSection + "-district");
@@ -5921,7 +5978,7 @@ var ePFStudentRecords = {
                             page: _param["page"],
                             data: _resultValueSave
                         });
-                
+
                         if (_param["option"] == "self" || _param["option"] == "allcomplete") {
                             Util.dialogMessageBox({
                                 content: "<div class='th-label'>บันทึกข้อมูลเรียบร้อย</div><div class='en-label'>Save complete.</div>"
@@ -5935,7 +5992,7 @@ var ePFStudentRecords = {
                                 button: {
                                     msg: "OK"
                                 }
-                            }, function (_result) {                
+                            }, function (_result) {
                                 if (_result == "Y") {
                                     Util.gotoTab({
                                         id: ("#" + _idMainMenu + "-menu-content"),
@@ -5951,7 +6008,7 @@ var ePFStudentRecords = {
                                             idLink: _idLink,
                                             data: $("#" + _this2.studentrecords.idSectionAddUpdate + "-personid-hidden").val()
                                         }, function (_result) {
-                                            if (_result == true) {                        
+                                            if (_result == true) {
                                                 _this2.setMenuLayout();
                                                 _this2.initMainSection({
                                                     page: _page
@@ -5967,7 +6024,7 @@ var ePFStudentRecords = {
                     }
 
                     _callBackFunc(_resultSave);
-                });        
+                });
             }
             else {   
                 if (_param["option"] == "allcomplete") {
@@ -5980,7 +6037,7 @@ var ePFStudentRecords = {
                 _callBackFunc(true);
             }
         },
-        actionSave: function (_param, _callBackFunc) {        
+        actionSave: function (_param, _callBackFunc) {
             _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
             _param["data"] = (_param["data"] == undefined || _param["data"] == "" ? {} : _param["data"]);
 
@@ -6075,6 +6132,15 @@ var ePFStudentRecords = {
                         valueFalse: "0"
                     })
                 );
+
+                if (Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-nationality") != "0") {
+                    _value = $("#" + _this1.idSectionAddUpdate + "-nationality .select2-selection .select2-selection__rendered").attr("title");
+                    _valueArray = _value.split(" : ");
+                    _this3.nationality = _valueArray[0];
+                }
+                else
+                    _this3.nationality = "";
+
                 /*
                 $("#" + _this1.idSectionAddUpdate + "-race-hidden").val(
                     Util.getSelectionIsSelect({

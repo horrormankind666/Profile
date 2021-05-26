@@ -225,7 +225,7 @@ var ePFStaffStudentRecords = {
             _param["classNoActive"] = (_param["classNoActive"] == undefined || _param["classNoActive"] == "" ? "noactive" : _param["classNoActive"]);
 
             var _this1 = Util.tut.tsr;
-            var _this2 = this;      
+            var _this2 = this;
             var _this3 = null;
             
             Util.initTab({
@@ -241,7 +241,32 @@ var ePFStaffStudentRecords = {
                     idLink: _idLink,
                     data: $("#" + _this2.studentrecords.idSectionAddUpdate + "-personid-hidden").val()
                 }, function (_result) {
-                    if (_result == true) {                        
+                    if (_page == Util.tut.pageAdministrationStudentRecordsAddressAddUpdate ||
+                        _page == Util.tut.pageAdministrationStudentRecordsAddressPermanentAddUpdate ||
+                        _page == Util.tut.pageAdministrationStudentRecordsAddressCurrentAddUpdate) {
+                        var _idTabActive = Util.getTabActiveOnTabbar({
+                            id: (_this2.address.idSectionAddUpdate + "-menu")
+                        });
+
+                        if (_idTabActive == _this2.address.permanentaddress.idSectionAddUpdate)
+                            _this3 = _this2.address.permanentaddress;
+
+                        if (_idTabActive == _this2.address.currentaddress.idSectionAddUpdate)
+                            _this3 = _this2.address.currentaddress;
+
+                        if (_this2.studentrecords.nationality == "ไทย") {
+                            $("#" + _this3.idSectionAddUpdate + "-district-label .th-label .icon-fieldmarkblank").removeClass("icon-fieldmarkblank").addClass("icon-fieldmark");
+                            $("#" + _this3.idSectionAddUpdate + "-subdistrict-label .th-label .icon-fieldmarkblank").removeClass("icon-fieldmarkblank").addClass("icon-fieldmark");
+                            $("#" + _this3.idSectionAddUpdate + "-postalcode-label .th-label .icon-fieldmarkblank").removeClass("icon-fieldmarkblank").addClass("icon-fieldmark");
+                        }
+                        else {
+                            $("#" + _this3.idSectionAddUpdate + "-district-label .th-label .icon-fieldmark").removeClass("icon-fieldmark").addClass("icon-fieldmarkblank");
+                            $("#" + _this3.idSectionAddUpdate + "-subdistrict-label .th-label .icon-fieldmark").removeClass("icon-fieldmark").addClass("icon-fieldmarkblank");
+                            $("#" + _this3.idSectionAddUpdate + "-postalcode-label .th-label .icon-fieldmark").removeClass("icon-fieldmark").addClass("icon-fieldmarkblank");
+                        }
+                    }
+
+                    if (_result == true) {
                         $("#infobar-" + Util.tut.subjectSectionAdministrationStudentRecords.toLowerCase() + " .operator-save").show();
                         _this2.setMenuLayout();
                         _this2.initMainSection({
@@ -793,6 +818,7 @@ var ePFStaffStudentRecords = {
         },
         studentrecords: {
             idSectionAddUpdate: ePFStaffUtil.idSectionAdministrationStudentRecordsStudentRecordsAddUpdate.toLowerCase(),
+            nationality: "",
             initMain: function () {
                 var _this = Util.tut.tsr;
 
@@ -849,6 +875,8 @@ var ePFStaffStudentRecords = {
                     $("#" + this.idSectionAddUpdate + "-studentpicture-content .picture-content .picture-watermark").hide();
                     $("#" + this.idSectionAddUpdate + "-studentpicture-content .picture-content img").hide();
                 }
+
+                this.nationality = $("#" + this.idSectionAddUpdate + "-nationality-hidden").val();
             }
         },
         personal: {
@@ -862,7 +890,7 @@ var ePFStaffStudentRecords = {
                 var _widthCombobox = 426;
                 var _heightCombobox = 29;
                 
-                $("#" + _this3.idSectionAddUpdate + "-form .form-content .inputbox").width(418);                    
+                $("#" + _this3.idSectionAddUpdate + "-form .form-content .inputbox").width(418);
                 $("#" + _this3.idSectionAddUpdate + "-idcard").attr("maxlength", "20");
                 //$("#" + _this3.idSectionAddUpdate + "-brotherhood, #" + _this3.idSectionAddUpdate + "-childhood, #" + _this3.idSectionAddUpdate + "-studyhood").width(50).attr("maxlength", "2");
                 Util.initCalendarFromTo({
@@ -1385,7 +1413,7 @@ var ePFStaffStudentRecords = {
                     idSrc: _param["this"].idSectionAddUpdate,
                     idDes: _param["this"].idSectionAddUpdate
                 });
-            },            
+            },
             validateSave: function (_param) {
                 _param["this"] = (_param["this"] == undefined || _param["this"] == "" ? null : _param["this"]);
 
@@ -1398,6 +1426,28 @@ var ePFStaffStudentRecords = {
                 if (Util.comboboxGetValue("#" + _param["this"].idSectionAddUpdate + "-country") == "0") {
                     _error[_i] = ("กรุณาเลือกประเทศ;Please select country.;" + _param["this"].idSectionAddUpdate + "-country-content");
                     _i++;
+                }
+
+                if (_this2.studentrecords.nationality == "ไทย") {
+                    if (Util.comboboxGetValue("#" + _param["this"].idSectionAddUpdate + "-province") == "0") {
+                        _error[_i] = ("กรุณาเลือกจังหวัด;Please select province.;" + _param["this"].idSectionAddUpdate + "-province-content");
+                        _i++;
+                    }
+
+                    if (Util.comboboxGetValue("#" + _param["this"].idSectionAddUpdate + "-district") == "0") {
+                        _error[_i] = ("กรุณาเลือกอำเภอ / เขต;Please select district.;" + _param["this"].idSectionAddUpdate + "-district-content");
+                        _i++;
+                    }
+
+                    if (Util.comboboxGetValue("#" + _param["this"].idSectionAddUpdate + "-subdistrict") == "0") {
+                        _error[_i] = ("กรุณาเลือกตำบล / แขวง;Please select sub-district.;" + _param["this"].idSectionAddUpdate + "-subdistrict-content");
+                        _i++;
+                    }
+
+                    if ($("#" + _param["this"].idSectionAddUpdate + "-postalcode").val().length == 0) {
+                        _error[_i] = ("กรุณาใส่รหัสไปรษณีย์;Please enter postal code.;" + _param["this"].idSectionAddUpdate + "-postalcode-content");
+                        _i++;
+                    }
                 }
 
                 if ($("#" + _param["this"].idSectionAddUpdate + "-addressnumber").val().length == 0) {
@@ -5402,6 +5452,15 @@ var ePFStaffStudentRecords = {
                         valueFalse: "0"
                     })
                 );
+
+                if (Util.comboboxGetValue("#" + _this1.idSectionAddUpdate + "-nationality") != "0") {
+                    _value = $("#" + _this1.idSectionAddUpdate + "-nationality .select2-selection .select2-selection__rendered").attr("title");
+                    _valueArray = _value.split(" : ");
+                    _this3.nationality = _valueArray[0];
+                }
+                else
+                    _this3.nationality = "";
+
                 /*
                 $("#" + _this1.idSectionAddUpdate + "-race-hidden").val(
                     Util.getSelectionIsSelect({
