@@ -4115,7 +4115,7 @@ public class ePFStudentRecordsUI
                     _html.AppendLine("              </div>");
 
                     _html.AppendLine(               ePFUI.GetFrmColumn(_contentFrmColumn["Save"]).ToString());
-                    _html.AppendLine("          /div>");
+                    _html.AppendLine("          </div>");
                     _html.AppendLine("      </div>");
                     _html.AppendLine("  </div>");
 
