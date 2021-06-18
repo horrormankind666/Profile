@@ -2,12 +2,13 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๖/๐๗/๒๕๕๙>
-Modify date : <๒๖/๐๗/๒๕๕๙>
+Modify date : <๑๖/๐๖/๒๕๖๔>
 Description : <หน้าใช้งานเกี่ยวกับการดาวน์โหลดไฟล์>
 =============================================
 */
 
 using System;
+using System.Collections.Generic;
 using System.Web.UI;
 using NUtil;
 
@@ -36,6 +37,21 @@ public partial class ePFDownloadFile : Page
             _error = Util.ViewFile(_filePath, _fileName);
 
             if (!_error.Equals(0)) Response.Redirect(_filePath + "/" + _fileName);
+        }
+
+        if (_f.Equals(ePFUtil.SUBJECT_SECTION_SCBACCOUNTOPENINGFORM))
+        {
+            Dictionary<string, object> _loginResult = HCSUtil.GetInfoLogin("", "");
+            int _cookieError = int.Parse(_loginResult["CookieError"].ToString());
+            string _personId = _loginResult["PersonId"].ToString();
+
+            if (_cookieError.Equals(0))
+            {
+                ePFDB.SetEventLog(_loginResult, "download SCB account opening form");
+                ePFUtil.GetSCBAccountOpeningForm();
+            }
+            else
+                Response.Redirect("index.aspx");
         }
     }
 }

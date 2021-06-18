@@ -861,7 +861,7 @@ public class UDSStaffProgressDataUtil
                             new[] { "รหัสไปรษณีย์", "ZipCodePermanent", "", "" },
                             new[] { "วันออกบัตร", "CardIssueDate", "", "" },
                             new[] { "วันบัตรหมดอายุ", "CardExpiryDate", "", "" },
-                            //new[] { "กรุ๊ปเลือด", "BloodType", "", "" },
+                            new[] { "กรุ๊ปเลือด", "", "", "" },
                             new[] { "เลขประจำตัวพนักงาน / นักศึกษา", "StudentCode", "", "" },
                             new[] { "รหัสคณะ / แผนก / ฝ่าย", "Faculty", "", "" },
                             new[] { "สาขา / ประเภทเจ้าหน้าที่", "Program", "", "" },

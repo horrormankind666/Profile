@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๘/๐๙/๒๕๕๖>
-Modify date : <๒๔/๐๒/๒๕๖๔>
+Modify date : <๑๗/๐๖/๒๕๖๔>
 Description : <รวมรวบฟังก์ชั่นใช้งานทั่วไปของระบบ>
 =============================================
 */
@@ -18,6 +18,7 @@ var ePFUtil = {
     subjectSectionHelpContactUS: "HelpContactUs",
     subjectSectionHelpFillInformationStudentRecords: "HelpFillInformationStudentRecords",
     subjectSectionHelpAllowPopUp: "HelpAllowPopup",
+    subjectSectionSCBAccountOpeningForm: "SCBAccountOpeningForm",
     subjectSectionStudentRecords: "StudentRecords",
     subjectSectionStudentRecordsStudentRecords: "StudentRecordsStudentRecords",
     subjectSectionStudentRecordsPersonal: "StudentRecordsPersonal",
@@ -136,7 +137,7 @@ var ePFUtil = {
         $(function () {
             $(".menubar .link-click").click(function () {
                 var _idLink = $(this).attr("id");
-
+                
                 Util.dialogMessageClose();
 
                 if (_idLink == ("link-" + _this.subjectSectionPrivacyPolicy.toLowerCase())) {
@@ -169,7 +170,7 @@ var ePFUtil = {
                 var _idLink = $(this).attr("id");
 
                 Util.dialogMessageClose();
-
+                
                 if ($("#page").html() == _this.pageStudentRecordsAddUpdate)
                     _page = Util.getPageActive({
                         id: (_this.idSectionStudentRecordsAddUpdate.toLowerCase() + "-content")
@@ -201,21 +202,24 @@ var ePFUtil = {
                 if (_idLink == ("profile-" + _this.pageStudentRecordsAddUpdate.toLowerCase()))
                     Util.gotoPage({ page: ("index.aspx?p=" + _this.pageStudentRecordsStudentCVMain), target: "_blank" });
 
-                if (_idLink == ("linkto-" + _this.pageStudentRecordsAddUpdate.toLowerCase()))
+                if (_idLink == ("linkto-" + _this.pageStudentRecordsMain.toLowerCase()) ||
+                    _idLink == ("linkto-" + _this.pageStudentRecordsAddUpdate.toLowerCase()))
                     Util.setLinkToShow();
 
                 if (_idLink == "linkto-healthcareservice" || _idLink == "linkto-uploaddocument") {
                     var _w;
 
-                    if (_idLink == "linkto-healthcareservice")
-                        _w = Util.gotoPage({ page: "https://smartedu.mahidol.ac.th/eProfileApp/Module/Operation/HealthCareService/index.aspx", target: "_blank" });
+                    if (Util.tut.tsr.sectionAddUpdate.chkStudentRecordsFillComplete()) {
+                        if (_idLink == "linkto-healthcareservice")
+                            _w = Util.gotoPage({ page: "https://smartedu.mahidol.ac.th/eProfileApp/Module/Operation/HealthCareService/index.aspx", target: "_blank" });
 
-                    if (_idLink == "linkto-uploaddocument")
-                        _w = Util.gotoPage({ page: "../UploadDocument/index.aspx", target: "_blank" });
-
-                    if (Util.tut.tsr.sectionAddUpdate.chkStudentRecordsFillComplete() == false)
-                        _w.close();
+                        if (_idLink == "linkto-uploaddocument")
+                            _w = Util.gotoPage({ page: "../UploadDocument/index.aspx", target: "_blank" });
+                    }
                 }
+
+                if (_idLink == "linkto-downloadscbaccountopeningform")
+                    Util.gotoPage({ page: ("ePFDownloadFile.aspx?f=" + _this.subjectSectionSCBAccountOpeningForm), target: "frame-util" });
             });
         });
     },
@@ -305,9 +309,9 @@ var ePFUtil = {
         var _send = {};
         _send["action"] = "page";
         _send["page"] = _page;
-
+        
         Util.msgPreloading = "Loading...";
-
+        
         Util.loadAjax({
             url: this.urlHandler,
             method: "POST",
@@ -333,6 +337,9 @@ var ePFUtil = {
             if (_page == _this.pageStudentRecordsMain)
                 Util.tut.tsr.sectionMain.initMain();
 
+            if (_page == _this.pagePrivacyPolicyMain)
+                privacyPolicy.init();
+
             _error = _this.getErrorMsg({
                 signinYN: _result.SignInYN,
                 pageError: _result.PageError,
@@ -343,9 +350,6 @@ var ePFUtil = {
             if (_error == false) {
                 if (_page == _this.pageStudentRecordsAddUpdate)
                     Util.tut.tsr.sectionAddUpdate.initMain();
-
-                if (_page == _this.pagePrivacyPolicyMain)
-                    privacyPolicy.init();
             }
 
             _this.initMenuBar();
@@ -896,7 +900,7 @@ var privacyPolicy = {
     },
     initMenu: function () {
         var that = this;
-
+        
         Util.initTab({
             id: ("#" + this.idSectionMain + "-menu-content"),
             idContent: ("#" + this.idSectionMain + "-content"),

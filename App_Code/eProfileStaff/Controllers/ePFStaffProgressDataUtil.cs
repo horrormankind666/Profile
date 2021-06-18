@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๒/๑๑/๒๕๕๘>
-Modify date : <๑๒/๐๕/๒๕๖๔>
+Modify date : <๑๘/๐๖/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นการประมวลผลข้อมูล>
 =============================================
 */
@@ -591,7 +591,8 @@ public class ePFStaffProgressDataUtil
                                         _dr3["FullNameTH"] = Util.GetFullName(_dataRecordedStudentRecords["TitleInitialsTH"].ToString(), _dataRecordedStudentRecords["TitleFullNameTH"].ToString(), _dataRecordedStudentRecords["FirstName"].ToString(), _dataRecordedStudentRecords["MiddleName"].ToString(), _dataRecordedStudentRecords["LastName"].ToString()); 
                                         _dr3["FullNameEN"] = Util.GetFullName(_dataRecordedStudentRecords["TitleInitialsEN"].ToString(), _dataRecordedStudentRecords["TitleFullNameEN"].ToString(), _dataRecordedStudentRecords["FirstNameEN"].ToString(), _dataRecordedStudentRecords["MiddleNameEN"].ToString(), _dataRecordedStudentRecords["LastNameEN"].ToString()); 
                                         _dr3["DegreeLevel"] = (!String.IsNullOrEmpty(_dataRecordedStudentRecords["DegreeLevelNameTH"].ToString()) ? _dataRecordedStudentRecords["DegreeLevelNameTH"] : _dataRecordedStudentRecords["DegreeLevelNameEN"]); 
-                                        _dr3["Faculty"] = (!String.IsNullOrEmpty(_dataRecordedStudentRecords["FacultyNameTH"].ToString()) ? _dataRecordedStudentRecords["FacultyNameTH"] : _dataRecordedStudentRecords["FacultyNameEN"]); 
+                                        _dr3["Faculty"] = (!String.IsNullOrEmpty(_dataRecordedStudentRecords["FacultyNameTH"].ToString()) ? _dataRecordedStudentRecords["FacultyNameTH"] : _dataRecordedStudentRecords["FacultyNameEN"]);
+                                        _dr3["ProgramCode"] = _dataRecordedStudentRecords["ProgramCode"].ToString();
                                         _dr3["Program"] = (!String.IsNullOrEmpty(_dataRecordedStudentRecords["ProgramNameTH"].ToString()) ? _dataRecordedStudentRecords["ProgramNameTH"] : _dataRecordedStudentRecords["ProgramNameEN"]); 
                                         _dr3["YearEntry"] = _dataRecordedStudentRecords["YearEntry"]; 
                                         _dr3["Class"] = _dataRecordedStudentRecords["Class"]; 
@@ -1162,9 +1163,9 @@ public class ePFStaffProgressDataUtil
                     if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_PROGRESS))
                     {
                         _maxRowCellRange = (_complete + 2);
-                        _maxColCellRange = 75;
+                        _maxColCellRange = 76;
                         _maxRowCellHeader = 2;
-                        _maxColCellHeader = 75;
+                        _maxColCellHeader = 76;
                     }
                     if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENTLEVEL1VIEWTABLE_PROGRESS))
                     {
@@ -1201,6 +1202,7 @@ public class ePFStaffProgressDataUtil
                             new[] { "ชื่อเต็ม ( ภาษาอังกฤษ )", "FullNameEN", "", "" },
                             new[] { "ระดับการศึกษา", "DegreeLevel", "", "" },
                             new[] { "คณะ", "Faculty", "", "" },
+                            new[] { "รหัสหลักสูตร", "ProgramCode", "", "" },
                             new[] { "หลักสูตร", "Program", "", "" },
                             new[] { "ปีที่เข้าศึกษา", "YearEntry", "center", "" },
                             new[] { "ชั้นปี", "Class", "center", "" },

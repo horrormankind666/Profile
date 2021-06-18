@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๘/๐๙/๒๕๕๗>
-Modify date : <๑๘/๐๒/๒๕๖๔>
+Modify date : <๑๘/๐๖/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผล>
 =============================================
 */
@@ -24,7 +24,7 @@ public class ePFUI
         string _studentCode = _infoLogin["StudentCode"].ToString();
         string _fullnameEN = _infoLogin["FullnameEN"].ToString();
     
-        if (_cookieError.Equals(0) && _userError.Equals(0))
+        if (_cookieError.Equals(0))
         {
             _html.AppendLine("<div class='menubar'>");
             _html.AppendLine("  <div class='menubar-layout'>");
@@ -100,6 +100,10 @@ public class ePFUI
         string _infoLinkTo2TH = _data["LinkTo2TH"].ToString();
         string _infoLinkTo2EN = _data["LinkTo2EN"].ToString();
         string _infoLinkTo2Page = _data["LinkTo2Page"].ToString();
+        string _infoLinkTo3Id = _data["LinkTo3ID"].ToString();
+        string _infoLinkTo3TH = _data["LinkTo3TH"].ToString();
+        string _infoLinkTo3EN = _data["LinkTo3EN"].ToString();
+        string _infoLinkTo3Page = _data["LinkTo3Page"].ToString();
         string _infoImportantId = _data["ImportantID"].ToString();
         string _infoImportantRecommendTitle = _data["ImportantRecommendTitle"].ToString();
         string _infoImportantRecommendMsgTH = _data["ImportantRecommendMsgTH"].ToString();
@@ -229,6 +233,9 @@ public class ePFUI
 
                 if (!String.IsNullOrEmpty(_infoLinkTo2Id))
                     _listLinkTo.Add(_infoLinkTo2Id + ";" + _infoLinkTo2TH + ";" + _infoLinkTo2EN + ";" + _infoLinkTo2Page);
+
+                if (!String.IsNullOrEmpty(_infoLinkTo3Id))
+                    _listLinkTo.Add(_infoLinkTo3Id + ";" + _infoLinkTo3TH + ";" + _infoLinkTo3EN + ";" + _infoLinkTo3Page);
 
                 for (_i = 0; _i < _listLinkTo.Count; _i++)
                 {

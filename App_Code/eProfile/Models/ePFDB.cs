@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๘/๐๙/๒๕๕๗>
-Modify date : <๐๒/๐๓/๒๕๖๔>
+Modify date : <๑๖/๐๖/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการจัดการข้อมูลในฐานข้อมูล>
 =============================================
 */
@@ -13,8 +13,10 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using NUtil;
+using NFinServiceLogin;
 
 public class ePFDB
 {
@@ -23,8 +25,8 @@ public class ePFDB
         List<string> _ls = File.ReadAllLines(HttpContext.Current.Server.MapPath("../../../Module/Operation/eProfile/Important/" + _lang + "/" + _fileName)).ToList();
 
         return _ls;
-    }    
-    
+    }
+
     public static Dictionary<string, object> ActionSave(HttpContext _c, Dictionary<string, object> _infoLogin)
     {
         Dictionary<string, object> _saveResult = new Dictionary<string, object>();
@@ -66,12 +68,12 @@ public class ePFDB
                 _page.Equals(ePFUtil.PAGE_STUDENTRECORDSFAMILYPARENTADDRESSCURRENT_ADDUPDATE) ||
                 _page.Equals(ePFUtil.PAGE_STUDENTRECORDSFAMILYFATHERWORK_ADDUPDATE) ||
                 _page.Equals(ePFUtil.PAGE_STUDENTRECORDSFAMILYMOTHERWORK_ADDUPDATE) ||
-                _page.Equals(ePFUtil.PAGE_STUDENTRECORDSFAMILYPARENTWORK_ADDUPDATE))                                 
+                _page.Equals(ePFUtil.PAGE_STUDENTRECORDSFAMILYPARENTWORK_ADDUPDATE))
             {
                 _personIdFather = _c.Request["personidfather"];
                 _personIdMother = _c.Request["personidmother"];
-                _personIdParent = _c.Request["personidparent"];                
-                
+                _personIdParent = _c.Request["personidparent"];
+
                 _personId = ePFStudentRecordsUtil.GetValuePersonIdByPage(_page, _personId, _personIdFather, _personIdMother, _personIdParent);
                 _actionSave = ePFStudentRecordsUtil.GetValueActionSaveStudentRecordsByPage(_page, _personIdFather, _personIdMother, _personIdParent);
             }
@@ -123,7 +125,7 @@ public class ePFDB
                         new SqlParameter("@religion", _c.Request["religion"]),
                         new SqlParameter("@bloodType", _c.Request["bloodtype"]),
                         new SqlParameter("@maritalStatus", _c.Request["maritalstatus"]),
-                        new SqlParameter("@educationalBackground",  _c.Request["educationalbackground"]),
+                        new SqlParameter("@educationalBackground", _c.Request["educationalbackground"]),
                         new SqlParameter("@email", _c.Request["email"]),
                         new SqlParameter("@brotherhoodNumber", _c.Request["brotherhoodnumber"]),
                         new SqlParameter("@childhoodNumber", _c.Request["childhoodnumber"]),
@@ -276,7 +278,7 @@ public class ePFDB
                         new SqlParameter("@ip", Util.GetIP())
                     );
                 }
-            }    
+            }
 
             if (_page.Equals(ePFUtil.PAGE_STUDENTRECORDSEDUCATIONUNIVERSITY_ADDUPDATE))
             {
@@ -348,7 +350,7 @@ public class ePFDB
                         new SqlParameter("@ip", Util.GetIP())
                     );
                 }
-            }            
+            }
 
             if (_page.Equals(ePFUtil.PAGE_STUDENTRECORDSTALENT_ADDUPDATE))
             {
@@ -475,7 +477,7 @@ public class ePFDB
                         new SqlParameter("@ip", Util.GetIP())
                     );
                 }
-            } 
+            }
 
             if (_chkSaveError.Equals(true) && _actionSave.Equals(true))
             {
@@ -550,5 +552,34 @@ public class ePFDB
         _saveResult.Add("PersonId", _personId);
 
         return _saveResult;
-    }    
+    }
+
+    public static void SetEventLog(Dictionary<string, object> _infoLogin, string _remark)
+    {
+        string _personId = _infoLogin["PersonId"].ToString();
+        StringBuilder xmlData = new StringBuilder();
+
+        try
+        {
+            xmlData.Append(
+                "<row>" +
+                ("<url>" + HttpContext.Current.Request.Url.AbsoluteUri + "</url>") +
+                ("<parameters>" + HttpContext.Current.Request.Url.Query + "</parameters>") +
+                "<headers></headers>" +
+                ("<cookie>" + Util.GetCookie(FinServiceLogin.USERTYPE_STUDENT).Value + "</cookie>") +
+                ("<deviceInfo>{\"userAgent\":\"" + HttpContext.Current.Request.UserAgent + "\"}</deviceInfo>") +
+                ("<remark>" + _remark + "</remark>") +
+                ("<actionBy>" + _personId + "</actionBy>") +
+                ("<actionIP>" + Util.GetIP() + "</actionIP>") +
+                "</row>"
+            );
+
+            Util.DBUtil.ExecuteCommandStoredProcedure("sp_perSetEvent",
+                new SqlParameter("@xmlData", xmlData.ToString())
+            );
+        }
+        catch
+        {
+        }
+    }
 }

@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๙/๐๑/๒๕๕๘>
-Modify date : <๑๐/๐๓/๒๕๖๔>
+Modify date : <๑๘/๐๖/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นทั่วไปในส่วนของการจัดการข้อมูลระเบียนประวัตินักศึกษา>
 =============================================
 */
@@ -285,6 +285,7 @@ public class ePFStaffStudentRecordsUtil
             _dataRecorded.Add("DegreeLevelNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["degreeLevelNameEN"].ToString()) ? _dr["degreeLevelNameEN"].ToString() : String.Empty));
             _dataRecorded.Add("FacultyNameTH", (_dr != null && !String.IsNullOrEmpty(_dr["facultyNameTH"].ToString()) ? _dr["facultyNameTH"].ToString() : String.Empty));
             _dataRecorded.Add("FacultyNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["facultyNameEN"].ToString()) ? _dr["facultyNameEN"].ToString() : String.Empty));
+            _dataRecorded.Add("ProgramCode", (_dr != null && !String.IsNullOrEmpty(_dr["programCodeNew"].ToString()) ? _dr["programCodeNew"].ToString() : String.Empty));
             _dataRecorded.Add("ProgramNameTH", (_dr != null && !String.IsNullOrEmpty(_dr["programNameTH"].ToString()) ? _dr["programNameTH"].ToString() : String.Empty));
             _dataRecorded.Add("ProgramNameEN", (_dr != null && !String.IsNullOrEmpty(_dr["programNameEN"].ToString()) ? _dr["programNameEN"].ToString() : String.Empty));
             _dataRecorded.Add("IsProgramContract", (_dr != null && !String.IsNullOrEmpty(_dr["isProgramContract"].ToString()) ? _dr["isProgramContract"].ToString() : String.Empty));

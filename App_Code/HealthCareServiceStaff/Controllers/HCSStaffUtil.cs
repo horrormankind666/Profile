@@ -554,7 +554,7 @@ public class HCSStaffUtil
             _formError = 0;
             _signinYN = "Y";
             _content = (_cookieError.Equals(0) && _userError.Equals(0) ? HCSStaffUI.GetFrmMeaningOfAdmissionType() : null);
-            _width = 800;
+            _width = 950;
             _height = 0;
             _title = "ความหมายของระบบการสอบเข้า : Meaning of Admission Type";
         }

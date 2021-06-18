@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๘/๐๙/๒๕๕๖>
-Modify date : <๒๕/๐๒/๒๕๖๔>
+Modify date : <๑๘/๐๖/๒๕๖๔>
 Description : <Style Sheet จัดรูปการแสดงผล>
 =============================================
 */
@@ -806,7 +806,11 @@ a {
     border-bottom-color: #F3781B;
 }
 #infobar-studentrecords .infobar-content .operator-linkto {
-    background: #F3781B; width:55px;
+    background: #F3781B;
+    width: 55px;
+}
+#infobar-privacypolicy .infobar-content .operator-linkto {
+    background: #0D70E5;
 }
 #infobar-studentrecords .infobar-content .operator-linkto .operator-img {
     left: 15px;
@@ -818,16 +822,19 @@ a {
     top: 145px;
 }
 #infobar-studentrecords .infobar-content .linkto ul li {
-    width: 187px;
+    width: 250px;
     height: 43px;
     text-align: right;
     background: #F3781B;
 }
-#infobar-studentrecords .infobar-content .linkto ul li:last-child {
-    height: 41px;
+#infobar-privacypolicy .infobar-content .linkto ul li {
+    background: #0D70E5;
 }
 #infobar-studentrecords .infobar-content .linkto ul li:hover {
     background: #E86400;
+}
+#infobar-privacypolicy .infobar-content .linkto ul li:hover {
+    background: #1361BC;
 }
 
 .important .important-layout {

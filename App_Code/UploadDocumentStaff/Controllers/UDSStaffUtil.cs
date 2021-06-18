@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๒/๐๖/๒๕๕๘>
-Modify date : <๒๘/๐๖/๒๕๕๙>
+Modify date : <๑๘/๐๖/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นทั่วไป>
 =============================================
 */
@@ -857,7 +857,7 @@ public class UDSStaffUtil
             _formError = 0;
             _signinYN = "Y";
             _content = (_cookieError.Equals(0) && _userError.Equals(0) ? UDSStaffUI.GetFrmMeaningOfAdmissionType() : null);
-            _width = 800;
+            _width = 950;
             _height = 0;
             _title = "ความหมายของระบบการสอบเข้า : Meaning of Admission Type";
         }
@@ -2276,7 +2276,6 @@ public class UDSStaffUtil
             _dt.Columns.Add("ZipCodePermanent");
             _dt.Columns.Add("CardIssueDate");
             _dt.Columns.Add("CardExpiryDate");
-            _dt.Columns.Add("BloodType");
             _dt.Columns.Add("StudentCode");
             _dt.Columns.Add("Faculty");
             _dt.Columns.Add("Program");
@@ -2298,6 +2297,14 @@ public class UDSStaffUtil
             _dt.Columns.Add("BankAcc");
             _dt.Columns.Add("CareerCode");
             _dt.Columns.Add("Income");
+            _dt.Columns.Add("NoCurrent");
+            _dt.Columns.Add("VillageCurrent");
+            _dt.Columns.Add("MooCurrent");
+            _dt.Columns.Add("SoiCurrent");
+            _dt.Columns.Add("RoadCurrent");
+            _dt.Columns.Add("SubdistrictCurrent");
+            _dt.Columns.Add("DistrictCurrent");
+            _dt.Columns.Add("ZipCodeCurrent");
         }
 
         if (_page.Equals(PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL1VIEWTABLE_PROGRESS))

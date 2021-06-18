@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๘/๐๙/๒๕๕๗>
-Modify date : <๐๙/๐๓/๒๕๖๔>
+Modify date : <๑๘/๐๖/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นทั่วไป>
 =============================================
 */
@@ -14,6 +14,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using NUtil;
+using NExportToPDF;
 using NFinServiceLogin;
 
 public class ePFUtil
@@ -55,6 +56,7 @@ public class ePFUtil
     public const string SUBJECT_SECTION_HELPFILLINFORMATIONSTUDENTRECORDS = (SUBJECT_SECTION_HELP + SUBJECT_SECTION_FILLINFORMATIONSTUDENTRECORDS);            
     public const string SUBJECT_SECTION_HELPCONTACTUS = (SUBJECT_SECTION_HELP + SUBJECT_SECTION_CONTACTUS);
     public const string SUBJECT_SECTION_HELPALLOWPOPUP = (SUBJECT_SECTION_HELP + SUBJECT_SECTION_ALLOWPOPUP);
+    public const string SUBJECT_SECTION_SCBACCOUNTOPENINGFORM = "SCBAccountOpeningForm";
     public const string SUBJECT_SECTION_STUDENTRECORDSSTUDENTRECORDS = (SUBJECT_SECTION_STUDENTRECORDS + SUBJECT_SECTION_STUDENTRECORDS);
     public const string SUBJECT_SECTION_STUDENTRECORDSPERSONAL = (SUBJECT_SECTION_STUDENTRECORDS + SUBJECT_SECTION_PERSONAL);
     public const string SUBJECT_SECTION_STUDENTRECORDSADDRESS = (SUBJECT_SECTION_STUDENTRECORDS + SUBJECT_SECTION_ADDRESS);
@@ -173,7 +175,10 @@ public class ePFUtil
     public static string _myUserManualPath = System.Configuration.ConfigurationManager.AppSettings["ePFUserManualPath"].ToString();
     public static string _myUserManualFile = System.Configuration.ConfigurationManager.AppSettings["ePFUserManualFile"].ToString();
     public static string _myURLPictureStudent = System.Configuration.ConfigurationManager.AppSettings["urlPictureStudent"].ToString();
-    public static string _myHandlerPath = System.Configuration.ConfigurationManager.AppSettings["ePFHandlerPath"].ToString();    
+    public static string _myHandlerPath = System.Configuration.ConfigurationManager.AppSettings["ePFHandlerPath"].ToString();
+    public static string _myFormPath = System.Configuration.ConfigurationManager.AppSettings["ePFFormPath"].ToString();
+    public static string _myPDFFontNormal = System.Configuration.ConfigurationManager.AppSettings["ePFPDFFontNormal"].ToString();
+    public static string _myPDFFontBold = System.Configuration.ConfigurationManager.AppSettings["ePFPDFFontBold"].ToString();
 
     public static string[,] _menu = new string[,]
     {
@@ -292,13 +297,14 @@ public class ePFUtil
         if (!_page.Equals(PAGE_MSENT_MAIN))
         {
             if (_userError.Equals(2) || _userError.Equals(3) || _userError.Equals(4))
-                _page = (_page.Equals(PAGE_STUDENTRECORDSSTUDENTCV_MAIN) ? _page : PAGE_STUDENTRECORDS_MAIN);
+                _page = (_page.Equals(PAGE_STUDENTRECORDSSTUDENTCV_MAIN) || _page.Equals(PAGE_PRIVACYPOLICY_MAIN) ? _page : PAGE_STUDENTRECORDS_MAIN);
         }
 
         if (_page.Equals(PAGE_MSENT_MAIN))
         {
             _pageError = 0;
             _signinYN = "Y";
+            _userError = 0;
             _mainContent = null;
             _cuid = GetCUID(new string[] { _personId, _studentCode });
         }
@@ -307,6 +313,7 @@ public class ePFUtil
         {
             _pageError = 0;
             _signinYN = "Y";
+            _userError = 0;
             _mainContent = (_cookieError.Equals(0) ? ePFUI.PrivacyPolicyUI.GetSection(_loginResult, "MAIN", "", _personId) : null);
         }
 
@@ -314,6 +321,7 @@ public class ePFUtil
         {
             _pageError = 0;
             _signinYN = "Y";
+            _userError = 0;
             _mainContent = (_cookieError.Equals(0) ? Util.GetStudentRecordsToStudentCV(_personId) : null);
         }     
 
@@ -326,9 +334,9 @@ public class ePFUtil
         
         if (_page.Equals(PAGE_STUDENTRECORDS_ADDUPDATE))
         {
-            _pageError      = 0;
-            _signinYN       = "Y";
-            _mainContent    = (_cookieError.Equals(0) && _userError.Equals(0) ? ePFStudentRecordsUI.GetSection(_loginResult, "ADDUPDATE", "", _personId) : null);
+            _pageError = 0;
+            _signinYN = "Y";
+            _mainContent = (_cookieError.Equals(0) && _userError.Equals(0) ? ePFStudentRecordsUI.GetSection(_loginResult, "ADDUPDATE", "", _personId) : null);
         }   
 
         _pageResult.Add("Page", _page);
@@ -363,6 +371,7 @@ public class ePFUtil
         {
             _formError = 0;
             _signinYN = "Y";
+            _userError = 0;
             _content = (_cookieError.Equals(0) && (_userError.Equals(0) || _userError.Equals(2) || _userError.Equals(3) || _userError.Equals(4)) ? ePFUI.GetFrmHelp(_form) : null);
             _width = 800;
             _height = 0;
@@ -373,6 +382,7 @@ public class ePFUtil
         {
             _formError = 0;
             _signinYN = "Y";
+            _userError = 0;
             _content = (_cookieError.Equals(0) && (_userError.Equals(0) || _userError.Equals(2) || _userError.Equals(3) || _userError.Equals(4)) ? ePFUI.GetFrmHelp(_form) : null);
             _width = 800;
             _height = 0;
@@ -626,7 +636,7 @@ public class ePFUtil
         string _infoOperatorExportAll = String.Empty;
         string _infoOperatorExportSelected = String.Empty;
         string _infoOperatorProfile = String.Empty;
-        string _infoOperatorClose = String.Empty;        
+        string _infoOperatorClose = String.Empty;
         string _infoLinkTo = String.Empty;
         string _infoLinkTo1Id = String.Empty;
         string _infoLinkTo1TH = String.Empty;
@@ -636,6 +646,10 @@ public class ePFUtil
         string _infoLinkTo2TH = String.Empty;
         string _infoLinkTo2EN = String.Empty;
         string _infoLinkTo2Page = String.Empty;
+        string _infoLinkTo3Id = String.Empty;
+        string _infoLinkTo3TH = String.Empty;
+        string _infoLinkTo3EN = String.Empty;
+        string _infoLinkTo3Page = String.Empty;
         string _infoImportantId = String.Empty;
         string _infoImportantRecommendTitle = String.Empty;
         string _infoImportantRecommendMsgTH = String.Empty;
@@ -660,8 +674,23 @@ public class ePFUtil
             _infoTitleTH = _menu[0, 0];
             _infoTitleEN = _menu[0, 1];
             _infoOperatorProfile = ("profile-" + _page.ToLower());
+            _infoLinkTo = ("linkto-" + _page.ToLower());
+            _infoLinkTo1Id = "linkto-healthcareservice";
+            _infoLinkTo1TH = "ดาวน์โหลดแบบฟอร์มสุขภาพ";
+            _infoLinkTo1EN = "Health Care Service";
+            _infoLinkTo1Page = "../HealthCareService/index.aspx";
+            _infoLinkTo2Id = "linkto-uploaddocument";
+            _infoLinkTo2TH = "อัพโหลดเอกสารของนักศึกษา";
+            _infoLinkTo2EN = "Upload Document Student";
+            _infoLinkTo2Page = "../UploadDocument/index.aspx";
+            /*
+            _infoLinkTo3Id = "linkto-downloadscbaccountopeningform";
+            _infoLinkTo3TH = "ดาว์นโหลดแบบฟอร์มเปิดบัญชีกับ SCB";
+            _infoLinkTo3EN = "Download SCB Account Opening Form";
+            _infoLinkTo3Page = String.Empty;
+            */
         }
-        
+
         if (_page.Equals(PAGE_STUDENTRECORDS_ADDUPDATE))
         {
             _infoId = ("infobar-" + SUBJECT_SECTION_STUDENTRECORDS.ToLower());
@@ -682,6 +711,12 @@ public class ePFUtil
             _infoLinkTo2TH = "อัพโหลดเอกสารของนักศึกษา";
             _infoLinkTo2EN = "Upload Document Student";
             _infoLinkTo2Page = "../UploadDocument/index.aspx";
+            /*
+            _infoLinkTo3Id = "linkto-downloadscbaccountopeningform";
+            _infoLinkTo3TH = "ดาว์นโหลดแบบฟอร์มเปิดบัญชีกับ SCB";
+            _infoLinkTo3EN = "Download SCB Account Opening Form";
+            _infoLinkTo3Page = String.Empty;
+            */
             _infoImportantId = ("important" + _page.ToLower());
             _infoImportantRecommendMsgTH = "รายการที่มีเครื่องหมาย (<div class='icon-fieldmark'></div>) จำเป็นต้องกรอก กรอกข้อมูลให้ครบถ้วนและสมบูรณ์ ข้อมูลใดที่ไม่ทราบให้ข้ามไป และกรุณาบันทึกข้อมูลในแต่ละหน้า";
             _infoImportantRecommendMsgEN = "Fields marked with an asterisk ( <div class='icon-fieldmark'></div>) are required. Fill the information complete all. Skip, Any information that does not know. Please save data each page.";
@@ -718,6 +753,10 @@ public class ePFUtil
         _infoDataResult.Add("LinkTo2TH", _infoLinkTo2TH);
         _infoDataResult.Add("LinkTo2EN", _infoLinkTo2EN);
         _infoDataResult.Add("LinkTo2Page", _infoLinkTo2Page);
+        _infoDataResult.Add("LinkTo3ID", _infoLinkTo3Id);
+        _infoDataResult.Add("LinkTo3TH", _infoLinkTo3TH);
+        _infoDataResult.Add("LinkTo3EN", _infoLinkTo3EN);
+        _infoDataResult.Add("LinkTo3Page", _infoLinkTo3Page);
         _infoDataResult.Add("ImportantID", _infoImportantId);
         _infoDataResult.Add("ImportantRecommendTitle", _infoImportantRecommendTitle);
         _infoDataResult.Add("ImportantRecommendMsgTH", _infoImportantRecommendMsgTH);
@@ -911,6 +950,57 @@ public class ePFUtil
         if (_page.Equals(PAGE_STUDENTRECORDSFAMILY_ADDUPDATE))
             _valueDataRecordedResult.Add(("DataRecorded" + SUBJECT_SECTION_STUDENTRECORDSFAMILY), _dataRecorded);
 
-        return _valueDataRecordedResult;               
+        return _valueDataRecordedResult;
+    }
+
+    public static void GetSCBAccountOpeningForm()
+    {
+        Dictionary<string, object> _loginResult = ePFUtil.GetInfoLogin("", "");
+        int _cookieError = int.Parse(_loginResult["CookieError"].ToString());
+        string _personId = _loginResult["PersonId"].ToString();
+
+        if (_cookieError.Equals(0))
+        {
+            Dictionary<string, object> _valueDataRecorded = ePFUtil.SetValueDataRecorded(ePFUtil.PAGE_STUDENTRECORDSSTUDENTRECORDS_ADDUPDATE, _personId);
+            Dictionary<string, object> _dataRecorded = (Dictionary<string, object>)_valueDataRecorded["DataRecorded" + ePFUtil.SUBJECT_SECTION_STUDENTRECORDSSTUDENTRECORDS];
+
+            ExportToPDF _e = new ExportToPDF();
+            _e.ExportToPDFConnect(ePFUtil.SUBJECT_SECTION_SCBACCOUNTOPENINGFORM + ".pdf");
+            _e.PDFConnectTemplate((ePFUtil._myFormPath + "/" + ePFUtil.SUBJECT_SECTION_SCBACCOUNTOPENINGFORM + ".pdf"), "pdf");
+            _e.PDFAddTemplate("pdf", 1, 1);
+            
+            _e.FillForm(_myPDFFontBold, 14, 1, DateTime.Today.Day.ToString(), 318, 628, 37, 0);
+            _e.FillForm(_myPDFFontBold, 14, 1, Util._longMonth[DateTime.Today.Month - 1, 0], 377, 628, 88, 0);
+            _e.FillForm(_myPDFFontBold, 14, 1, DateTime.Today.ToString("yyyy", new CultureInfo("th-TH")), 484, 628, 47, 0);
+
+            switch (_dataRecorded["TitleFullNameTH"].ToString())
+            {
+                case "นาย":
+                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 338, 548, 14, 0);
+                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 356, 548, 29, 0);
+                    _dataRecorded["TitleInitialsTH"] = String.Empty;
+                    break;
+                case "นาง":
+                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 318, 548, 16, 0);
+                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 356, 548, 29, 0);
+                    _dataRecorded["TitleInitialsTH"] = String.Empty;
+                    break;
+                case "นางสาว":
+                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 318, 548, 16, 0);
+                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 338, 548, 14, 0);
+                    _dataRecorded["TitleInitialsTH"] = String.Empty;
+                    break;
+                default:
+                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 318, 548, 16, 0);
+                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 338, 548, 14, 0);
+                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 356, 548, 29, 0);
+                    break;
+            }
+            _e.FillForm(_myPDFFontBold, 14, 1, (Util.GetBlank(_dataRecorded["FirstName"].ToString(), "") + (!String.IsNullOrEmpty(_dataRecorded["MiddleName"].ToString()) ? (" " + Util.GetBlank(_dataRecorded["MiddleName"].ToString(), "")) : String.Empty)), 387, 549, 145, 0);
+            _e.FillForm(_myPDFFontBold, 14, 1, Util.GetBlank(_dataRecorded["LastName"].ToString(), ""), 121, 530, 93, 0);
+            _e.FillForm(_myPDFFontBold, 14, 1, (!_dataRecorded["StudentCode"].Equals("XXXXXXX") ? Util.GetBlank(_dataRecorded["StudentCode"].ToString(), "") : String.Empty), 270, 530, 68, 0);
+            
+            _e.ExportToPdfDisconnect();
+        }
     }
 }

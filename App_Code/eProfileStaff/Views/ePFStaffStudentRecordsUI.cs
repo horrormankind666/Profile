@@ -1878,7 +1878,7 @@ public class ePFStaffStudentRecordsUI
                     _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
                     _contentFrmColumnDetail[_i].Add("ID", (_idSectionAddUpdate + "-yearattended"));
                     _contentFrmColumnDetail[_i].Add("HighLight", false);
-                    _contentFrmColumnDetail[_i].Add("TitleTH", "ปีที่เข้าศึกษา");
+                    _contentFrmColumnDetail[_i].Add("TitleTH", "ปีการศึกษาที่เข้าศึกษา");
                     _contentFrmColumnDetail[_i].Add("TitleEN", "Year Attended");
                     _contentFrmColumnDetail[_i].Add("DiscriptionTH", String.Empty);
                     _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
@@ -1892,7 +1892,7 @@ public class ePFStaffStudentRecordsUI
                     _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
                     _contentFrmColumnDetail[_i].Add("ID", (_idSectionAddUpdate + "-yeargraduate"));
                     _contentFrmColumnDetail[_i].Add("HighLight", false);
-                    _contentFrmColumnDetail[_i].Add("TitleTH", "ปีที่สำเร็จการศึกษา");
+                    _contentFrmColumnDetail[_i].Add("TitleTH", "ปีการศึกษาที่สำเร็จการศึกษา");
                     _contentFrmColumnDetail[_i].Add("TitleEN", "Year Graduation");
                     _contentFrmColumnDetail[_i].Add("DiscriptionTH", String.Empty);
                     _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
@@ -2017,7 +2017,7 @@ public class ePFStaffStudentRecordsUI
                     _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
                     _contentFrmColumnDetail[_i].Add("ID", (_idSectionAddUpdate + "-yearattended"));
                     _contentFrmColumnDetail[_i].Add("HighLight", false);
-                    _contentFrmColumnDetail[_i].Add("TitleTH", "ปีที่เข้าศึกษา");
+                    _contentFrmColumnDetail[_i].Add("TitleTH", "ปีการศึกษาที่เข้าศึกษา");
                     _contentFrmColumnDetail[_i].Add("TitleEN", "Year Attended");
                     _contentFrmColumnDetail[_i].Add("DiscriptionTH", String.Empty);
                     _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
@@ -2031,7 +2031,7 @@ public class ePFStaffStudentRecordsUI
                     _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
                     _contentFrmColumnDetail[_i].Add("ID", (_idSectionAddUpdate + "-yeargraduate"));
                     _contentFrmColumnDetail[_i].Add("HighLight", false);
-                    _contentFrmColumnDetail[_i].Add("TitleTH", "ปีที่สำเร็จการศึกษา");
+                    _contentFrmColumnDetail[_i].Add("TitleTH", "ปีการศึกษาที่สำเร็จการศึกษา");
                     _contentFrmColumnDetail[_i].Add("TitleEN", "Year Graduation");
                     _contentFrmColumnDetail[_i].Add("DiscriptionTH", String.Empty);
                     _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
@@ -2218,7 +2218,7 @@ public class ePFStaffStudentRecordsUI
                     _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
                     _contentFrmColumnDetail[_i].Add("ID", (_idSectionAddUpdate + "-yearattended"));
                     _contentFrmColumnDetail[_i].Add("HighLight", false);
-                    _contentFrmColumnDetail[_i].Add("TitleTH", "ปีที่เข้าศึกษา");
+                    _contentFrmColumnDetail[_i].Add("TitleTH", "ปีการศึกษาที่เข้าศึกษา");
                     _contentFrmColumnDetail[_i].Add("TitleEN", "Year Attended");
                     _contentFrmColumnDetail[_i].Add("DiscriptionTH", String.Empty);
                     _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
@@ -2232,7 +2232,7 @@ public class ePFStaffStudentRecordsUI
                     _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
                     _contentFrmColumnDetail[_i].Add("ID", (_idSectionAddUpdate + "-yeargraduate"));
                     _contentFrmColumnDetail[_i].Add("HighLight", false);
-                    _contentFrmColumnDetail[_i].Add("TitleTH", "ปีที่สำเร็จการศึกษา");
+                    _contentFrmColumnDetail[_i].Add("TitleTH", "ปีการศึกษาที่สำเร็จการศึกษา");
                     _contentFrmColumnDetail[_i].Add("TitleEN", "Year Graduation");
                     _contentFrmColumnDetail[_i].Add("DiscriptionTH", String.Empty);
                     _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
