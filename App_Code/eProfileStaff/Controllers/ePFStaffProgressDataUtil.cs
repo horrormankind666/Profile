@@ -607,8 +607,8 @@ public class ePFStaffProgressDataUtil
                                         _dr3["Alive"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["AliveTH"].ToString()) ? _dataRecordedPersonal["AliveTH"] : _dataRecordedPersonal["AliveEN"]); 
                                         */
                                         _dr3["Birthdate"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["BirthdateTH"].ToString()) ? _dataRecordedPersonal["BirthdateTH"] : _dataRecordedPersonal["BirthDateEN"]); 
-                                        /*
                                         _dr3["Age"] = _dataRecordedPersonal["Age"]; 
+                                        /*
                                         _dr3["Country"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["CountryNameTH"].ToString()) ? _dataRecordedPersonal["CountryNameTH"] : _dataRecordedPersonal["CountryNameEN"]); 
                                         */
                                         _dr3["Nationality"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["NationalityNameTH"].ToString()) ? _dataRecordedPersonal["NationalityNameTH"] : _dataRecordedPersonal["NationalityNameEN"]); 
@@ -1163,9 +1163,9 @@ public class ePFStaffProgressDataUtil
                     if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_PROGRESS))
                     {
                         _maxRowCellRange = (_complete + 2);
-                        _maxColCellRange = 76;
+                        _maxColCellRange = 77;
                         _maxRowCellHeader = 2;
-                        _maxColCellHeader = 76;
+                        _maxColCellHeader = 77;
                     }
                     if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENTLEVEL1VIEWTABLE_PROGRESS))
                     {
@@ -1217,8 +1217,8 @@ public class ePFStaffProgressDataUtil
                             new[] { "สถานภาพชีวิต", "Alive", "center", "" },
                             */
                             new[] { "วันเดือนปีเกิด", "Birthdate", "center", "" },
-                            /*
                             new[] { "อายุ ( ปี )", "Age", "center", "" },
+                            /*
                             new[] { "ประเทศบ้านเกิด", "Country", "", "" },
                             */
                             new[] { "สัญชาติ", "Nationality", "center", "" },

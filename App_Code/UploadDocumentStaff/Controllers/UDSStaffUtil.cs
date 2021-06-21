@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๒/๐๖/๒๕๕๘>
-Modify date : <๑๘/๐๖/๒๕๖๔>
+Modify date : <๒๒/๐๖/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นทั่วไป>
 =============================================
 */
@@ -2305,6 +2305,8 @@ public class UDSStaffUtil
             _dt.Columns.Add("SubdistrictCurrent");
             _dt.Columns.Add("DistrictCurrent");
             _dt.Columns.Add("ZipCodeCurrent");
+            _dt.Columns.Add("IdCardExpiryDate");
+            _dt.Columns.Add("IncomeSource");
         }
 
         if (_page.Equals(PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL1VIEWTABLE_PROGRESS))

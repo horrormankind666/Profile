@@ -1,9 +1,9 @@
 ﻿/*
 =============================================
-Author       : <ยุทธภูมิ ตวันนา>
-Create date  : <๑๓/๑๑/๒๕๕๘>
-Modify date  : <๒๘/๐๖/๒๕๖๒>
-Description  : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นการประมวลผลข้อมูล>
+Author      : <ยุทธภูมิ ตวันนา>
+Create date : <๑๓/๑๑/๒๕๕๘>
+Modify date : <๒๒/๐๖/๒๕๖๒>
+Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นการประมวลผลข้อมูล>
 =============================================
 */
 
@@ -13,6 +13,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using System.Web;
 using NUtil;
 using Ionic.Zip;
@@ -462,6 +463,30 @@ public class UDSStaffProgressDataUtil
                                             _ds3.Dispose();
                                         }
 
+                                        if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PROGRESS))
+                                        {
+                                            StringBuilder xmlData = new StringBuilder();
+
+                                            xmlData.Append(
+                                                "<row>" +
+                                                ("<perPersonId>" + _dr1["id"].ToString() + "</perPersonId>") +
+                                                ("<issueDate>" + _dr2["cardIssueDate"].ToString().Replace("/", "-") + "</issueDate>") +
+                                                ("<expiryDate>" + _dr2["cardExpiryDate"].ToString().Replace("/", "-") + "</expiryDate>") +
+                                                ("<exportBy>" + _username + "</exportBy>") +
+                                                ("<exportIP>" + Util.GetIP() + "</exportIP>") +
+                                                "</row>"
+                                            );
+
+                                            DataSet _ds3 = Util.DBUtil.ExecuteCommandStoredProcedure("sp_stdSetStudentForSmartCard",
+                                                new SqlParameter("@xmlData", xmlData.ToString())
+                                            );
+
+                                            DataRow _dr3 = _ds3.Tables[0].Rows[0];
+                                            _saveError = int.Parse(_dr3[1].ToString());
+
+                                            _ds3.Dispose();
+                                        }
+
                                         if (_saveError.Equals(0))
                                         {
                                             _i++;
@@ -486,7 +511,6 @@ public class UDSStaffProgressDataUtil
                                                 (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["zipCodePermanent"] : String.Empty),
                                                 _dr2["cardIssueDate"].ToString().Replace("/", "-"),
                                                 _dr2["cardExpiryDate"].ToString().Replace("/", "-"),
-                                                _dr2["bloodTypeNameTH"],
                                                 _dr2["studentCode"],
                                                 _dr2["facultyCode"],
                                                 (_dr2["programCode"].ToString().Substring(0, 4) + "/" + _dr2["programCode"].ToString().Substring(4)),
@@ -507,7 +531,17 @@ public class UDSStaffProgressDataUtil
                                                 (!_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["zipCodePermanent"] : String.Empty),
                                                 _dr2["bankAcc"],
                                                 "63",
-                                                "0"
+                                                "0",
+                                                _dr2["noCurrent"],
+                                                _dr2["villageCurrent"],
+                                                _dr2["mooCurrent"],
+                                                _dr2["soiCurrent"],
+                                                _dr2["roadCurrent"],
+                                                (_dr2["subdistrictNameTHCurrent"].ToString().Length >= 4 ? (_dr2["subdistrictNameTHCurrent"].ToString().Substring(0, 4).Equals("แขวง") ? _dr2["subdistrictNameTHCurrent"].ToString().Remove(0, 4) : _dr2["subdistrictNameTHCurrent"]) : _dr2["subdistrictNameTHCurrent"]),
+                                                (_dr2["districtNameTHCurrent"].ToString().Length >= 3 ? (_dr2["districtNameTHCurrent"].ToString().Substring(0, 3).Equals("เขต") ? _dr2["districtNameTHCurrent"].ToString().Remove(0, 3) : _dr2["districtNameTHCurrent"]) : _dr2["districtNameTHCurrent"]),
+                                                _dr2["zipCodeCurrent"],
+                                                _dr2["idCardExpiryDateTH"],
+                                                "TH"
                                             );
                                         }
                                     }
@@ -765,9 +799,9 @@ public class UDSStaffProgressDataUtil
                         _page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PROGRESS))
                     {
                         _maxRowCellRange = (_complete + 1);
-                        _maxColCellRange = 58;
+                        _maxColCellRange = 75;
                         _maxRowCellHeader = 1;
-                        _maxColCellHeader = 58;
+                        _maxColCellHeader = 75;
                     }
 
                     if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL21VIEWTABLENEEDSEND_PROGRESS) ||
@@ -876,7 +910,7 @@ public class UDSStaffProgressDataUtil
                             new[] { "ต่อ", "", "", "" },
                             new[] { "รหัสมือถือส่วนตัว", "MobileCode", "", "" },
                             new[] { "เบอร์โทรมือถือส่วนตัว", "MobileNumberPermanent", "", "" },
-                            new[] { "จดหมายอิเล็คโทรนิค", "Email", "", "" },
+                            new[] { "จดหมายอิเล็คโทรนิค ( email )", "Email", "", "" },
                             new[] { "รหัสสัญชาติ", "Nationality", "", "" },
                             new[] { "ประเภทเอกสารอ้างอิง", "DocumentType", "", "" },
                             new[] { "รหัสประเทศหนังสือเดินทาง", "CountryCodePassport", "", "" },
@@ -884,7 +918,7 @@ public class UDSStaffProgressDataUtil
                             new[] { "เลขที่ที่อยู่ต่างประเทศ", "NoNationalityNotTH", "", "" },
                             new[] { "แขวง / ตำบล", "SubdistrictNationalityNotTH", "", "" },
                             new[] { "เขต / อำเภอ", "DistrictNationalityNotTH", "", "" },
-                            new[] { "จังหวัด / รัฐ", "ProvinceNationalityNotTH", "", "" },
+                            new[] { "จังหวัด / รัฐ ( ตาม Passport )", "ProvinceNationalityNotTH", "", "" },
                             new[] { "รหัสไปรษณีย์", "ZipCodeNationalityNotTH", "", "" },
                             new[] { "เลขที่บัญชีเดิม", "BankAcc", "", "" },
                             new[] { "รหัสสาขา", "", "", "" },
@@ -897,7 +931,24 @@ public class UDSStaffProgressDataUtil
                             new[] { "LINE 4", "", "", "" },
                             new[] { "LINE 5", "", "", "" },
                             new[] { "รหัสอาชีพ", "CareerCode", "", "" },
-                            new[] { "รายได้ ( บาท )", "Income", "", "" }
+                            new[] { "รายได้ ( บาท )", "Income", "", "" },
+                            new[] { "บ้านเลขที่ ( ที่อยู่ปัจจุบัน )", "NoCurrent", "", "" },
+                            new[] { "ชื่อหมู่บ้าน / อาคาร", "VillageCurrent", "", "" },
+                            new[] { "ชั้นที่", "", "", "" },
+                            new[] { "ห้องเลขที่", "", "", "" },
+                            new[] { "หมู่ที่", "MooCurrent", "", "" },
+                            new[] { "ตรอก / ซอย", "SoiCurrent", "", "" },
+                            new[] { "ถนน", "RoadCurrent", "", "" },
+                            new[] { "ตำบล / แขวง", "SubdistrictCurrent", "", "" },
+                            new[] { "อำเภอ / เขต", "DistrictCurrent", "", "" },
+                            new[] { "รหัสไปรษณีย์", "ZipCodeCurrent", "", "" },
+                            new[] { "วันหมดอายุบัตรประชาชน / Passport", "IdCardExpiryDate", "", "" },
+                            new[] { "EMBOSS Name ( 18 ตัวอักษร )", "", "", "" },
+                            new[] { "รหัสทางไกล ( ของสถาบัน )", "", "", "" },
+                            new[] { "เบอร์โทร ( สถาบัน )", "", "", "" },
+                            new[] { "ถึง ( สถาบัน )", "", "", "" },
+                            new[] { "ต่อ ( สถาบัน )", "", "", "" },
+                            new[] { "แหล่งที่มาของรายได้", "IncomeSource", "", "" }
                         };
 
                         _i = 1;
