@@ -3695,7 +3695,7 @@ public class ePFStudentRecordsUI
                         _contentFrmColumnDetail[_i].Add("DiscriptionTH", String.Empty);
                         _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
                         _contentFrmColumnDetail[_i].Add("InputContentPaddingDown", false);
-                        _contentFrmColumnDetail[_i].Add("InputContent", ("<div id='" + _idSection + "-relationship-combobox'>" + ePFUI.GetComboboxRelationship((_idSection + "-relationship"), "03, 04, 07, 09, 11, 12, 13, 14, 17, 18, 19, 20, 21, 22") + "</div>"));
+                        _contentFrmColumnDetail[_i].Add("InputContent", ("<div id='" + _idSection + "-relationship-combobox'>" + ePFUI.GetComboboxRelationship((_idSection + "-relationship"), "03, 04, 07, 09, 11, 12, 13, 14, 17, 18, 19, 20, 21, 22, 24, 25") + "</div>"));
                         _contentFrmColumnDetail[_i].Add("Require", true);
                         _contentFrmColumnDetail[_i].Add("LastRow", false);
                         _contentFrmColumn.Add("Relationship", _contentFrmColumnDetail[_i]);
