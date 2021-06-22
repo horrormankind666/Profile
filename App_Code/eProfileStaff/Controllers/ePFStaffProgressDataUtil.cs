@@ -71,6 +71,7 @@ public class ePFStaffProgressDataUtil
         string _studentStatus = String.Empty;
         string _studentRecordsStatus = String.Empty;
         string _distinction = String.Empty;
+        string _joinProgram = String.Empty;
         string _joinProgramStatus = String.Empty;
         string _startAcademicYear = String.Empty;
         string _endAcademicYear = String.Empty;
@@ -121,14 +122,15 @@ public class ePFStaffProgressDataUtil
                     _studentStatus = _valueSearch[8];
                     _studentRecordsStatus = _valueSearch[9];
                     _distinction = _valueSearch[10];
-                    _joinProgramStatus = _valueSearch[11];
-                    _startAcademicYear = _valueSearch[12];
-                    _endAcademicYear = _valueSearch[13];
-                    _gender = _valueSearch[14];
-                    _studentStatusGroup = _valueSearch[15];
-                    _nationality = _valueSearch[16];
-                    _sortOrderBy = _valueSearch[17];
-                    _sortExpression = _valueSearch[18];
+                    _joinProgram = _valueSearch[11];
+                    _joinProgramStatus = _valueSearch[12];
+                    _startAcademicYear = _valueSearch[13];
+                    _endAcademicYear = _valueSearch[14];
+                    _gender = _valueSearch[15];
+                    _studentStatusGroup = _valueSearch[16];
+                    _nationality = _valueSearch[17];
+                    _sortOrderBy = _valueSearch[18];
+                    _sortExpression = _valueSearch[19];
                 }
             }
 
@@ -149,6 +151,7 @@ public class ePFStaffProgressDataUtil
             _paramSearch.Add("StudentStatus", _studentStatus);
             _paramSearch.Add("StudentRecordsStatus", _studentRecordsStatus);
             _paramSearch.Add("Distinction", _distinction);
+            _paramSearch.Add("JoinProgram", _joinProgram);
             _paramSearch.Add("JoinProgramStatus", _joinProgramStatus);
             _paramSearch.Add("StartAcademicYear", _startAcademicYear);
             _paramSearch.Add("EndAcademicYear", _endAcademicYear);
