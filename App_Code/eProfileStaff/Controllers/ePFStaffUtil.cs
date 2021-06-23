@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๔/๑๒/๒๕๕๗>
-Modify date : <๑๘/๐๖/๒๕๖๔>
+Modify date : <๒๓/๐๖/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นทั่วไป>
 =============================================
 */
@@ -2041,9 +2041,12 @@ public class ePFStaffUtil
         return _infoDataResult;
     }
     
-    public static int CalAge(string _dateStart, string _dateEnd)
+    public static Dictionary<string, object> CalAge(string _dateStart, string _dateEnd)
     {
-        int _age = 0;
+        Dictionary<string, object> _infoAge = new Dictionary<string, object>();
+        int _year = 0;
+        int _month = 0;
+        int _day = 0;
 
         try
         {
@@ -2052,13 +2055,20 @@ public class ePFStaffUtil
             DateTime _dateA = DateTime.Parse(DateTime.Parse(_dateStart.ToString(), new CultureInfo("en-US")).ToString("MM/dd/yyyy"));
             DateTime _dateB = DateTime.Parse(DateTime.Parse(_dateEnd.ToString(), new CultureInfo("en-US")).ToString("MM/dd/yyyy"));
 
-            _age = _dateB.Year - _dateA.Year;
+            double[] _result = Util.CalAge(_dateA, _dateB);
+            _year = (int)_result[0];
+            _month = (int)_result[1];
+            _day = (int)_result[2];
         }
         catch
         {
         }
 
-        return _age;
+        _infoAge.Add("Year", _year);
+        _infoAge.Add("Month", _month);
+        _infoAge.Add("Day", _day);
+
+        return _infoAge;
     }
     
     public static DataTable StringArrayToDataTable(Dictionary<string, object> _dtContent)
@@ -2737,7 +2747,9 @@ public class ePFStaffUtil
             _dt.Columns.Add("Gender");
             _dt.Columns.Add("Alive");
             _dt.Columns.Add("Birthdate");
-            _dt.Columns.Add("Age");
+            _dt.Columns.Add("AgeYear");
+            _dt.Columns.Add("AgeMonth");
+            _dt.Columns.Add("AgeDay");
             _dt.Columns.Add("Country");
             _dt.Columns.Add("Nationality");
             _dt.Columns.Add("Race");

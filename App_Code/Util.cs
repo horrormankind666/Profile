@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๘/๐๙/๒๕๕๗>
-Modify date : <๐๘/๐๓/๒๕๖๔>
+Modify date : <๒๓/๐๓/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นทั่วไป>
 =============================================
 */
@@ -55,7 +55,7 @@ namespace NUtil
                 return _strReplace;
             else
             {                
-                if (_strBlank.IndexOf(_str) != -1)                
+                if (_strBlank.IndexOf(_str) != -1)
                     return _strReplace;
                 else
                     return _str;
@@ -263,7 +263,7 @@ namespace NUtil
 
         public static double[] CalcDate(DateTime _startDate, DateTime _endDate)
         {
-            double[] _result = new double[6];
+            double[] _result = new double[9];
             int _tempYear = 0;
             int _tempMonth = 0;
 
@@ -318,6 +318,19 @@ namespace NUtil
                 //กี่ปี กี่วัน
                 _result[4] = _tempYear;
                 _result[5] = (_endDate - _startDate.AddYears(_tempYear)).TotalDays;
+
+                //กี่ปี กี่เดือน กี่วัน
+                _startDate = _startDate.AddYears(_tempYear);
+                _tempMonth = (_endDate.Month - _startDate.Month) + (12 * (_endDate.Year - _startDate.Year));
+
+                if (_startDate.Day > _endDate.Day)
+                {
+                    _tempMonth = _tempMonth - 1;
+                }
+
+                _result[6] = _tempYear;
+                _result[7] = _tempMonth;
+                _result[8] = (_endDate - _startDate.AddMonths(_tempMonth)).TotalDays;
             }
 
             return _result;

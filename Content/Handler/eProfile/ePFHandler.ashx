@@ -4,7 +4,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๘/๐๙/๒๕๕๗>
-Modify date : <๑๐/๐๒/๒๕๖๔>
+Modify date : <๒๓/๐๖/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นที่ถูกเรียกใช้งานจาก javascript>
 =============================================
 */
@@ -141,11 +141,8 @@ public class ePFHandler : IHttpHandler, IRequiresSessionState
     {
         JavaScriptSerializer _json = new JavaScriptSerializer();
         Dictionary<string, object> _ageResult = new Dictionary<string, object>();
-        int _age = 0;
 
-        _age = ePFUtil.CalAge(_c.Request["birthdate"], Util.CurrentDate("dd/MM/yyyy"));
-
-        _ageResult.Add("Age", _age.ToString());
+        _ageResult = ePFUtil.CalAge(_c.Request["birthdate"], Util.CurrentDate("dd/MM/yyyy"));
 
         _c.Response.Write(_json.Serialize(_ageResult));
     }

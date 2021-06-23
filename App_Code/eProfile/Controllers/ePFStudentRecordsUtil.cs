@@ -248,7 +248,7 @@ public class ePFStudentRecordsUtil
     {
         public static Dictionary<string, object> SetValueDataRecorded(Dictionary<string, object> _dataRecorded, DataSet _ds)
         {
-            string _studentPicture = String.Empty;
+            Dictionary<string, object> _age = new Dictionary<string, object>();
             DataRow _dr = null;
 
             if (_ds != null)
@@ -256,6 +256,9 @@ public class ePFStudentRecordsUtil
                 if (_ds.Tables[0].Rows.Count > 0)
                     _dr = _ds.Tables[0].Rows[0];
             }
+
+            if (_dr != null && !String.IsNullOrEmpty(_dr["enBirthDate"].ToString()))
+                _age = ePFStaffUtil.CalAge(_dr["enBirthDate"].ToString(), Util.CurrentDate("dd/MM/yyyy"));
 
             _dataRecorded.Add("IdCard", (_dr != null && !String.IsNullOrEmpty(_dr["idCard"].ToString()) ? _dr["idCard"].ToString() : String.Empty));
             _dataRecorded.Add("IdCardIssueDateTH", (_dr != null && !String.IsNullOrEmpty(_dr["thIdCardIssueDate"].ToString()) ? _dr["thIdCardIssueDate"].ToString() : String.Empty));
@@ -274,7 +277,9 @@ public class ePFStudentRecordsUtil
             _dataRecorded.Add("Alive", (_dr != null && !String.IsNullOrEmpty(_dr["alive"].ToString()) ? _dr["alive"].ToString() : String.Empty));
             _dataRecorded.Add("BirthdateTH", (_dr != null && !String.IsNullOrEmpty(_dr["thBirthDate"].ToString()) ? _dr["thBirthDate"].ToString() : String.Empty));
             _dataRecorded.Add("BirthDateEN", (_dr != null && !String.IsNullOrEmpty(_dr["enBirthDate"].ToString()) ? _dr["enBirthDate"].ToString() : String.Empty));
-            _dataRecorded.Add("Age", (_dr != null && !String.IsNullOrEmpty(_dr["age"].ToString()) ? _dr["age"].ToString() : String.Empty));
+            _dataRecorded.Add("AgeYear", (_age.ContainsKey("Year").Equals(true) ? (!_age["Year"].Equals(0) ? _age["Year"].ToString() : String.Empty) : String.Empty));
+            _dataRecorded.Add("AgeMonth", (_age.ContainsKey("Month").Equals(true) ? (!_age["Month"].Equals(0) ? _age["Month"].ToString() : String.Empty) : String.Empty));
+            _dataRecorded.Add("AgeDay", (_age.ContainsKey("Day").Equals(true) ? (!_age["Day"].Equals(0) ? _age["Day"].ToString() : String.Empty) : String.Empty));
             _dataRecorded.Add("Country", (_dr != null && !String.IsNullOrEmpty(_dr["plcCountryId"].ToString()) ? _dr["plcCountryId"].ToString() : String.Empty));
             _dataRecorded.Add("Nationality", (_dr != null && !String.IsNullOrEmpty(_dr["perNationalityId"].ToString()) ? _dr["perNationalityId"].ToString() : String.Empty));
             _dataRecorded.Add("Race", (_dr != null && !String.IsNullOrEmpty(_dr["perOriginId"].ToString()) ? _dr["perOriginId"].ToString() : String.Empty));
@@ -576,7 +581,8 @@ public class ePFStudentRecordsUtil
         public class PersonalUtil
         {
             public static Dictionary<string, object> SetValueDataRecorded(Dictionary<string, object> _dataRecorded, DataSet _ds, string _familyRelation)
-            {                    
+            {
+                Dictionary<string, object> _age = new Dictionary<string, object>();
                 DataRow _dr = null;
 
                 if (_ds.Tables[0].Rows.Count > 0)
@@ -591,7 +597,10 @@ public class ePFStudentRecordsUtil
                     _dataRecorded.Add("RelationshipNameTH", (_dr != null && !String.IsNullOrEmpty(_dr["relationshipNameTH"].ToString()) ? _dr["relationshipNameTH"].ToString() : String.Empty));
                     _dataRecorded.Add("GenderRelationship", (_dr != null && !String.IsNullOrEmpty(_dr["perGenderIdRelationship"].ToString()) ? _dr["perGenderIdRelationship"].ToString() : String.Empty));
                 }
-                                
+
+                if (_dr != null && !String.IsNullOrEmpty(_dr["enBirthDate" + _familyRelation].ToString()))
+                    _age = ePFStaffUtil.CalAge(_dr["enBirthDate" + _familyRelation].ToString(), Util.CurrentDate("dd/MM/yyyy"));
+
                 _dataRecorded.Add(("PersonId" + _familyRelation), (_dr != null && !String.IsNullOrEmpty(_dr["perPersonId" + _familyRelation].ToString()) ? _dr["perPersonId" + _familyRelation].ToString() : String.Empty));
                 _dataRecorded.Add(("IdCard" + _familyRelation), (_dr != null && !String.IsNullOrEmpty(_dr["idCard" + _familyRelation].ToString()) ? _dr["idCard" + _familyRelation].ToString() : String.Empty));
                 _dataRecorded.Add(("TitlePrefix" + _familyRelation), (_dr != null && !String.IsNullOrEmpty(_dr["perTitlePrefixId" + _familyRelation].ToString()) ? _dr["perTitlePrefixId" + _familyRelation].ToString() : String.Empty));
@@ -606,7 +615,9 @@ public class ePFStudentRecordsUtil
                 _dataRecorded.Add(("Alive" + _familyRelation), (_dr != null && !String.IsNullOrEmpty(_dr["alive" + _familyRelation].ToString()) ? _dr["alive" + _familyRelation].ToString() : String.Empty));
                 _dataRecorded.Add(("BirthdateTH" + _familyRelation), (_dr != null && !String.IsNullOrEmpty(_dr["thBirthDate" + _familyRelation].ToString()) ? _dr["thBirthDate" + _familyRelation].ToString() : String.Empty));
                 _dataRecorded.Add(("BirthDateEN" + _familyRelation), (_dr != null && !String.IsNullOrEmpty(_dr["enBirthDate" + _familyRelation].ToString()) ? _dr["enBirthDate" + _familyRelation].ToString() : String.Empty));
-                _dataRecorded.Add(("Age" + _familyRelation), (_dr != null && !String.IsNullOrEmpty(_dr["age" + _familyRelation].ToString()) ? _dr["age" + _familyRelation].ToString() : String.Empty));
+                _dataRecorded.Add(("AgeYear" + _familyRelation), (_age.ContainsKey("Year").Equals(true) ? (!_age["Year"].Equals(0) ? _age["Year"].ToString() : String.Empty) : String.Empty));
+                _dataRecorded.Add(("AgeMonth" + _familyRelation), (_age.ContainsKey("Month").Equals(true) ? (!_age["Month"].Equals(0) ? _age["Month"].ToString() : String.Empty) : String.Empty));
+                _dataRecorded.Add(("AgeDay" + _familyRelation), (_age.ContainsKey("Day").Equals(true) ? (!_age["Day"].Equals(0) ? _age["Day"].ToString() : String.Empty) : String.Empty));
                 _dataRecorded.Add(("Country" + _familyRelation), (_dr != null && !String.IsNullOrEmpty(_dr["plcCountryId" + _familyRelation].ToString()) ? _dr["plcCountryId" + _familyRelation].ToString() : String.Empty));
                 _dataRecorded.Add(("Nationality" + _familyRelation), (_dr != null && !String.IsNullOrEmpty(_dr["perNationalityId" + _familyRelation].ToString()) ? _dr["perNationalityId" + _familyRelation].ToString() : String.Empty));
                 _dataRecorded.Add(("Race" + _familyRelation), (_dr != null && !String.IsNullOrEmpty(_dr["perOriginId" + _familyRelation].ToString()) ? _dr["perOriginId" + _familyRelation].ToString() : String.Empty));

@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๙/๐๑/๒๕๕๘>
-Modify date : <๑๐/๐๓/๒๕๖๔>
+Modify date : <๒๓/๐๖/๒๕๖๔>
 Description : <รวมรวบฟังก์ชั่นใช้งานทั่วไปในส่วนของการจัดการข้อมูลระเบียนประวัตินักศึกษา>
 =============================================
 */
@@ -720,7 +720,9 @@ var ePFStaffStudentRecords = {
                 value: (_param["copy"] == true ? $("#" + _param["idSrc"] + "-alive-hidden").val() : "")
             });
             $("#" + _param["idDes"] + "-birthdate").val(_param["copy"] == true ? $("#" + _param["idSrc"] + "-birthdate-hidden").val() : "");
-            $("#" + _param["idDes"] + "-age").html(_param["copy"] == true ? $("#" + _param["idSrc"] + "-age-hidden").val() : "");
+            $("#" + _param["idDes"] + "-ageyear").html(_param["copy"] == true ? $("#" + _param["idSrc"] + "-ageyear-hidden").val() : "");
+            $("#" + _param["idDes"] + "-agemonth").html(_param["copy"] == true ? $("#" + _param["idSrc"] + "-agemonth-hidden").val() : "");
+            $("#" + _param["idDes"] + "-ageday").html(_param["copy"] == true ? $("#" + _param["idSrc"] + "-ageday-hidden").val() : "");
             Util.comboboxSetValue({
                 id: ("#" + _param["idDes"] + "-birthplace"),
                 value: (_param["copy"] == true ? $("#" + _param["idSrc"] + "-birthplace-hidden").val() : "0")
@@ -1044,7 +1046,9 @@ var ePFStaffStudentRecords = {
                         Util.calAge({
                             birthdate: $(this).val()
                         }, function (_result) {
-                            $("#" + _this3.idSectionAddUpdate + "-age").html(_result);
+                            $("#" + _this3.idSectionAddUpdate + "-ageyear").html((_result.Year !== 0 ? _result.Year : ""));
+                            $("#" + _this3.idSectionAddUpdate + "-agemonth").html((_result.Month !== 0 ? _result.Month : ""));
+                            $("#" + _this3.idSectionAddUpdate + "-ageday").html((_result.Day !== 0 ? _result.Day : ""));
                         });
                 });
 
@@ -1096,7 +1100,9 @@ var ePFStaffStudentRecords = {
                     valueGender: $("#" + _this3.idSectionAddUpdate + "-gender-hidden").val()
                 });
                 $("#" + _this3.idSectionAddUpdate + "-birthdate").val($("#" + _this3.idSectionAddUpdate + "-birthdate-hidden").val());
-                $("#" + _this3.idSectionAddUpdate + "-age").html($("#" + _this3.idSectionAddUpdate + "-age-hidden").val());
+                $("#" + _this3.idSectionAddUpdate + "-ageyear").html($("#" + _this3.idSectionAddUpdate + "-ageyear-hidden").val());
+                $("#" + _this3.idSectionAddUpdate + "-agemonth").html($("#" + _this3.idSectionAddUpdate + "-agemonth-hidden").val());
+                $("#" + _this3.idSectionAddUpdate + "-ageday").html($("#" + _this3.idSectionAddUpdate + "-ageday-hidden").val());
                 Util.comboboxSetValue({
                     id: ("#" + _this3.idSectionAddUpdate + "-birthplace"),
                     value: $("#" + _this3.idSectionAddUpdate + "-birthplace-hidden").val()
@@ -3802,7 +3808,9 @@ var ePFStaffStudentRecords = {
                             Util.calAge({
                                 birthdate: $(this).val()
                             }, function (_result) {
-                                $("#" + _idSection + "-age").html(_result);
+                                $("#" + _idSection + "-ageyear").html((_result.Year !== 0 ? _result.Year : ""));
+                                $("#" + _idSection + "-agemonth").html((_result.Month !== 0 ? _result.Month : ""));
+                                $("#" + _idSection + "-ageday").html((_result.Day !== 0 ? _result.Day : ""));
                             });
                     });
 
@@ -3876,7 +3884,9 @@ var ePFStaffStudentRecords = {
                         if (_this1.isProgramContract)
                             $("#" + _idSection + "-birthdate").val($("#" + _idSection + "-birthdate-hidden").val());
 
-                        $("#" + _idSection + "-age").html($("#" + _idSection + "-age-hidden").val());
+                        $("#" + _idSection + "-ageyear").html($("#" + _idSection + "-ageyear-hidden").val());
+                        $("#" + _idSection + "-agemonth").html($("#" + _idSection + "-agemonth-hidden").val());
+                        $("#" + _idSection + "-ageday").html($("#" + _idSection + "-ageday-hidden").val());
                         Util.comboboxSetValue({
                             id: ("#" + _idSection + "-birthplace"),
                             value: $("#" + _idSection + "-birthplace-hidden").val()
@@ -5435,7 +5445,9 @@ var ePFStaffStudentRecords = {
                     })
                 );
                 $("#" + _this1.idSectionAddUpdate + "-birthdate-hidden").val($("#" + _this1.idSectionAddUpdate + "-birthdate").val());
-                $("#" + _this1.idSectionAddUpdate + "-age-hidden").val($("#" + _this1.idSectionAddUpdate + "-age").html());
+                $("#" + _this1.idSectionAddUpdate + "-ageyear-hidden").val($("#" + _this1.idSectionAddUpdate + "-ageyear").html());
+                $("#" + _this1.idSectionAddUpdate + "-agemonth-hidden").val($("#" + _this1.idSectionAddUpdate + "-agemonth").html());
+                $("#" + _this1.idSectionAddUpdate + "-ageday-hidden").val($("#" + _this1.idSectionAddUpdate + "-ageday").html());
                 $("#" + _this1.idSectionAddUpdate + "-birthplace-hidden").val(
                     Util.getSelectionIsSelect({
                         id: ("#" + _this1.idSectionAddUpdate + "-birthplace"),
@@ -6207,7 +6219,9 @@ var ePFStaffStudentRecords = {
                     if (_this4.isProgramContract)
                         $("#" + _idSection + "-birthdate-hidden").val($("#" + _idSection + "-birthdate").val());
 
-                    $("#" + _idSection + "-age-hidden").val($("#" + _idSection + "-age").html());
+                    $("#" + _idSection + "-ageyear-hidden").val($("#" + _idSection + "-ageyear").html());
+                    $("#" + _idSection + "-agemonth-hidden").val($("#" + _idSection + "-agemonth").html());
+                    $("#" + _idSection + "-ageday-hidden").val($("#" + _idSection + "-ageday").html());
                     $("#" + _idSection + "-birthplace-hidden").val(
                         Util.getSelectionIsSelect({
                             id: ("#" + _idSection + "-birthplace"),

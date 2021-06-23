@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๒/๑๑/๒๕๕๘>
-Modify date : <๑๘/๐๖/๒๕๖๔>
+Modify date : <๒๓/๐๖/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นการประมวลผลข้อมูล>
 =============================================
 */
@@ -580,7 +580,11 @@ public class ePFStaffProgressDataUtil
                                         _i++;
                                         
                                         DataRow _dr3 = _dt2.NewRow();
-                                                    
+                                        Dictionary<string, object> _age = new Dictionary<string, object>();
+
+                                        if (!String.IsNullOrEmpty(_dataRecordedPersonal["BirthDateEN"].ToString()))
+                                            _age = ePFStaffUtil.CalAge(_dataRecordedPersonal["BirthDateEN"].ToString(), Util.CurrentDate("dd/MM/yyyy"));
+
                                         _dr3["No."] = _i.ToString("#,##0"); 
                                         _dr3["StudentCode"] = _dataRecordedStudentRecords["StudentCode"];
                                         _dr3["TitlePrefixTH"] = (!String.IsNullOrEmpty(_dataRecordedStudentRecords["TitleInitialsTH"].ToString()) ? _dataRecordedStudentRecords["TitleInitialsTH"].ToString() : _dataRecordedStudentRecords["TitleFullNameTH"].ToString());
@@ -609,8 +613,10 @@ public class ePFStaffProgressDataUtil
                                         /*
                                         _dr3["Alive"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["AliveTH"].ToString()) ? _dataRecordedPersonal["AliveTH"] : _dataRecordedPersonal["AliveEN"]); 
                                         */
-                                        _dr3["Birthdate"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["BirthdateTH"].ToString()) ? _dataRecordedPersonal["BirthdateTH"] : _dataRecordedPersonal["BirthDateEN"]); 
-                                        _dr3["Age"] = _dataRecordedPersonal["Age"]; 
+                                        _dr3["Birthdate"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["BirthdateTH"].ToString()) ? _dataRecordedPersonal["BirthdateTH"] : _dataRecordedPersonal["BirthDateEN"]);
+                                        _dr3["AgeYear"] = (_age.ContainsKey("Year").Equals(true) ? (!_age["Year"].Equals(0) ? _age["Year"].ToString() : String.Empty) : String.Empty);
+                                        _dr3["AgeMonth"] = (_age.ContainsKey("Month").Equals(true) ? (!_age["Month"].Equals(0) ? _age["Month"].ToString() : String.Empty) : String.Empty);
+                                        _dr3["AgeDay"] = (_age.ContainsKey("Day").Equals(true) ? (!_age["Day"].Equals(0) ? _age["Day"].ToString() : String.Empty) : String.Empty);
                                         /*
                                         _dr3["Country"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["CountryNameTH"].ToString()) ? _dataRecordedPersonal["CountryNameTH"] : _dataRecordedPersonal["CountryNameEN"]); 
                                         */
@@ -1166,9 +1172,9 @@ public class ePFStaffProgressDataUtil
                     if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_PROGRESS))
                     {
                         _maxRowCellRange = (_complete + 2);
-                        _maxColCellRange = 77;
+                        _maxColCellRange = 79;
                         _maxRowCellHeader = 2;
-                        _maxColCellHeader = 77;
+                        _maxColCellHeader = 79;
                     }
                     if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENTLEVEL1VIEWTABLE_PROGRESS))
                     {
@@ -1220,7 +1226,9 @@ public class ePFStaffProgressDataUtil
                             new[] { "สถานภาพชีวิต", "Alive", "center", "" },
                             */
                             new[] { "วันเดือนปีเกิด", "Birthdate", "center", "" },
-                            new[] { "อายุ ( ปี )", "Age", "center", "" },
+                            new[] { "อายุ ( ปี )", "AgeYear", "center", "" },
+                            new[] { "อายุ ( เดือน )", "AgeMonth", "center", "" },
+                            new[] { "อายุ ( วัน )", "AgeDay", "center", "" },
                             /*
                             new[] { "ประเทศบ้านเกิด", "Country", "", "" },
                             */

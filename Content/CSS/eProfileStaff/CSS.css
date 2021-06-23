@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๔/๑๒/๒๕๕๖>
-Modify date : <๑๒/๐๕/๒๕๖๔>
+Modify date : <๒๓/๐๖/๒๕๖๔>
 Description : <Style Sheet จัดรูปการแสดงผล>
 =============================================
 */
@@ -1242,7 +1242,7 @@ a {
 }
 
 .form.addupdate .form-content .age {
-    width: 42px;
+    width: 32px;
     text-align: center;
 }
 .form.addupdate .form-content .button ul li a,

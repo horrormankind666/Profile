@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๙/๐๙/๒๕๕๗>
-Modify date : <๒๕/๐๕/๒๕๖๔>
+Modify date : <๒๓/๐๖/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผลในส่วนของการจัดการข้อมูลระเบียนประวัตินักศึกษา>
 =============================================
 */
@@ -419,7 +419,9 @@ public class ePFStudentRecordsUI
                 _html.AppendFormat("<input type='hidden' id='{0}-lastnameen-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "LastNameEN", _dataRecorded["LastNameEN"], Util._valueTextDefault) : Util._valueTextDefault));
                 _html.AppendFormat("<input type='hidden' id='{0}-gender-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "Gender", _dataRecorded["Gender"], Util._valueTextDefault) : Util._valueTextDefault));
                 _html.AppendFormat("<input type='hidden' id='{0}-birthdate-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "BirthDateEN", _dataRecorded["BirthDateEN"], Util._valueTextDefault) : Util._valueTextDefault));
-                _html.AppendFormat("<input type='hidden' id='{0}-age-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "Age", _dataRecorded["Age"], Util._valueTextDefault) : Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-ageyear-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "AgeYear", _dataRecorded["AgeYear"], Util._valueTextDefault) : Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-agemonth-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "AgeMonth", _dataRecorded["AgeMonth"], Util._valueTextDefault) : Util._valueTextDefault));
+                _html.AppendFormat("<input type='hidden' id='{0}-ageday-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "AgeDay", _dataRecorded["AgeDay"], Util._valueTextDefault) : Util._valueTextDefault));
                 _html.AppendFormat("<input type='hidden' id='{0}-birthplace-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "Country", _dataRecorded["Country"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
                 _html.AppendFormat("<input type='hidden' id='{0}-nationality-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "Nationality", _dataRecorded["Nationality"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
                 _html.AppendFormat("<input type='hidden' id='{0}-race-hidden' value='{1}' />", _idSectionAddUpdate, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, "Race", _dataRecorded["Race"], Util._valueComboboxDefault) : Util._valueComboboxDefault));
@@ -619,12 +621,18 @@ public class ePFStudentRecordsUI
                 _i++;               
                    
                 _contentTemp.Clear();
-                _contentTemp.AppendFormat(" <input class='inputcalendar' type='text' id='{0}-birthdate' readonly value='' />", _idSectionAddUpdate);
-                _contentTemp.AppendLine("   <span class='th-label'> อายุ</span>");
-                _contentTemp.AppendLine("   <span class='en-label'> : Age</span>");
-                _contentTemp.AppendFormat(" <span class='th-label age' id='{0}-age'></span>", _idSectionAddUpdate);
-                _contentTemp.AppendLine("   <span class='th-label'>ปี</span>");
-                _contentTemp.AppendLine("   <span class='en-label'> : yr</span>");
+                _contentTemp.AppendFormat("<input class='inputcalendar' type='text' id='{0}-birthdate' readonly value='' />", _idSectionAddUpdate);
+                _contentTemp.AppendLine("  <span class='th-label'> อายุ</span>");
+                _contentTemp.AppendLine("  <span class='en-label'> : Age</span>");
+                _contentTemp.AppendFormat("<span class='th-label age' id='{0}-ageyear'></span>", _idSectionAddUpdate);
+                _contentTemp.AppendLine("  <span class='th-label'>ปี</span>");
+                _contentTemp.AppendLine("  <span class='en-label'> : yr.</span>");
+                _contentTemp.AppendFormat("<span class='th-label age' id='{0}-agemonth'></span>", _idSectionAddUpdate);
+                _contentTemp.AppendLine("  <span class='th-label'>เดือน</span>");
+                _contentTemp.AppendLine("  <span class='en-label'> : mo.</span>");
+                _contentTemp.AppendFormat("<span class='th-label age' id='{0}-ageday'></span>", _idSectionAddUpdate);
+                _contentTemp.AppendLine("  <span class='th-label'>วัน</span>");
+                _contentTemp.AppendLine("  <span class='en-label'> : d.</span>");
 
                 _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
                 _contentFrmColumnDetail[_i].Add("ID", (_idSectionAddUpdate + "-birthdate"));
@@ -3656,7 +3664,9 @@ public class ePFStudentRecordsUI
                     _html.AppendFormat("<input type='hidden' id='{0}-gender-hidden' value='{1}' />", _idSection, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, ("Gender" + _familyRelation), _dataRecorded["Gender" + _familyRelation], Util._valueTextDefault) : Util._valueTextDefault));
                     _html.AppendFormat("<input type='hidden' id='{0}-alive-hidden' value='{1}' />", _idSection, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, ("Alive" + _familyRelation), _dataRecorded["Alive" + _familyRelation], Util._valueTextDefault) : Util._valueTextDefault));
                     _html.AppendFormat("<input type='hidden' id='{0}-birthdate-hidden' value='{1}' />", _idSection, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, ("BirthDateEN" + _familyRelation), _dataRecorded["BirthDateEN" + _familyRelation], Util._valueTextDefault) : Util._valueTextDefault));
-                    _html.AppendFormat("<input type='hidden' id='{0}-age-hidden' value='{1}' />", _idSection, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, ("Age" + _familyRelation), _dataRecorded["Age" + _familyRelation], Util._valueTextDefault) : Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-ageyear-hidden' value='{1}' />", _idSection, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, ("AgeYear" + _familyRelation), _dataRecorded["AgeYear" + _familyRelation], Util._valueTextDefault) : Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-agemonth-hidden' value='{1}' />", _idSection, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, ("AgeMonth" + _familyRelation), _dataRecorded["AgeMonth" + _familyRelation], Util._valueTextDefault) : Util._valueTextDefault));
+                    _html.AppendFormat("<input type='hidden' id='{0}-ageday-hidden' value='{1}' />", _idSection, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, ("AgeDay" + _familyRelation), _dataRecorded["AgeDay" + _familyRelation], Util._valueTextDefault) : Util._valueTextDefault));
                     _html.AppendFormat("<input type='hidden' id='{0}-birthplace-hidden' value='{1}' />", _idSection, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, ("Country" + _familyRelation), _dataRecorded["Country" + _familyRelation], Util._valueComboboxDefault) : Util._valueComboboxDefault));
                     _html.AppendFormat("<input type='hidden' id='{0}-nationality-hidden' value='{1}' />", _idSection, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, ("Nationality" + _familyRelation), _dataRecorded["Nationality" + _familyRelation], Util._valueComboboxDefault) : Util._valueComboboxDefault));
                     _html.AppendFormat("<input type='hidden' id='{0}-race-hidden' value='{1}' />", _idSection, (_dataRecorded != null ? Util.GetValueDataDictionary(_dataRecorded, ("Race" + _familyRelation), _dataRecorded["Race" + _familyRelation], Util._valueComboboxDefault) : Util._valueComboboxDefault));
@@ -3882,9 +3892,15 @@ public class ePFStudentRecordsUI
                     _contentTemp.AppendFormat("<input class='inputcalendar' type='text' id='{0}-birthdate' readonly value='' />", _idSection);
                     _contentTemp.AppendLine("  <span class='th-label'> อายุ</span>");
                     _contentTemp.AppendLine("  <span class='en-label'> : Age</span>");
-                    _contentTemp.AppendFormat("<span class='th-label age' id='{0}-age'></span>", _idSection);
+                    _contentTemp.AppendFormat("<span class='th-label age' id='{0}-ageyear'></span>", _idSection);
                     _contentTemp.AppendLine("  <span class='th-label'>ปี</span>");
-                    _contentTemp.AppendLine("  <span class='en-label'> : yr</span>");
+                    _contentTemp.AppendLine("  <span class='en-label'> : yr.</span>");
+                    _contentTemp.AppendFormat("<span class='th-label age' id='{0}-agemonth'></span>", _idSection);
+                    _contentTemp.AppendLine("  <span class='th-label'>เดือน</span>");
+                    _contentTemp.AppendLine("  <span class='en-label'> : mo.</span>");
+                    _contentTemp.AppendFormat("<span class='th-label age' id='{0}-ageday'></span>", _idSection);
+                    _contentTemp.AppendLine("  <span class='th-label'>วัน</span>");
+                    _contentTemp.AppendLine("  <span class='en-label'> : d.</span>");
 
                     _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
                     _contentFrmColumnDetail[_i].Add("ID", (_idSection + "-birthdate"));

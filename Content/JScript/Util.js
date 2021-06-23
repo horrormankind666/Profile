@@ -2733,7 +2733,7 @@
             method: "POST",
             data: _send
         }, function (_result) {
-            _callBackFunc(_result.Age);
+            _callBackFunc(_result);
         });
     },
     calBMI: function (_param, _callBackFunc) {
