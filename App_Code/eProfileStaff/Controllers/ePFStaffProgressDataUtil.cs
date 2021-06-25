@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๒/๑๑/๒๕๕๘>
-Modify date : <๒๓/๐๖/๒๕๖๔>
+Modify date : <๒๕/๐๖/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นการประมวลผลข้อมูล>
 =============================================
 */
@@ -585,6 +585,14 @@ public class ePFStaffProgressDataUtil
                                         if (!String.IsNullOrEmpty(_dataRecordedPersonal["BirthDateEN"].ToString()))
                                             _age = ePFStaffUtil.CalAge(_dataRecordedPersonal["BirthDateEN"].ToString(), Util.CurrentDate("dd/MM/yyyy"));
 
+                                        string _phone = String.Empty;
+                                        _phone = (String.IsNullOrEmpty(_phone) ? _dataRecordedAddress["PhoneNumberCurrentAddress"].ToString() : _phone);
+                                        _phone = (String.IsNullOrEmpty(_phone) ? _dataRecordedAddress["PhoneNumberPermanentAddress"].ToString() : _phone);
+
+                                        string _mobile = String.Empty;
+                                        _mobile = (String.IsNullOrEmpty(_mobile) ? _dataRecordedAddress["MobileNumberCurrentAddress"].ToString() : _mobile);
+                                        _mobile = (String.IsNullOrEmpty(_mobile) ? _dataRecordedAddress["MobileNumberPermanentAddress"].ToString() : _mobile);
+
                                         _dr3["No."] = _i.ToString("#,##0"); 
                                         _dr3["StudentCode"] = _dataRecordedStudentRecords["StudentCode"];
                                         _dr3["TitlePrefixTH"] = (!String.IsNullOrEmpty(_dataRecordedStudentRecords["TitleInitialsTH"].ToString()) ? _dataRecordedStudentRecords["TitleInitialsTH"].ToString() : _dataRecordedStudentRecords["TitleFullNameTH"].ToString());
@@ -633,7 +641,7 @@ public class ePFStaffProgressDataUtil
                                         _dr3["EmailAddress"] = _dataRecordedPersonal["EmailAddress"]; 
                                         */
                                         _dr3["CountryPermanentAddress"] = (!String.IsNullOrEmpty(_dataRecordedAddress["CountryNameTHPermanentAddress"].ToString()) ? _dataRecordedAddress["CountryNameTHPermanentAddress"] : _dataRecordedAddress["CountryNameENPermanentAddress"]); 
-                                        _dr3["ProvincePermanentAddress"] = (!String.IsNullOrEmpty(_dataRecordedAddress["ProvinceNameTHPermanentAddress"].ToString()) ? _dataRecordedAddress["ProvinceNameTHPermanentAddress"] : _dataRecordedAddress["ProvinceNameENPermanentAddress"]); 
+                                        _dr3["ProvincePermanentAddress"] = (!String.IsNullOrEmpty(_dataRecordedAddress["ProvinceNameTHPermanentAddress"].ToString()) ? _dataRecordedAddress["ProvinceNameTHPermanentAddress"] : _dataRecordedAddress["ProvinceNameENPermanentAddress"]);
                                         /*
                                         _dr3["DistrictPermanentAddress"] = (!String.IsNullOrEmpty(_dataRecordedAddress["DistrictNameTHPermanentAddress"].ToString()) ? _dataRecordedAddress["DistrictNameTHPermanentAddress"] : _dataRecordedAddress["DistrictNameENPermanentAddress"]); 
                                         _dr3["SubDistrictPermanentAddress"] = (!String.IsNullOrEmpty(_dataRecordedAddress["SubDistrictNameTHPermanentAddress"].ToString()) ? _dataRecordedAddress["SubDistrictNameTHPermanentAddress"] : _dataRecordedAddress["SubDistrictNameENPermanentAddress"]); 
@@ -656,8 +664,10 @@ public class ePFStaffProgressDataUtil
                                         _dr3["VillageNoCurrentAddress"] = _dataRecordedAddress["VillageNoCurrentAddress"]; 
                                         _dr3["LaneAlleyCurrentAddress"] = _dataRecordedAddress["LaneAlleyCurrentAddress"]; 
                                         _dr3["RoadCurrentAddress"] = _dataRecordedAddress["RoadCurrentAddress"]; 
-                                        _dr3["PhoneNumberCurrentAddress"] = _dataRecordedAddress["PhoneNumberCurrentAddress"]; 
-                                        _dr3["MobileNumberCurrentAddress"] = _dataRecordedAddress["MobileNumberCurrentAddress"]; 
+                                        */
+                                        _dr3["PhoneNumberCurrentAddress"] = _phone; //_dataRecordedAddress["PhoneNumberCurrentAddress"]; 
+                                        _dr3["MobileNumberCurrentAddress"] = _mobile; //_dataRecordedAddress["MobileNumberCurrentAddress"]; 
+                                        /*
                                         _dr3["FaxNumberCurrentAddress"] = _dataRecordedAddress["FaxNumberCurrentAddress"]; 
                                         _dr3["InstituteNamePrimarySchool"] = _dataRecordedEducation["InstituteNamePrimarySchool"]; 
                                         _dr3["InstituteCountryPrimarySchool"] = (!String.IsNullOrEmpty(_dataRecordedEducation["InstituteCountryNameTHPrimarySchool"].ToString()) ? _dataRecordedEducation["InstituteCountryNameTHPrimarySchool"] : _dataRecordedEducation["InstituteCountryNameENPrimarySchool"]); 
@@ -1172,9 +1182,9 @@ public class ePFStaffProgressDataUtil
                     if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_PROGRESS))
                     {
                         _maxRowCellRange = (_complete + 2);
-                        _maxColCellRange = 79;
+                        _maxColCellRange = 81;
                         _maxRowCellHeader = 2;
-                        _maxColCellHeader = 79;
+                        _maxColCellHeader = 81;
                     }
                     if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENTLEVEL1VIEWTABLE_PROGRESS))
                     {
@@ -1235,6 +1245,8 @@ public class ePFStaffProgressDataUtil
                             new[] { "สัญชาติ", "Nationality", "center", "" },
                             new[] { "ประเทศ", "CountryPermanentAddress", "", "" },
                             new[] { "จังหวัด", "ProvincePermanentAddress", "", "" },
+                            new[] { "เบอร์โทรศัพท์บ้าน", "PhoneNumberCurrentAddress", "", "" },
+                            new[] { "เบอร์โทรศัพท์มือถือ", "MobileNumberCurrentAddress", "", "" },
                             /*
                             new[] { "เชื้อชาติ", "Race", "center", "" },
                             new[] { "ศาสนา", "Religion", "center", "" },
