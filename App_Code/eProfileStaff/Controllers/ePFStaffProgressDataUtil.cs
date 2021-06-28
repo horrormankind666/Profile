@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๒/๑๑/๒๕๕๘>
-Modify date : <๒๕/๐๖/๒๕๖๔>
+Modify date : <๒๘/๐๖/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นการประมวลผลข้อมูล>
 =============================================
 */
@@ -585,14 +585,6 @@ public class ePFStaffProgressDataUtil
                                         if (!String.IsNullOrEmpty(_dataRecordedPersonal["BirthDateEN"].ToString()))
                                             _age = ePFStaffUtil.CalAge(_dataRecordedPersonal["BirthDateEN"].ToString(), Util.CurrentDate("dd/MM/yyyy"));
 
-                                        string _phone = String.Empty;
-                                        _phone = (String.IsNullOrEmpty(_phone) ? _dataRecordedAddress["PhoneNumberCurrentAddress"].ToString() : _phone);
-                                        _phone = (String.IsNullOrEmpty(_phone) ? _dataRecordedAddress["PhoneNumberPermanentAddress"].ToString() : _phone);
-
-                                        string _mobile = String.Empty;
-                                        _mobile = (String.IsNullOrEmpty(_mobile) ? _dataRecordedAddress["MobileNumberCurrentAddress"].ToString() : _mobile);
-                                        _mobile = (String.IsNullOrEmpty(_mobile) ? _dataRecordedAddress["MobileNumberPermanentAddress"].ToString() : _mobile);
-
                                         _dr3["No."] = _i.ToString("#,##0"); 
                                         _dr3["StudentCode"] = _dataRecordedStudentRecords["StudentCode"];
                                         _dr3["TitlePrefixTH"] = (!String.IsNullOrEmpty(_dataRecordedStudentRecords["TitleInitialsTH"].ToString()) ? _dataRecordedStudentRecords["TitleInitialsTH"].ToString() : _dataRecordedStudentRecords["TitleFullNameTH"].ToString());
@@ -636,13 +628,14 @@ public class ePFStaffProgressDataUtil
                                         _dr3["MaritalStatus"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["MaritalStatusNameTH"].ToString()) ? _dataRecordedPersonal["MaritalStatusNameTH"] : _dataRecordedPersonal["MaritalStatusNameEN"]); 
                                         _dr3["EducationalBackgroundPerson"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["EducationalBackgroundPersonNameTH"].ToString()) ? _dataRecordedPersonal["EducationalBackgroundPersonNameTH"] : _dataRecordedPersonal["EducationalBackgroundPersonNameEN"]); 
                                         _dr3["Brotherhood"] = _dataRecordedPersonal["Brotherhood"]; 
+                                        */
                                         _dr3["Childhood"] = _dataRecordedPersonal["Childhood"]; 
+                                        /*
                                         _dr3["Studyhood"] = _dataRecordedPersonal["Studyhood"]; 
                                         _dr3["EmailAddress"] = _dataRecordedPersonal["EmailAddress"]; 
                                         */
                                         _dr3["CountryPermanentAddress"] = (!String.IsNullOrEmpty(_dataRecordedAddress["CountryNameTHPermanentAddress"].ToString()) ? _dataRecordedAddress["CountryNameTHPermanentAddress"] : _dataRecordedAddress["CountryNameENPermanentAddress"]); 
                                         _dr3["ProvincePermanentAddress"] = (!String.IsNullOrEmpty(_dataRecordedAddress["ProvinceNameTHPermanentAddress"].ToString()) ? _dataRecordedAddress["ProvinceNameTHPermanentAddress"] : _dataRecordedAddress["ProvinceNameENPermanentAddress"]);
-                                        /*
                                         _dr3["DistrictPermanentAddress"] = (!String.IsNullOrEmpty(_dataRecordedAddress["DistrictNameTHPermanentAddress"].ToString()) ? _dataRecordedAddress["DistrictNameTHPermanentAddress"] : _dataRecordedAddress["DistrictNameENPermanentAddress"]); 
                                         _dr3["SubDistrictPermanentAddress"] = (!String.IsNullOrEmpty(_dataRecordedAddress["SubDistrictNameTHPermanentAddress"].ToString()) ? _dataRecordedAddress["SubDistrictNameTHPermanentAddress"] : _dataRecordedAddress["SubDistrictNameENPermanentAddress"]); 
                                         _dr3["PostalCodePermanentAddress"] = _dataRecordedAddress["PostalCodePermanentAddress"]; 
@@ -664,11 +657,10 @@ public class ePFStaffProgressDataUtil
                                         _dr3["VillageNoCurrentAddress"] = _dataRecordedAddress["VillageNoCurrentAddress"]; 
                                         _dr3["LaneAlleyCurrentAddress"] = _dataRecordedAddress["LaneAlleyCurrentAddress"]; 
                                         _dr3["RoadCurrentAddress"] = _dataRecordedAddress["RoadCurrentAddress"]; 
-                                        */
-                                        _dr3["PhoneNumberCurrentAddress"] = _phone; //_dataRecordedAddress["PhoneNumberCurrentAddress"]; 
-                                        _dr3["MobileNumberCurrentAddress"] = _mobile; //_dataRecordedAddress["MobileNumberCurrentAddress"]; 
-                                        /*
+                                        _dr3["PhoneNumberCurrentAddress"] = _dataRecordedAddress["PhoneNumberCurrentAddress"]; 
+                                        _dr3["MobileNumberCurrentAddress"] = _dataRecordedAddress["MobileNumberCurrentAddress"]; 
                                         _dr3["FaxNumberCurrentAddress"] = _dataRecordedAddress["FaxNumberCurrentAddress"]; 
+                                        /*
                                         _dr3["InstituteNamePrimarySchool"] = _dataRecordedEducation["InstituteNamePrimarySchool"]; 
                                         _dr3["InstituteCountryPrimarySchool"] = (!String.IsNullOrEmpty(_dataRecordedEducation["InstituteCountryNameTHPrimarySchool"].ToString()) ? _dataRecordedEducation["InstituteCountryNameTHPrimarySchool"] : _dataRecordedEducation["InstituteCountryNameENPrimarySchool"]); 
                                         _dr3["InstituteProvincePrimarySchool"] = (!String.IsNullOrEmpty(_dataRecordedEducation["InstituteProvinceNameTHPrimarySchool"].ToString()) ? _dataRecordedEducation["InstituteProvinceNameTHPrimarySchool"] : _dataRecordedEducation["InstituteProvinceNameENPrimarySchool"]); 
@@ -847,7 +839,9 @@ public class ePFStaffProgressDataUtil
                                             _dr3["Religion" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyPersonal["ReligionNameTH" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyPersonal["ReligionNameTH" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyPersonal["ReligionNameEN" + ePFStaffUtil._familyRelation[_j, 0]]); 
                                             _dr3["BloodGroup" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyPersonal["BloodGroupNameTH" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyPersonal["BloodGroupNameTH" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyPersonal["BloodGroupNameEN" + ePFStaffUtil._familyRelation[_j, 0]]); 
                                             _dr3["MaritalStatus" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyPersonal["MaritalStatusNameTH" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyPersonal["MaritalStatusNameTH" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyPersonal["MaritalStatusNameEN" + ePFStaffUtil._familyRelation[_j, 0]]); 
+                                            */
                                             _dr3["EducationalBackgroundPerson" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyPersonal["EducationalBackgroundPersonNameTH" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyPersonal["EducationalBackgroundPersonNameTH" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyPersonal["EducationalBackgroundPersonNameEN" + ePFStaffUtil._familyRelation[_j, 0]]); 
+                                            /*
                                             _dr3["CountryPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyAddress["CountryNameTHPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyAddress["CountryNameTHPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyAddress["CountryNameENPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]]); 
                                             _dr3["ProvincePermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyAddress["ProvinceNameTHPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyAddress["ProvinceNameTHPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyAddress["ProvinceNameENPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]]); 
                                             _dr3["DistrictPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyAddress["DistrictNameTHPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyAddress["DistrictNameTHPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyAddress["DistrictNameENPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]]); 
@@ -888,7 +882,7 @@ public class ePFStaffProgressDataUtil
                                             _dr3["Telephone" + ePFStaffUtil._familyRelation[_j, 0]] = _dataRecordedFamilyWork["Telephone" + ePFStaffUtil._familyRelation[_j, 0]]; 
                                             */
                                             _dr3["Salary" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyWork["Salary" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? double.Parse(_dataRecordedFamilyWork["Salary" + ePFStaffUtil._familyRelation[_j, 0]].ToString()).ToString("#,##0.00") : "");
-                                        }                                        
+                                        }
                                         
                                         _dt2.Rows.Add(_dr3);
                                     }
@@ -1182,9 +1176,9 @@ public class ePFStaffProgressDataUtil
                     if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_PROGRESS))
                     {
                         _maxRowCellRange = (_complete + 2);
-                        _maxColCellRange = 81;
+                        _maxColCellRange = 107;
                         _maxRowCellHeader = 2;
-                        _maxColCellHeader = 81;
+                        _maxColCellHeader = 107;
                     }
                     if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENTLEVEL1VIEWTABLE_PROGRESS))
                     {
@@ -1243,10 +1237,6 @@ public class ePFStaffProgressDataUtil
                             new[] { "ประเทศบ้านเกิด", "Country", "", "" },
                             */
                             new[] { "สัญชาติ", "Nationality", "center", "" },
-                            new[] { "ประเทศ", "CountryPermanentAddress", "", "" },
-                            new[] { "จังหวัด", "ProvincePermanentAddress", "", "" },
-                            new[] { "เบอร์โทรศัพท์บ้าน", "PhoneNumberCurrentAddress", "", "" },
-                            new[] { "เบอร์โทรศัพท์มือถือ", "MobileNumberCurrentAddress", "", "" },
                             /*
                             new[] { "เชื้อชาติ", "Race", "center", "" },
                             new[] { "ศาสนา", "Religion", "center", "" },
@@ -1254,35 +1244,39 @@ public class ePFStaffProgressDataUtil
                             new[] { "สถานภาพทางการสมรส", "MaritalStatus", "center", "" },
                             new[] { "วุฒิการศึกษา", "EducationalBackgroundPerson", "", "" },
                             new[] { "จำนวนพี่น้องทั้งหมด ( รวมตัวเอง ) ( คน )", "Brotherhood", "center", "" },
+                            */
                             new[] { "นักศึกษาเป็นบุตรคนที่", "Childhood", "center", "" },
+                            /*
                             new[] { "จำนวนพี่น้องที่กำลังศึกษาอยู่ ( รวมตัวเอง ) ( คน )", "Studyhood", "center", "" },
                             new[] { "อีเมล์", "EmailAddress", "", "" },
-                            new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nประเทศ", "CountryPermanentAddress", "", "" },
-                            new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nจังหวัด", "ProvincePermanentAddress", "", "" },
-                            new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nอำเภอ / เขต", "DistrictPermanentAddress", "", "" },
-                            new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nตำบล / แขวง", "SubDistrictPermanentAddress", "", "" },
-                            new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nรหัสไปรษณีย์", "PostalCodePermanentAddress", "center", "" },
+                            */                            
                             new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nหมู่บ้าน", "VillagePermanentAddress", "", "" },
                             new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nบ้านเลขที่", "AddressNumberPermanentAddress", "", "" },
                             new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nหมู่ที่", "VillageNoPermanentAddress", "", "" },
                             new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nตรอก / ซอย", "LaneAlleyPermanentAddress", "", "" },
                             new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nถนน", "RoadPermanentAddress", "", "" },
+                            new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nตำบล / แขวง", "SubDistrictPermanentAddress", "", "" },
+                            new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nอำเภอ / เขต", "DistrictPermanentAddress", "", "" },
+                            new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nจังหวัด", "ProvincePermanentAddress", "", "" },
+                            new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nรหัสไปรษณีย์", "PostalCodePermanentAddress", "center", "" },
+                            new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nประเทศ", "CountryPermanentAddress", "", "" },
                             new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nเบอร์โทรศัพท์บ้าน", "PhoneNumberPermanentAddress", "", "" },
                             new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nเบอร์โทรศัพท์มือถือ", "MobileNumberPermanentAddress", "", "" },
                             new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nเบอร์แฟกซ์", "FaxNumberPermanentAddress", "", "" },
-                            new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nประเทศ", "CountryCurrentAddress", "", "" },
-                            new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nจังหวัด", "ProvinceCurrentAddress", "", "" },
-                            new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nอำเภอ / เขต", "DistrictCurrentAddress", "", "" },
-                            new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nตำบล / แขวง", "SubDistrictCurrentAddress", "", "" },
-                            new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nรหัสไปรษณีย์", "PostalCodeCurrentAddress", "center", "" },
                             new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nหมู่บ้าน", "VillageCurrentAddress", "", "" },
                             new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nบ้านเลขที่", "AddressNumberCurrentAddress", "", "" },
                             new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nหมู่ที่", "VillageNoCurrentAddress", "", "" },
                             new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nตรอก / ซอย", "LaneAlleyCurrentAddress", "", "" },
                             new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nถนน", "RoadCurrentAddress", "", "" },
+                            new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nตำบล / แขวง", "SubDistrictCurrentAddress", "", "" },
+                            new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nอำเภอ / เขต", "DistrictCurrentAddress", "", "" },
+                            new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nจังหวัด", "ProvinceCurrentAddress", "", "" },
+                            new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nรหัสไปรษณีย์", "PostalCodeCurrentAddress", "center", "" },
+                            new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nประเทศ", "CountryCurrentAddress", "", "" },
                             new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nเบอร์โทรศัพท์บ้าน", "PhoneNumberCurrentAddress", "", "" },
                             new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nเบอร์โทรศัพท์มือถือ", "MobileNumberCurrentAddress", "", "" },
                             new[] { "ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้\nเบอร์แฟกซ์", "FaxNumberCurrentAddress", "", "" },
+                            /*
                             new[] { "ข้อมูลการศึกษาระดับประถม\nชื่อสถานศึกษา", "InstituteNamePrimarySchool", "", "" },
                             new[] { "ข้อมูลการศึกษาระดับประถม\nประเทศ", "InstituteCountryPrimarySchool", "", "" },
                             new[] { "ข้อมูลการศึกษาระดับประถม\nจังหวัด", "InstituteProvincePrimarySchool", "", "" },
@@ -1405,34 +1399,35 @@ public class ePFStaffProgressDataUtil
                             _cellContent.Add(new[] { (_headerContent + "\nศาสนา"), ("Religion" + ePFStaffUtil._familyRelation[_i, 0]), "center", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nกรุ๊ปเลือด"), ("BloodGroup" + ePFStaffUtil._familyRelation[_i, 0]), "center", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nสถานภาพทางการสมรส"), ("MaritalStatus" + ePFStaffUtil._familyRelation[_i, 0]), "center", "" });
+                            */
                             _cellContent.Add(new[] { (_headerContent + "\nวุฒิการศึกษา"), ("EducationalBackgroundPerson" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
-              
+                            /*
                             _headerContent = ("ข้อมูลทีอยู่ตามทะเบียนบ้านของ" + ePFStaffUtil._familyRelation[_i, 1]);
-                            _cellContent.Add(new[] { (_headerContent + "\nประเทศ"), ("CountryPermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
-                            _cellContent.Add(new[] { (_headerContent + "\nจังหวัด"), ("ProvincePermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
-                            _cellContent.Add(new[] { (_headerContent + "\nอำเภอ / เขต"), ("DistrictPermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
-                            _cellContent.Add(new[] { (_headerContent + "\nตำบล / แขวง"), ("SubDistrictPermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
-                            _cellContent.Add(new[] { (_headerContent + "\nรหัสไปรษณีย์"), ("PostalCodePermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "center", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nหมู่บ้าน"), ("VillagePermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nบ้านเลขที่"), ("AddressNumberPermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nหมู่ที่"), ("VillageNoPermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nตรอก / ซอย"), ("LaneAlleyPermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nถนน"), ("RoadPermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
+                            _cellContent.Add(new[] { (_headerContent + "\nตำบล / แขวง"), ("SubDistrictPermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
+                            _cellContent.Add(new[] { (_headerContent + "\nอำเภอ / เขต"), ("DistrictPermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
+                            _cellContent.Add(new[] { (_headerContent + "\nจังหวัด"), ("ProvincePermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
+                            _cellContent.Add(new[] { (_headerContent + "\nรหัสไปรษณีย์"), ("PostalCodePermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "center", "" });
+                            _cellContent.Add(new[] { (_headerContent + "\nประเทศ"), ("CountryPermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nเบอร์โทรศัพท์บ้าน"), ("PhoneNumberPermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nเบอร์โทรศัพท์มือถือ"), ("MobileNumberPermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nเบอร์แฟกซ์"), ("FaxNumberPermanentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
 
                             _headerContent = ("ข้อมูลที่อยู่ปัจจุบันที่ติดต่อได้ของ" + ePFStaffUtil._familyRelation[_i, 1]);
-                            _cellContent.Add(new[] { (_headerContent + "\nประเทศ"), ("CountryCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
-                            _cellContent.Add(new[] { (_headerContent + "\nจังหวัด"), ("ProvinceCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
-                            _cellContent.Add(new[] { (_headerContent + "\nอำเภอ / เขต"), ("DistrictCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
-                            _cellContent.Add(new[] { (_headerContent + "\nตำบล / แขวง"), ("SubDistrictCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
-                            _cellContent.Add(new[] { (_headerContent + "\nรหัสไปรษณีย์"), ("PostalCodeCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "center", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nหมู่บ้าน"), ("VillageCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nบ้านเลขที่"), ("AddressNumberCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nหมู่ที่"), ("VillageNoCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nตรอก / ซอย"), ("LaneAlleyCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nถนน"), ("RoadCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
+                            _cellContent.Add(new[] { (_headerContent + "\nตำบล / แขวง"), ("SubDistrictCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
+                            _cellContent.Add(new[] { (_headerContent + "\nอำเภอ / เขต"), ("DistrictCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
+                            _cellContent.Add(new[] { (_headerContent + "\nจังหวัด"), ("ProvinceCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
+                            _cellContent.Add(new[] { (_headerContent + "\nรหัสไปรษณีย์"), ("PostalCodeCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "center", "" });
+                            _cellContent.Add(new[] { (_headerContent + "\nประเทศ"), ("CountryCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nเบอร์โทรศัพท์บ้าน"), ("PhoneNumberCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nเบอร์โทรศัพท์มือถือ"), ("MobileNumberCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
                             _cellContent.Add(new[] { (_headerContent + "\nเบอร์แฟกซ์"), ("FaxNumberCurrentAddress" + ePFStaffUtil._familyRelation[_i, 0]), "", "" });
