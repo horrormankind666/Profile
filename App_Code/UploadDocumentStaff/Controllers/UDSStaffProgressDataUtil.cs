@@ -463,29 +463,26 @@ public class UDSStaffProgressDataUtil
                                             _ds3.Dispose();
                                         }
 
-                                        if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PROGRESS))
-                                        {
-                                            StringBuilder xmlData = new StringBuilder();
+                                        StringBuilder xmlData = new StringBuilder();
 
-                                            xmlData.Append(
-                                                "<row>" +
-                                                ("<perPersonId>" + _dr1["id"].ToString() + "</perPersonId>") +
-                                                ("<issueDate>" + _dr2["cardIssueDate"].ToString().Replace("/", "-") + "</issueDate>") +
-                                                ("<expiryDate>" + _dr2["cardExpiryDate"].ToString().Replace("/", "-") + "</expiryDate>") +
-                                                ("<exportBy>" + _username + "</exportBy>") +
-                                                ("<exportIP>" + Util.GetIP() + "</exportIP>") +
-                                                "</row>"
-                                            );
+                                        xmlData.Append(
+                                            "<row>" +
+                                            ("<perPersonId>" + _dr1["id"].ToString() + "</perPersonId>") +
+                                            ("<issueDate>" + _dr2["cardIssueDate"].ToString().Replace("/", "-") + "</issueDate>") +
+                                            ("<expiryDate>" + _dr2["cardExpiryDate"].ToString().Replace("/", "-") + "</expiryDate>") +
+                                            ("<exportBy>" + _username + "</exportBy>") +
+                                            ("<exportIP>" + Util.GetIP() + "</exportIP>") +
+                                            "</row>"
+                                        );
 
-                                            DataSet _ds3 = Util.DBUtil.ExecuteCommandStoredProcedure("sp_stdSetStudentForSmartCard",
-                                                new SqlParameter("@xmlData", xmlData.ToString())
-                                            );
+                                        DataSet _ds4 = Util.DBUtil.ExecuteCommandStoredProcedure("sp_stdSetStudentForSmartCard",
+                                            new SqlParameter("@xmlData", xmlData.ToString())
+                                        );
 
-                                            DataRow _dr3 = _ds3.Tables[0].Rows[0];
-                                            _saveError = int.Parse(_dr3[1].ToString());
+                                        DataRow _dr4 = _ds4.Tables[0].Rows[0];
+                                        _saveError = int.Parse(_dr4[1].ToString());
 
-                                            _ds3.Dispose();
-                                        }
+                                        _ds4.Dispose();
 
                                         if (_saveError.Equals(0))
                                         {

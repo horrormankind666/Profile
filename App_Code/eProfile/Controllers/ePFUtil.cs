@@ -683,12 +683,10 @@ public class ePFUtil
             _infoLinkTo2TH = "อัพโหลดเอกสารของนักศึกษา";
             _infoLinkTo2EN = "Upload Document Student";
             _infoLinkTo2Page = "../UploadDocument/index.aspx";
-            /*
             _infoLinkTo3Id = "linkto-downloadscbaccountopeningform";
             _infoLinkTo3TH = "ดาว์นโหลดแบบฟอร์มเปิดบัญชีกับ SCB";
             _infoLinkTo3EN = "Download SCB Account Opening Form";
             _infoLinkTo3Page = String.Empty;
-            */
         }
 
         if (_page.Equals(PAGE_STUDENTRECORDS_ADDUPDATE))
@@ -711,12 +709,10 @@ public class ePFUtil
             _infoLinkTo2TH = "อัพโหลดเอกสารของนักศึกษา";
             _infoLinkTo2EN = "Upload Document Student";
             _infoLinkTo2Page = "../UploadDocument/index.aspx";
-            /*
             _infoLinkTo3Id = "linkto-downloadscbaccountopeningform";
             _infoLinkTo3TH = "ดาว์นโหลดแบบฟอร์มเปิดบัญชีกับ SCB";
             _infoLinkTo3EN = "Download SCB Account Opening Form";
             _infoLinkTo3Page = String.Empty;
-            */
             _infoImportantId = ("important" + _page.ToLower());
             _infoImportantRecommendMsgTH = "รายการที่มีเครื่องหมาย (<div class='icon-fieldmark'></div>) จำเป็นต้องกรอก กรอกข้อมูลให้ครบถ้วนและสมบูรณ์ ข้อมูลใดที่ไม่ทราบให้ข้ามไป และกรุณาบันทึกข้อมูลในแต่ละหน้า";
             _infoImportantRecommendMsgEN = "Fields marked with an asterisk ( <div class='icon-fieldmark'></div>) are required. Fill the information complete all. Skip, Any information that does not know. Please save data each page.";
@@ -968,15 +964,18 @@ public class ePFUtil
         Dictionary<string, object> _loginResult = ePFUtil.GetInfoLogin("", "");
         int _cookieError = int.Parse(_loginResult["CookieError"].ToString());
         string _personId = _loginResult["PersonId"].ToString();
+        string _nationality = String.Empty;
 
         if (_cookieError.Equals(0))
         {
             Dictionary<string, object> _valueDataRecorded = ePFUtil.SetValueDataRecorded(ePFUtil.PAGE_STUDENTRECORDSSTUDENTRECORDS_ADDUPDATE, _personId);
             Dictionary<string, object> _dataRecorded = (Dictionary<string, object>)_valueDataRecorded["DataRecorded" + ePFUtil.SUBJECT_SECTION_STUDENTRECORDSSTUDENTRECORDS];
 
+            _nationality = (_dataRecorded["NationalityNameTH"].Equals("ไทย") ? "TH" : "EN");
+
             ExportToPDF _e = new ExportToPDF();
-            _e.ExportToPDFConnect(ePFUtil.SUBJECT_SECTION_SCBACCOUNTOPENINGFORM + ".pdf");
-            _e.PDFConnectTemplate((ePFUtil._myFormPath + "/" + ePFUtil.SUBJECT_SECTION_SCBACCOUNTOPENINGFORM + ".pdf"), "pdf");
+            _e.ExportToPDFConnect(ePFUtil.SUBJECT_SECTION_SCBACCOUNTOPENINGFORM + _nationality + ".pdf");
+            _e.PDFConnectTemplate((ePFUtil._myFormPath + "/" + ePFUtil.SUBJECT_SECTION_SCBACCOUNTOPENINGFORM + _nationality + ".pdf"), "pdf");
             _e.PDFAddTemplate("pdf", 1, 1);
             
             _e.FillForm(_myPDFFontBold, 14, 1, DateTime.Today.Day.ToString(), 318, 628, 37, 0);
