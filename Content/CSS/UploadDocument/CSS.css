@@ -1640,6 +1640,24 @@ a {
     line-height: 45px;
 }
 
+.profilepicturewebcam-btn {
+    width: 100%;
+    height: 56px;
+    background-color: #CCCCCC;
+    padding: 0;
+    margin-top: 10px;
+    position: relative;
+    border: 0;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+.profilepicturewebcam-btn .th-label {
+    height: 22px;
+}
+.profilepicturewebcam-btn .en-label {
+    font-size: 14px;
+    font-weight: normal;
+}
 #addupdate-uploadsubmitdocumentoverview-form .form:nth-child(2),
 #addupdate-uploadsubmitdocumentoverview-form .form:nth-child(3),
 #addupdate-uploadsubmitdocumentoverview-form .form:nth-child(4) {
@@ -1651,6 +1669,11 @@ a {
 #addupdate-uploadsubmitdocumentoverview-form .profilepicture-content {
     width: 230px;
     height: 312px;
+}
+#addupdate-uploadsubmitdocumentoverview-profilepicture-form .profilepicturewebcam-btn {
+    width: 478px;
+    margin-top: 0;
+    top: 65px;
 }
 #addupdate-uploadsubmitdocumentoverview-form .identitycard-content {
     width: 230px;

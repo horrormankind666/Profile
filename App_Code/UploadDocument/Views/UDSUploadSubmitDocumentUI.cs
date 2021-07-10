@@ -40,7 +40,7 @@ public class UDSUploadSubmitDocumentUI
             Dictionary<string, object> _infoDataResult = UDSUtil.GetInfoData(UDSUtil.PAGE_UPLOADSUBMITDOCUMENT_MAIN, _infoData);
             int _i = 0;
 
-            _html.AppendLine(UDSUI.GetInfoBar(_infoDataResult, true).ToString());                        
+            _html.AppendLine(UDSUI.GetInfoBar(_infoDataResult, true).ToString());
             _html.AppendLine("<div class='after-sticky'>");
             _html.AppendLine("  <div>");
             _html.AppendFormat("    <div class='sticky-left menulist' id='{0}-menu'>", _idSectionMain);
@@ -301,7 +301,7 @@ public class UDSUploadSubmitDocumentUI
                 _html.AppendLine(GetValueDataRecorded(_valueDataRecorded).ToString());
                 _html.AppendFormat("<div class='form detail' id='{0}-form'>", _idSectionAddUpdate);
                 _html.AppendLine("      <div class='form-layout'>");
-                _html.AppendLine("          <div class='form-content'>");                
+                _html.AppendLine("          <div class='form-content'>");
                 _html.AppendLine(               UDSUI.GetFrmColumn(_contentFrmColumn["StudentPicture"]).ToString());
                 _html.AppendLine(               UDSUI.GetFrmColumn(_contentFrmColumn["StudentID"]).ToString());
                 _html.AppendLine(               UDSUI.GetFrmColumn(_contentFrmColumn["FullName"]).ToString());
@@ -483,7 +483,11 @@ public class UDSUploadSubmitDocumentUI
                 _html.AppendLine(                               UDSUI.GetFrmColumn(_contentFrmColumn[_section + UDSUploadSubmitDocumentUtil._documentUploadDetail[8, 1]]).ToString());
                 _html.AppendLine(                               UDSUI.GetFrmColumn(_contentFrmColumn[_section + UDSUploadSubmitDocumentUtil._documentUploadDetail[9, 1]]).ToString());
                 _html.AppendLine(                               UDSUI.GetFrmColumn(_contentFrmColumn[_section + UDSUploadSubmitDocumentUtil._documentUploadDetail[10, 1]]).ToString());
-                                                                
+
+                _html.AppendLine("                              <button class='profilepicturewebcam-btn' type='button'>");
+                _html.AppendLine("                                  <div class='th-label'>ถ่ายรูปพร้อมชุดนักศึกษา</div>");
+                _html.AppendLine("                                  <div class='en-label'>Take a photo with the student uniform</div>");
+                _html.AppendLine("                              </button>");
                 _html.AppendLine("                          </div>");
                 _html.AppendLine("                          <div class='clear'></div>");
                 _html.AppendLine("                      </div>");
@@ -598,7 +602,7 @@ public class UDSUploadSubmitDocumentUI
                 _html.AppendLine(                               UDSUI.GetFrmColumn(_contentFrmColumn[_section + UDSUploadSubmitDocumentUtil._documentUploadDetail[9, 1]]).ToString());
                 _html.AppendLine(                               UDSUI.GetFrmColumn(_contentFrmColumn[_section + UDSUploadSubmitDocumentUtil._documentUploadDetail[10, 1]]).ToString());
                                                                 
-                _html.AppendLine("                          </div>");            
+                _html.AppendLine("                          </div>");
                 _html.AppendLine("                          <div class='clear'></div>");
                 _html.AppendLine("                      </div>");
                 _html.AppendLine("                  </div>");
@@ -687,6 +691,10 @@ public class UDSUploadSubmitDocumentUI
                 _html.AppendLine("                      </div>");
                 _html.AppendLine("                      <div class='clear'></div>");
                 _html.AppendFormat("                    <div>{0}</div>", GetFrmUploadFile(UDSUtil.SUBJECT_SECTION_PROFILEPICTURE));
+                _html.AppendLine("                      <button class='profilepicturewebcam-btn' type='button'>");
+                _html.AppendLine("                          <div class='th-label'>ถ่ายรูปพร้อมชุดนักศึกษา</div>");
+                _html.AppendLine("                          <div class='en-label'>Take a photo with the student uniform</div>");
+                _html.AppendLine("                      </button>");
                 _html.AppendLine("                  </div>");
                 _html.AppendLine("              </div>");
                 _html.AppendLine("          </div>");

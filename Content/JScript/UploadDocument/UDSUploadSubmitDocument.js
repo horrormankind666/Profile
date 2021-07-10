@@ -91,7 +91,15 @@ var UDSUploadSubmitDocument = {
                 _this2.identitycard.initMain();
 
             if (_param["page"] == Util.tut.pageUploadSubmitDocumentTranscriptAddUpdate || _param["section"] == Util.tut.subjectSectionTranscript)
-                _this2.transcript.initMain();            
+                _this2.transcript.initMain();
+
+            $(".profilepicturewebcam-btn").click(function () {
+                Util.gotoPage({
+                    page: ("../../../../Infinity/ProfilePictureWebcam"),
+                    target: "_newtab"
+                });
+            });
+
         },
     },
     sectionAddUpdate: {
@@ -365,7 +373,7 @@ var UDSUploadSubmitDocument = {
                 var _idContentIdentityCard = (this.idSectionAddUpdate + "-form ." + Util.tut.subjectSectionIdentityCard.toLowerCase() + "-content");
                 var _idContentTranscriptFrontside = (this.idSectionAddUpdate + "-form ." + Util.tut.subjectSectionTranscriptFrontside.toLowerCase() + "-content");
                 var _idContentTranscriptBackside = (this.idSectionAddUpdate + "-form ." + Util.tut.subjectSectionTranscriptBackside.toLowerCase() + "-content");
-
+                
                 $("#" + this.idSectionAddUpdate + "-form .picture-content").hover(
                     function () {
                         if ($(this).hasClass(Util.tut.subjectSectionProfilePicture.toLowerCase() + "-content") &&
