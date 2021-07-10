@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๘/๐๙/๒๕๕๗>
-Modify date : <๒๓/๐๖/๒๕๖๔>
+Modify date : <๑๐/๐๗/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นทั่วไป>
 =============================================
 */
@@ -53,7 +53,7 @@ public class ePFUtil
     public const string SUBJECT_SECTION_CONTACTUS = "ContactUs";
     public const string SUBJECT_SECTION_FILLINFORMATIONSTUDENTRECORDS = "FillInformationStudentRecords";    
     public const string SUBJECT_SECTION_ALLOWPOPUP = "AllowPopup";
-    public const string SUBJECT_SECTION_HELPFILLINFORMATIONSTUDENTRECORDS = (SUBJECT_SECTION_HELP + SUBJECT_SECTION_FILLINFORMATIONSTUDENTRECORDS);            
+    public const string SUBJECT_SECTION_HELPFILLINFORMATIONSTUDENTRECORDS = (SUBJECT_SECTION_HELP + SUBJECT_SECTION_FILLINFORMATIONSTUDENTRECORDS);
     public const string SUBJECT_SECTION_HELPCONTACTUS = (SUBJECT_SECTION_HELP + SUBJECT_SECTION_CONTACTUS);
     public const string SUBJECT_SECTION_HELPALLOWPOPUP = (SUBJECT_SECTION_HELP + SUBJECT_SECTION_ALLOWPOPUP);
     public const string SUBJECT_SECTION_SCBACCOUNTOPENINGFORM = "SCBAccountOpeningForm";
@@ -965,51 +965,155 @@ public class ePFUtil
         int _cookieError = int.Parse(_loginResult["CookieError"].ToString());
         string _personId = _loginResult["PersonId"].ToString();
         string _nationality = String.Empty;
+        string _titlePrefix = String.Empty;
+        string _firstName = String.Empty;
+        string _middleName = String.Empty;
+        string _lastName = String.Empty;
 
         if (_cookieError.Equals(0))
         {
             Dictionary<string, object> _valueDataRecorded = ePFUtil.SetValueDataRecorded(ePFUtil.PAGE_STUDENTRECORDSSTUDENTRECORDS_ADDUPDATE, _personId);
             Dictionary<string, object> _dataRecorded = (Dictionary<string, object>)_valueDataRecorded["DataRecorded" + ePFUtil.SUBJECT_SECTION_STUDENTRECORDSSTUDENTRECORDS];
 
-            _nationality = (_dataRecorded["NationalityNameTH"].Equals("ไทย") ? "TH" : "EN");
-
-            ExportToPDF _e = new ExportToPDF();
-            _e.ExportToPDFConnect(ePFUtil.SUBJECT_SECTION_SCBACCOUNTOPENINGFORM + _nationality + ".pdf");
-            _e.PDFConnectTemplate((ePFUtil._myFormPath + "/" + ePFUtil.SUBJECT_SECTION_SCBACCOUNTOPENINGFORM + _nationality + ".pdf"), "pdf");
-            _e.PDFAddTemplate("pdf", 1, 1);
-            
-            _e.FillForm(_myPDFFontBold, 14, 1, DateTime.Today.Day.ToString(), 318, 628, 37, 0);
-            _e.FillForm(_myPDFFontBold, 14, 1, Util._longMonth[DateTime.Today.Month - 1, 0], 377, 628, 88, 0);
-            _e.FillForm(_myPDFFontBold, 14, 1, DateTime.Today.ToString("yyyy", new CultureInfo("th-TH")), 484, 628, 47, 0);
-
-            switch (_dataRecorded["TitleFullNameTH"].ToString())
+            if (!String.IsNullOrEmpty(_dataRecorded["NationalityNameTH"].ToString()))
             {
-                case "นาย":
-                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 338, 548, 14, 0);
-                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 356, 548, 29, 0);
-                    _dataRecorded["TitleInitialsTH"] = String.Empty;
-                    break;
-                case "นาง":
-                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 318, 548, 16, 0);
-                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 356, 548, 29, 0);
-                    _dataRecorded["TitleInitialsTH"] = String.Empty;
-                    break;
-                case "นางสาว":
-                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 318, 548, 16, 0);
-                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 338, 548, 14, 0);
-                    _dataRecorded["TitleInitialsTH"] = String.Empty;
-                    break;
-                default:
-                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 318, 548, 16, 0);
-                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 338, 548, 14, 0);
-                    _e.FillForm(_myPDFFontBold, 15, 1, "/", 356, 548, 29, 0);
-                    break;
+                _nationality = (_dataRecorded["NationalityNameTH"].Equals("ไทย") ? "TH" : "EN");
+
+                if (_nationality.Equals("TH"))
+                {
+                    _titlePrefix = _dataRecorded["TitleFullNameTH"].ToString();
+                    _firstName = _dataRecorded["FirstName"].ToString();
+                    _middleName = _dataRecorded["MiddleName"].ToString();
+                    _lastName = _dataRecorded["LastName"].ToString();
+                }
+                else
+                {
+                    _titlePrefix = _dataRecorded["TitleInitialsEN"].ToString();
+                    _firstName = _dataRecorded["FirstNameEN"].ToString();
+                    _middleName = _dataRecorded["MiddleNameEN"].ToString();
+                    _lastName = _dataRecorded["LastNameEN"].ToString();
+                }
+
+                ExportToPDF _e = new ExportToPDF();
+                _e.ExportToPDFConnect(ePFUtil.SUBJECT_SECTION_SCBACCOUNTOPENINGFORM + _nationality + ".pdf");
+                _e.PDFConnectTemplate((ePFUtil._myFormPath + "/" + ePFUtil.SUBJECT_SECTION_SCBACCOUNTOPENINGFORM + _nationality + ".pdf"), "pdf");
+                _e.PDFAddTemplate("pdf", 1, 1);
+
+                float[] _x = new float[3];
+                float[] _y = new float[3];
+                float[] _width = new float[3];
+
+                if (_nationality.Equals("TH"))
+                {
+                    _x[0] = 318;
+                    _x[1] = 377;
+                    _x[2] = 484;
+
+                    _y[0] = 628;
+
+                    _width[0] = 37;
+                    _width[1] = 88;
+                    _width[2] = 47;
+                }
+                else
+                {
+                    _x[0] = 317;
+                    _x[1] = 385;
+                    _x[2] = 503;
+
+                    _y[0] = 616;
+
+                    _width[0] = 40;
+                    _width[1] = 97;
+                    _width[2] = 51;
+                }
+
+                _e.FillForm(_myPDFFontBold, 14, 1, DateTime.Today.Day.ToString(), _x[0], _y[0], _width[0], 0);
+                _e.FillForm(_myPDFFontBold, 14, 1, Util._longMonth[DateTime.Today.Month - 1, 0], _x[1], _y[0], _width[1], 0);
+                _e.FillForm(_myPDFFontBold, 14, 1, DateTime.Today.ToString("yyyy", new CultureInfo("th-TH")), _x[2], _y[0], _width[2], 0);
+
+                if (_nationality.Equals("TH"))
+                {
+                    _x[0] = 318;
+                    _x[1] = 338;
+                    _x[2] = 356;
+
+                    _y[0] = 548;
+
+                    _width[0] = 16;
+                    _width[1] = 14;
+                    _width[2] = 29;
+                }
+                else
+                {
+                    _x[0] = 326;
+                    _x[1] = 343;
+                    _x[2] = 365;
+
+                    _y[0] = 532;
+
+                    _width[0] = 13;
+                    _width[1] = 18;
+                    _width[2] = 12;
+                }
+
+                switch (_titlePrefix.ToLower())
+                {
+                    case "นาย":
+                    case "mr.":
+                        _e.FillForm(_myPDFFontBold, 15, 1, "/", _x[1], _y[0], _width[1], 0);
+                        _e.FillForm(_myPDFFontBold, 15, 1, "/", _x[2], _y[0], _width[2], 0);
+                        break;
+                    case "นาง":
+                    case "mrs.":
+                        _e.FillForm(_myPDFFontBold, 15, 1, "/", _x[0], _y[0], _width[0], 0);
+                        _e.FillForm(_myPDFFontBold, 15, 1, "/", _x[2], _y[0], _width[2], 0);
+                        break;
+                    case "นางสาว":
+                    case "ms.":
+                        _e.FillForm(_myPDFFontBold, 15, 1, "/", _x[0], _y[0], _width[0], 0);
+                        _e.FillForm(_myPDFFontBold, 15, 1, "/", _x[1], _y[0], _width[1], 0);
+                        break;
+                    default:
+                        _e.FillForm(_myPDFFontBold, 15, 1, "/", _x[0], _y[0], _width[0], 0);
+                        _e.FillForm(_myPDFFontBold, 15, 1, "/", _x[1], _y[0], _width[1], 0);
+                        _e.FillForm(_myPDFFontBold, 15, 1, "/", _x[2], _y[0], _width[2], 0);
+                        break;
+                }
+
+                if (_nationality.Equals("TH"))
+                {
+                    _x[0] = 387;
+                    _x[1] = 121;
+                    _x[2] = 270;
+
+                    _y[0] = 550;
+                    _y[1] = 530;
+
+                    _width[0] = 145;
+                    _width[1] = 93;
+                    _width[2] = 68;
+                }
+                else
+                {
+                    _x[0] = 378;
+                    _x[1] = 117;
+                    _x[2] = 284;
+
+                    _y[0] = 533;
+                    _y[1] = 513;
+
+                    _width[0] = 176;
+                    _width[1] = 99;
+                    _width[2] = 75;
+                }
+
+                _e.FillForm(_myPDFFontBold, 14, 1, (Util.GetBlank(_firstName, "") + (!String.IsNullOrEmpty(_middleName) ? (" " + Util.GetBlank(_middleName, "")) : String.Empty)), _x[0], _y[0], _width[0], 0);
+                _e.FillForm(_myPDFFontBold, 14, 1, Util.GetBlank(_lastName, ""), _x[1], _y[1], _width[1], 0);
+                _e.FillForm(_myPDFFontBold, 14, 1, (!_dataRecorded["StudentCode"].Equals("XXXXXXX") ? Util.GetBlank(_dataRecorded["StudentCode"].ToString(), "") : String.Empty), _x[2], _y[1], _width[2], 0);
+
+                _e.ExportToPdfDisconnect();
             }
-            _e.FillForm(_myPDFFontBold, 14, 1, (Util.GetBlank(_dataRecorded["FirstName"].ToString(), "") + (!String.IsNullOrEmpty(_dataRecorded["MiddleName"].ToString()) ? (" " + Util.GetBlank(_dataRecorded["MiddleName"].ToString(), "")) : String.Empty)), 387, 549, 145, 0);
-            _e.FillForm(_myPDFFontBold, 14, 1, Util.GetBlank(_dataRecorded["LastName"].ToString(), ""), 121, 530, 93, 0);
-            _e.FillForm(_myPDFFontBold, 14, 1, (!_dataRecorded["StudentCode"].Equals("XXXXXXX") ? Util.GetBlank(_dataRecorded["StudentCode"].ToString(), "") : String.Empty), 270, 530, 68, 0);
-            
-            _e.ExportToPdfDisconnect();
         }
     }
 }

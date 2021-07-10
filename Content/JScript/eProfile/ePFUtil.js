@@ -218,8 +218,16 @@ var ePFUtil = {
                     }
                 }
 
-                if (_idLink == "linkto-downloadscbaccountopeningform")
-                    Util.gotoPage({ page: ("ePFDownloadFile.aspx?f=" + _this.subjectSectionSCBAccountOpeningForm), target: "frame-util" });
+                if (_idLink == "linkto-downloadscbaccountopeningform") {
+                    var _nationality = $("#" + ePFUtil.idSectionStudentRecordsStudentRecordsAddUpdate.toLowerCase() + "-nationality-hidden").val();
+                    
+                    if (_nationality.length > 0)
+                        Util.gotoPage({ page: ("ePFDownloadFile.aspx?f=" + _this.subjectSectionSCBAccountOpeningForm), target: "frame-util" });
+                    else
+                        Util.dialogMessageError({
+                            content: ("<div class='th-label'>ไม่พบสัญชาติ</div><div class='en-label'>Nationality not found.</div>")
+                        });
+                }
             });
         });
     },
