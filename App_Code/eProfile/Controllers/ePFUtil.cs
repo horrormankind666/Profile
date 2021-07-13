@@ -684,8 +684,8 @@ public class ePFUtil
             _infoLinkTo2EN = "Upload Document Student";
             _infoLinkTo2Page = "../UploadDocument/index.aspx";
             _infoLinkTo3Id = "linkto-downloadscbaccountopeningform";
-            _infoLinkTo3TH = "ดาว์นโหลดแบบฟอร์มเปิดบัญชีกับ SCB";
-            _infoLinkTo3EN = "Download SCB Account Opening Form";
+            _infoLinkTo3TH = "ดาว์นโหลดแบบฟอร์มการเปิดบัญชี 0 บาท";
+            _infoLinkTo3EN = "Download Account Opening Form 0 Bath";
             _infoLinkTo3Page = String.Empty;
         }
 
@@ -710,8 +710,8 @@ public class ePFUtil
             _infoLinkTo2EN = "Upload Document Student";
             _infoLinkTo2Page = "../UploadDocument/index.aspx";
             _infoLinkTo3Id = "linkto-downloadscbaccountopeningform";
-            _infoLinkTo3TH = "ดาว์นโหลดแบบฟอร์มเปิดบัญชีกับ SCB";
-            _infoLinkTo3EN = "Download SCB Account Opening Form";
+            _infoLinkTo3TH = "ดาว์นโหลดแบบฟอร์มการเปิดบัญชี 0 บาท";
+            _infoLinkTo3EN = "Download Account Opening Form 0 Bath";
             _infoLinkTo3Page = String.Empty;
             _infoImportantId = ("important" + _page.ToLower());
             _infoImportantRecommendMsgTH = "รายการที่มีเครื่องหมาย (<div class='icon-fieldmark'></div>) จำเป็นต้องกรอก กรอกข้อมูลให้ครบถ้วนและสมบูรณ์ ข้อมูลใดที่ไม่ทราบให้ข้ามไป และกรุณาบันทึกข้อมูลในแต่ละหน้า";
@@ -959,11 +959,10 @@ public class ePFUtil
         return _valueDataRecordedResult;
     }
 
-    public static void GetSCBAccountOpeningForm()
+    public static void GetSCBAccountOpeningForm(Dictionary<string, object> _data)
     {
         Dictionary<string, object> _loginResult = ePFUtil.GetInfoLogin("", "");
         int _cookieError = int.Parse(_loginResult["CookieError"].ToString());
-        string _personId = _loginResult["PersonId"].ToString();
         string _nationality = String.Empty;
         string _titlePrefix = String.Empty;
         string _firstName = String.Empty;
@@ -972,26 +971,23 @@ public class ePFUtil
 
         if (_cookieError.Equals(0))
         {
-            Dictionary<string, object> _valueDataRecorded = ePFUtil.SetValueDataRecorded(ePFUtil.PAGE_STUDENTRECORDSSTUDENTRECORDS_ADDUPDATE, _personId);
-            Dictionary<string, object> _dataRecorded = (Dictionary<string, object>)_valueDataRecorded["DataRecorded" + ePFUtil.SUBJECT_SECTION_STUDENTRECORDSSTUDENTRECORDS];
-
-            if (!String.IsNullOrEmpty(_dataRecorded["NationalityNameTH"].ToString()))
+            if (!String.IsNullOrEmpty(_data["NationalityNameTH"].ToString()))
             {
-                _nationality = (_dataRecorded["NationalityNameTH"].Equals("ไทย") ? "TH" : "EN");
+                _nationality = (_data["NationalityNameTH"].Equals("ไทย") ? "TH" : "EN");
 
                 if (_nationality.Equals("TH"))
                 {
-                    _titlePrefix = _dataRecorded["TitleFullNameTH"].ToString();
-                    _firstName = _dataRecorded["FirstName"].ToString();
-                    _middleName = _dataRecorded["MiddleName"].ToString();
-                    _lastName = _dataRecorded["LastName"].ToString();
+                    _titlePrefix = _data["TitleFullNameTH"].ToString();
+                    _firstName = _data["FirstName"].ToString();
+                    _middleName = _data["MiddleName"].ToString();
+                    _lastName = _data["LastName"].ToString();
                 }
                 else
                 {
-                    _titlePrefix = _dataRecorded["TitleInitialsEN"].ToString();
-                    _firstName = _dataRecorded["FirstNameEN"].ToString();
-                    _middleName = _dataRecorded["MiddleNameEN"].ToString();
-                    _lastName = _dataRecorded["LastNameEN"].ToString();
+                    _titlePrefix = _data["TitleInitialsEN"].ToString();
+                    _firstName = _data["FirstNameEN"].ToString();
+                    _middleName = _data["MiddleNameEN"].ToString();
+                    _lastName = _data["LastNameEN"].ToString();
                 }
 
                 ExportToPDF _e = new ExportToPDF();
@@ -1110,7 +1106,7 @@ public class ePFUtil
 
                 _e.FillForm(_myPDFFontBold, 14, 1, (Util.GetBlank(_firstName, "") + (!String.IsNullOrEmpty(_middleName) ? (" " + Util.GetBlank(_middleName, "")) : String.Empty)), _x[0], _y[0], _width[0], 0);
                 _e.FillForm(_myPDFFontBold, 14, 1, Util.GetBlank(_lastName, ""), _x[1], _y[1], _width[1], 0);
-                _e.FillForm(_myPDFFontBold, 14, 1, (!_dataRecorded["StudentCode"].Equals("XXXXXXX") ? Util.GetBlank(_dataRecorded["StudentCode"].ToString(), "") : String.Empty), _x[2], _y[1], _width[2], 0);
+                _e.FillForm(_myPDFFontBold, 14, 1, (!_data["StudentCode"].Equals("XXXXXXX") ? Util.GetBlank(_data["StudentCode"].ToString(), "") : String.Empty), _x[2], _y[1], _width[2], 0);
 
                 _e.ExportToPdfDisconnect();
             }
