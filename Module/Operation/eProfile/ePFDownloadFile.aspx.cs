@@ -61,7 +61,7 @@ public partial class ePFDownloadFile : Page
                     StringBuilder _html = new StringBuilder();
 
                     _html.AppendLine("<div style='padding: 10px; text-align: center;'>");
-                    _html.AppendLine("  <div class='th-label'>ไม่พบสัญชาติ</div>");
+                    _html.AppendLine("  <div class='th-label'>ไม่พบสัญชาติ กรุณาบันทึกสัญชาติในระบบระเบียนประวัตินักศึกษา</div>");
                     _html.AppendLine("  <div class='en-label' style='margin-top: 5px;'>Nationality not found.</div>");
                     _html.AppendLine("</div>");
 
