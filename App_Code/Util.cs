@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๘/๐๙/๒๕๕๗>
-Modify date : <๒๓/๐๓/๒๕๖๔>
+Modify date : <๑๕/๐๗/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นทั่วไป>
 =============================================
 */
@@ -1773,7 +1773,7 @@ namespace NUtil
         }
 
         public class DBUtil
-        {            
+        {
             public static string _myConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
                         
             public static SqlConnection ConnectDB(string _connString)
@@ -2506,6 +2506,34 @@ namespace NUtil
                 );
 
                 return _ds;
+            }
+
+            public static void SetEventLog(string _url, string _parameter, string _cookie, string _remark, string _actionBy)
+            {
+                StringBuilder xmlData = new StringBuilder();
+
+                try
+                {
+                    xmlData.Append(
+                        "<row>" +
+                        ("<url>" + (!String.IsNullOrEmpty(_url) ? _url : HttpContext.Current.Request.Url.AbsoluteUri) + "</url>") +
+                        ("<parameters>" + (!String.IsNullOrEmpty(_parameter) ? _parameter : HttpContext.Current.Request.Url.Query) + "</parameters>") +
+                        "<headers></headers>" +
+                        ("<cookie>" + _cookie + "</cookie>") +
+                        ("<deviceInfo>{\"userAgent\":\"" + HttpContext.Current.Request.UserAgent + "\"}</deviceInfo>") +
+                        ("<remark>" + _remark + "</remark>") +
+                        ("<actionBy>" + _actionBy + "</actionBy>") +
+                        ("<actionIP>" + Util.GetIP() + "</actionIP>") +
+                        "</row>"
+                    );
+
+                    Util.DBUtil.ExecuteCommandStoredProcedure("sp_perSetEvent",
+                        new SqlParameter("@xmlData", xmlData.ToString())
+                    );
+                }
+                catch
+                {
+                }
             }
         }
 

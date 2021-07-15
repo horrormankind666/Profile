@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๒/๑๑/๒๕๕๘>
-Modify date : <๒๘/๐๖/๒๕๖๔>
+Modify date : <๑๕/๐๗/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นการประมวลผลข้อมูล>
 =============================================
 */
@@ -16,6 +16,7 @@ using System.Globalization;
 using System.IO;
 using System.Web;
 using NUtil;
+using NFinServiceLogin;
 using Ionic.Zip;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
@@ -577,8 +578,16 @@ public class ePFStaffProgressDataUtil
                                             }
                                         }
 
+                                        Util.DBUtil.SetEventLog(
+                                            (HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + "/eProfile/Module/Operation/eProfileStaff/index.aspx?p=" + ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_MAIN),
+                                            ("?p=" + ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_MAIN),
+                                            Util.GetCookie(FinServiceLogin.USERTYPE_STAFF).Value,
+                                            ("e-ProfileStaff => export student records information ( " + _dataRecordedStudentRecords["StudentCode"] + ")"),
+                                            _username
+                                        );
+
                                         _i++;
-                                        
+
                                         DataRow _dr3 = _dt2.NewRow();
                                         Dictionary<string, object> _age = new Dictionary<string, object>();
 
@@ -891,6 +900,14 @@ public class ePFStaffProgressDataUtil
                                     {
                                         Dictionary<string, object> _dataRecordedStudentRecords = ePFStaffStudentRecordsUtil.StudentRecordsUtil.SetValueDataRecorded(new Dictionary<string, object>(), _ds2);
                                         Dictionary<string, object> _dataRecordedPersonal = ePFStaffStudentRecordsUtil.PersonalUtil.SetValueDataRecorded(new Dictionary<string, object>(), Util.DBUtil.GetPersonRecordsPersonal(_dr1["id"].ToString()));
+
+                                        Util.DBUtil.SetEventLog(
+                                            (HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + "/eProfile/Module/Operation/eProfileStaff/index.aspx?p=" + ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENT_MAIN),
+                                            ("?p=" + ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENT_MAIN),
+                                            Util.GetCookie(FinServiceLogin.USERTYPE_STAFF).Value,
+                                            ("e-ProfileStaff => export student records information ( " + _dataRecordedStudentRecords["StudentCode"] + ")"),
+                                            _username
+                                        );
 
                                         _i++;
                                         

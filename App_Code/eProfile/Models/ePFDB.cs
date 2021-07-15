@@ -13,10 +13,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Web;
 using NUtil;
-using NFinServiceLogin;
 
 public class ePFDB
 {
@@ -552,34 +550,5 @@ public class ePFDB
         _saveResult.Add("PersonId", _personId);
 
         return _saveResult;
-    }
-
-    public static void SetEventLog(Dictionary<string, object> _infoLogin, string _remark)
-    {
-        string _personId = _infoLogin["PersonId"].ToString();
-        StringBuilder xmlData = new StringBuilder();
-
-        try
-        {
-            xmlData.Append(
-                "<row>" +
-                ("<url>" + HttpContext.Current.Request.Url.AbsoluteUri + "</url>") +
-                ("<parameters>" + HttpContext.Current.Request.Url.Query + "</parameters>") +
-                "<headers></headers>" +
-                ("<cookie>" + Util.GetCookie(FinServiceLogin.USERTYPE_STUDENT).Value + "</cookie>") +
-                ("<deviceInfo>{\"userAgent\":\"" + HttpContext.Current.Request.UserAgent + "\"}</deviceInfo>") +
-                ("<remark>" + _remark + "</remark>") +
-                ("<actionBy>" + _personId + "</actionBy>") +
-                ("<actionIP>" + Util.GetIP() + "</actionIP>") +
-                "</row>"
-            );
-
-            Util.DBUtil.ExecuteCommandStoredProcedure("sp_perSetEvent",
-                new SqlParameter("@xmlData", xmlData.ToString())
-            );
-        }
-        catch
-        {
-        }
     }
 }

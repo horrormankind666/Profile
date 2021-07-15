@@ -16,6 +16,7 @@ using System.IO;
 using System.Text;
 using System.Web;
 using NUtil;
+using NFinServiceLogin;
 using Ionic.Zip;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
@@ -397,6 +398,14 @@ public class UDSStaffProgressDataUtil
                                 {
                                     if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLE_PROGRESS))
                                     {
+                                        Util.DBUtil.SetEventLog(
+                                            (HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + "/eProfile/Module/Operation/UploadDocumentStaff/index.aspx?p=" + UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENT_MAIN),
+                                            ("?p=" + UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENT_MAIN),
+                                            Util.GetCookie(FinServiceLogin.USERTYPE_STAFF).Value,
+                                            ("UploadDocumentStaff => export document status student ( " + _dr2["StudentCode"] + ")"),
+                                            _username
+                                        );
+
                                         _i++;
 
                                         _dt2.Rows.Add(
@@ -549,6 +558,31 @@ public class UDSStaffProgressDataUtil
                                         _page.Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL22VIEWTABLESENDRECEIVE_PROGRESS) ||
                                         _page.Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL22VIEWTABLESENDNOTRECEIVE_PROGRESS))
                                     {
+                                        string _remark = String.Empty;
+
+                                        if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL22VIEWTABLENEEDSEND_PROGRESS))
+                                            _remark = "export student need send audit transcript";
+
+                                        if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL22VIEWTABLESEND_PROGRESS))
+                                            _remark = "export student send audit transcript";
+
+                                        if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL22VIEWTABLENOTSEND_PROGRESS))
+                                            _remark = "export student not send audit transcript";
+
+                                        if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL22VIEWTABLESENDRECEIVE_PROGRESS))
+                                            _remark = "export student send receive audit transcript";
+
+                                        if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL22VIEWTABLESENDNOTRECEIVE_PROGRESS))
+                                            _remark = "export student send not receive audit transcript";
+
+                                        Util.DBUtil.SetEventLog(
+                                            (HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + "/eProfile/Module/Operation/UploadDocumentStaff/index.aspx?p=" + UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVED_MAIN),
+                                            ("?p=" + UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVED_MAIN),
+                                            Util.GetCookie(FinServiceLogin.USERTYPE_STAFF).Value,
+                                            ("UploadDocumentStaff => " + _remark + " ( " + _dr2["StudentCode"] + ")"),
+                                            _username
+                                        );
+                                        
                                         _i++;
 
                                         _dt2.Rows.Add(
@@ -579,9 +613,9 @@ public class UDSStaffProgressDataUtil
                                     }
 
                                     if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTTRANSCRIPTAPPROVED_PROGRESS))
-                                    {                                        
+                                    {
                                         if (!String.IsNullOrEmpty(_dataProcess["SentDateAudit"].ToString()))
-                                        {                                               
+                                        {
                                             DataSet _ds3 = Util.DBUtil.ExecuteCommandStoredProcedure("sp_udsSetUploadLog",
                                                 new SqlParameter("@personId", _dr1["id"].ToString()),
                                                 new SqlParameter("@section", "Transcript"),
@@ -609,6 +643,14 @@ public class UDSStaffProgressDataUtil
                                             _zip.AddEntry(((!String.IsNullOrEmpty(_dr2["studentCode"].ToString()) ? (_dr2["studentCode"] + "-") : String.Empty) + _dr2["idCard"] + "TranscriptBackside.jpg"), _ms1.ToArray());
                                             _ms1.Close();
 
+                                            Util.DBUtil.SetEventLog(
+                                                (HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + "/eProfile/Module/Operation//UploadDocumentStaff/index.aspx?p=" + UDSStaffUtil.PAGE_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_MAIN),
+                                                ("?p=" + UDSStaffUtil.PAGE_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_MAIN),
+                                                Util.GetCookie(FinServiceLogin.USERTYPE_STAFF).Value,
+                                                ("UploadDocumentStaff => export transcript approved ( " + _dr2["StudentCode"] + ")"),
+                                                _username
+                                            );
+                                            
                                             _i++;
 
                                             _dt2.Rows.Add(
@@ -661,9 +703,17 @@ public class UDSStaffProgressDataUtil
                                         }
                                         else
                                             _saveError = 2;
-                                        
+
                                         if (_saveError.Equals(0))
                                         {
+                                            Util.DBUtil.SetEventLog(
+                                                (HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + "/eProfile/Module/Operation/UploadDocumentStaff/index.aspx?p=" + UDSStaffUtil.PAGE_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_MAIN),
+                                                ("?p=" + UDSStaffUtil.PAGE_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_MAIN),
+                                                Util.GetCookie(FinServiceLogin.USERTYPE_STAFF).Value,
+                                                ("UploadDocumentStaff => export save audit transcript approved ( " + _dr2["StudentCode"] + ")"),
+                                                _username
+                                            );
+
                                             _i++;
 
                                             _dt2.Rows.Add(

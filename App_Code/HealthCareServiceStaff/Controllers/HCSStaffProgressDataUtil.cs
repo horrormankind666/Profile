@@ -15,6 +15,7 @@ using System.Globalization;
 using System.IO;
 using System.Web;
 using NUtil;
+using NFinServiceLogin;
 using NExportToPDF;
 using OfficeOpenXml;
 using MUAccountService;
@@ -330,8 +331,6 @@ public class HCSStaffProgressDataUtil
                                 
                             if (_page.Equals(HCSStaffUtil.PAGE_OURSERVICESHEALTHINFORMATION_PROGRESS))
                             {
-                                _i++;
-
                                 string _weight = String.Empty;
                                 string _height = String.Empty;
                                 string _bmi = String.Empty;
@@ -382,6 +381,16 @@ public class HCSStaffProgressDataUtil
                                     }
                                 }
 
+                                Util.DBUtil.SetEventLog(
+                                    (HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + "/eProfile/Module/Operation/HealthCareServiceStaff/index.aspx?p=" + HCSStaffUtil.PAGE_OURSERVICESHEALTHINFORMATION_MAIN),
+                                    ("?p=" + HCSStaffUtil.PAGE_OURSERVICESHEALTHINFORMATION_MAIN),
+                                    Util.GetCookie(FinServiceLogin.USERTYPE_STAFF).Value,
+                                    ("HealthCareServiceStaff => export health information ( " + _dr2["StudentCode"] + ")"),
+                                    _username
+                                );
+
+                                _i++;
+
                                 _dt2.Rows.Add(
                                     _i.ToString("#,##0"),
                                     _dr2["studentCode"],
@@ -419,6 +428,14 @@ public class HCSStaffProgressDataUtil
 
                             if (_page.Equals(HCSStaffUtil.PAGE_OURSERVICESSTATISTICSDOWNLOADHEALTHCARESERVICEFORMLEVEL2VIEWTABLE_PROGRESS))
                             {
+                                Util.DBUtil.SetEventLog(
+                                    (HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + "/eProfile/Module/Operation/HealthCareServiceStaff/index.aspx?p=" + HCSStaffUtil.PAGE_OURSERVICESSTATISTICSDOWNLOADHEALTHCARESERVICEFORM_MAIN),
+                                    ("?p=" + HCSStaffUtil.PAGE_OURSERVICESSTATISTICSDOWNLOADHEALTHCARESERVICEFORM_MAIN),
+                                    Util.GetCookie(FinServiceLogin.USERTYPE_STAFF).Value,
+                                    ("HealthCareServiceStaff => export statistics download healthcare service form ( " + _dr2["StudentCode"] + ")"),
+                                    _username
+                                );
+
                                 _i++;
 
                                 _dt2.Rows.Add(
@@ -446,6 +463,14 @@ public class HCSStaffProgressDataUtil
 
                             if (_page.Equals(HCSStaffUtil.PAGE_OURSERVICESTERMSERVICEHCSCONSENTREGISTRATION_PROGRESS))
                             {
+                                Util.DBUtil.SetEventLog(
+                                    (HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + "/eProfile/Module/Operation/HealthCareServiceStaff/index.aspx?p=" + HCSStaffUtil.PAGE_OURSERVICESTERMSERVICEHCSCONSENTREGISTRATION_MAIN),
+                                    ("?p=" + HCSStaffUtil.PAGE_OURSERVICESTERMSERVICEHCSCONSENTREGISTRATION_MAIN),
+                                    Util.GetCookie(FinServiceLogin.USERTYPE_STAFF).Value,
+                                    ("HealthCareServiceStaff => export consent provides registration for healthcare service ( " + _dr2["StudentCode"] + ")"),
+                                    _username
+                                );
+
                                 _i++;
 
                                 _dt2.Rows.Add(
@@ -464,6 +489,14 @@ public class HCSStaffProgressDataUtil
 
                             if (_page.Equals(HCSStaffUtil.PAGE_OURSERVICESTERMSERVICEHCSCONSENTOOCA_PROGRESS))
                             {
+                                Util.DBUtil.SetEventLog(
+                                    (HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + "/eProfile/Module/Operation/HealthCareServiceStaff/index.aspx?p=" + HCSStaffUtil.PAGE_OURSERVICESTERMSERVICEHCSCONSENTOOCA_MAIN),
+                                    ("?p=" + HCSStaffUtil.PAGE_OURSERVICESTERMSERVICEHCSCONSENTOOCA_MAIN),
+                                    Util.GetCookie(FinServiceLogin.USERTYPE_STAFF).Value,
+                                    ("HealthCareServiceStaff => export consent provides information for receiving online counseling services ( " + _dr2["StudentCode"] + ")"),
+                                    _username
+                                );
+
                                 _i++;
                                 
                                 string _mailMU = _account.getMailAddress(("u" + _dr2["studentCode"]), "2efa3ac33e", 1).Replace(",", ", ");

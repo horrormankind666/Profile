@@ -4,11 +4,12 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๗/๐๕/๒๕๕๘>
-Modify date : <๐๗/๐๖/๒๕๕๙>
+Modify date : <๑๕/๐๗/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นที่ถูกเรียกใช้งานจาก javascript>
 =============================================
 */
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -16,6 +17,7 @@ using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.SessionState;
 using NUtil;
+using NFinServiceLogin;
 
 public class UDSHandler : IHttpHandler, IRequiresSessionState
 {
@@ -62,7 +64,7 @@ public class UDSHandler : IHttpHandler, IRequiresSessionState
                 break;
         }
     }
-    
+
     private void ShowPage(HttpContext _c)
     {
         string _page = _c.Request["page"];
@@ -140,7 +142,7 @@ public class UDSHandler : IHttpHandler, IRequiresSessionState
 
         _c.Response.Write(_json.Serialize(_removefileResult));
     }
-   
+
     private void ShowImage2Stream(HttpContext _c)
     {
         MemoryStream _ms = Util.ImageProcessUtil.ImageToStream(Util.DecodeFromBase64(_c.Request["f"]), "png");
@@ -164,6 +166,7 @@ public class UDSHandler : IHttpHandler, IRequiresSessionState
         int _userError = int.Parse(_infoLoginResult["UserError"].ToString()); ;
         int _saveError = 0;
         string _signinYN = _c.Request["signinyn"];
+        string _page = _c.Request["page"];
         string _personId = _infoLoginResult["PersonId"].ToString();
         bool _save = false;
         JavaScriptSerializer _json = new JavaScriptSerializer();
@@ -174,8 +177,24 @@ public class UDSHandler : IHttpHandler, IRequiresSessionState
 
         if (_save.Equals(true))
         {
-            _saveResult = UDSDB.ActionSave(_c, _infoLoginResult);
-            _saveError = int.Parse(_saveResult["SaveError"].ToString());
+            if (_page.Equals(UDSUtil.PAGE_PROFILEPICTUREWEBCAM_MAIN))
+            {
+                string _remark = _c.Request["remark"];
+                string _cookie = (Util.GetCookie(FinServiceLogin.USERTYPE_STUDENT) != null ? Util.GetCookie(FinServiceLogin.USERTYPE_STUDENT).Value : String.Empty);
+
+                Util.DBUtil.SetEventLog(
+                    (HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + "/Infinity/" + UDSUtil.SUBJECT_SECTION_PROFILEPICTUREWEBCAM),
+                    String.Empty,
+                    _cookie,
+                    ("ProfilePictureWebcam => " + _remark),
+                    _personId
+                );
+            }
+            else
+            {
+                _saveResult = UDSDB.ActionSave(_c, _infoLoginResult);
+                _saveError = int.Parse(_saveResult["SaveError"].ToString());
+            }
         }
 
         _saveResult.Clear();

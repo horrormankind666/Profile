@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๗/๐๕/๒๕๕๘>
-Modify date : <๐๘/๐๖/๒๕๕๙>
+Modify date : <๑๕/๐๗/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นทั่วไป>
 =============================================
 */
@@ -16,6 +16,7 @@ using NFinServiceLogin;
 
 public class UDSUtil
 {
+    public const string SUBJECT_SECTION_PROFILEPICTUREWEBCAM = "ProfilePictureWebcam";
     public const string SUBJECT_SECTION_MEANINGOFAPPROVALSTATUS = "MeaningOfApprovalStatus";
     public const string SUBJECT_SECTION_STUDENTRECORDS = "StudentRecords";
     public const string SUBJECT_SECTION_OVERVIEW = "Overview";
@@ -62,6 +63,7 @@ public class UDSUtil
     public const string ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTFRONTSIDE_ADDUPDATE = ("AddUpdate-" + SUBJECT_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTFRONTSIDE);
     public const string ID_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTBACKSIDE_ADDUPDATE = ("AddUpdate-" + SUBJECT_SECTION_UPLOADSUBMITDOCUMENTTRANSCRIPTBACKSIDE);
 
+    public const string PAGE_PROFILEPICTUREWEBCAM_MAIN = (SUBJECT_SECTION_PROFILEPICTUREWEBCAM + "Main");
     public const string PAGE_CONTACTUS_MAIN = (SUBJECT_SECTION_CONTACTUS + "Main");
     public const string PAGE_MEANINGOFAPPROVALSTATUS_MAIN = (SUBJECT_SECTION_MEANINGOFAPPROVALSTATUS + "Main");
     public const string PAGE_VIEWPROFILEPICTURE_MAIN = (SUBJECT_SECTION_VIEWPROFILEPICTURE + "Main");

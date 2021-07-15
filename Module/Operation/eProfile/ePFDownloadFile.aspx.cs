@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๖/๐๗/๒๕๕๙>
-Modify date : <๑๖/๐๖/๒๕๖๔>
+Modify date : <๑๕/๐๗/๒๕๖๔>
 Description : <หน้าใช้งานเกี่ยวกับการดาวน์โหลดไฟล์>
 =============================================
 */
@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Web.UI;
 using NUtil;
+using NFinServiceLogin;
 
 public partial class ePFDownloadFile : Page
 {
@@ -45,6 +46,7 @@ public partial class ePFDownloadFile : Page
             Dictionary<string, object> _loginResult = ePFUtil.GetInfoLogin("", "");
             int _cookieError = int.Parse(_loginResult["CookieError"].ToString());
             string _personId = _loginResult["PersonId"].ToString();
+            string _nationality = String.Empty;
 
             if (_cookieError.Equals(0))
             {
@@ -53,7 +55,10 @@ public partial class ePFDownloadFile : Page
 
                 if (!String.IsNullOrEmpty(_dataRecorded["NationalityNameTH"].ToString()))
                 {
-                    ePFDB.SetEventLog(_loginResult, "download SCB account opening form");
+                    string _cookie = (Util.GetCookie(FinServiceLogin.USERTYPE_STUDENT) != null ? Util.GetCookie(FinServiceLogin.USERTYPE_STUDENT).Value : String.Empty);
+                    _nationality = (_dataRecorded["NationalityNameTH"].Equals("ไทย") ? "TH" : "EN");
+
+                    Util.DBUtil.SetEventLog(String.Empty, String.Empty, _cookie, ("e-Profile => download account opening form 0 bath ( " + _nationality + " language )"), _personId);
                     ePFUtil.GetSCBAccountOpeningForm(_dataRecorded);
                 }
                 else
