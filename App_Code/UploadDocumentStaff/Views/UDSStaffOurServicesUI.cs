@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๐๗/๐๗/๒๕๕๘>
-Modify date : <๑๓/๐๙/๒๕๕๙>
+Modify date : <๐๗/๐๘/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผลในส่วนของการบริการข้อมูล>
 =============================================
 */
@@ -927,7 +927,7 @@ public class UDSStaffOurServicesUI
                 _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='en-label'>Year</div><div class='en-label'>Attended</div></div></div>");
                 _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='en-label'>Admission</div><div class='en-label'>Type</div></div></div>");
                 _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'><div class='en-label'>Student</div><div class='en-label'>Status</div></div></div>");
-                _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col10'><div class='table-col-msg'><div class='en-label'>Export Date</div></div></div>");
+                _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col10'><div class='table-col-msg'><div class='en-label'>Export Date</div><div class='en-label'>for Smart Card</div></div></div>");
                 _html.AppendLine("                          </div>");
                 _html.AppendLine("                      </div>");
                 _html.AppendLine("                  </div>");
@@ -973,7 +973,7 @@ public class UDSStaffOurServicesUI
                                     "idMain:'" + _idSectionMain + "'," +
                                     "idPreview:'" + _idSectionPreview + "'," +
                                     "data:'" + _dr1["id"] + "'" +
-                                    "},function(){})";                     
+                                    "},function(){})";
 
                         _html.AppendFormat("<div class='table-row{0}' id='table-row-id-{1}'>", _highlight, _dr1["id"]);
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col1' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (double.Parse(_dr1["rowNum"].ToString()).ToString("#,##0")));
@@ -985,7 +985,7 @@ public class UDSStaffOurServicesUI
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
-                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col10' onclick={0}><div class='table-col-msg'><div class='th-label table-col-exportdate'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["profilepictureExportDate"].ToString()) ? DateTime.Parse(_dr1["profilepictureExportDate"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col10' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["profilepictureExportDate"].ToString()) ? DateTime.Parse(_dr1["profilepictureExportDate"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") : String.Empty));
                         _html.AppendLine("  </div>");
                     }
 
@@ -1107,7 +1107,7 @@ public class UDSStaffOurServicesUI
                 _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
                 _contentFrmColumnDetail[_i].Add("ID", (_idSectionSearch + "-exportstatus"));
                 _contentFrmColumnDetail[_i].Add("HighLight", false);
-                _contentFrmColumnDetail[_i].Add("TitleTH", "<span class='th-label'>สถานะการส่งออก</span><span class='en-label'> : Export Status</span>");
+                _contentFrmColumnDetail[_i].Add("TitleTH", "<span class='th-label'>สถานะการส่งออกสำหรับทำบัตรนักศึกษา</span><span class='en-label'> : Export Status for Smart Card</span>");
                 _contentFrmColumnDetail[_i].Add("TitleEN", String.Empty);
                 _contentFrmColumnDetail[_i].Add("DiscriptionTH", String.Empty);
                 _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
@@ -1290,6 +1290,7 @@ public class UDSStaffOurServicesUI
                 _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col7'><div class='table-col-msg'><div class='en-label'>Year</div><div class='en-label'>Attended</div></div></div>");
                 _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='en-label'>Admission</div><div class='en-label'>Type</div></div></div>");
                 _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'><div class='en-label'>Student</div><div class='en-label'>Status</div></div></div>");
+                _html.AppendLine("                              <div class='table-col table-col-width-fixed table-col10'><div class='table-col-msg'><div class='en-label'>Export Date</div><div class='en-label'>for Smart Card</div></div></div>");
                 _html.AppendLine("                          </div>");
                 _html.AppendLine("                      </div>");
                 _html.AppendLine("                  </div>");
@@ -1347,6 +1348,7 @@ public class UDSStaffOurServicesUI
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col7' onclick={0}><div class='table-col-msg'><div class='th-label'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["yearEntry"].ToString()) ? _dr1["yearEntry"].ToString() : String.Empty));
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col8'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFADMISSIONTYPE.ToLower(), (!String.IsNullOrEmpty(_dr1["perEntranceTypeId"].ToString()) ? _dr1["perEntranceTypeId"].ToString() : String.Empty));
                         _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col9'><div class='table-col-msg'><div class='th-label link-click link-{0}'>{1}</div></div></div>", UDSStaffUtil.SUBJECT_SECTION_MEANINGOFSTUDENTSTATUS.ToLower(), (!String.IsNullOrEmpty(_dr1["status"].ToString()) ? _dr1["status"].ToString() : String.Empty));
+                        _html.AppendFormat("    <div class='table-col table-col-width-fixed table-col10' onclick={0}><div class='table-col-msg'><div class='th-label table-col-exportdate'>{1}</div></div></div>", _callFunc, (!String.IsNullOrEmpty(_dr1["profilepictureExportDate"].ToString()) ? DateTime.Parse(_dr1["profilepictureExportDate"].ToString()).ToString("dd/MM/yyyy HH:mm:ss") : String.Empty));
                         _html.AppendLine("  </div>");
                     }
 
@@ -1365,7 +1367,7 @@ public class UDSStaffOurServicesUI
                 StringBuilder _html = new StringBuilder();
                 StringBuilder _contentTemp = new StringBuilder();
                 Dictionary<string, Dictionary<string, object>> _contentFrmColumn = new Dictionary<string, Dictionary<string, object>>();
-                Dictionary<string, object>[] _contentFrmColumnDetail = new Dictionary<string, object>[8];        
+                Dictionary<string, object>[] _contentFrmColumnDetail = new Dictionary<string, object>[10];
                 int _i = 0;
                 
                 _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
@@ -1466,6 +1468,35 @@ public class UDSStaffOurServicesUI
                 _contentFrmColumn.Add("StudentStatus", _contentFrmColumnDetail[_i]);
                 _i++;
 
+                _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
+                _contentFrmColumnDetail[_i].Add("ID", (_idSectionSearch + "-approvalstatus"));
+                _contentFrmColumnDetail[_i].Add("HighLight", false);
+                _contentFrmColumnDetail[_i].Add("TitleTH", "<span class='th-label'>สถานะรูปภาพประจำตัว</span><span class='en-label'> : Profile Picture Status</span>");
+                _contentFrmColumnDetail[_i].Add("TitleEN", String.Empty);
+                _contentFrmColumnDetail[_i].Add("DiscriptionTH", String.Empty);
+                _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
+                _contentFrmColumnDetail[_i].Add("InputContentPaddingDown", false);
+                _contentFrmColumnDetail[_i].Add("InputContent", ("<div class='combobox-width-dynamic' id='" + _idSectionSearch + "-approvalstatus-combobox'>" + UDSStaffUI.GetComboboxProfilePictureStatus(_idSectionSearch + "-approvalstatus") + "</div>"));
+                _contentFrmColumnDetail[_i].Add("Require", false);
+                _contentFrmColumnDetail[_i].Add("LastRow", true);
+                _contentFrmColumn.Add("ApprovalStatus", _contentFrmColumnDetail[_i]);
+                _i++;
+
+
+                _contentFrmColumnDetail[_i] = new Dictionary<string, object>();
+                _contentFrmColumnDetail[_i].Add("ID", (_idSectionSearch + "-exportstatus"));
+                _contentFrmColumnDetail[_i].Add("HighLight", false);
+                _contentFrmColumnDetail[_i].Add("TitleTH", "<span class='th-label'>สถานะการส่งออกสำหรับทำบัตรนักศึกษา</span><span class='en-label'> : Export Status for Smart Card</span>");
+                _contentFrmColumnDetail[_i].Add("TitleEN", String.Empty);
+                _contentFrmColumnDetail[_i].Add("DiscriptionTH", String.Empty);
+                _contentFrmColumnDetail[_i].Add("DiscriptionEN", String.Empty);
+                _contentFrmColumnDetail[_i].Add("InputContentPaddingDown", false);
+                _contentFrmColumnDetail[_i].Add("InputContent", ("<div class='combobox-width-dynamic' id='" + _idSectionSearch + "-exportstatus-combobox'>" + UDSStaffUI.GetComboboxExportStatus(_idSectionSearch + "-exportstatus") + "</div>"));
+                _contentFrmColumnDetail[_i].Add("Require", false);
+                _contentFrmColumnDetail[_i].Add("LastRow", true);
+                _contentFrmColumn.Add("ExportStatus", _contentFrmColumnDetail[_i]);
+                _i++;
+
                 _contentTemp.Clear();
                 _contentTemp.AppendLine("<div class='search-floatcol search-floatcol1'>");
                 _contentTemp.AppendLine("   <div class='contentbody-left'>");
@@ -1498,12 +1529,14 @@ public class UDSStaffOurServicesUI
                 _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["Keyword"]).ToString());
                 _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["DegreeLevel"]).ToString());
                 _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["Faculty"]).ToString());
-                _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["Program"]).ToString());                
-                _html.AppendLine("              </div>");
-                _html.AppendLine("              <div class='contentbody-left search-section2'>");
+                _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["Program"]).ToString());
                 _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["YearAttended"]).ToString());
+                _html.AppendLine("              </div>");
+                _html.AppendLine("              <div class='contentbody-left search-section2'>");                
                 _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["EntranceType"]).ToString());
                 _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["StudentStatus"]).ToString());
+                _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["ApprovalStatus"]).ToString());
+                _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["ExportStatus"]).ToString());
                 _html.AppendLine(                   UDSStaffUI.GetFrmColumn(_contentFrmColumn["Sort"]).ToString());
                 _html.AppendLine("              </div>");
                 _html.AppendLine("              <div class='contentbody-left search-section3'>");

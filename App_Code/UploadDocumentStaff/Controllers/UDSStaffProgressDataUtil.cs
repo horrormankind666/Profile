@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๓/๑๑/๒๕๕๘>
-Modify date : <๒๒/๐๖/๒๕๖๒>
+Modify date : <๐๗/๐๘/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นการประมวลผลข้อมูล>
 =============================================
 */
@@ -386,7 +386,7 @@ public class UDSStaffProgressDataUtil
                                 }
 
                                 if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTTRANSCRIPTAPPROVED_PROGRESS))
-                                {                                
+                                {
                                     _fileFullPath1 = (!String.IsNullOrEmpty(_dr2["transcriptfrontsideFileName"].ToString()) ? (UDSStaffUtil._myFileUploadPath + "/" + _dr2["transcriptfrontsideFileName"].ToString()) : String.Empty);    
                                     _export = (!String.IsNullOrEmpty(_fileFullPath1) && Util.FileExist(_fileFullPath1) ? true : false);
 
@@ -444,6 +444,24 @@ public class UDSStaffProgressDataUtil
                                     {
                                         if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_PROGRESS))
                                         {
+                                            Util.DBUtil.SetEventLog(
+                                                (HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + "/eProfile/Module/Operation/UploadDocumentStaff/index.aspx?p=" + UDSStaffUtil.PAGE_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_MAIN),
+                                                ("?p=" + UDSStaffUtil.PAGE_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_MAIN),
+                                                Util.GetCookie(FinServiceLogin.USERTYPE_STAFF).Value,
+                                                ("UploadDocumentStaff => export profile picture approved ( " + _dr2["StudentCode"] + ")"),
+                                                _username
+                                            );
+
+                                            _ms1 = Util.ImageProcessUtil.ImageFileToStream(_fileFullPath1);
+                                            _zip.AddEntry(((!String.IsNullOrEmpty(_dr2["studentCode"].ToString()) ? _dr2["studentCode"] : _dr2["idCard"]) + ".jpg"), _ms1.ToArray());
+                                            _ms1.Close();
+
+                                            _i++;
+
+                                        }
+
+                                        if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PROGRESS))
+                                        {
                                             DataSet _ds3 = Util.DBUtil.ExecuteCommandStoredProcedure("sp_udsSetUploadLog",
                                                 new SqlParameter("@personId", _dr1["id"].ToString()),
                                                 new SqlParameter("@section", "ProfilePictureIdentityCard"),
@@ -454,14 +472,20 @@ public class UDSStaffProgressDataUtil
 
                                             DataRow _dr3 = _ds3.Tables[0].Rows[0];
                                             _saveError = (int.Parse(_dr3[0].ToString()).Equals(1) ? 0 : 1);
-
+                                            
                                             if (_saveError.Equals(0))
                                             {
-                                                _msgDetail = (_dr1["id"].ToString() + ";" + (!String.IsNullOrEmpty(_dr3[6].ToString()) ? DateTime.Parse(_dr3[6].ToString()).ToString("dd/MM/yyyy HH:mm:ss") : String.Empty));
+                                                _fileFullPath1 = (!String.IsNullOrEmpty(_dr2["profilepictureFileName"].ToString()) ? (UDSStaffUtil._myFileUploadPath + "/" + _dr2["profilepictureFileName"].ToString()) : String.Empty);
+                                                _export = (!String.IsNullOrEmpty(_fileFullPath1) && Util.FileExist(_fileFullPath1) ? true : false);
 
-                                                _ms1 = Util.ImageProcessUtil.ImageFileToStream(_fileFullPath1);
-                                                _zip.AddEntry(((!String.IsNullOrEmpty(_dr2["studentCode"].ToString()) ? _dr2["studentCode"] : _dr2["idCard"]) + ".jpg"), _ms1.ToArray());
-                                                _ms1.Close();
+                                                if (_export.Equals(true))
+                                                {
+                                                    _ms1 = Util.ImageProcessUtil.ImageFileToStream(_fileFullPath1);
+                                                    _zip.AddEntry(((!String.IsNullOrEmpty(_dr2["studentCode"].ToString()) ? _dr2["studentCode"] : _dr2["idCard"]) + ".jpg"), _ms1.ToArray());
+                                                    _ms1.Close();
+                                                }
+
+                                                _msgDetail = (_dr1["id"].ToString() + ";" + (!String.IsNullOrEmpty(_dr3[6].ToString()) ? DateTime.Parse(_dr3[6].ToString()).ToString("dd/MM/yyyy HH:mm:ss") : String.Empty));
                                             }
                                             else
                                             {
@@ -470,85 +494,85 @@ public class UDSStaffProgressDataUtil
                                             }
 
                                             _ds3.Dispose();
-                                        }
 
-                                        StringBuilder xmlData = new StringBuilder();
+                                            StringBuilder xmlData = new StringBuilder();
 
-                                        xmlData.Append(
-                                            "<row>" +
-                                            ("<perPersonId>" + _dr1["id"].ToString() + "</perPersonId>") +
-                                            ("<issueDate>" + _dr2["cardIssueDate"].ToString().Replace("/", "-") + "</issueDate>") +
-                                            ("<expiryDate>" + _dr2["cardExpiryDate"].ToString().Replace("/", "-") + "</expiryDate>") +
-                                            ("<exportBy>" + _username + "</exportBy>") +
-                                            ("<exportIP>" + Util.GetIP() + "</exportIP>") +
-                                            "</row>"
-                                        );
-
-                                        DataSet _ds4 = Util.DBUtil.ExecuteCommandStoredProcedure("sp_stdSetStudentForSmartCard",
-                                            new SqlParameter("@xmlData", xmlData.ToString())
-                                        );
-
-                                        DataRow _dr4 = _ds4.Tables[0].Rows[0];
-                                        _saveError = int.Parse(_dr4[1].ToString());
-
-                                        _ds4.Dispose();
-
-                                        if (_saveError.Equals(0))
-                                        {
-                                            _i++;
-
-                                            _dt2.Rows.Add(
-                                                (_dr2["isoNationalityName2Letter"].Equals("TH") ? _dr2["idCard"] : String.Empty),
-                                                (_dr2["isoNationalityName2Letter"].Equals("TH") ? _dr2["titlePrefixInitialsTH"] : _dr2["titlePrefixInitialsEN"]),
-                                                (_dr2["isoNationalityName2Letter"].Equals("TH") ? (_dr2["firstName"] + (!String.IsNullOrEmpty(_dr2["middleName"].ToString()) ? (" " + _dr2["middleName"]) : String.Empty)) : (_dr2["firstNameEN"] + (!String.IsNullOrEmpty(_dr2["middleNameEN"].ToString()) ? (" " + _dr2["middleNameEN"]) : String.Empty))),
-                                                (_dr2["isoNationalityName2Letter"].Equals("TH") ? _dr2["lastName"] : _dr2["lastNameEN"]),
-                                                (_dr2["firstNameEN"] + (!String.IsNullOrEmpty(_dr2["middleNameEN"].ToString()) ? (" " + _dr2["middleNameEN"]) : String.Empty)),
-                                                _dr2["lastNameEN"],
-                                                _dr2["genderInitialsEN"],
-                                                (!String.IsNullOrEmpty(_dr2["perMaritalStatusId"].ToString()) ? (_dr2["maritalStatusNameTH"].Equals("โสด") ? "S" : "M") : "D"),
-                                                _dr2["birthDateTH"].ToString().Replace("/", "-"),
-                                                (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["noPermanent"] : String.Empty),
-                                                (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["villagePermanent"] : String.Empty),
-                                                (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["mooPermanent"] : String.Empty),
-                                                (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["soiPermanent"] : String.Empty),
-                                                (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["roadPermanent"] : String.Empty),
-                                                (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? (_dr2["subdistrictNameTHPermanent"].ToString().Length >= 4 ? (_dr2["subdistrictNameTHPermanent"].ToString().Substring(0, 4).Equals("แขวง") ? _dr2["subdistrictNameTHPermanent"].ToString().Remove(0, 4) : _dr2["subdistrictNameTHPermanent"]) : _dr2["subdistrictNameTHPermanent"]) : String.Empty),
-                                                (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? (_dr2["districtNameTHPermanent"].ToString().Length >= 3 ? (_dr2["districtNameTHPermanent"].ToString().Substring(0, 3).Equals("เขต") ? _dr2["districtNameTHPermanent"].ToString().Remove(0, 3) : _dr2["districtNameTHPermanent"]) : _dr2["districtNameTHPermanent"]) : String.Empty),
-                                                (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["zipCodePermanent"] : String.Empty),
-                                                _dr2["cardIssueDate"].ToString().Replace("/", "-"),
-                                                _dr2["cardExpiryDate"].ToString().Replace("/", "-"),
-                                                _dr2["studentCode"],
-                                                _dr2["facultyCode"],
-                                                (_dr2["programCode"].ToString().Substring(0, 4) + "/" + _dr2["programCode"].ToString().Substring(4)),
-                                                _dr2["barcode"],
-                                                _dr2["phoneProvinceCode"],
-                                                _dr2["phoneNumber"],
-                                                _dr2["mobileCode"],
-                                                _dr2["mobileNumber"],
-                                                _dr2["email"].ToString().ToUpper(),
-                                                _dr2["isoNationalityName2Letter"],
-                                                (_dr2["isoNationalityName2Letter"].Equals("TH") ? "1" : "3"),
-                                                (!_dr2["isoNationalityName2Letter"].Equals("TH") ? _dr2["isoCountryCodes2Letter"] : String.Empty),
-                                                (!_dr2["isoNationalityName2Letter"].Equals("TH") ? _dr2["idCard"] : String.Empty),
-                                                (!_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["noPermanent"] : String.Empty),
-                                                (!_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["subdistrictNameENPermanent"] : String.Empty),
-                                                (!_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["districtNameENPermanent"] : String.Empty),
-                                                (!_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["provinceNameENPermanent"] : String.Empty),
-                                                (!_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["zipCodePermanent"] : String.Empty),
-                                                _dr2["bankAcc"],
-                                                "63",
-                                                "0",
-                                                _dr2["noCurrent"],
-                                                _dr2["villageCurrent"],
-                                                _dr2["mooCurrent"],
-                                                _dr2["soiCurrent"],
-                                                _dr2["roadCurrent"],
-                                                (_dr2["subdistrictNameTHCurrent"].ToString().Length >= 4 ? (_dr2["subdistrictNameTHCurrent"].ToString().Substring(0, 4).Equals("แขวง") ? _dr2["subdistrictNameTHCurrent"].ToString().Remove(0, 4) : _dr2["subdistrictNameTHCurrent"]) : _dr2["subdistrictNameTHCurrent"]),
-                                                (_dr2["districtNameTHCurrent"].ToString().Length >= 3 ? (_dr2["districtNameTHCurrent"].ToString().Substring(0, 3).Equals("เขต") ? _dr2["districtNameTHCurrent"].ToString().Remove(0, 3) : _dr2["districtNameTHCurrent"]) : _dr2["districtNameTHCurrent"]),
-                                                _dr2["zipCodeCurrent"],
-                                                _dr2["idCardExpiryDateTH"],
-                                                "TH"
+                                            xmlData.Append(
+                                                "<row>" +
+                                                ("<perPersonId>" + _dr1["id"].ToString() + "</perPersonId>") +
+                                                ("<issueDate>" + _dr2["cardIssueDate"].ToString().Replace("/", "-") + "</issueDate>") +
+                                                ("<expiryDate>" + _dr2["cardExpiryDate"].ToString().Replace("/", "-") + "</expiryDate>") +
+                                                ("<exportBy>" + _username + "</exportBy>") +
+                                                ("<exportIP>" + Util.GetIP() + "</exportIP>") +
+                                                "</row>"
                                             );
+
+                                            DataSet _ds4 = Util.DBUtil.ExecuteCommandStoredProcedure("sp_stdSetStudentForSmartCard",
+                                                new SqlParameter("@xmlData", xmlData.ToString())
+                                            );
+
+                                            DataRow _dr4 = _ds4.Tables[0].Rows[0];
+                                            _saveError = int.Parse(_dr4[1].ToString());
+
+                                            _ds4.Dispose();
+
+                                            if (_saveError.Equals(0))
+                                            {
+                                                _i++;
+
+                                                _dt2.Rows.Add(
+                                                    (_dr2["isoNationalityName2Letter"].Equals("TH") ? _dr2["idCard"] : String.Empty),
+                                                    (_dr2["isoNationalityName2Letter"].Equals("TH") ? _dr2["titlePrefixInitialsTH"] : _dr2["titlePrefixInitialsEN"]),
+                                                    (_dr2["isoNationalityName2Letter"].Equals("TH") ? (_dr2["firstName"] + (!String.IsNullOrEmpty(_dr2["middleName"].ToString()) ? (" " + _dr2["middleName"]) : String.Empty)) : (_dr2["firstNameEN"] + (!String.IsNullOrEmpty(_dr2["middleNameEN"].ToString()) ? (" " + _dr2["middleNameEN"]) : String.Empty))),
+                                                    (_dr2["isoNationalityName2Letter"].Equals("TH") ? _dr2["lastName"] : _dr2["lastNameEN"]),
+                                                    (_dr2["firstNameEN"] + (!String.IsNullOrEmpty(_dr2["middleNameEN"].ToString()) ? (" " + _dr2["middleNameEN"]) : String.Empty)),
+                                                    _dr2["lastNameEN"],
+                                                    _dr2["genderInitialsEN"],
+                                                    (!String.IsNullOrEmpty(_dr2["perMaritalStatusId"].ToString()) ? (_dr2["maritalStatusNameTH"].Equals("โสด") ? "S" : "M") : "D"),
+                                                    _dr2["birthDateTH"].ToString().Replace("/", "-"),
+                                                    (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["noPermanent"] : String.Empty),
+                                                    (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["villagePermanent"] : String.Empty),
+                                                    (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["mooPermanent"] : String.Empty),
+                                                    (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["soiPermanent"] : String.Empty),
+                                                    (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["roadPermanent"] : String.Empty),
+                                                    (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? (_dr2["subdistrictNameTHPermanent"].ToString().Length >= 4 ? (_dr2["subdistrictNameTHPermanent"].ToString().Substring(0, 4).Equals("แขวง") ? _dr2["subdistrictNameTHPermanent"].ToString().Remove(0, 4) : _dr2["subdistrictNameTHPermanent"]) : _dr2["subdistrictNameTHPermanent"]) : String.Empty),
+                                                    (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? (_dr2["districtNameTHPermanent"].ToString().Length >= 3 ? (_dr2["districtNameTHPermanent"].ToString().Substring(0, 3).Equals("เขต") ? _dr2["districtNameTHPermanent"].ToString().Remove(0, 3) : _dr2["districtNameTHPermanent"]) : _dr2["districtNameTHPermanent"]) : String.Empty),
+                                                    (_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["zipCodePermanent"] : String.Empty),
+                                                    _dr2["cardIssueDate"].ToString().Replace("/", "-"),
+                                                    _dr2["cardExpiryDate"].ToString().Replace("/", "-"),
+                                                    _dr2["studentCode"],
+                                                    _dr2["facultyCode"],
+                                                    (_dr2["programCode"].ToString().Substring(0, 4) + "/" + _dr2["programCode"].ToString().Substring(4)),
+                                                    _dr2["barcode"],
+                                                    _dr2["phoneProvinceCode"],
+                                                    _dr2["phoneNumber"],
+                                                    _dr2["mobileCode"],
+                                                    _dr2["mobileNumber"],
+                                                    _dr2["email"].ToString().ToUpper(),
+                                                    _dr2["isoNationalityName2Letter"],
+                                                    (_dr2["isoNationalityName2Letter"].Equals("TH") ? "1" : "3"),
+                                                    (!_dr2["isoNationalityName2Letter"].Equals("TH") ? _dr2["isoCountryCodes2Letter"] : String.Empty),
+                                                    (!_dr2["isoNationalityName2Letter"].Equals("TH") ? _dr2["idCard"] : String.Empty),
+                                                    (!_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["noPermanent"] : String.Empty),
+                                                    (!_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["subdistrictNameENPermanent"] : String.Empty),
+                                                    (!_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["districtNameENPermanent"] : String.Empty),
+                                                    (!_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["provinceNameENPermanent"] : String.Empty),
+                                                    (!_dr2["isoCountryCodes2LetterPermanent"].Equals("TH") ? _dr2["zipCodePermanent"] : String.Empty),
+                                                    _dr2["bankAcc"],
+                                                    "63",
+                                                    "0",
+                                                    _dr2["noCurrent"],
+                                                    _dr2["villageCurrent"],
+                                                    _dr2["mooCurrent"],
+                                                    _dr2["soiCurrent"],
+                                                    _dr2["roadCurrent"],
+                                                    (_dr2["subdistrictNameTHCurrent"].ToString().Length >= 4 ? (_dr2["subdistrictNameTHCurrent"].ToString().Substring(0, 4).Equals("แขวง") ? _dr2["subdistrictNameTHCurrent"].ToString().Remove(0, 4) : _dr2["subdistrictNameTHCurrent"]) : _dr2["subdistrictNameTHCurrent"]),
+                                                    (_dr2["districtNameTHCurrent"].ToString().Length >= 3 ? (_dr2["districtNameTHCurrent"].ToString().Substring(0, 3).Equals("เขต") ? _dr2["districtNameTHCurrent"].ToString().Remove(0, 3) : _dr2["districtNameTHCurrent"]) : _dr2["districtNameTHCurrent"]),
+                                                    _dr2["zipCodeCurrent"],
+                                                    _dr2["idCardExpiryDateTH"],
+                                                    "TH"
+                                                );
+                                            }
                                         }
                                     }
 
@@ -807,7 +831,6 @@ public class UDSStaffProgressDataUtil
             if (_complete > 0)
             {   
                 if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESDOCUMENTSTATUSSTUDENTLEVEL1VIEWTABLE_PROGRESS) ||
-                    _page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_PROGRESS) ||
                     _page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PROGRESS) ||
                     _page.Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL1VIEWTABLE_PROGRESS) ||
                     _page.Equals(UDSStaffUtil.PAGE_OURSERVICESAUDITTRANSCRIPTAPPROVEDLEVEL21VIEWTABLENEEDSEND_PROGRESS) ||
@@ -842,8 +865,7 @@ public class UDSStaffProgressDataUtil
                         _maxColCellHeader = _dt2.Columns.Count;
                     }
 
-                    if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_PROGRESS) ||
-                        _page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PROGRESS))
+                    if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PROGRESS))
                     {
                         _maxRowCellRange = (_complete + 1);
                         _maxColCellRange = 75;
@@ -916,8 +938,7 @@ public class UDSStaffProgressDataUtil
                         Util.GetListDataToExcel(_cellContent, _dt2, _ws, (_maxRowCellHeader + 1));
                     }
 
-                    if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_PROGRESS) ||
-                        _page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PROGRESS))
+                    if (_page.Equals(UDSStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PROGRESS))
                     {
                         List<object> _cellContent = new List<object>
                         {

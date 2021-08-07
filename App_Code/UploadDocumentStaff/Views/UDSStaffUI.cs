@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๒/๐๖/๒๕๕๘>
-Modify date : <๑๔/๐๖/๒๕๖๒>
+Modify date : <๐๗/๐๘/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานแสดงผล>
 =============================================
 */
@@ -1412,6 +1412,25 @@ public class UDSStaffUI
         return _html;
     }
 
+    public static StringBuilder GetComboboxProfilePictureStatus(string _idCombobox)
+    {
+        StringBuilder _html = new StringBuilder();
+        int _i = 0;
+
+        string[] _optionValue = new string[UDSStaffUtil._profilepictureStatus.GetLength(0)];
+        string[] _optionText = new string[UDSStaffUtil._profilepictureStatus.GetLength(0)];
+
+        for (_i = 0; _i < UDSStaffUtil._profilepictureStatus.GetLength(0); _i++)
+        {
+            _optionValue[_i] = UDSStaffUtil._profilepictureStatus[_i, 2];
+            _optionText[_i] = (UDSStaffUtil._profilepictureStatus[_i, 0] + " : " + UDSStaffUtil._profilepictureStatus[_i, 1]);
+        }
+
+        _html = Util.GetSelect(_idCombobox, "กรุณาเลือก : Please Select", _optionValue, _optionText);
+
+        return _html;
+    }
+
     public static StringBuilder GetComboboxExportStatus(string _idCombobox)
     {
         StringBuilder _html = new StringBuilder();
@@ -1648,18 +1667,20 @@ public class UDSStaffUI
         string _sentDateStartAudit = (string)Util.GetValueDataDictionary(_valueSearch, "SentDateStartAudit", _valueSearch["SentDateStartAudit"], String.Empty);
         string _sentDateEndAudit = (string)Util.GetValueDataDictionary(_valueSearch, "SentDateEndAudit", _valueSearch["SentDateEndAudit"], String.Empty);
         string _auditedStatus = (string)Util.GetValueDataDictionary(_valueSearch, "AuditedStatus", _valueSearch["AuditedStatus"], String.Empty);
-        string _exportStatus = (string)Util.GetValueDataDictionary(_valueSearch, "ExportStatus", _valueSearch["ExportStatus"], String.Empty);        
+        string _exportStatus = (string)Util.GetValueDataDictionary(_valueSearch, "ExportStatus", _valueSearch["ExportStatus"], String.Empty);
         string _sortOrderBy = (string)Util.GetValueDataDictionary(_valueSearch, "SortOrderBy", _valueSearch["SortOrderBy"], String.Empty);
         string _sortExpression = (string)Util.GetValueDataDictionary(_valueSearch, "SortExpression", _valueSearch["SortExpression"], String.Empty);
         string _rowPerPage = (string)Util.GetValueDataDictionary(_valueSearch, "RowPerPage", _valueSearch["RowPerPage"].ToString(), String.Empty);
         string _idSectionMain = String.Empty;
         string _idSectionSearch = String.Empty;
+        string _approvalStatusByDefault = string.Empty;
         string _sortOrderByDefault = String.Empty;
                         
         if (_page.Equals(UDSStaffUtil.PAGE_UPLOADSUBMITDOCUMENT_MAIN))
         { 
             _idSectionMain = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENT_MAIN.ToLower();
             _idSectionSearch = UDSStaffUtil.ID_SECTION_UPLOADSUBMITDOCUMENT_SEARCH.ToLower();
+            _approvalStatusByDefault = Util._valueComboboxDefault;
             _sortOrderByDefault = "Student ID";
         }
         
@@ -1667,6 +1688,7 @@ public class UDSStaffUI
         {
             _idSectionMain = UDSStaffUtil.ID_SECTION_APPROVEDOCUMENT_MAIN.ToLower();
             _idSectionSearch = UDSStaffUtil.ID_SECTION_APPROVEDOCUMENT_SEARCH.ToLower();
+            _approvalStatusByDefault = Util._valueComboboxDefault;
             _sortOrderByDefault = "Student ID";
         }
         
@@ -1674,6 +1696,7 @@ public class UDSStaffUI
         {
             _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENT_MAIN.ToLower();
             _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESDOCUMENTSTATUSSTUDENT_SEARCH.ToLower();
+            _approvalStatusByDefault = Util._valueComboboxDefault;
             _sortOrderByDefault = "Student ID";
         }
         
@@ -1681,6 +1704,7 @@ public class UDSStaffUI
         {
             _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_MAIN.ToLower();
             _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_SEARCH.ToLower();
+            _approvalStatusByDefault = Util._valueComboboxDefault;
             _sortOrderByDefault = "Student ID";
         }
         
@@ -1688,6 +1712,7 @@ public class UDSStaffUI
         {
             _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_MAIN.ToLower();
             _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_SEARCH.ToLower();
+            _approvalStatusByDefault = "Y";
             _sortOrderByDefault = "Student ID";
         }
 
@@ -1695,6 +1720,7 @@ public class UDSStaffUI
         {
             _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_MAIN.ToLower();
             _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESCOPYPROFILEPICTUREAPPROVEDTOTHESTORE_SEARCH.ToLower();
+            _approvalStatusByDefault = Util._valueComboboxDefault;
             _sortOrderByDefault = "Student ID";
         }
 
@@ -1702,6 +1728,7 @@ public class UDSStaffUI
         {
             _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVED_MAIN.ToLower();
             _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESAUDITTRANSCRIPTAPPROVED_SEARCH.ToLower();
+            _approvalStatusByDefault = Util._valueComboboxDefault;
             _sortOrderByDefault = "Student ID";
         }
         
@@ -1709,6 +1736,7 @@ public class UDSStaffUI
         {
             _idSectionMain = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_MAIN.ToLower();
             _idSectionSearch = UDSStaffUtil.ID_SECTION_OURSERVICESEXPORTSAVEAUDITTRANSCRIPTAPPROVED_SEARCH.ToLower();
+            _approvalStatusByDefault = Util._valueComboboxDefault;
             _sortOrderByDefault = "Student ID";
         }
 
@@ -1721,7 +1749,7 @@ public class UDSStaffUI
         _html.AppendFormat("<input type='hidden' id='{0}-studentstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_studentStatus) ? _studentStatus : Util._valueComboboxDefault));
         _html.AppendFormat("<input type='hidden' id='{0}-documentupload-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_documentUpload) ? _documentUpload : Util._valueComboboxDefault));
         _html.AppendFormat("<input type='hidden' id='{0}-submittedstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_submittedStatus) ? _submittedStatus : Util._valueComboboxDefault));
-        _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_approvalStatus) ? _approvalStatus : Util._valueComboboxDefault));
+        _html.AppendFormat("<input type='hidden' id='{0}-approvalstatus-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_approvalStatus) ? _approvalStatus : _approvalStatusByDefault));
         _html.AppendFormat("<input type='hidden' id='{0}-institutecountry-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_instituteCountry) ? _instituteCountry : Util._valueComboboxDefault));
         _html.AppendFormat("<input type='hidden' id='{0}-instituteprovince-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_instituteProvince) ? _instituteProvince : Util._valueComboboxDefault));
         _html.AppendFormat("<input type='hidden' id='{0}-institute-hidden' value='{1}' />", _idSectionSearch, (!String.IsNullOrEmpty(_institute) ? _institute : Util._valueComboboxDefault));

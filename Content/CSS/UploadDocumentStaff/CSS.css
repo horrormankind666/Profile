@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๒/๐๖/๒๕๕๘>
-Modify date : <๑๓/๐๙/๒๕๕๙>
+Modify date : <๐๖/๐๘/๒๕๖๔>
 Description : <Style Sheet จัดรูปการแสดงผล>
 =============================================
 */
@@ -3169,6 +3169,9 @@ a {
 }
 #main-ourservicesexportstudentrecordsinformationforsmartcard-table .table-col9 {
     width: 60px;
+}
+#main-ourservicesexportstudentrecordsinformationforsmartcard-table .table-col10 {
+    width: 135px;
 }
 #main-ourservicesexportstudentrecordsinformationforsmartcard-table .table-grid .table-row.active {
     background: #E08283;

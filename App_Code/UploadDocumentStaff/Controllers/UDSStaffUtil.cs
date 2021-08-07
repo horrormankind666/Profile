@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๒/๐๖/๒๕๕๘>
-Modify date : <๒๒/๐๖/๒๕๖๔>
+Modify date : <๐๗/๐๘/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นทั่วไป>
 =============================================
 */
@@ -429,6 +429,11 @@ public class UDSStaffUtil
     {
         { "ส่งออกแล้ว", "Export", "Y" },
         { "ยังไม่ถูกส่งออก", "Not Exported", "N" }
+    };
+
+    public static string[,] _profilepictureStatus = new string[,]
+    {
+        { "ผ่านการอนุมัติ", "Approved", "Y" }
     };
 
     public static Dictionary<string, object> GetInfoLogin(string _page, string _id)
@@ -2254,7 +2259,7 @@ public class UDSStaffUtil
             _dt.Columns.Add("TranscriptBackSideApprovalStatus");
         }
 
-        if (_page.Equals(PAGE_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_PROGRESS) ||
+        if (//_page.Equals(PAGE_OURSERVICESEXPORTPROFILEPICTUREAPPROVED_PROGRESS) ||
             _page.Equals(PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATIONFORSMARTCARD_PROGRESS))
         {
             _dt.Columns.Add("IdCard");

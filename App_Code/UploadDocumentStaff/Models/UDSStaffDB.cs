@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๓/๐๖/๒๕๕๘>
-Modify date : <๑๒/๐๗/๒๕๕๙>
+Modify date : <๐๗/๐๘/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการจัดการข้อมูลในฐานข้อมูล>
 =============================================
 */
@@ -42,7 +42,7 @@ public class UDSStaffDB
             new SqlParameter("@studentStatus", (_paramSearch.ContainsKey("StudentStatus").Equals(true) ? _paramSearch["StudentStatus"] : String.Empty)),
             new SqlParameter("@documentUpload", (_paramSearch.ContainsKey("DocumentUpload").Equals(true) ? _paramSearch["DocumentUpload"] : String.Empty)),
             new SqlParameter("@submittedStatus", (_paramSearch.ContainsKey("SubmittedStatus").Equals(true) ? _paramSearch["SubmittedStatus"] : String.Empty)),
-            new SqlParameter("@approvalStatus", (_paramSearch.ContainsKey("ApprovalStatus").Equals(true) ? _paramSearch["ApprovalStatus"] : String.Empty)),
+            new SqlParameter("@approvalStatus", (_paramSearch.ContainsKey("ApprovalStatus").Equals(true) ? (_paramSearch["ApprovalStatus"].Equals("0") ? String.Empty : _paramSearch["ApprovalStatus"]) : String.Empty)),
             new SqlParameter("@instituteCountry", (_paramSearch.ContainsKey("InstituteCountry").Equals(true) ? _paramSearch["InstituteCountry"] : String.Empty)),
             new SqlParameter("@instituteProvince", (_paramSearch.ContainsKey("InstituteProvince").Equals(true) ? _paramSearch["InstituteProvince"] : String.Empty)),
             new SqlParameter("@institute", (_paramSearch.ContainsKey("Institute").Equals(true) ? _paramSearch["Institute"] : String.Empty)),

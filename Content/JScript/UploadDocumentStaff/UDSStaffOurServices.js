@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๔/๐๖/๒๕๕๘>
-Modify date : <๒๙/๐๕/๒๕๖๒>
+Modify date : <๐๖/๐๘/๒๕๖๔>
 Description : <รวมรวบฟังก์ชั่นใช้งานทั่วไปในส่วนของการส่งออกข้อมูล>
 =============================================
 */
@@ -284,21 +284,6 @@ var UDSStaffOurServices = {
             getResultProcess: function (_param) {
                 _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
                 _param["resultValueProcess"] = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
-
-                var _this = Util.tut.tos.exportprofilepictureapproved;
-                var _detailComplete = _param["resultValueProcess"].DetailComplete;
-                var _idTable = (_this.idSectionMain + "-table");
-                var _idTableRow;
-                var _valueArray = _detailComplete.split(",");
-                var _valueSubArray;
-
-                for (_i = 0; _i < _valueArray.length; _i++) {
-                    _valueSubArray = _valueArray[_i].split(";");
-                    _idTableRow = (_idTable + " .table-grid #table-row-id-" + _valueSubArray[0]);
-
-                    if ($("#" + _idTableRow).length > 0)
-                        $("#" + _idTableRow + " .table-col-exportdate").html(_valueSubArray[1]);
-                }
             }
         }
     },
@@ -387,6 +372,21 @@ var UDSStaffOurServices = {
             getResultProcess: function (_param) {
                 _param["page"] = (_param["page"] == undefined ? "" : _param["page"]);
                 _param["resultValueProcess"] = (_param["resultValueProcess"] == undefined || _param["resultValueProcess"] == "" ? null : _param["resultValueProcess"]);
+
+                var _this = Util.tut.tos.exportstudentrecordsinformationforsmartcard;
+                var _detailComplete = _param["resultValueProcess"].DetailComplete;
+                var _idTable = (_this.idSectionMain + "-table");
+                var _idTableRow;
+                var _valueArray = _detailComplete.split(",");
+                var _valueSubArray;
+
+                for (_i = 0; _i < _valueArray.length; _i++) {
+                    _valueSubArray = _valueArray[_i].split(";");
+                    _idTableRow = (_idTable + " .table-grid #table-row-id-" + _valueSubArray[0]);
+
+                    if ($("#" + _idTableRow).length > 0)
+                        $("#" + _idTableRow + " .table-col-exportdate").html(_valueSubArray[1]);
+                }
             }
         }
     },

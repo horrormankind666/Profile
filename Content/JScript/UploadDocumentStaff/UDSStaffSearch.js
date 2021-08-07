@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๕/๐๖/๒๕๕๘>
-Modify date : <๒๙/๐๕/๒๕๖๒>
+Modify date : <๐๗/๐๘/๒๕๖๔>
 Description : <รวมรวบฟังก์ชั่นใช้งานในส่วนของการค้นหาข้อมูล>
 =============================================
 */
@@ -359,7 +359,7 @@ var UDSStaffSearch = {
         var _valueSearch = this.getValueSearch({
             page: _param["page"]
         });
-
+        
         Util.msgPreloading = "Searching...";
                 
         this.actionSearch({
@@ -1205,6 +1205,16 @@ var UDSStaffSearch = {
                     height: 27
                 });
                 Util.initCombobox({
+                    id: ("#" + this.idSectionSearch + "-approvalstatus"),
+                    width: 0,
+                    height: 27
+                });
+                Util.initCombobox({
+                    id: ("#" + this.idSectionSearch + "-exportstatus"),
+                    width: 0,
+                    height: 27
+                });
+                Util.initCombobox({
                     id: ("#" + this.idSectionSearch + "-sortorderby"),
                     width: 206,
                     height: 27
@@ -1252,6 +1262,14 @@ var UDSStaffSearch = {
                     value: (_param["reset"] == true ? "0" : $("#" + this.idSectionSearch + "-studentstatus-hidden").val())
                 });
                 Util.comboboxSetValue({
+                    id: ("#" + this.idSectionSearch + "-approvalstatus"),
+                    value: (_param["reset"] == true ? "Y" : $("#" + this.idSectionSearch + "-approvalstatus-hidden").val())
+                });
+                Util.comboboxSetValue({
+                    id: ("#" + this.idSectionSearch + "-exportstatus"),
+                    value: (_param["reset"] == true ? "0" : $("#" + this.idSectionSearch + "-exportstatus-hidden").val())
+                });
+                Util.comboboxSetValue({
                     id: ("#" + this.idSectionSearch + "-sortorderby"),
                     value: (_param["reset"] == true ? "Student ID" : $("#" + this.idSectionSearch + "-sortorderby-hidden").val())
                 });
@@ -1267,8 +1285,13 @@ var UDSStaffSearch = {
                 return (_i > 0 ? false : true);
             },
             valueSearch: function () {
+                var _approvalstatus = Util.getSelectionIsSelect({
+                    id: ("#" + this.idSectionSearch + "-approvalstatus"),
+                    type: "select",
+                    valueTrue: Util.comboboxGetValue("#" + this.idSectionSearch + "-approvalstatus")
+                });
                 var _send = {};
-                _send["sectionaction"] = "submitapprove";
+                _send["sectionaction"] = (_approvalstatus == "Y" ? "approve" : "submitapprove");
                 _send["keyword"] = $("#" + this.idSectionSearch + "-keyword").val();
                 _send["degreelevel"] = Util.getSelectionIsSelect({
                     id: ("#" + this.idSectionSearch + "-degreelevel"),
@@ -1300,16 +1323,20 @@ var UDSStaffSearch = {
                     type: "select",
                     valueTrue: Util.comboboxGetValue("#" + this.idSectionSearch + "-studentstatus")
                 });
-                _send["documentupload"] = "ProfilePicture"
+                _send["documentupload"] = (_approvalstatus == "Y" ? "ProfilePictureIdentityCard" : "ProfilePicture");
                 _send["submittedstatus"] = "";
-                _send["approvalstatus"] = "";
+                _send["approvalstatus"] = (_approvalstatus == "Y" ? _approvalstatus : "0");
                 _send["institutecountry"] = "";
                 _send["instituteprovince"] = "";
                 _send["institute"] = "";
                 _send["sentdatestartaudit"] = "";
                 _send["sentdateendaudit"] = "";
                 _send["auditedstatus"] = "";
-                _send["exportstatus"] = "";
+                _send["exportstatus"] = Util.getSelectionIsSelect({
+                    id: ("#" + this.idSectionSearch + "-exportstatus"),
+                    type: "select",
+                    valueTrue: Util.comboboxGetValue("#" + this.idSectionSearch + "-exportstatus")
+                });
                 _send["sortorderby"] = Util.getSelectionIsSelect({
                     id: ("#" + this.idSectionSearch + "-sortorderby"),
                     type: "select",
