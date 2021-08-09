@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๑๒/๑๑/๒๕๕๘>
-Modify date : <๑๕/๐๗/๒๕๖๔>
+Modify date : <๐๙/๐๘/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นการประมวลผลข้อมูล>
 =============================================
 */
@@ -609,7 +609,7 @@ public class ePFStaffProgressDataUtil
                                         _dr3["DegreeLevel"] = (!String.IsNullOrEmpty(_dataRecordedStudentRecords["DegreeLevelNameTH"].ToString()) ? _dataRecordedStudentRecords["DegreeLevelNameTH"] : _dataRecordedStudentRecords["DegreeLevelNameEN"]); 
                                         _dr3["Faculty"] = (!String.IsNullOrEmpty(_dataRecordedStudentRecords["FacultyNameTH"].ToString()) ? _dataRecordedStudentRecords["FacultyNameTH"] : _dataRecordedStudentRecords["FacultyNameEN"]);
                                         _dr3["ProgramCode"] = _dataRecordedStudentRecords["ProgramCode"].ToString();
-                                        _dr3["Program"] = (!String.IsNullOrEmpty(_dataRecordedStudentRecords["ProgramNameTH"].ToString()) ? _dataRecordedStudentRecords["ProgramNameTH"] : _dataRecordedStudentRecords["ProgramNameEN"]); 
+                                        _dr3["Program"] = (!String.IsNullOrEmpty(_dataRecordedStudentRecords["ProgramNameTH"].ToString()) ? _dataRecordedStudentRecords["ProgramNameTH"] : _dataRecordedStudentRecords["ProgramNameEN"]);                                        
                                         _dr3["YearEntry"] = _dataRecordedStudentRecords["YearEntry"]; 
                                         _dr3["Class"] = _dataRecordedStudentRecords["Class"]; 
                                         _dr3["AdmissionType"] = (!String.IsNullOrEmpty(_dataRecordedStudentRecords["EntranceTypeNameTH"].ToString()) ? _dataRecordedStudentRecords["EntranceTypeNameTH"] : _dataRecordedStudentRecords["EntranceTypeNameEN"]); 
@@ -638,11 +638,12 @@ public class ePFStaffProgressDataUtil
                                         _dr3["EducationalBackgroundPerson"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["EducationalBackgroundPersonNameTH"].ToString()) ? _dataRecordedPersonal["EducationalBackgroundPersonNameTH"] : _dataRecordedPersonal["EducationalBackgroundPersonNameEN"]); 
                                         _dr3["Brotherhood"] = _dataRecordedPersonal["Brotherhood"]; 
                                         */
-                                        _dr3["Childhood"] = _dataRecordedPersonal["Childhood"]; 
+                                        _dr3["Childhood"] = _dataRecordedPersonal["Childhood"];
                                         /*
                                         _dr3["Studyhood"] = _dataRecordedPersonal["Studyhood"]; 
                                         _dr3["EmailAddress"] = _dataRecordedPersonal["EmailAddress"]; 
                                         */
+                                        _dr3["Barcode"] = _dataRecordedStudentRecords["Barcode"];
                                         _dr3["CountryPermanentAddress"] = (!String.IsNullOrEmpty(_dataRecordedAddress["CountryNameTHPermanentAddress"].ToString()) ? _dataRecordedAddress["CountryNameTHPermanentAddress"] : _dataRecordedAddress["CountryNameENPermanentAddress"]); 
                                         _dr3["ProvincePermanentAddress"] = (!String.IsNullOrEmpty(_dataRecordedAddress["ProvinceNameTHPermanentAddress"].ToString()) ? _dataRecordedAddress["ProvinceNameTHPermanentAddress"] : _dataRecordedAddress["ProvinceNameENPermanentAddress"]);
                                         _dr3["DistrictPermanentAddress"] = (!String.IsNullOrEmpty(_dataRecordedAddress["DistrictNameTHPermanentAddress"].ToString()) ? _dataRecordedAddress["DistrictNameTHPermanentAddress"] : _dataRecordedAddress["DistrictNameENPermanentAddress"]); 
@@ -1193,9 +1194,9 @@ public class ePFStaffProgressDataUtil
                     if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_PROGRESS))
                     {
                         _maxRowCellRange = (_complete + 2);
-                        _maxColCellRange = 107;
+                        _maxColCellRange = 108;
                         _maxRowCellHeader = 2;
-                        _maxColCellHeader = 107;
+                        _maxColCellHeader = 108;
                     }
                     if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENTLEVEL1VIEWTABLE_PROGRESS))
                     {
@@ -1266,7 +1267,8 @@ public class ePFStaffProgressDataUtil
                             /*
                             new[] { "จำนวนพี่น้องที่กำลังศึกษาอยู่ ( รวมตัวเอง ) ( คน )", "Studyhood", "center", "" },
                             new[] { "อีเมล์", "EmailAddress", "", "" },
-                            */                            
+                            */
+                            new[] { "Bar Code", "Barcode", "", "" },
                             new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nหมู่บ้าน", "VillagePermanentAddress", "", "" },
                             new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nบ้านเลขที่", "AddressNumberPermanentAddress", "", "" },
                             new[] { "ข้อมูลทีอยู่ตามทะเบียนบ้าน\nหมู่ที่", "VillageNoPermanentAddress", "", "" },

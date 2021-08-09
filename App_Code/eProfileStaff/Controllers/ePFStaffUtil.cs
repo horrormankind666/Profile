@@ -2,7 +2,7 @@
 =============================================
 Author      : <ยุทธภูมิ ตวันนา>
 Create date : <๒๔/๑๒/๒๕๕๗>
-Modify date : <๒๓/๐๖/๒๕๖๔>
+Modify date : <๐๙/๐๘/๒๕๖๔>
 Description : <คลาสใช้งานเกี่ยวกับการใช้งานฟังก์ชั่นทั่วไป>
 =============================================
 */
@@ -2761,6 +2761,7 @@ public class ePFStaffUtil
             _dt.Columns.Add("Childhood");
             _dt.Columns.Add("Studyhood");
             _dt.Columns.Add("EmailAddress");
+            _dt.Columns.Add("Barcode");
             _dt.Columns.Add("CountryPermanentAddress");
             _dt.Columns.Add("ProvincePermanentAddress");
             _dt.Columns.Add("DistrictPermanentAddress");
