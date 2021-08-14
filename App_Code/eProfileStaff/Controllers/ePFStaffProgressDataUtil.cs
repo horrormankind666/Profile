@@ -505,6 +505,139 @@ public class ePFStaffProgressDataUtil
                                 {
                                     if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_PROGRESS))
                                     {
+                                        DataSet _ds3 = Util.DBUtil.ExecuteCommandStoredProcedure("sp_perGetPersonStudentInfo",
+                                            new SqlParameter("@personId", _dr1["id"].ToString())
+                                        );
+                                        DataRow _dr3 = _ds3.Tables[0].Rows[0];
+
+                                        Util.DBUtil.SetEventLog(
+                                            (HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + "/eProfile/Module/Operation/eProfileStaff/index.aspx?p=" + ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_MAIN),
+                                            ("?p=" + ePFStaffUtil.PAGE_OURSERVICESEXPORTSTUDENTRECORDSINFORMATION_MAIN),
+                                            Util.GetCookie(FinServiceLogin.USERTYPE_STAFF).Value,
+                                            ("e-ProfileStaff => export student records information ( " + _dr2["studentCode"].ToString() + ")"),
+                                            _username
+                                        );
+
+                                        _i++;
+
+                                        DataRow _dr4 = _dt2.NewRow();
+                                        Dictionary<string, object> _age = new Dictionary<string, object>();
+
+                                        if (!String.IsNullOrEmpty(_dr3["enBirthDate"].ToString()))
+                                            _age = ePFStaffUtil.CalAge(_dr3["enBirthDate"].ToString(), Util.CurrentDate("dd/MM/yyyy"));
+
+                                        _dr4["No."] = _i.ToString("#,##0");
+                                        _dr4["StudentCode"] = (!String.IsNullOrEmpty(_dr2["studentCode"].ToString()) ? _dr2["studentCode"] : "XXXXXXX");
+                                        _dr4["TitlePrefixTH"] = (!String.IsNullOrEmpty(_dr3["thTitleInitials"].ToString()) ? _dr3["thTitleInitials"].ToString() : _dr3["thTitleFullName"].ToString());
+                                        _dr4["TitlePrefixEN"] = (!String.IsNullOrEmpty(_dr3["enTitleInitials"].ToString()) ? _dr3["enTitleInitials"].ToString() : _dr3["enTitleFullName"].ToString());
+                                        _dr4["FirstNameTH"] = (!String.IsNullOrEmpty(_dr3["firstName"].ToString()) ? _dr3["firstName"].ToString() : String.Empty);
+                                        _dr4["FirstNameEN"] = (!String.IsNullOrEmpty(_dr3["enFirstName"].ToString()) ? _dr3["enFirstName"].ToString() : String.Empty);
+                                        _dr4["MiddleNameTH"] = (!String.IsNullOrEmpty(_dr3["middleName"].ToString()) ? _dr3["middleName"].ToString() : String.Empty);
+                                        _dr4["MiddleNameEN"] = (!String.IsNullOrEmpty(_dr3["enMiddleName"].ToString()) ? _dr3["enMiddleName"].ToString() : String.Empty);
+                                        _dr4["LastNameTH"] = (!String.IsNullOrEmpty(_dr3["lastName"].ToString()) ? _dr3["lastName"].ToString() : String.Empty);
+                                        _dr4["LastNameEN"] = (!String.IsNullOrEmpty(_dr3["enLastName"].ToString()) ? _dr3["enLastName"].ToString() : String.Empty);
+                                        _dr4["FullNameTH"] = Util.GetFullName(_dr3["thTitleInitials"].ToString(), _dr3["thTitleFullName"].ToString(), _dr3["firstName"].ToString(), _dr3["middleName"].ToString(), _dr3["lastName"].ToString());
+                                        _dr4["FullNameEN"] = Util.GetFullName(_dr3["enTitleInitials"].ToString(), _dr3["enTitleFullName"].ToString(), _dr3["enFirstName"].ToString(), _dr3["enMiddleName"].ToString(), _dr3["enLastName"].ToString());
+                                        _dr4["DegreeLevel"] = (!String.IsNullOrEmpty(_dr2["degreeLevelNameTH"].ToString()) ? _dr2["degreeLevelNameTH"].ToString() : _dr2["degreeLevelNameEN"].ToString());
+                                        _dr4["Faculty"] = (!String.IsNullOrEmpty(_dr2["facultyNameTH"].ToString()) ? _dr2["facultyNameTH"].ToString() : _dr2["facultyNameEN"].ToString());
+                                        _dr4["ProgramCode"] = (!String.IsNullOrEmpty(_dr2["programCodeNew"].ToString()) ? _dr2["programCodeNew"].ToString() : String.Empty);
+                                        _dr4["Program"] = (!String.IsNullOrEmpty(_dr2["programNameTH"].ToString()) ? _dr2["programNameTH"].ToString() : _dr2["programNameEN"].ToString());
+                                        _dr4["YearEntry"] = (!String.IsNullOrEmpty(_dr2["yearEntry"].ToString()) ? _dr2["yearEntry"].ToString() : String.Empty);
+                                        _dr4["Class"] = (!String.IsNullOrEmpty(_dr2["class"].ToString()) ? _dr2["class"].ToString() : String.Empty);
+                                        _dr4["AdmissionType"] = (!String.IsNullOrEmpty(_dr2["stdEntranceTypeNameTH"].ToString()) ? _dr2["stdEntranceTypeNameTH"].ToString() : _dr2["stdEntranceTypeNameEN"].ToString());
+                                        _dr4["StudentStatus"] = (!String.IsNullOrEmpty(_dr2["statusTypeNameTH"].ToString()) ? _dr2["statusTypeNameTH"].ToString() : _dr2["statusTypeNameEN"].ToString());
+                                        _dr4["AdmissionDate"] = (!String.IsNullOrEmpty(_dr2["admissionDate"].ToString()) ? DateTime.Parse(_dr2["admissionDate"].ToString()).ToString("dd/MM/yyyy") : String.Empty);
+                                        _dr4["GraduationDate"] = (!String.IsNullOrEmpty(_dr2["graduateDate"].ToString()) ? DateTime.Parse(_dr2["graduateDate"].ToString()).ToString("dd/MM/yyyy") : String.Empty);
+                                        _dr4["ReasonOfGraduation"] = (_dr2["statusGroup"].ToString().Equals("02") && !String.IsNullOrEmpty(_dr2["updateReason"].ToString()) ? _dr2["updateReason"].ToString().Replace("\n", "\r\n") : String.Empty);
+                                        _dr4["IdCard"] = (!String.IsNullOrEmpty(_dr3["idCard"].ToString()) ? _dr3["idCard"].ToString() : String.Empty);
+                                        _dr4["Gender"] = (!String.IsNullOrEmpty(_dr3["thGenderFullName"].ToString()) ? _dr3["thGenderFullName"].ToString() : _dr3["enGenderFullName"].ToString());
+                                        _dr4["Birthdate"] = (!String.IsNullOrEmpty(_dr3["thBirthDate"].ToString()) ? _dr3["thBirthDate"].ToString() : _dr3["enBirthDate"].ToString());
+                                        _dr4["AgeYear"] = (_age.ContainsKey("Year").Equals(true) ? (!_age["Year"].Equals(0) ? _age["Year"].ToString() : String.Empty) : String.Empty);
+                                        _dr4["AgeMonth"] = (_age.ContainsKey("Month").Equals(true) ? (!_age["Month"].Equals(0) ? _age["Month"].ToString() : String.Empty) : String.Empty);
+                                        _dr4["AgeDay"] = (_age.ContainsKey("Day").Equals(true) ? (!_age["Day"].Equals(0) ? _age["Day"].ToString() : String.Empty) : String.Empty);
+                                        _dr4["Nationality"] = (!String.IsNullOrEmpty(_dr3["thNationalityName"].ToString()) ? _dr3["thNationalityName"].ToString() : _dr3["enNationalityName"].ToString());
+                                        _dr4["Childhood"] = (!String.IsNullOrEmpty(_dr3["childhoodNumber"].ToString()) ? _dr3["childhoodNumber"].ToString() : String.Empty);
+                                        _dr4["Barcode"] = (!String.IsNullOrEmpty(_dr2["barcode"].ToString()) ? _dr2["barcode"].ToString() : String.Empty);
+                                        _dr4["CountryPermanentAddress"] = (!String.IsNullOrEmpty(_dr3["thCountryNamePermanent"].ToString()) ? _dr3["thCountryNamePermanent"].ToString() : _dr3["enCountryNamePermanent"].ToString());
+                                        _dr4["ProvincePermanentAddress"] = (!String.IsNullOrEmpty(_dr3["thPlaceNamePermanent"].ToString()) ? _dr3["thPlaceNamePermanent"].ToString() : _dr3["enPlaceNamePermanent"].ToString());
+                                        _dr4["DistrictPermanentAddress"] = (!String.IsNullOrEmpty(_dr3["thDistrictNamePermanent"].ToString()) ? _dr3["thDistrictNamePermanent"].ToString() : _dr3["enDistrictNamePermanent"].ToString());
+                                        _dr4["SubDistrictPermanentAddress"] = (!String.IsNullOrEmpty(_dr3["thSubdistrictNamePermanent"].ToString()) ? _dr3["thSubdistrictNamePermanent"].ToString() : _dr3["enSubdistrictNamePermanent"].ToString());
+                                        _dr4["PostalCodePermanentAddress"] = (!String.IsNullOrEmpty(_dr3["zipCodePermanent"].ToString()) ? _dr3["zipCodePermanent"].ToString() : String.Empty);
+                                        _dr4["VillagePermanentAddress"] = (!String.IsNullOrEmpty(_dr3["villagePermanent"].ToString()) ? _dr3["villagePermanent"].ToString() : String.Empty);
+                                        _dr4["AddressNumberPermanentAddress"] = (!String.IsNullOrEmpty(_dr3["noPermanent"].ToString()) ? _dr3["noPermanent"].ToString() : String.Empty);
+                                        _dr4["VillageNoPermanentAddress"] = (!String.IsNullOrEmpty(_dr3["mooPermanent"].ToString()) ? _dr3["mooPermanent"].ToString() : String.Empty);
+                                        _dr4["LaneAlleyPermanentAddress"] = (!String.IsNullOrEmpty(_dr3["soiPermanent"].ToString()) ? _dr3["soiPermanent"].ToString() : String.Empty);
+                                        _dr4["RoadPermanentAddress"] = (!String.IsNullOrEmpty(_dr3["roadPermanent"].ToString()) ? _dr3["roadPermanent"].ToString() : String.Empty);
+                                        _dr4["PhoneNumberPermanentAddress"] = (!String.IsNullOrEmpty(_dr3["phoneNumberPermanent"].ToString()) ? _dr3["phoneNumberPermanent"].ToString() : String.Empty);
+                                        _dr4["MobileNumberPermanentAddress"] = (!String.IsNullOrEmpty(_dr3["mobileNumberPermanent"].ToString()) ? _dr3["mobileNumberPermanent"].ToString() : String.Empty);
+                                        _dr4["FaxNumberPermanentAddress"] = (!String.IsNullOrEmpty(_dr3["faxNumberPermanent"].ToString()) ? _dr3["faxNumberPermanent"].ToString() : String.Empty);
+                                        _dr4["CountryCurrentAddress"] = (!String.IsNullOrEmpty(_dr3["thCountryNameCurrent"].ToString()) ? _dr3["thCountryNameCurrent"].ToString() : _dr3["enCountryNameCurrent"].ToString());
+                                        _dr4["ProvinceCurrentAddress"] = (!String.IsNullOrEmpty(_dr3["thPlaceNameCurrent"].ToString()) ? _dr3["thPlaceNameCurrent"].ToString() : _dr3["enPlaceNameCurrent"].ToString());
+                                        _dr4["DistrictCurrentAddress"] = (!String.IsNullOrEmpty(_dr3["thDistrictNameCurrent"].ToString()) ? _dr3["thDistrictNameCurrent"].ToString() : _dr3["enDistrictNameCurrent"].ToString());
+                                        _dr4["SubDistrictCurrentAddress"] = (!String.IsNullOrEmpty(_dr3["thSubdistrictNameCurrent"].ToString()) ? _dr3["thSubdistrictNameCurrent"].ToString() : _dr3["enSubdistrictNameCurrent"].ToString());
+                                        _dr4["PostalCodeCurrentAddress"] = (!String.IsNullOrEmpty(_dr3["zipCodeCurrent"].ToString()) ? _dr3["zipCodeCurrent"].ToString() : String.Empty);
+                                        _dr4["VillageCurrentAddress"] = (!String.IsNullOrEmpty(_dr3["villageCurrent"].ToString()) ? _dr3["villageCurrent"].ToString() : String.Empty);
+                                        _dr4["AddressNumberCurrentAddress"] = (!String.IsNullOrEmpty(_dr3["noCurrent"].ToString()) ? _dr3["noCurrent"].ToString() : String.Empty);
+                                        _dr4["VillageNoCurrentAddress"] = (!String.IsNullOrEmpty(_dr3["mooCurrent"].ToString()) ? _dr3["mooCurrent"].ToString() : String.Empty);
+                                        _dr4["LaneAlleyCurrentAddress"] = (!String.IsNullOrEmpty(_dr3["soiCurrent"].ToString()) ? _dr3["soiCurrent"].ToString() : String.Empty);
+                                        _dr4["RoadCurrentAddress"] = (!String.IsNullOrEmpty(_dr3["roadCurrent"].ToString()) ? _dr3["roadCurrent"].ToString() : String.Empty);
+                                        _dr4["PhoneNumberCurrentAddress"] = (!String.IsNullOrEmpty(_dr3["phoneNumberCurrent"].ToString()) ? _dr3["phoneNumberCurrent"].ToString() : String.Empty);
+                                        _dr4["MobileNumberCurrentAddress"] = (!String.IsNullOrEmpty(_dr3["mobileNumberCurrent"].ToString()) ? _dr3["mobileNumberCurrent"].ToString() : String.Empty);
+                                        _dr4["FaxNumberCurrentAddress"] = (!String.IsNullOrEmpty(_dr3["faxNumberCurrent"].ToString()) ? _dr3["faxNumberCurrent"].ToString() : String.Empty);
+                                        _dr4["InstituteNameHighSchool"] = (!String.IsNullOrEmpty(_dr3["highSchoolName"].ToString()) ? _dr3["highSchoolName"].ToString() : String.Empty);
+                                        _dr4["InstituteCountryHighSchool"] = (!String.IsNullOrEmpty(_dr3["thHighSchoolCountryName"].ToString()) ? _dr3["thHighSchoolCountryName"].ToString() : _dr3["enHighSchoolCountryName"].ToString());
+                                        _dr4["InstituteProvinceHighSchool"] = (!String.IsNullOrEmpty(_dr3["thHighSchoolPlaceName"].ToString()) ? _dr3["thHighSchoolPlaceName"].ToString() : _dr3["enHighSchoolPlaceName"].ToString());
+                                        _dr4["StudentIdHighSchool"] = (!String.IsNullOrEmpty(_dr3["highSchoolStudentId"].ToString()) ? _dr3["highSchoolStudentId"].ToString() : String.Empty);
+                                        _dr4["GPAHighSchool"] = (!String.IsNullOrEmpty(_dr3["highSchoolGPA"].ToString()) ? _dr3["highSchoolGPA"].ToString() : String.Empty);
+                                        _dr4["Sportsman"] = (!String.IsNullOrEmpty(_dr3["sportsmanDetail"].ToString()) ? _dr3["sportsmanDetail"].ToString().Replace("\n", "\r\n") : String.Empty);
+                                        _dr4["SpecialistSport"] = (!String.IsNullOrEmpty(_dr3["specialistSportDetail"].ToString()) ? _dr3["specialistSportDetail"].ToString().Replace("\n", "\r\n") : String.Empty);
+                                        _dr4["SpecialistArt"] = (!String.IsNullOrEmpty(_dr3["specialistArtDetail"].ToString()) ? _dr3["specialistArtDetail"].ToString().Replace("\n", "\r\n") : String.Empty);
+                                        _dr4["SpecialistTechnical"] = (!String.IsNullOrEmpty(_dr3["specialistTechnicalDetail"].ToString()) ? _dr3["specialistTechnicalDetail"].ToString().Replace("\n", "\r\n") : String.Empty);
+                                        _dr4["SpecialistOther"] = (!String.IsNullOrEmpty(_dr3["specialistOtherDetail"].ToString()) ? _dr3["specialistOtherDetail"].ToString().Replace("\n", "\r\n") : String.Empty);
+                                        _dr4["Activity"] = (!String.IsNullOrEmpty(_dr3["activityDetail"].ToString()) ? _dr3["activityDetail"].ToString().Replace("\n", "\r\n") : String.Empty);
+                                        _dr4["Reward"] = (!String.IsNullOrEmpty(_dr3["rewardDetail"].ToString()) ? _dr3["rewardDetail"].ToString().Replace("\n", "\r\n") : String.Empty);
+                                        _dr4["Impairments"] = (!String.IsNullOrEmpty(_dr3["impairmentsNameTH"].ToString()) ? _dr3["impairmentsNameTH"].ToString() : _dr3["impairmentsNameEN"].ToString());
+                                        _dr4["ImpairmentsEquipment"] = (!String.IsNullOrEmpty(_dr3["impairmentsEquipment"].ToString()) ? _dr3["impairmentsEquipment"].ToString() : String.Empty);
+                                        _dr4["IdCardPWD"] = (!String.IsNullOrEmpty(_dr3["idCardPWD"].ToString()) ? _dr3["idCardPWD"].ToString() : String.Empty);
+                                        _dr4["IdCardPWDIssueDate"] = (!String.IsNullOrEmpty(_dr3["thIdCardPWDIssueDate"].ToString()) ? _dr3["thIdCardPWDIssueDate"].ToString() : _dr3["enIdCardPWDIssueDate"].ToString());
+                                        _dr4["IdCardPWDExpiryDate"] = (!String.IsNullOrEmpty(_dr3["thIdCardPWDExpiryDate"].ToString()) ? _dr3["thIdCardPWDExpiryDate"].ToString() : _dr3["enIdCardPWDExpiryDate"].ToString());
+                                        _dr4["ScholarshipFirstBachelorFrom"] = (!String.IsNullOrEmpty(_dr3["thScholarshipFirstBachelorFrom"].ToString()) ? _dr3["thScholarshipFirstBachelorFrom"].ToString() : _dr3["enScholarshipFirstBachelorFrom"].ToString());
+                                        _dr4["ScholarshipFirstBachelorName"] = (!String.IsNullOrEmpty(_dr3["scholarshipFirstBachelorName"].ToString()) ? _dr3["scholarshipFirstBachelorName"].ToString() : String.Empty);
+                                        _dr4["ScholarshipFirstBachelorMoney"] = (!String.IsNullOrEmpty(_dr3["scholarshipFirstBachelorMoney"].ToString()) ? double.Parse(_dr3["scholarshipFirstBachelorMoney"].ToString()).ToString("#,##0.00") : String.Empty);
+                                        _dr4["ScholarshipBachelorFrom"] = (!String.IsNullOrEmpty(_dr3["thScholarshipBachelorFrom"].ToString()) ? _dr3["thScholarshipBachelorFrom"].ToString() : _dr3["enScholarshipBachelorFrom"].ToString());
+                                        _dr4["ScholarshipBachelorName"] = (!String.IsNullOrEmpty(_dr3["scholarshipBachelorName"].ToString()) ? _dr3["scholarshipBachelorName"].ToString() : String.Empty);
+                                        _dr4["ScholarshipBachelorMoney"] = (!String.IsNullOrEmpty(_dr3["scholarshipBachelorMoney"].ToString()) ? double.Parse(_dr3["scholarshipBachelorMoney"].ToString()).ToString("#,##0.00") : String.Empty);
+                                        _dr4["WorkDuringStudySalary"] = (!String.IsNullOrEmpty(_dr3["salary"].ToString()) ? double.Parse(_dr3["salary"].ToString()).ToString("#,##0.00") : String.Empty);
+                                        _dr4["WorkDuringStudyWorkplace"] = (!String.IsNullOrEmpty(_dr3["workplace"].ToString()) ? _dr3["workplace"].ToString() : String.Empty);
+
+                                        _strTemp1 = String.Empty;
+                                        _strTemp2 = String.Empty;
+                                        _strTemp1 = (!String.IsNullOrEmpty(_dr3["thGotMoneyFrom"].ToString()) ? _dr3["thGotMoneyFrom"].ToString() : _dr3["enGotMoneyFrom"].ToString()).ToString();
+                                        _strTemp2 = (!String.IsNullOrEmpty(_dr3["gotMoneyFromOther"].ToString()) ? _dr3["gotMoneyFromOther"].ToString() : String.Empty);
+
+                                        _dr4["GotMoneyFrom"] = (!String.IsNullOrEmpty(_strTemp1) ? _strTemp1 : _strTemp2);
+                                        _dr4["GotMoneyPerMonth"] = (!String.IsNullOrEmpty(_dr3["gotMoneyPerMonth"].ToString()) ? double.Parse(_dr3["gotMoneyPerMonth"].ToString()).ToString("#,##0.00") : String.Empty);
+                                        _dr4["CostPerMonth"] = (!String.IsNullOrEmpty(_dr3["costPerMonth"].ToString()) ? double.Parse(_dr3["costPerMonth"].ToString()).ToString("#,##0.00") : String.Empty);
+
+                                        for (_j = 0; _j < ePFStaffUtil._familyRelation.GetLength(0); _j++)
+                                        {
+                                            if (ePFStaffUtil._familyRelation[_j, 0].Equals(ePFStaffUtil.SUBJECT_FAMILYPARENT))
+                                                _dr4["Relationship"] = (!String.IsNullOrEmpty(_dr3["relationshipNameTH"].ToString()) ? _dr3["relationshipNameTH"].ToString() : _dr3["relationshipNameEN"].ToString());
+
+                                            _dr4["IdCard" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dr3["idCard" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dr3["idCard" + ePFStaffUtil._familyRelation[_j, 0]].ToString() : String.Empty);
+                                            _dr4["FullNameTH" + ePFStaffUtil._familyRelation[_j, 0]] = Util.GetFullName(_dr3["thTitleInitials" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dr3["thTitleFullName" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dr3["firstName" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dr3["middleName" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dr3["lastName" + ePFStaffUtil._familyRelation[_j, 0]].ToString());
+                                            _dr4["FullNameEN" + ePFStaffUtil._familyRelation[_j, 0]] = Util.GetFullName(_dr3["enTitleInitials" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dr3["enTitleFullName" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dr3["enFirstName" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dr3["enMiddleName" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dr3["enLastName" + ePFStaffUtil._familyRelation[_j, 0]].ToString());
+                                            _dr4["Alive" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dr3["thAlive" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dr3["thAlive" + ePFStaffUtil._familyRelation[_j, 0]].ToString() : _dr3["enAlive" + ePFStaffUtil._familyRelation[_j, 0]]);
+                                            _dr4["EducationalBackgroundPerson" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dr3["thEducationalBackgroundName" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dr3["thEducationalBackgroundName" + ePFStaffUtil._familyRelation[_j, 0]].ToString() : _dr3["enEducationalBackgroundName" + ePFStaffUtil._familyRelation[_j, 0]]);
+                                            _dr4["Occupation" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dr3["thOccupation" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dr3["thOccupation" + ePFStaffUtil._familyRelation[_j, 0]].ToString() : _dr3["enOccupation" + ePFStaffUtil._familyRelation[_j, 0]]);
+
+                                            _dr4["Salary" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dr3["salary" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? double.Parse(_dr3["salary" + ePFStaffUtil._familyRelation[_j, 0]].ToString()).ToString("#,##0.00") : String.Empty);
+                                        }
+
+                                        _dt2.Rows.Add(_dr4);
+                                        _ds3.Dispose();
+
+                                        /*
                                         Dictionary<string, object> _dataRecordedStudentRecords = ePFStaffStudentRecordsUtil.StudentRecordsUtil.SetValueDataRecorded(new Dictionary<string, object>(), _ds2);
                                         Dictionary<string, object> _dataRecordedPersonal = ePFStaffStudentRecordsUtil.PersonalUtil.SetValueDataRecorded(new Dictionary<string, object>(), Util.DBUtil.GetPersonRecordsPersonal(_dr1["id"].ToString()));
                                         Dictionary<string, object> _dataRecordedAddress = ePFStaffStudentRecordsUtil.AddressUtil.SetValueDataRecorded(new Dictionary<string, object>(), Util.DBUtil.GetPersonRecordsAddress(_dr1["id"].ToString()));
@@ -619,30 +752,30 @@ public class ePFStaffProgressDataUtil
                                         _dr3["ReasonOfGraduation"] = (_dataRecordedStudentRecords["StatusGroup"].Equals("02") && !String.IsNullOrEmpty(_dataRecordedStudentRecords["UpdateReason"].ToString()) ? _dataRecordedStudentRecords["UpdateReason"].ToString().Replace("\n", "\r\n") : String.Empty);                                                                               
                                         _dr3["IdCard"] = _dataRecordedPersonal["IdCard"]; 
                                         _dr3["Gender"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["GenderFullNameTH"].ToString()) ? _dataRecordedPersonal["GenderFullNameTH"] : _dataRecordedPersonal["GenderFullNameEN"]); 
-                                        /*
+                                        /--*
                                         _dr3["Alive"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["AliveTH"].ToString()) ? _dataRecordedPersonal["AliveTH"] : _dataRecordedPersonal["AliveEN"]); 
-                                        */
+                                        *--/
                                         _dr3["Birthdate"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["BirthdateTH"].ToString()) ? _dataRecordedPersonal["BirthdateTH"] : _dataRecordedPersonal["BirthDateEN"]);
                                         _dr3["AgeYear"] = (_age.ContainsKey("Year").Equals(true) ? (!_age["Year"].Equals(0) ? _age["Year"].ToString() : String.Empty) : String.Empty);
                                         _dr3["AgeMonth"] = (_age.ContainsKey("Month").Equals(true) ? (!_age["Month"].Equals(0) ? _age["Month"].ToString() : String.Empty) : String.Empty);
                                         _dr3["AgeDay"] = (_age.ContainsKey("Day").Equals(true) ? (!_age["Day"].Equals(0) ? _age["Day"].ToString() : String.Empty) : String.Empty);
-                                        /*
+                                        /--*
                                         _dr3["Country"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["CountryNameTH"].ToString()) ? _dataRecordedPersonal["CountryNameTH"] : _dataRecordedPersonal["CountryNameEN"]); 
-                                        */
+                                        *--/
                                         _dr3["Nationality"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["NationalityNameTH"].ToString()) ? _dataRecordedPersonal["NationalityNameTH"] : _dataRecordedPersonal["NationalityNameEN"]); 
-                                        /*
+                                        /--*
                                         _dr3["Race"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["RaceNameTH"].ToString()) ? _dataRecordedPersonal["RaceNameTH"] : _dataRecordedPersonal["RaceNameEN"]); 
                                         _dr3["Religion"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["ReligionNameTH"].ToString()) ? _dataRecordedPersonal["ReligionNameTH"] : _dataRecordedPersonal["ReligionNameEN"]); 
                                         _dr3["BloodGroup"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["BloodGroupNameTH"].ToString()) ? _dataRecordedPersonal["BloodGroupNameTH"] : _dataRecordedPersonal["BloodGroupNameEN"]); 
                                         _dr3["MaritalStatus"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["MaritalStatusNameTH"].ToString()) ? _dataRecordedPersonal["MaritalStatusNameTH"] : _dataRecordedPersonal["MaritalStatusNameEN"]); 
                                         _dr3["EducationalBackgroundPerson"] = (!String.IsNullOrEmpty(_dataRecordedPersonal["EducationalBackgroundPersonNameTH"].ToString()) ? _dataRecordedPersonal["EducationalBackgroundPersonNameTH"] : _dataRecordedPersonal["EducationalBackgroundPersonNameEN"]); 
                                         _dr3["Brotherhood"] = _dataRecordedPersonal["Brotherhood"]; 
-                                        */
+                                        *--/
                                         _dr3["Childhood"] = _dataRecordedPersonal["Childhood"];
-                                        /*
+                                        /--*
                                         _dr3["Studyhood"] = _dataRecordedPersonal["Studyhood"]; 
                                         _dr3["EmailAddress"] = _dataRecordedPersonal["EmailAddress"]; 
-                                        */
+                                        *--/
                                         _dr3["Barcode"] = _dataRecordedStudentRecords["Barcode"];
                                         _dr3["CountryPermanentAddress"] = (!String.IsNullOrEmpty(_dataRecordedAddress["CountryNameTHPermanentAddress"].ToString()) ? _dataRecordedAddress["CountryNameTHPermanentAddress"] : _dataRecordedAddress["CountryNameENPermanentAddress"]); 
                                         _dr3["ProvincePermanentAddress"] = (!String.IsNullOrEmpty(_dataRecordedAddress["ProvinceNameTHPermanentAddress"].ToString()) ? _dataRecordedAddress["ProvinceNameTHPermanentAddress"] : _dataRecordedAddress["ProvinceNameENPermanentAddress"]);
@@ -670,7 +803,7 @@ public class ePFStaffProgressDataUtil
                                         _dr3["PhoneNumberCurrentAddress"] = _dataRecordedAddress["PhoneNumberCurrentAddress"]; 
                                         _dr3["MobileNumberCurrentAddress"] = _dataRecordedAddress["MobileNumberCurrentAddress"]; 
                                         _dr3["FaxNumberCurrentAddress"] = _dataRecordedAddress["FaxNumberCurrentAddress"]; 
-                                        /*
+                                        /--*
                                         _dr3["InstituteNamePrimarySchool"] = _dataRecordedEducation["InstituteNamePrimarySchool"]; 
                                         _dr3["InstituteCountryPrimarySchool"] = (!String.IsNullOrEmpty(_dataRecordedEducation["InstituteCountryNameTHPrimarySchool"].ToString()) ? _dataRecordedEducation["InstituteCountryNameTHPrimarySchool"] : _dataRecordedEducation["InstituteCountryNameENPrimarySchool"]); 
                                         _dr3["InstituteProvincePrimarySchool"] = (!String.IsNullOrEmpty(_dataRecordedEducation["InstituteProvinceNameTHPrimarySchool"].ToString()) ? _dataRecordedEducation["InstituteProvinceNameTHPrimarySchool"] : _dataRecordedEducation["InstituteProvinceNameENPrimarySchool"]); 
@@ -683,12 +816,12 @@ public class ePFStaffProgressDataUtil
                                         _dr3["YearAttendedJuniorHighSchool"] = _dataRecordedEducation["YearAttendedJuniorHighSchool"]; 
                                         _dr3["YearGraduateJuniorHighSchool"] = _dataRecordedEducation["YearGraduateJuniorHighSchool"]; 
                                         _dr3["GPAJuniorHighSchool"] = _dataRecordedEducation["GPAJuniorHighSchool"]; 
-                                        */
+                                        *--/
                                         _dr3["InstituteNameHighSchool"]  = _dataRecordedEducation["InstituteNameHighSchool"]; 
                                         _dr3["InstituteCountryHighSchool"]  = (!String.IsNullOrEmpty(_dataRecordedEducation["InstituteCountryNameTHHighSchool"].ToString()) ? _dataRecordedEducation["InstituteCountryNameTHHighSchool"] : _dataRecordedEducation["InstituteCountryNameENHighSchool"]); 
                                         _dr3["InstituteProvinceHighSchool"] = (!String.IsNullOrEmpty(_dataRecordedEducation["InstituteProvinceNameTHHighSchool"].ToString()) ? _dataRecordedEducation["InstituteProvinceNameTHHighSchool"] : _dataRecordedEducation["InstituteProvinceNameENHighSchool"]); 
                                         _dr3["StudentIdHighSchool"] = _dataRecordedEducation["StudentIdHighSchool"];
-                                        /*
+                                        /--*
                                         _strTemp1 = String.Empty;
                                         _strTemp2 = String.Empty;
                                         _strTemp1 = (!String.IsNullOrEmpty(_dataRecordedEducation["EducationalMajorNameTHHighSchool"].ToString()) ? _dataRecordedEducation["EducationalMajorNameTHHighSchool"] : _dataRecordedEducation["EducationalMajorNameENHighSchool"]).ToString();
@@ -697,9 +830,9 @@ public class ePFStaffProgressDataUtil
                                         _dr3["EducationalMajorHighSchool"] = (!String.IsNullOrEmpty(_strTemp1) ? _strTemp1 : _strTemp2); 
                                         _dr3["YearAttendedHighSchool"] = _dataRecordedEducation["YearAttendedHighSchool"]; 
                                         _dr3["YearGraduateHighSchool"] = _dataRecordedEducation["YearGraduateHighSchool"]; 
-                                        */
+                                        *--/
                                         _dr3["GPAHighSchool"] = _dataRecordedEducation["GPAHighSchool"]; 
-                                        /*
+                                        /--*
                                         _dr3["EducationalBackgroundHighSchool"] = (!String.IsNullOrEmpty(_dataRecordedEducation["EducationalBackgroundNameTHHighSchool"].ToString()) ? _dataRecordedEducation["EducationalBackgroundNameTHHighSchool"] : _dataRecordedEducation["EducationalBackgroundNameENHighSchool"]); 
                                         _dr3["EducationalBackground"] = (!String.IsNullOrEmpty(_dataRecordedEducation["EducationalBackgroundNameTH"].ToString()) ? _dataRecordedEducation["EducationalBackgroundNameTH"] : _dataRecordedEducation["EducationalBackgroundNameEN"]);
 
@@ -749,7 +882,7 @@ public class ePFStaffProgressDataUtil
                                         _dr3["ScoresPAT10"] = _dataRecordedEducation["ScoresPAT10"]; 
                                         _dr3["ScoresPAT11"] = _dataRecordedEducation["ScoresPAT11"]; 
                                         _dr3["ScoresPAT12"] = _dataRecordedEducation["ScoresPAT12"]; 
-                                        */
+                                        *--/
                                         _dr3["Sportsman"] = _dataRecordedTalent["SportsmanDetail"].ToString().Replace("\n", "\r\n"); 
                                         _dr3["SpecialistSport"] = _dataRecordedTalent["SpecialistSportDetail"].ToString().Replace("\n", "\r\n"); 
                                         _dr3["SpecialistArt"] = _dataRecordedTalent["SpecialistArtDetail"].ToString().Replace("\n", "\r\n"); 
@@ -757,7 +890,7 @@ public class ePFStaffProgressDataUtil
                                         _dr3["SpecialistOther"] = _dataRecordedTalent["SpecialistOtherDetail"].ToString().Replace("\n", "\r\n"); 
                                         _dr3["Activity"] = _dataRecordedTalent["ActivityDetail"].ToString().Replace("\n", "\r\n"); 
                                         _dr3["Reward"] = _dataRecordedTalent["RewardDetail"].ToString().Replace("\n", "\r\n"); 
-                                        /*
+                                        /--*
                                         _dr3["Weight"] = _weight; 
                                         _dr3["Height"] = _height; 
                                         _dr3["BMI"] = _bmi; 
@@ -766,13 +899,13 @@ public class ePFStaffProgressDataUtil
                                         _dr3["Diseases"] = _dataRecordedHealthy["DiseasesDetail"].ToString().Replace("\n", "\r\n"); 
                                         _dr3["AilHistoryFamily"] = _dataRecordedHealthy["AilHistoryFamilyDetail"].ToString().Replace("\n", "\r\n"); 
                                         _dr3["TravelAbroad"] = _travelAbroad; 
-                                        */
+                                        *--/
                                         _dr3["Impairments"] = (!String.IsNullOrEmpty(_dataRecordedHealthy["ImpairmentsNameTH"].ToString()) ? _dataRecordedHealthy["ImpairmentsNameTH"] : _dataRecordedHealthy["ImpairmentsNameEN"]); 
                                         _dr3["ImpairmentsEquipment"] = _dataRecordedHealthy["ImpairmentsEquipment"];
                                         _dr3["IdCardPWD"] = _dataRecordedHealthy["IdCardPWD"];
                                         _dr3["IdCardPWDIssueDate"] = (!String.IsNullOrEmpty(_dataRecordedHealthy["IdCardPWDIssueDateTH"].ToString()) ? _dataRecordedHealthy["IdCardPWDIssueDateTH"] : _dataRecordedHealthy["IdCardPWDIssueDateEN"]);
                                         _dr3["IdCardPWDExpiryDate"] = (!String.IsNullOrEmpty(_dataRecordedHealthy["IdCardPWDExpiryDateTH"].ToString()) ? _dataRecordedHealthy["IdCardPWDExpiryDateTH"] : _dataRecordedHealthy["IdCardPWDExpiryDateEN"]);
-                                        /*
+                                        /--*
                                         _dr3["Occupation"] = (!String.IsNullOrEmpty(_dataRecordedWork["OccupationTH"].ToString()) ? _dataRecordedWork["OccupationTH"] : _dataRecordedWork["OccupationEN"]); 
 
                                         _strTemp1 = String.Empty;
@@ -785,7 +918,7 @@ public class ePFStaffProgressDataUtil
                                         _dr3["Position"] = _dataRecordedWork["Position"]; 
                                         _dr3["Telephone"] = _dataRecordedWork["Telephone"]; 
                                         _dr3["Salary"] = (!String.IsNullOrEmpty(_dataRecordedWork["Salary"].ToString()) ? double.Parse(_dataRecordedWork["Salary"].ToString()).ToString("#,##0.00") : "");
-                                        */
+                                        *--/
                                         _dr3["ScholarshipFirstBachelorFrom"] = (!String.IsNullOrEmpty(_dataRecordedFinancial["ScholarshipFirstBachelorFromTH"].ToString()) ? _dataRecordedFinancial["ScholarshipFirstBachelorFromTH"] : _dataRecordedFinancial["ScholarshipFirstBachelorFromEN"]); 
                                         _dr3["ScholarshipFirstBachelorName"] = _dataRecordedFinancial["ScholarshipFirstBachelorName"]; 
                                         _dr3["ScholarshipFirstBachelorMoney"] = (!String.IsNullOrEmpty(_dataRecordedFinancial["ScholarshipFirstBachelorMoney"].ToString()) ? double.Parse(_dataRecordedFinancial["ScholarshipFirstBachelorMoney"].ToString()).ToString("#,##0.00") : "");
@@ -840,7 +973,7 @@ public class ePFStaffProgressDataUtil
                                             _dr3["FullNameTH" + ePFStaffUtil._familyRelation[_j, 0]] = Util.GetFullName(_dataRecordedFamilyPersonal["TitleInitialsTH" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dataRecordedFamilyPersonal["TitleFullNameTH" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dataRecordedFamilyPersonal["FirstName" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dataRecordedFamilyPersonal["MiddleName" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dataRecordedFamilyPersonal["LastName" + ePFStaffUtil._familyRelation[_j, 0]].ToString()); 
                                             _dr3["FullNameEN" + ePFStaffUtil._familyRelation[_j, 0]] = Util.GetFullName(_dataRecordedFamilyPersonal["TitleInitialsEN" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dataRecordedFamilyPersonal["TitleFullNameEN" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dataRecordedFamilyPersonal["FirstNameEN" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dataRecordedFamilyPersonal["MiddleNameEN" + ePFStaffUtil._familyRelation[_j, 0]].ToString(), _dataRecordedFamilyPersonal["LastNameEN" + ePFStaffUtil._familyRelation[_j, 0]].ToString()); 
                                             _dr3["Alive" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyPersonal["AliveTH" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyPersonal["AliveTH" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyPersonal["AliveEN" + ePFStaffUtil._familyRelation[_j, 0]]); 
-                                            /*
+                                            /--*
                                             _dr3["Birthdate" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyPersonal["BirthdateTH" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyPersonal["BirthdateTH" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyPersonal["BirthDateEN" + ePFStaffUtil._familyRelation[_j, 0]]); 
                                             _dr3["Age" + ePFStaffUtil._familyRelation[_j, 0]] = _dataRecordedFamilyPersonal["Age" + ePFStaffUtil._familyRelation[_j, 0]]; 
                                             _dr3["Country" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyPersonal["CountryNameTH" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyPersonal["CountryNameTH" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyPersonal["CountryNameEN" + ePFStaffUtil._familyRelation[_j, 0]]); 
@@ -849,9 +982,9 @@ public class ePFStaffProgressDataUtil
                                             _dr3["Religion" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyPersonal["ReligionNameTH" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyPersonal["ReligionNameTH" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyPersonal["ReligionNameEN" + ePFStaffUtil._familyRelation[_j, 0]]); 
                                             _dr3["BloodGroup" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyPersonal["BloodGroupNameTH" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyPersonal["BloodGroupNameTH" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyPersonal["BloodGroupNameEN" + ePFStaffUtil._familyRelation[_j, 0]]); 
                                             _dr3["MaritalStatus" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyPersonal["MaritalStatusNameTH" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyPersonal["MaritalStatusNameTH" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyPersonal["MaritalStatusNameEN" + ePFStaffUtil._familyRelation[_j, 0]]); 
-                                            */
+                                            *--/
                                             _dr3["EducationalBackgroundPerson" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyPersonal["EducationalBackgroundPersonNameTH" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyPersonal["EducationalBackgroundPersonNameTH" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyPersonal["EducationalBackgroundPersonNameEN" + ePFStaffUtil._familyRelation[_j, 0]]); 
-                                            /*
+                                            /--*
                                             _dr3["CountryPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyAddress["CountryNameTHPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyAddress["CountryNameTHPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyAddress["CountryNameENPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]]); 
                                             _dr3["ProvincePermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyAddress["ProvinceNameTHPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyAddress["ProvinceNameTHPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyAddress["ProvinceNameENPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]]); 
                                             _dr3["DistrictPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyAddress["DistrictNameTHPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyAddress["DistrictNameTHPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyAddress["DistrictNameENPermanentAddress" + ePFStaffUtil._familyRelation[_j, 0]]); 
@@ -878,9 +1011,9 @@ public class ePFStaffProgressDataUtil
                                             _dr3["PhoneNumberCurrentAddress" + ePFStaffUtil._familyRelation[_j, 0]] = _dataRecordedFamilyAddress["PhoneNumberCurrentAddress" + ePFStaffUtil._familyRelation[_j, 0]]; 
                                             _dr3["MobileNumberCurrentAddress" + ePFStaffUtil._familyRelation[_j, 0]] = _dataRecordedFamilyAddress["MobileNumberCurrentAddress" + ePFStaffUtil._familyRelation[_j, 0]]; 
                                             _dr3["FaxNumberCurrentAddress" + ePFStaffUtil._familyRelation[_j, 0]] = _dataRecordedFamilyAddress["FaxNumberCurrentAddress" + ePFStaffUtil._familyRelation[_j, 0]]; 
-                                            */
+                                            *--/
                                             _dr3["Occupation" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyWork["OccupationTH" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyWork["OccupationTH" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyWork["OccupationEN" + ePFStaffUtil._familyRelation[_j, 0]]);
-                                            /*
+                                            /--*
                                             _strTemp1 = String.Empty;
                                             _strTemp2 = String.Empty;
                                             _strTemp1 = (!String.IsNullOrEmpty(_dataRecordedFamilyWork["AgencyNameTH" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? _dataRecordedFamilyWork["AgencyNameTH" + ePFStaffUtil._familyRelation[_j, 0]] : _dataRecordedFamilyWork["AgencyNameEN" + ePFStaffUtil._familyRelation[_j, 0]]).ToString();
@@ -890,11 +1023,12 @@ public class ePFStaffProgressDataUtil
                                             _dr3["Workplace" + ePFStaffUtil._familyRelation[_j, 0]] = _dataRecordedFamilyWork["Workplace" + ePFStaffUtil._familyRelation[_j, 0]]; 
                                             _dr3["Position" + ePFStaffUtil._familyRelation[_j, 0]] = _dataRecordedFamilyWork["Position" + ePFStaffUtil._familyRelation[_j, 0]]; 
                                             _dr3["Telephone" + ePFStaffUtil._familyRelation[_j, 0]] = _dataRecordedFamilyWork["Telephone" + ePFStaffUtil._familyRelation[_j, 0]]; 
-                                            */
+                                            *--/
                                             _dr3["Salary" + ePFStaffUtil._familyRelation[_j, 0]] = (!String.IsNullOrEmpty(_dataRecordedFamilyWork["Salary" + ePFStaffUtil._familyRelation[_j, 0]].ToString()) ? double.Parse(_dataRecordedFamilyWork["Salary" + ePFStaffUtil._familyRelation[_j, 0]].ToString()).ToString("#,##0.00") : "");
                                         }
                                         
                                         _dt2.Rows.Add(_dr3);
+                                        */
                                     }
 
                                     if (_page.Equals(ePFStaffUtil.PAGE_OURSERVICESSUMMARYNUMBEROFSTUDENTLEVEL2VIEWTABLE_PROGRESS))
@@ -984,7 +1118,7 @@ public class ePFStaffProgressDataUtil
                             {
                                 _valueDetailIncomplte.Add(_msgDetail);
                                 _incomplete++;
-                            }   
+                            }
                         }            
                         catch(Exception _ex)
                         {
